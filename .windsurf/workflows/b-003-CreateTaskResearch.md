@@ -38,9 +38,11 @@ cp ".windsurf/templates/tasks/task-template/b-research.md" \
 ### 3. 既存実装と再利用候補の調査
 
 - Grep / find / IDE の検索で、類似ロジックやコンポーネントを洗い出す。
+
   ```bash
   rg "keyword" src/
   ```
+
 - 再利用できるファイル・モジュール・カスタムフック・APIクライアントをリスト化。
 - 参考にできる実装パターン（バリデーション、エラーハンドリング等）と課題点を併記。
 
@@ -81,6 +83,7 @@ grep "## ベストプラクティス" docs/tasks/task{ID}-{SLUG}/b-research.md \
 ```
 
 チェックリスト:
+
 - [ ] 参考リンク・出典が記載されている
 - [ ] 再利用できるコード/コンポーネントが明確
 - [ ] 技術選定理由と代替案が整理されている
@@ -118,9 +121,11 @@ git commit -m "docs(task): 技術調査メモの作成 task{ID}"
 | メール送信 | SendGrid や Resend などのサービスを利用。自前 SMTP は避ける | [Resend Best Practices](https://resend.com/docs) |
 
 **アンチパターンの記録**:
+
 - 「避けるべきアンチパターンはありますか？」
 
 例：
+
 - 「フォームの全フィールドを state で管理すると再レンダリングが頻発 → React Hook Form を使用」
 - 「パスワードを平文でログに出力 → 機密情報は絶対にログに出力しない」
 
@@ -129,21 +134,26 @@ git commit -m "docs(task): 技術調査メモの作成 task{ID}"
 #### 3.1. 類似機能の検索
 
 **質問3: 類似機能の有無**
+
 - 「このプロジェクト内に類似機能がありますか？」
 
 調査方法：
+
 - Grep ツールで関連キーワードを検索
 - ファイル名やディレクトリ構造から推測
 - 他の開発者に確認
 
 例：
+
 - メール送信機能を実装する場合：「email」「send」「mail」で検索
 - 認証機能の場合：「auth」「login」「password」で検索
 
 **質問4: 類似機能のファイルパス**
+
 - 「類似機能のファイルパスを特定してください。」
 
 Grep を使用してファイルを特定：
+
 ```bash
 Grep pattern="sendEmail" output_mode="files_with_matches"
 ```
@@ -153,9 +163,11 @@ Grep pattern="sendEmail" output_mode="files_with_matches"
 類似機能のファイルを読み込み、実装パターンを分析：
 
 **質問5: 実装パターン**
+
 - 「既存コードではどのような実装パターンを使用していますか？」
 
 分析すべき内容：
+
 - アーキテクチャパターン（MVC、レイヤードアーキテクチャなど）
 - データフェッチ方法（useSWR、React Query、useState + useEffect など）
 - エラーハンドリング方法
@@ -163,9 +175,11 @@ Grep pattern="sendEmail" output_mode="files_with_matches"
 - フォーム管理（Controlled Component、Uncontrolled Component）
 
 **質問6: 参考にすべき点**
+
 - 「既存コードのどの部分を参考にすべきですか？」
 
 例：
+
 | 項目 | 内容 |
 |------|------|
 | 類似機能のファイルパス | src/features/auth/PasswordResetForm.tsx |
@@ -173,9 +187,11 @@ Grep pattern="sendEmail" output_mode="files_with_matches"
 | 参考にすべき点 | エラーハンドリングのパターン、ローディング状態の管理、ユーザーへのフィードバック表示 |
 
 **質問7: 改善すべき点**
+
 - 「既存コードで改善すべき点はありますか？」
 
 例：
+
 - 「エラーメッセージがハードコードされている → i18n 対応が必要」
 - 「テストコードがない → 今回は必ずテストを書く」
 
@@ -184,15 +200,18 @@ Grep pattern="sendEmail" output_mode="files_with_matches"
 #### 4.1. 共通コンポーネントの調査
 
 **質問8: 共通コンポーネントの確認**
+
 - 「このプロジェクトの共通コンポーネントを確認しましたか？」
 
 調査対象：
+
 - UIコンポーネント（Button、Input、Modal、Card、Spinnerなど）
 - カスタムフック（useAuth、useFetch、useToast、useFormなど）
 - ユーティリティ関数（formatDate、validateEmail、debounce、throttleなど）
 - APIクライアント、データフェッチャー
 
 調査方法：
+
 - `src/components/` ディレクトリを確認
 - `src/hooks/` ディレクトリを確認
 - `src/lib/` または `src/utils/` ディレクトリを確認
@@ -203,15 +222,18 @@ Grep pattern="sendEmail" output_mode="files_with_matches"
 再利用可能なコンポーネントについて、以下を記録：
 
 **質問9: コンポーネント一覧**
+
 - 「使用する共通コンポーネントをリストアップしてください。」
 
 各コンポーネントについて：
+
 - コンポーネント名
 - ファイルパス
 - 使用方法（Props、引数、戻り値）
 - 簡単なコードスニペット
 
 例：
+
 | コンポーネント名 | ファイルパス | 使用方法 |
 |-----------------|-------------|----------|
 | `Button` | `src/components/Button.tsx` | `<Button variant="primary" onClick={handleClick}>送信</Button>` |
@@ -219,9 +241,11 @@ Grep pattern="sendEmail" output_mode="files_with_matches"
 | `apiClient` | `src/lib/apiClient.ts` | `await apiClient.post("/api/auth/verify", { token });` |
 
 **質問10: Propsや型の確認**
+
 - 「各コンポーネントの Props や型定義を確認しましたか？」
 
 Read ツールでファイルを読み込み、型定義を確認：
+
 ```typescript
 // Button.tsx
 interface ButtonProps {
@@ -236,9 +260,11 @@ interface ButtonProps {
 #### 5.1. 選定が必要な技術の特定
 
 **質問11: 新しいライブラリや技術が必要**
+
 - 「このタスクで新しいライブラリや技術を導入する必要がありますか？」
 
 例：
+
 - フォームバリデーションライブラリ（React Hook Form、Formik、Yup、Zodなど）
 - メール送信サービス（SendGrid、Resend、Amazon SESなど）
 - 画像最適化ライブラリ（sharp、imagemin など）
@@ -249,9 +275,11 @@ interface ButtonProps {
 新しいライブラリ導入が必要な場合、複数の選択肢を比較：
 
 **質問12: 比較対象**
+
 - 「どのライブラリを比較しましたか？」
 
 比較すべき観点：
+
 - **人気度**：npm trends、GitHub スター数
 - **メンテナンス状況**：最終更新日、Issue/PR の対応状況
 - **バンドルサイズ**：フロントエンドの場合は重要
@@ -261,9 +289,11 @@ interface ButtonProps {
 - **ライセンス**：商用利用可能か（MIT、Apache 2.0 など）
 
 **質問13: 選定理由**
+
 - 「選定した技術の理由を教えてください。」
 
 例：
+
 | 技術・ライブラリ | 選定理由 | 代替案との比較 |
 |----------------|---------|---------------|
 | Zod | TypeScript の型定義からバリデーションスキーマを自動生成可能。React Hook Form との統合が容易。バンドルサイズも小さい（8KB gzip） | Yup は型推論が弱い。Joi はバンドルサイズが大きい（45KB gzip） |
@@ -271,6 +301,7 @@ interface ButtonProps {
 #### 5.3. チーム内での合意
 
 **質問14: チーム内での合意**
+
 - 「新しいライブラリ導入についてチーム内で合意を取りましたか？」
 - 「誰かレビューしましたか？」
 
@@ -279,9 +310,11 @@ interface ButtonProps {
 #### 6.1. リスクの特定
 
 **質問15: 技術的リスク**
+
 - 「このタスクで想定される技術的リスクは何ですか？」
 
 リスクのカテゴリ：
+
 - **パフォーマンス**：大量データ、重い処理、ネットワーク遅延
 - **セキュリティ**：XSS、CSRF、SQL Injection、認証・認可の不備
 - **ブラウザ互換性**：古いブラウザでの動作、ポリフィル必要性
@@ -294,14 +327,17 @@ interface ButtonProps {
 各リスクについて、以下をヒアリング：
 
 **質問16: リスクの詳細**
+
 - 「[リスク]の詳細を教えてください。」
 
 記載すべき内容：
+
 - リスク内容（何が問題か）
 - 影響（どのような影響があるか、影響範囲）
 - 軽減策（どのように対処するか）
 
 例：
+
 | リスク | 影響 | 軽減策 |
 |--------|------|--------|
 | メール送信の遅延 | ユーザー登録完了までに時間がかかり、UX が悪化 | 非同期ジョブキューで処理。即座に「メール送信中」メッセージを表示 |
@@ -309,6 +345,7 @@ interface ButtonProps {
 | トークンの総当たり攻撃 | 不正なメール認証の可能性 | UUID v4 でランダム性を確保（2^122の組み合わせ）。有効期限を24時間に制限。レート制限を実装 |
 
 **質問17: 優先度**
+
 - 「各リスクの優先度は？」
   - 高：すぐに対処が必要
   - 中：実装時に考慮
@@ -317,9 +354,11 @@ interface ButtonProps {
 ### 7. メモ・補足情報
 
 **質問18: 補足情報**
+
 - 「その他、調査中に気づいたことや補足情報はありますか？」
 
 記載すべき内容：
+
 - 調査中に気づいた改善点
 - 今後の調査が必要な項目
 - 参考になった記事や動画
@@ -327,6 +366,7 @@ interface ButtonProps {
 - 調査の過程で発見した技術的負債
 
 例：
+
 - 「既存のメール送信機能が古い実装のため、このタスクと一緒にリファクタリング検討」
 - 「パフォーマンステストが必要（1000ユーザー同時登録時の負荷）」
 - 「セキュリティレビューをチームリーダーに依頼予定」

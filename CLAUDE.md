@@ -26,6 +26,7 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
 ### ワークフロー体系
 
 **A系列：プロジェクト設計ワークフロー**
+
 - `/a-001-SetupDocStructure` — プロジェクトドキュメント構造のセットアップ
 - `/a-002-InitializeProject` — プロジェクト初期化（課題、解決策、スコープ）
 - `/a-003-CreateScenarios` — BDD形式でのシナリオ定義（Gherkin）
@@ -42,6 +43,7 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
 - `/a-014-ReviewDesign` — 設計ドキュメントの一貫性レビュー
 
 **B系列：タスク管理ワークフロー**
+
 - `/b-000-CreateTaskDirectory` — タスクディレクトリ作成（task000001-xxx形式）
 - `/b-001-CreateTaskDefinition` — タスク定義（目的、ユーザーストーリー、受け入れ基準）
 - `/b-002-CreateTaskResearch` — リサーチ（ベストプラクティス、既存コード調査）
@@ -49,10 +51,12 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
 - `/b-004-ReviewTask` — タスクドキュメントの一貫性レビュー
 
 **C系列：実装実行ワークフロー**
+
 - `/c-001-ImplementTask` — タスク実装実行（speckit.implementスタイル）
 - `/c-002-UpdateDocumentation` — 実装完了後のドキュメント更新（タスク・プロジェクトレベル）
 
 **X系列：補助的なワークフロー（Object-Action形式）**
+
 - `/x-Context-CatchUp` — プロジェクト状況の把握
 - `/x-Requirements-Clarify` — 要件の明確化
 - `/x-Repository-PushToGithub` — GitHub へのプッシュ
@@ -71,6 +75,7 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
 - `/x-Accessibility-Check` — アクセシビリティ監査
 
 **Z系列：メタワークフロー**
+
 - `/z-CreateWorkflow` — 新規ワークフロー作成支援
 
 ### タスク管理ワークフローの詳細
@@ -78,10 +83,12 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
 タスクの計画から実装まで、spec-kit（GitHub）にインスパイアされた体系的なワークフローを提供：
 
 **ディレクトリ構造**: `docs/tasks/task000001-{スラッグ}/`
+
 - タスクIDは6桁ゼロパディング（task000001, task000002, ...）
 - 各タスクに3つのドキュメント（a-definition.md, b-research.md, c-implementation.md）
 
 **実行フロー**:
+
 1. **b-000**: タスクディレクトリ作成とテンプレートコピー
 2. **b-001**: タスク定義（目的、ユーザーストーリー、受け入れ基準を明確化）
 3. **b-002**: リサーチ（ベストプラクティス調査、既存コード分析、技術選定、リスク評価）
@@ -106,6 +113,7 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
    - ドキュメント整合性確認、コミット
 
 **speckit.implement との対応**:
+
 - constitution → タスク定義（a-definition.md）
 - specification → タスク定義+リサーチ（a-definition.md + b-research.md）
 - implementation plan → 実装タスクリスト（c-implementation.md）
@@ -171,12 +179,14 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
 ## クイックリファレンス
 
 ### プロジェクト開始時
+
 1. `/a-001-SetupDocStructure` — ドキュメント構造セットアップ
 2. `/a-002-InitializeProject` — プロジェクト初期化
 3. `/a-003-CreateScenarios` → `/a-004-DefineDomainModel` — 要件定義とドメインモデル
 4. `/a-007-DefineTechStack` → `/a-008-DefineRepositoryStructure` — 技術選定とリポジトリ構造
 
 ### タスク実装時
+
 1. `/b-000-CreateTaskDirectory` — タスクディレクトリ作成
 2. `/b-001-CreateTaskDefinition` — タスク定義
 3. `/b-002-CreateTaskResearch` — リサーチ
@@ -184,6 +194,7 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
 5. `/c-001-ImplementTask` — 実装実行
 
 ### 日常作業
+
 - `/x-Context-CatchUp` — プロジェクト状況把握
 - `/x-Requirements-Clarify` — 要件明確化
 - `/x-Code-ResearchAndReview` — コードレビュー
@@ -193,11 +204,12 @@ Windsurfで活用するスラッシュコマンドとワークフローの保管
 - `/x-Dependencies-Update` — 依存関係更新
 
 ### 新規ワークフロー作成
+
 - `/z-CreateWorkflow` — ワークフロー作成支援
 
 ## 参考リンク
 
-- Windsurf公式: https://docs.windsurf.com/windsurf/cascade/workflows
-- Claude Code公式: https://docs.claude.com/en/docs/claude-code/slash-commands
-- spec-kit (GitHub): https://github.com/github/spec-kit
+- Windsurf公式: <https://docs.windsurf.com/windsurf/cascade/workflows>
+- Claude Code公式: <https://docs.claude.com/en/docs/claude-code/slash-commands>
+- spec-kit (GitHub): <https://github.com/github/spec-kit>
 - BMAD Method / Claude-Flow関連資料は各ワークフロー内で適宜参照

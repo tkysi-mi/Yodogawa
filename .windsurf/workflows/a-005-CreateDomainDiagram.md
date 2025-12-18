@@ -20,6 +20,7 @@ description: ドメインモデルをMermaid図で視覚化し、Context MapやA
 ### 1. ドキュメントの確認
 
 - `docs/project/domain/01-domain-model.md` を読み込み、内容を確認する。
+
   ```bash
   ls -la docs/project/domain/01-domain-model.md 2>/dev/null || echo "ファイルが存在しません"
   ```
@@ -70,6 +71,7 @@ description: ドメインモデルをMermaid図で視覚化し、Context MapやA
 - 以下の完了条件を満たしているか、コマンドとチェックリストで確認してください：
 
   1. **構造確認**:
+
      ```bash
      # Mermaidブロックの存在確認
      grep "\`\`\`mermaid" docs/project/domain/01-domain-model.md && echo "OK" || echo "MISSING: Mermaid diagram"
@@ -86,11 +88,14 @@ description: ドメインモデルをMermaid図で視覚化し、Context MapやA
 
 - ユーザーに確認：「更新したドメインモデルドキュメントを Git に追加しますか？」
 - 「はい」の場合、以下を実行：
+
   ```bash
   git add docs/project/domain/01-domain-model.md
   git status
   ```
+
 - 推奨コミットメッセージ：
+
   ```
   docs: ドメインモデル図（Context Map）の追加
 

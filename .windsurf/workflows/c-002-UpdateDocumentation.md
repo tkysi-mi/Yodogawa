@@ -29,21 +29,25 @@ auto_execution_mode: 1
 #### 1.1. タスクディレクトリの特定
 
 **タスクIDの確認**:
+
 - 更新対象のタスクIDを確認（例: task000001-email-verification）
 - タスクディレクトリパス: `docs/tasks/task000001-{スラッグ}/`
 
 #### 1.2. 実装完了状態の検証
 
 **検証項目**:
+
 - [ ] 実装タスクリスト（c-implementation.md）の全ステップが完了している（全チェックボックスが `[x]`）
 - [ ] 全フェーズの受け入れ基準が満たされている
 - [ ] テストが全て通っている
 - [ ] PR/MRが作成されている（該当する場合）
 
 **未完了の場合**:
+
 - 「タスク {task-id} の実装がまだ完了していません。先に `/c-001-ImplementTask` を実行してください。」
 
 **推奨**:
+
 - `/c-001-ImplementTask` の最後に表示される推奨アクションから続けて実行することが最も効率的です。
 
 ### 2. 実装内容の確認
@@ -51,6 +55,7 @@ auto_execution_mode: 1
 #### 2.1. 実装ファイルの特定
 
 **変更されたファイルの確認**:
+
 ```bash
 # タスク用ブランチの変更を確認
 git diff main..HEAD --name-only
@@ -60,6 +65,7 @@ git log --name-only --oneline main..HEAD
 ```
 
 **確認すべき項目**:
+
 - [ ] 新規作成されたファイル
 - [ ] 変更されたファイル
 - [ ] 削除されたファイル
@@ -78,6 +84,7 @@ git log --name-only --oneline main..HEAD
 
 **差異の記録**:
 実装中に判明した変更点をリストアップ:
+
 - 技術スタックの変更（例: Prisma → TypeORM）
 - アーキテクチャの変更（例: REST → GraphQL）
 - データモデルの変更（例: カラム追加・削除）
@@ -93,16 +100,19 @@ git log --name-only --oneline main..HEAD
 **更新すべきセクション**:
 
 **1. 実装内容の更新**:
+
 - 計画時の想定と実際の実装が異なる場合、実際の実装内容を記載
 - 追加で実装した機能があれば追記
 
 **2. 受け入れ基準の更新**:
+
 - 計画時の受け入れ基準がすべて満たされているか確認
 - 実装中に追加した受け入れ基準があれば追記
 - 満たせなかった基準があれば、理由と今後の対応を記載
 
 **3. 技術的決定の記録**:
 新しいセクション「## 実装時の技術的決定」を追加（必要に応じて）:
+
 ```markdown
 ## 実装時の技術的決定
 
@@ -117,6 +127,7 @@ git log --name-only --oneline main..HEAD
 
 **4. 実装結果の記録**:
 新しいセクション「## 実装結果」を追加:
+
 ```markdown
 ## 実装結果
 
@@ -138,11 +149,13 @@ git log --name-only --oneline main..HEAD
 **更新すべきセクション**:
 
 **1. 技術選定の更新**:
+
 - 計画時に選定した技術と実際に使用した技術が異なる場合、理由を追記
 - 新たに採用したライブラリ・ツールがあれば追記
 
 **2. ベストプラクティスの追記**:
 実装中に発見したベストプラクティスを追記:
+
 ```markdown
 ## 実装時に発見したベストプラクティス
 
@@ -153,6 +166,7 @@ git log --name-only --oneline main..HEAD
 
 **3. 技術的リスクの結果**:
 計画時に挙げた技術的リスクの結果を記録:
+
 ```markdown
 ## 技術的リスクの結果
 
@@ -172,11 +186,13 @@ git log --name-only --oneline main..HEAD
 **更新すべきセクション**:
 
 **1. 完了マークの確認**:
+
 - 全ステップのチェックボックスが `[x]` になっているか確認
 - 未完了のステップがあれば理由を記載
 
 **2. 実装メモの追記**:
 各ステップに実装時のメモを追記（必要に応じて）:
+
 ```markdown
 - [x] **ステップ 1:** データベーススキーマの定義
   - **成果物:** `migrations/001_create_users_table.sql`
@@ -189,6 +205,7 @@ git log --name-only --oneline main..HEAD
 
 **3. 実装時間の記録**:
 各フェーズの実装時間を記録:
+
 ```markdown
 ## フェーズ 1: データモデルと API の実装
 
@@ -200,6 +217,7 @@ git log --name-only --oneline main..HEAD
 
 **4. 振り返りセクションの追加**:
 新しいセクション「## 振り返り」を追加:
+
 ```markdown
 ## 振り返り
 
@@ -224,21 +242,25 @@ git log --name-only --oneline main..HEAD
 実装内容に応じて、以下のドキュメントの更新が必要か確認:
 
 **要件ドキュメント**（`docs/01-requirements/`）:
+
 - [ ] **02-features-implemented.md**: 実装済み機能リストに追加
 - [ ] **03-features-planned.md**: 計画中機能リストから削除（実装済みに移動）
 - [ ] **05-user-stories.md**: ユーザーストーリーのステータスを更新
 
 **ドメインドキュメント**（`docs/03-domain/`）:
+
 - [ ] **01-domain-model.md**: 新しいエンティティ・値オブジェクトを追加
 - [ ] **02-ubiquitous-language.md**: 新しいドメイン用語を追加
 
 **設計ドキュメント**（`docs/04-design/`）:
+
 - [ ] **03-screen-design.md**: 新しい画面・UI コンポーネントを追加
 - [ ] **04-data-model.md**: 新しいテーブル・カラムを追加
 - [ ] **05-api-spec.md**: 新しい API エンドポイントを追加
 - [ ] **06-architecture.md**: アーキテクチャ変更を反映
 
 **その他**:
+
 - [ ] **README.md**: セットアップ手順、使い方を更新
 - [ ] **CHANGELOG.md**: 変更履歴を追加
 - [ ] **.env.example**: 新しい環境変数を追加
@@ -248,6 +270,7 @@ git log --name-only --oneline main..HEAD
 **実装済み機能リスト**（`docs/01-requirements/02-features-implemented.md`）を開く。
 
 **新機能の追加**:
+
 ```markdown
 ## ユーザー認証・認可
 
@@ -278,6 +301,7 @@ git log --name-only --oneline main..HEAD
 **計画中機能リスト**（`docs/01-requirements/03-features-planned.md`）を開く。
 
 **実装済み機能の削除**:
+
 - 実装完了した機能をリストから削除
 - または、ステータスを「実装済み」に変更し、`02-features-implemented.md` への参照を追加
 
@@ -286,6 +310,7 @@ git log --name-only --oneline main..HEAD
 **ドメインモデル**（`docs/03-domain/01-domain-model.md`）を開く。
 
 **エンティティの追加・更新**:
+
 ```markdown
 ## User（ユーザー）
 
@@ -319,6 +344,7 @@ git log --name-only --oneline main..HEAD
 **ユビキタス言語**（`docs/03-domain/02-ubiquitous-language.md`）を開く。
 
 **新しい用語の追加**:
+
 ```markdown
 ## メール検証（Email Verification）
 
@@ -357,6 +383,7 @@ git log --name-only --oneline main..HEAD
 **データモデル**（`docs/04-design/04-data-model.md`）を開く。
 
 **テーブルの追加・更新**:
+
 ```markdown
 ## users テーブル
 
@@ -388,6 +415,7 @@ git log --name-only --oneline main..HEAD
 **API 仕様**（`docs/04-design/05-api-spec.md`）を開く。
 
 **新しいエンドポイントの追加**:
+
 ```markdown
 ## POST /api/auth/send-verification-email
 
@@ -403,6 +431,7 @@ git log --name-only --oneline main..HEAD
 ```
 
 **レスポンス（成功）**:
+
 ```json
 {
   "message": "Verification email sent successfully",
@@ -411,6 +440,7 @@ git log --name-only --oneline main..HEAD
 ```
 
 **レスポンス（エラー）**:
+
 - 401 Unauthorized: 認証トークンが無効
 - 400 Bad Request: メールが既に検証済み
 
@@ -423,6 +453,7 @@ git log --name-only --oneline main..HEAD
 **認証**: 不要
 
 **リクエスト**:
+
 ```json
 {
   "token": "550e8400-e29b-41d4-a716-446655440000"
@@ -430,6 +461,7 @@ git log --name-only --oneline main..HEAD
 ```
 
 **レスポンス（成功）**:
+
 ```json
 {
   "message": "Email verified successfully",
@@ -438,8 +470,10 @@ git log --name-only --oneline main..HEAD
 ```
 
 **レスポンス（エラー）**:
+
 - 400 Bad Request: トークンが無効または期限切れ
 - 404 Not Found: ユーザーが見つからない
+
 ```
 
 #### 4.8. screen-design.md の更新（該当する場合）
@@ -477,6 +511,7 @@ git log --name-only --oneline main..HEAD
 **アーキテクチャ**（`docs/04-design/06-architecture.md`）を開く。
 
 **アーキテクチャ変更の記録**:
+
 - 新しいレイヤー・コンポーネントを追加した場合
 - アーキテクチャパターンを変更した場合
 - 新しい依存関係を追加した場合
@@ -489,6 +524,7 @@ git log --name-only --oneline main..HEAD
 
 **1. セットアップ手順**:
 新しい環境変数が追加された場合:
+
 ```markdown
 ## 環境変数設定
 
@@ -504,6 +540,7 @@ cp .env.example .env
 - `JWT_SECRET`: JWT トークンの秘密鍵
 - `SENDGRID_API_KEY`: SendGrid API キー（新規追加）
 - `SENDGRID_FROM_EMAIL`: 送信元メールアドレス（新規追加）
+
 ```
 
 **2. 機能一覧**:
@@ -519,6 +556,7 @@ cp .env.example .env
 
 **3. API ドキュメント**:
 新しいエンドポイントへのリンク:
+
 ```markdown
 ## API ドキュメント
 
@@ -536,6 +574,7 @@ cp .env.example .env
 **CHANGELOG.md** を開く。
 
 **変更履歴の追加**:
+
 ```markdown
 # Changelog
 
@@ -568,6 +607,7 @@ All notable changes to this project will be documented in this file.
 **.env.example** を開く。
 
 **新しい環境変数の追加**:
+
 ```bash
 # データベース
 DATABASE_URL=postgresql://user:password@localhost:5432/myapp
@@ -598,6 +638,7 @@ APP_URL=http://localhost:3000
 #### 5.2. 用語の一貫性確認
 
 **ユビキタス言語の一貫性**:
+
 - [ ] ドキュメント全体で同じ用語を使用しているか
 - [ ] ubiquitous-language.md に記載された用語が各ドキュメントで使用されているか
 - [ ] コード内のクラス名・変数名がドメイン用語と一致しているか
@@ -605,6 +646,7 @@ APP_URL=http://localhost:3000
 #### 5.3. リンク切れの確認
 
 **ドキュメント間のリンクを確認**:
+
 - [ ] 内部リンクが正しいパスを指しているか
 - [ ] 参照先のドキュメント・セクションが存在するか
 
@@ -623,6 +665,7 @@ git diff docs/
 #### 6.2. ドキュメント更新のコミット
 
 **ステージング**:
+
 ```bash
 # タスクドキュメントをステージング
 git add docs/tasks/task{task-id}-{スラッグ}/
@@ -639,6 +682,7 @@ git add .env.example
 ```
 
 **コミット**:
+
 ```bash
 git commit -m "docs(task-{task-id}): update documentation for {機能名}
 
@@ -674,14 +718,17 @@ git push origin task/{task-id}-{スラッグ}
 もし `/c-001-ImplementTask` でPRを作成していない場合は、ここで作成します。
 
 **GitHub CLI を使用する場合**:
+
 ```bash
 gh pr create --title "feat(task-{id}): {タスク概要}" --body-file docs/tasks/task{id}-{スラッグ}/pr-description.md
 ```
+
 ※ `pr-description.md` がない場合は、`c-implementation.md` の内容を参考に作成してください。
 
 #### 7.3. レビュー観点
 
 **ドキュメント品質の確認**:
+
 - [ ] **正確性**: 実装内容と一致しているか
 - [ ] **完全性**: すべての変更が記載されているか
 - [ ] **明確性**: 第三者が理解できる内容か
@@ -691,6 +738,7 @@ gh pr create --title "feat(task-{id}): {タスク概要}" --body-file docs/tasks
 #### 7.4. チームレビューの依頼（オプション）
 
 **レビュー依頼**:
+
 - ドキュメント更新が大規模な場合、チームレビューを依頼
 - PR/MR のレビューコメントで「ドキュメント更新を確認してください」と依頼
 
@@ -699,11 +747,13 @@ gh pr create --title "feat(task-{id}): {タスク概要}" --body-file docs/tasks
 #### 8.1. 振り返り内容の共有
 
 **c-implementation.md の振り返りセクション**を確認:
+
 - うまくいったこと
 - 改善すべきこと
 - 次のタスクへのフィードバック
 
 **フィードバックの適用**:
+
 - [ ] 共通化すべきコンポーネント・ライブラリを特定
 - [ ] 次のタスクのリサーチ時に活用すべきベストプラクティスを記録
 - [ ] プロジェクト全体のプロセス改善項目を記録
@@ -711,12 +761,14 @@ gh pr create --title "feat(task-{id}): {タスク概要}" --body-file docs/tasks
 #### 8.2. テンプレートの更新（必要に応じて）
 
 **タスクテンプレート**（`.windsurf/templates/tasks/task-template/`）の更新:
+
 - 今回のタスクで有効だった形式・セクションをテンプレートに反映
 - 次回のタスクで使いやすいテンプレートに改善
 
 ## 自動化のヒント
 
 将来的に、以下のスクリプトを作成してドキュメント更新を一部自動化することを検討してください：
+
 - `scripts/update-docs.sh`: コミットログから変更内容を抽出してドラフトを作成
 - `scripts/generate-api-docs.sh`: コードからAPI仕様書を生成
 
@@ -773,11 +825,13 @@ gh pr create --title "feat(task-{id}): {タスク概要}" --body-file docs/tasks
 ## 参考: ドキュメント構造
 
 **タスクレベル**（`docs/tasks/task{id}-{スラッグ}/`）:
+
 - `a-definition.md`: タスク定義（目的、ユーザーストーリー、受け入れ基準）
 - `b-research.md`: リサーチ（ベストプラクティス、技術選定）
 - `c-implementation.md`: 実装タスクリスト（フェーズ、ステップ）
 
 **プロジェクトレベル**（`docs/`）:
+
 - `01-requirements/`: 要件定義
   - `02-features-implemented.md`: 実装済み機能
   - `03-features-planned.md`: 計画中機能
@@ -792,6 +846,7 @@ gh pr create --title "feat(task-{id}): {タスク概要}" --body-file docs/tasks
   - `06-architecture.md`: アーキテクチャ
 
 **その他**:
+
 - `README.md`: プロジェクト概要、セットアップ手順
 - `CHANGELOG.md`: 変更履歴
 - `.env.example`: 環境変数テンプレート

@@ -24,6 +24,7 @@ auto_execution_mode: 1
 ### 1. 現在の依存関係の確認
 
 **質問1: パッケージマネージャーの確認**
+
 - 「このプロジェクトで使用しているパッケージマネージャーは何ですか？」
   - npm
   - yarn
@@ -33,6 +34,7 @@ auto_execution_mode: 1
   - その他
 
 **現在のバージョンを確認**:
+
 ```bash
 # Node.js プロジェクト
 npm list --depth=0
@@ -50,6 +52,7 @@ poetry show
 ### 2. セキュリティ脆弱性のスキャン
 
 **Node.js プロジェクト**:
+
 ```bash
 npm audit
 # または
@@ -59,6 +62,7 @@ pnpm audit
 ```
 
 **Python プロジェクト**:
+
 ```bash
 pip-audit
 # または
@@ -66,12 +70,14 @@ safety check
 ```
 
 **質問2: 脆弱性の確認**
+
 - 「セキュリティ脆弱性が検出されましたか？」
 - 検出された場合、重要度（Critical, High, Moderate, Low）を確認
 
 ### 3. 更新可能なパッケージの確認
 
 **Node.js プロジェクト**:
+
 ```bash
 npm outdated
 # または
@@ -81,6 +87,7 @@ pnpm outdated
 ```
 
 **Python プロジェクト**:
+
 ```bash
 pip list --outdated
 # または
@@ -88,6 +95,7 @@ poetry show --outdated
 ```
 
 **質問3: 更新戦略**
+
 - 「どの更新戦略を使用しますか？」
   - **Conservative（保守的）**: パッチバージョンのみ更新（例: 1.2.3 → 1.2.4）
   - **Moderate（中程度）**: マイナーバージョンまで更新（例: 1.2.3 → 1.3.0）
@@ -99,6 +107,7 @@ poetry show --outdated
 更新するパッケージの CHANGELOG または リリースノートを確認：
 
 **質問4: Breaking Changes の確認**
+
 - 「更新するパッケージに破壊的変更がありますか？」
 - 確認すべき内容：
   - API の変更（関数名、引数、戻り値の変更）
@@ -107,6 +116,7 @@ poetry show --outdated
   - 最低必要バージョンの変更（Node.js, Python など）
 
 **確認方法**:
+
 - GitHub リリースページ: `https://github.com/{org}/{repo}/releases`
 - CHANGELOG.md
 - Migration Guide
@@ -128,6 +138,7 @@ cp poetry.lock poetry.lock.backup
 #### 5.2. パッケージの更新
 
 **セキュリティパッチのみ適用**:
+
 ```bash
 # Node.js
 npm audit fix
@@ -138,6 +149,7 @@ pnpm audit fix
 ```
 
 **すべてのパッケージを更新**:
+
 ```bash
 # Node.js (interactive)
 npm update
@@ -153,6 +165,7 @@ poetry update
 ```
 
 **特定のパッケージのみ更新**:
+
 ```bash
 # Node.js
 npm install <package>@latest
@@ -173,12 +186,14 @@ git diff package-lock.json
 ```
 
 **質問5: 変更の確認**
+
 - 「予期しない変更がありませんか？」
 - 「更新されたパッケージのバージョンは適切ですか？」
 
 ### 7. テストの実行
 
 **すべてのテストを実行**:
+
 ```bash
 # Node.js
 npm test
@@ -192,6 +207,7 @@ python -m unittest
 ```
 
 **質問6: テスト結果**
+
 - 「すべてのテストが通りましたか？」
 - 失敗した場合、原因を特定：
   - 破壊的変更による API の変更
@@ -201,6 +217,7 @@ python -m unittest
 ### 8. ビルドの確認
 
 **ビルドが成功するか確認**:
+
 ```bash
 # Node.js
 npm run build
@@ -212,12 +229,14 @@ tsc --noEmit
 ```
 
 **質問7: ビルド結果**
+
 - 「ビルドが成功しましたか？」
 - エラーがある場合、型定義やコンパイルエラーを修正
 
 ### 9. 動作確認
 
 **開発サーバーを起動して動作確認**:
+
 ```bash
 npm run dev
 # または
@@ -225,6 +244,7 @@ yarn dev
 ```
 
 **質問8: 動作確認**
+
 - 「主要な機能が正常に動作しますか？」
 - 確認すべき項目：
   - ページが正しく表示される
@@ -235,6 +255,7 @@ yarn dev
 ### 10. コミットとプッシュ
 
 **変更をコミット**:
+
 ```bash
 git add package.json package-lock.json
 git commit -m "chore: update dependencies
@@ -250,6 +271,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 ```
 
 **プッシュ**:
+
 ```bash
 git push origin <branch>
 ```
@@ -262,6 +284,7 @@ git push origin <branch>
 ### 12. ドキュメント更新（必要に応じて）
 
 **質問9: ドキュメント更新**
+
 - 「依存関係の更新により、ドキュメントの更新が必要ですか？」
 - 更新すべきドキュメント：
   - README.md（最低必要バージョン）

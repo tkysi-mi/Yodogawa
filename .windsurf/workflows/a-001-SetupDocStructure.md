@@ -43,6 +43,7 @@ auto_execution_mode: 1
 
 - スクリプトの実行結果を確認し、エラーがないことを確認してください。
 - 生成された構造：
+
   ```
   docs/
   ├── README.md
@@ -58,10 +59,12 @@ auto_execution_mode: 1
 
 - ユーザーに確認：「作成したディレクトリ構造を Git に追加しますか？」
 - 「はい」の場合、以下を実行：
+
   ```bash
   git add docs/
   git status
   ```
+
 - Git status の結果を表示し、コミットメッセージの提案をする：
 
   ```

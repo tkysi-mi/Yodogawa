@@ -34,6 +34,7 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 ### 2. テンプレートの準備
 
 - テンプレートをコピーして作業用ファイルを作成する：
+
   ```bash
   cp ".windsurf/templates/project/04-design/06-architecture.md" "docs/project/design/06-architecture.md"
   ```
@@ -51,13 +52,16 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 ユーザーからのフィードバックを受け、詳細を定義する。
 
 #### 4.1 システムアーキテクチャ図
+
 - コンポーネント間の接続、プロトコル（HTTP/gRPC）、データフローをMermaid図で表現する。
 - スケーラビリティや冗長化構成（ロードバランサー、レプリカDB）を反映する。
 
 #### 4.2 アーキテクチャパターン
+
 - 採用したパターン（レイヤード、クリーン、マイクロサービス等）とその選定理由を明確にする。
 
 #### 4.3 ADR (Architecture Decision Records)
+
 - 重要な技術的決定（DB選定、認証方式、フレームワーク選定など）を抽出する。
 - 各決定について、背景・代替案・決定理由・影響を記録する。
 
@@ -74,6 +78,7 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 - 以下の完了条件を満たしているか、コマンドとチェックリストで確認してください：
 
   1. **構造確認**:
+
      ```bash
      # アーキテクチャ図の確認
      grep "\`\`\`mermaid" docs/project/design/06-architecture.md && echo "OK" || echo "MISSING: Architecture Diagram"
@@ -92,11 +97,14 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 
 - ユーザーに確認：「作成したアーキテクチャ設計ドキュメントを Git に追加しますか？」
 - 「はい」の場合、以下を実行：
+
   ```bash
   git add docs/project/design/06-architecture.md
   git status
   ```
+
 - 推奨コミットメッセージ：
+
   ```
   docs: アーキテクチャ設計の定義
 

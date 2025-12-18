@@ -218,8 +218,8 @@ components/ → features/ (NG、コンポーネントは汎用部品)
 | **ファイル・ディレクトリ** | | |
 | React コンポーネント | PascalCase、拡張子 .tsx | `UserProfile.tsx`, `LoginForm.tsx` |
 | TypeScript ファイル | camelCase、拡張子 .ts | `formatDate.ts`, `apiClient.ts` |
-| CSS Modules | *.module.css, *.module.scss | `Button.module.css` |
-| テストファイル | *.test.ts, *.spec.ts | `user.test.ts`, `auth.spec.ts` |
+| CSS Modules | *.module.css,*.module.scss | `Button.module.css` |
+| テストファイル | *.test.ts,*.spec.ts | `user.test.ts`, `auth.spec.ts` |
 | 設定ファイル | ドット始まり、特定の名前 | `.eslintrc.json`, `.env`, `tsconfig.json` |
 | ディレクトリ | kebab-case または camelCase | `user-management/` または `userManagement/` |
 | **コード要素** | | |
@@ -300,6 +300,7 @@ components/ → features/ (NG、コンポーネントは汎用部品)
 **採用戦略**: <!-- 例: 機能別コロケーション -->
 
 **配置例**:
+
 ```
 features/user/
 ├── UserProfile.tsx          # コンポーネント

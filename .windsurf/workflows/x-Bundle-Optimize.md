@@ -27,6 +27,7 @@ auto_execution_mode: 1
 **ベースライン測定**:
 
 本番ビルドを実行してサイズを確認:
+
 ```bash
 # ビルドコマンド例
 npm run build
@@ -37,12 +38,14 @@ yarn build
 ```
 
 **ビルド出力の確認**:
+
 - メインバンドル/チャンクのサイズ
 - CSS ファイルのサイズ
 - アセット（画像、フォント等）のサイズ
 - 圧縮後のサイズ（gzip, brotli）
 
 **サイズの目安**:
+
 - **< 100 KB** (gzipped): 優秀
 - **100-200 KB**: 良好
 - **200-500 KB**: 改善の余地あり
@@ -53,6 +56,7 @@ yarn build
 **分析ツールの選択と実行**:
 
 **バンドル可視化ツール**:
+
 - webpack-bundle-analyzer (Webpack)
 - rollup-plugin-visualizer (Rollup/Vite)
 - next-bundle-analyzer (Next.js)
@@ -60,6 +64,7 @@ yarn build
 - bundle-buddy (汎用)
 
 **分析の実施**:
+
 ```bash
 # ビルドツールに応じたアナライザーを実行
 <build-command> --analyze
@@ -68,6 +73,7 @@ yarn build
 ```
 
 **分析すべき項目**:
+
 - [ ] 最も大きいパッケージ/モジュール
 - [ ] 重複しているパッケージ
 - [ ] 未使用または不要なコード
@@ -79,18 +85,22 @@ yarn build
 **よくある問題パッケージと代替案**:
 
 **日付ライブラリ**:
+
 - 問題: moment.js (500KB+)
 - 代替: date-fns, day.js, Temporal API (ネイティブ)
 
 **ユーティリティライブラリ**:
+
 - 問題: lodash (全体インポート)
 - 代替: 個別関数インポート、ネイティブJSメソッド
 
 **ポリフィル**:
+
 - 問題: core-js (古いポリフィル)
 - 代替: 必要なもののみインポート、ターゲットブラウザに応じた選択
 
 **パッケージサイズの確認方法**:
+
 ```bash
 # bundlephobia CLI
 npx bundlephobia <package-name>
@@ -103,16 +113,19 @@ npx bundlephobia <package-name>
 **軽量化の戦略**:
 
 **1. 大きいパッケージの置き換え**:
+
 - サイズの小さい代替ライブラリに置き換え
 - ネイティブAPI で代替可能か検討
 - 必要な機能のみを提供する最小限のライブラリを選択
 
 **2. Tree Shaking の有効化**:
+
 - ES Modules (ESM) を使用
 - 副作用のないモジュールを明示
 - Dead Code Elimination の設定確認
 
 **3. 個別インポートの使用**:
+
 ```javascript
 // 避ける: 全体インポート
 import _ from 'lodash';
@@ -124,6 +137,7 @@ import { debounce } from 'lodash-es';
 ```
 
 **4. 未使用パッケージの削除**:
+
 ```bash
 # 未使用パッケージの検出
 npx depcheck
@@ -133,6 +147,7 @@ npm uninstall <unused-package>
 ```
 
 **5. 重複パッケージの統一**:
+
 ```bash
 # 重複確認
 npm ls <package-name>
@@ -150,20 +165,24 @@ npm ls <package-name>
 **コード分割の戦略**:
 
 **1. ルートベース分割**:
+
 - ページ/ルートごとにコードを分割
 - 動的インポートを使用
 - 初回ロードに不要なコードを遅延ロード
 
 **2. 機能ベース分割**:
+
 - 重いライブラリを遅延ロード
 - 条件付きで使用される機能を分割
 - ユーザーインタラクション後にロード
 
 **3. ベンダー/サードパーティ分割**:
+
 - アプリケーションコードとライブラリを分離
 - 頻繁に変更されないコードを別チャンクに
 
 **動的インポートの例**:
+
 ```javascript
 // 遅延ロード
 const HeavyComponent = lazy(() => import('./HeavyComponent'));
@@ -180,10 +199,12 @@ if (userNeedsChart) {
 **Tree Shaking が機能する条件**:
 
 **1. ES Modules を使用**:
+
 - import/export 構文を使用
 - CommonJS (require) ではなくESMを使用
 
 **2. 副作用の明示**:
+
 ```json
 // package.json
 {
@@ -197,6 +218,7 @@ if (userNeedsChart) {
 ```
 
 **3. ビルドツールの設定**:
+
 - Production モードでビルド
 - Minification を有効化
 - Dead Code Elimination を有効化
@@ -204,6 +226,7 @@ if (userNeedsChart) {
 ### 7. アセットの最適化
 
 **画像最適化**:
+
 - 適切な形式を使用（WebP, AVIF）
 - 適切なサイズにリサイズ
 - 遅延ロード（Lazy Loading）
@@ -211,12 +234,14 @@ if (userNeedsChart) {
 - スプライトシートまたはアイコンフォント
 
 **フォント最適化**:
+
 - サブセット化（必要な文字のみ）
 - WOFF2 形式を優先
 - font-display: swap を使用
 - preload で重要なフォントを先読み
 
 **その他のアセット**:
+
 - SVG の最適化（SVGO）
 - JSON の圧縮
 - 不要なメタデータの削除
@@ -226,22 +251,26 @@ if (userNeedsChart) {
 **測定ツール**:
 
 **ブラウザ DevTools**:
+
 - Network タブでリソースサイズ確認
 - Performance タブでロード時間確認
 - Coverage タブで未使用コード確認
 
 **Lighthouse**:
+
 ```bash
 npx lighthouse <url> --view
 ```
 
 **Core Web Vitals の目標値**:
+
 - **LCP (Largest Contentful Paint)**: < 2.5s
 - **FID (First Input Delay)**: < 100ms
 - **CLS (Cumulative Layout Shift)**: < 0.1
 - **Total Blocking Time**: < 200ms
 
 **バンドルサイズ予算の設定**:
+
 - ビルドツールに size budget を設定
 - CI/CD で自動チェック
 - 閾値を超えた場合はビルドを失敗させる
@@ -249,6 +278,7 @@ npx lighthouse <url> --view
 ### 9. 最適化結果の検証
 
 **再ビルドと比較**:
+
 ```bash
 # 最適化後のビルド
 npm run build
@@ -258,6 +288,7 @@ npm run build
 ```
 
 **検証項目**:
+
 - [ ] ビルドサイズが削減された
 - [ ] ページロード時間が改善された
 - [ ] Core Web Vitals が改善された
@@ -265,6 +296,7 @@ npm run build
 - [ ] エラーが発生していない
 
 **削減目標**:
+
 - **10-20%**: 良好
 - **20-50%**: 優秀
 - **50%+**: 大幅改善
@@ -272,12 +304,14 @@ npm run build
 ### 10. 継続的な監視
 
 **モニタリングの設定**:
+
 - バンドルサイズの推移をトラッキング
 - CI/CD でサイズチェックを自動化
 - パフォーマンス予算を設定
 - 定期的なレビューを実施
 
 **自動化の例**:
+
 ```json
 // package.json
 {
@@ -362,11 +396,13 @@ Co-Authored-By: Claude <noreply@anthropic.com)"
 ## 参考: ツール別のパターン
 
 **ビルドツール**:
+
 - Webpack, Rollup, esbuild
 - Vite, Turbopack, Parcel
 - Next.js, Nuxt, SvelteKit (内蔵)
 
 **バンドル分析ツール**:
+
 - webpack-bundle-analyzer
 - rollup-plugin-visualizer
 - source-map-explorer
@@ -374,12 +410,14 @@ Co-Authored-By: Claude <noreply@anthropic.com)"
 - bundlephobia
 
 **パフォーマンス測定**:
+
 - Lighthouse, PageSpeed Insights
 - Chrome DevTools (Network, Performance, Coverage)
 - WebPageTest
 - Core Web Vitals (CrUX)
 
 **最適化ツール**:
+
 - Terser, UglifyJS (minification)
 - PurgeCSS (未使用CSSの削除)
 - ImageOptim, Squoosh (画像圧縮)

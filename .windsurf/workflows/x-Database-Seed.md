@@ -24,6 +24,7 @@ auto_execution_mode: 1
 ### 1. シードデータの要件定義
 
 **目的の明確化**:
+
 - 開発環境での動作確認
 - ユニットテスト用フィクスチャ
 - E2E テスト用データ
@@ -31,6 +32,7 @@ auto_execution_mode: 1
 - パフォーマンステスト用大量データ
 
 **必要なデータの特定**:
+
 - どのエンティティ/テーブルにデータが必要か
 - どのくらいのデータ量が必要か（10件 / 100件 / 10,000件）
 - エンティティ間の関連性（外部キー、参照整合性）
@@ -40,16 +42,19 @@ auto_execution_mode: 1
 **戦略の種類**:
 
 **Clean Seed（クリーンシード）**:
+
 - すべての既存データを削除してから投入
 - テスト環境や開発環境の初期化に適している
 - 冪等性が保証される
 
 **Incremental Seed（増分シード）**:
+
 - 既存データに追加で投入
 - データが既に存在する場合はスキップまたは更新
 - 本番データとの共存が必要な場合に使用
 
 **データソースの選択**:
+
 - **ハードコード**: スクリプト内に直接記述（少量データ向け）
 - **外部ファイル**: JSON、YAML、CSV等から読み込み（中量データ向け）
 - **ランダム生成**: Faker等のライブラリで生成（大量データ向け）
@@ -72,6 +77,7 @@ auto_execution_mode: 1
 6. **投入結果の検証**
 
 **冪等性の確保**:
+
 ```
 IF データが既に存在する THEN
   データをスキップ または 更新
@@ -81,6 +87,7 @@ END
 ```
 
 **実装チェックリスト**:
+
 - [ ] データストア接続の確立
 - [ ] エラーハンドリングの実装
 - [ ] トランザクション管理（可能な場合）
@@ -94,6 +101,7 @@ END
 **一般的な実行パターン**:
 
 **スクリプトの直接実行**:
+
 ```bash
 # 例: Node.js
 node scripts/seed.js
@@ -106,6 +114,7 @@ ruby db/seeds.rb
 ```
 
 **タスクランナー経由**:
+
 ```bash
 # package.json の scripts
 npm run seed
@@ -118,6 +127,7 @@ rake db:seed
 ```
 
 **環境別の実行制御**:
+
 ```bash
 # 開発環境のみ
 NODE_ENV=development npm run seed
@@ -129,6 +139,7 @@ RAILS_ENV=test rake db:seed
 ### 5. データ整合性の検証
 
 **検証項目**:
+
 - [ ] データ件数が期待通りか
 - [ ] リレーション/参照が正しく設定されているか
 - [ ] 一意制約が守られているか
@@ -139,6 +150,7 @@ RAILS_ENV=test rake db:seed
 **検証方法**:
 
 **データストアに直接クエリ**:
+
 ```bash
 # カウント確認
 SELECT COUNT(*) FROM users;
@@ -152,6 +164,7 @@ GROUP BY users.id;
 ```
 
 **アプリケーション経由での確認**:
+
 - 開発サーバーを起動してブラウザで確認
 - APIエンドポイントにリクエストして応答を確認
 - 管理画面でデータを表示
@@ -161,6 +174,7 @@ GROUP BY users.id;
 **環境チェックの実装**:
 
 **環境変数による制御**:
+
 ```javascript
 if (process.env.NODE_ENV === 'production') {
   throw new Error('Cannot seed production database');
@@ -168,6 +182,7 @@ if (process.env.NODE_ENV === 'production') {
 ```
 
 **明示的な確認プロンプト**:
+
 ```bash
 echo "Are you sure you want to seed? (yes/no)"
 read confirmation
@@ -177,6 +192,7 @@ fi
 ```
 
 **データベース名チェック**:
+
 ```python
 if 'production' in DATABASE_URL:
     raise Exception('Cannot seed production database')
@@ -185,6 +201,7 @@ if 'production' in DATABASE_URL:
 ### 7. ドキュメント化
 
 **README.md への記載例**:
+
 ```markdown
 ## Development Setup
 
@@ -196,14 +213,16 @@ npm run seed
 ```
 
 データをリセットして再投入:
+
 ```bash
 npm run db:reset
 ```
 
 ### Sample Accounts
 
-- Admin: admin@example.com / password123
-- User: user@example.com / password123
+- Admin: <admin@example.com> / password123
+- User: <user@example.com> / password123
+
 ```
 
 **package.json への登録**:
@@ -280,6 +299,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 ## 参考: 技術スタック別の実装パターン
 
 **ORM / データアクセスライブラリ**:
+
 - Prisma, TypeORM, Sequelize (Node.js)
 - SQLAlchemy, Django ORM (Python)
 - ActiveRecord (Ruby)
@@ -287,12 +307,14 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 - Eloquent (PHP)
 
 **データソース形式**:
+
 - JSON/YAML ファイル
 - CSV ファイル
 - SQL ダンプファイル
 - Faker/Factory パターン
 
 **実行方法**:
+
 - npm scripts / package.json
 - Makefile
 - rake tasks

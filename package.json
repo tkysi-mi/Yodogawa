@@ -10,7 +10,9 @@
     ".windsurf"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
+    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\""
   },
   "keywords": [
     "windsurf",
@@ -24,5 +26,8 @@
     "fs-extra": "^11.2.0",
     "kleur": "^4.1.5",
     "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.20.0"
   }
 }

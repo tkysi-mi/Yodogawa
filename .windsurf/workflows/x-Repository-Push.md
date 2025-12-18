@@ -25,28 +25,33 @@ auto_execution_mode: 1
 ### 1. リモートリポジトリの確認
 
 **リモートURLの確認**:
+
 ```bash
 git remote -v
 ```
 
 **プラットフォームの特定**:
+
 - github.com → GitHub
 - gitlab.com → GitLab
 - その他のセルフホストインスタンス
 
 **認証方法の確認**:
+
 - SSH: `git@github.com:user/repo.git`
 - HTTPS: `https://github.com/user/repo.git`
 
 ### 2. 最新状態への同期
 
 **ブランチ戦略の確認**:
+
 - GitHub Flow: main ブランチから feature ブランチ
 - GitLab Flow: main → pre-production → production
 - Git Flow: develop → feature, develop → release
 - Trunk-based: main ブランチのみ
 
 **同期コマンド**:
+
 ```bash
 # 現在の状態確認
 git status
@@ -70,6 +75,7 @@ git merge origin/main
 ### 3. ローカル検証
 
 **テスト実行**:
+
 ```bash
 # Lint チェック
 <lint-command>
@@ -85,6 +91,7 @@ git merge origin/main
 ```
 
 **検証項目**:
+
 - [ ] すべてのテストが通過する
 - [ ] Lint エラーがない
 - [ ] ビルドが成功する
@@ -92,6 +99,7 @@ git merge origin/main
 - [ ] 既存機能に影響がない
 
 **エラーが出た場合**:
+
 - エラーを修正
 - 再度テストを実行
 - 成功を確認してから次のステップへ
@@ -99,6 +107,7 @@ git merge origin/main
 ### 4. 変更内容の整理
 
 **変更の確認**:
+
 ```bash
 # 変更されたファイルを確認
 git status
@@ -111,12 +120,14 @@ git diff --staged
 ```
 
 **不要なファイルの除外**:
+
 - [ ] 一時ファイルが含まれていない
 - [ ] ビルド成果物が含まれていない（.gitignore で管理）
 - [ ] 機密情報が含まれていない
 - [ ] デバッグコードが削除されている
 
 **コミット単位の分割**（必要に応じて）:
+
 - 大きな変更は複数のコミットに分割
 - 各コミットは独立して意味のある単位に
 - 論理的に関連する変更をまとめる
@@ -124,12 +135,14 @@ git diff --staged
 ### 5. ドキュメントとメタ情報の更新
 
 **ドキュメント更新**:
+
 - [ ] README.md の更新（新機能、使い方）
 - [ ] CHANGELOG.md の更新（変更内容、バージョン）
 - [ ] API ドキュメントの更新
 - [ ] コメント・JSDoc の更新
 
 **Issue/タスク管理との連携**:
+
 - GitHub: `Fixes #123`, `Closes #456`
 - GitLab: `Closes #123`, `Related to #456`
 - Jira: `PROJ-123`, `PROJ-456`
@@ -141,6 +154,7 @@ git diff --staged
 チーム規約に従ったフォーマットを使用:
 
 **Conventional Commits 形式**:
+
 ```
 <type>(<scope>): <subject>
 
@@ -150,6 +164,7 @@ git diff --staged
 ```
 
 **Type の種類**:
+
 - `feat`: 新機能
 - `fix`: バグ修正
 - `docs`: ドキュメント
@@ -159,6 +174,7 @@ git diff --staged
 - `chore`: ビルド・設定変更
 
 **コミット実行**:
+
 ```bash
 # ファイルをステージング
 git add <files>
@@ -178,6 +194,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 ```
 
 **コミット履歴の整理**（必要に応じて）:
+
 ```bash
 # 直前のコミットを修正
 git commit --amend
@@ -189,6 +206,7 @@ git rebase -i HEAD~3
 ### 7. プッシュ前の最終確認
 
 **確認項目**:
+
 - [ ] `git status` が clean である
 - [ ] 不要な stash が残っていない
 - [ ] コミットメッセージが正しい
@@ -196,6 +214,7 @@ git rebase -i HEAD~3
 - [ ] ドキュメントが更新されている
 
 **リモートの最新状態確認**:
+
 ```bash
 # リモートの変更を確認
 git fetch
@@ -212,16 +231,19 @@ git rebase origin/<base-branch>
 **プッシュコマンド**:
 
 **初回プッシュ（ブランチが存在しない場合）**:
+
 ```bash
 git push -u origin <branch-name>
 ```
 
 **通常のプッシュ**:
+
 ```bash
 git push origin <branch-name>
 ```
 
 **強制プッシュ（慎重に）**:
+
 ```bash
 # リベース後など、必要な場合のみ
 git push --force-with-lease origin <branch-name>
@@ -230,6 +252,7 @@ git push --force-with-lease origin <branch-name>
 ```
 
 **プッシュ結果の確認**:
+
 - プッシュが成功したか確認
 - エラーがあればログを確認
 - リモートブランチが作成されたか確認
@@ -239,6 +262,7 @@ git push --force-with-lease origin <branch-name>
 **プラットフォーム別のコマンド**:
 
 **GitHub CLI**:
+
 ```bash
 # PR作成
 gh pr create --title "Add user authentication" --body "Implements login/logout functionality. Fixes #123"
@@ -251,6 +275,7 @@ gh pr view --web
 ```
 
 **GitLab CLI**:
+
 ```bash
 # MR作成
 glab mr create --title "Add user authentication" --description "Implements login/logout functionality. Closes #123"
@@ -263,10 +288,12 @@ glab mr view --web
 ```
 
 **Web UIでの作成**:
+
 - GitHub: リポジトリページで "Compare & pull request" ボタン
 - GitLab: リポジトリページで "Create merge request" ボタン
 
 **PR/MR テンプレートの記入**:
+
 - [ ] 変更内容の説明
 - [ ] 影響範囲
 - [ ] テスト結果
@@ -278,16 +305,19 @@ glab mr view --web
 ### 10. CI/CD の監視
 
 **CI/CD パイプラインの確認**:
+
 - GitHub Actions: リポジトリの "Actions" タブ
 - GitLab CI/CD: リポジトリの "CI/CD > Pipelines"
 
 **確認項目**:
+
 - [ ] すべてのジョブが成功している
 - [ ] テストが通過している
 - [ ] ビルドが成功している
 - [ ] デプロイが成功している（該当する場合）
 
 **CI失敗時の対応**:
+
 1. ログを確認してエラー原因を特定
 2. ローカルで再現して修正
 3. 修正をコミット・プッシュ
@@ -296,11 +326,13 @@ glab mr view --web
 ### 11. チームへの通知
 
 **通知方法**:
+
 - Slack / Microsoft Teams / Discord へ通知
 - メール通知
 - プロジェクト管理ツール（Jira, Asana等）への更新
 
 **通知内容**:
+
 - 変更内容の概要
 - PR/MR のURL
 - 影響範囲
@@ -352,6 +384,7 @@ glab mr view --web
 ## 参考: プラットフォーム別の機能
 
 **GitHub**:
+
 - Pull Request (PR)
 - GitHub Actions (CI/CD)
 - GitHub Projects (プロジェクト管理)
@@ -359,6 +392,7 @@ glab mr view --web
 - GitHub CLI: `gh`
 
 **GitLab**:
+
 - Merge Request (MR)
 - GitLab CI/CD
 - GitLab Issues (課題管理)
@@ -366,6 +400,7 @@ glab mr view --web
 - GitLab CLI: `glab`
 
 **共通機能**:
+
 - ブランチ保護
 - コードレビュー
 - CI/CD パイプライン

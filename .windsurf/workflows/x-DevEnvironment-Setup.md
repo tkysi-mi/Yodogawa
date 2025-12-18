@@ -24,6 +24,7 @@ auto_execution_mode: 1
 ### 1. システム要件の確認
 
 **質問1: プロジェクトタイプの確認**
+
 - 「このプロジェクトの種類は何ですか？」
   - Node.js（React, Next.js, Express, etc.）
   - Python（Django, Flask, FastAPI, etc.）
@@ -31,6 +32,7 @@ auto_execution_mode: 1
   - その他
 
 **質問2: 必要なツールの確認**
+
 - 「このプロジェクトで必要なツールは何ですか？」
   - ランタイム（Node.js, Python, Ruby, etc.）
   - データベース（PostgreSQL, MySQL, MongoDB, etc.）
@@ -40,24 +42,29 @@ auto_execution_mode: 1
 ### 2. ランタイムのバージョン確認
 
 **Node.js プロジェクト**:
+
 ```bash
 node --version
 npm --version
 ```
 
 **推奨バージョンを確認**:
+
 - `.nvmrc` ファイルが存在する場合: `cat .nvmrc`
 - `package.json` の `engines` フィールドを確認
 
 **質問3: バージョンの確認**
+
 - 「現在のバージョンは推奨バージョンと一致していますか？」
 - 一致しない場合、nvm（Node Version Manager）で切り替え：
+
   ```bash
   nvm install
   nvm use
   ```
 
 **Python プロジェクト**:
+
 ```bash
 python --version
 # または
@@ -65,6 +72,7 @@ python3 --version
 ```
 
 **推奨バージョンを確認**:
+
 - `.python-version` ファイルが存在する場合: `cat .python-version`
 - `pyproject.toml` または `setup.py` を確認
 
@@ -73,6 +81,7 @@ python3 --version
 #### 3.1. パッケージマネージャーの確認
 
 **質問4: パッケージマネージャー**
+
 - 「使用するパッケージマネージャーは何ですか？」
   - npm（`package-lock.json` が存在）
   - yarn（`yarn.lock` が存在）
@@ -83,6 +92,7 @@ python3 --version
 #### 3.2. 依存関係のインストール
 
 **Node.js**:
+
 ```bash
 # npm
 npm install
@@ -95,6 +105,7 @@ pnpm install
 ```
 
 **Python**:
+
 ```bash
 # pip (virtualenv 推奨)
 python -m venv .venv
@@ -106,6 +117,7 @@ poetry install
 ```
 
 **Ruby**:
+
 ```bash
 bundle install
 ```
@@ -115,9 +127,11 @@ bundle install
 #### 4.1. 環境変数ファイルの確認
 
 **質問5: 環境変数ファイルの存在**
+
 - 「`.env.example` または `.env.sample` ファイルが存在しますか？」
 
 **環境変数ファイルをコピー**:
+
 ```bash
 cp .env.example .env
 ```
@@ -125,9 +139,11 @@ cp .env.example .env
 #### 4.2. 環境変数の設定
 
 **質問6: 必要な環境変数**
+
 - 「設定が必要な環境変数は何ですか？」
 
 必要な環境変数の例：
+
 - `DATABASE_URL` - データベース接続文字列
 - `REDIS_URL` - Redis 接続文字列
 - `API_KEY` - 外部 API キー
@@ -135,6 +151,7 @@ cp .env.example .env
 - `NODE_ENV` - 環境（development, production）
 
 **環境変数を対話的に設定**:
+
 ```bash
 # .env ファイルを編集
 nano .env
@@ -143,6 +160,7 @@ code .env
 ```
 
 **例**:
+
 ```env
 # Database
 DATABASE_URL=postgresql://user:password@localhost:5432/dbname
@@ -165,6 +183,7 @@ NODE_ENV=development
 #### 5.1. データベースサーバーの起動
 
 **Docker Compose を使用する場合**:
+
 ```bash
 docker-compose up -d postgres
 # または
@@ -172,6 +191,7 @@ docker-compose up -d
 ```
 
 **ローカルにインストールされている場合**:
+
 ```bash
 # PostgreSQL
 sudo service postgresql start
@@ -186,14 +206,17 @@ sudo service mongod start
 #### 5.2. データベースの作成
 
 **質問7: データベース作成**
+
 - 「データベースを作成する必要がありますか？」
 
 **PostgreSQL**:
+
 ```bash
 createdb <database_name>
 ```
 
 **MySQL**:
+
 ```bash
 mysql -u root -p -e "CREATE DATABASE <database_name>;"
 ```
@@ -201,26 +224,31 @@ mysql -u root -p -e "CREATE DATABASE <database_name>;"
 #### 5.3. マイグレーションの実行
 
 **Node.js (Prisma)**:
+
 ```bash
 npx prisma migrate dev
 ```
 
 **Node.js (TypeORM)**:
+
 ```bash
 npm run migration:run
 ```
 
 **Python (Django)**:
+
 ```bash
 python manage.py migrate
 ```
 
 **Python (Alembic)**:
+
 ```bash
 alembic upgrade head
 ```
 
 **Ruby (Rails)**:
+
 ```bash
 rails db:migrate
 ```
@@ -228,24 +256,29 @@ rails db:migrate
 ### 6. サンプルデータの投入（オプション）
 
 **質問8: サンプルデータの投入**
+
 - 「開発用のサンプルデータを投入しますか？」
 
 **Node.js (Prisma)**:
+
 ```bash
 npx prisma db seed
 ```
 
 **Python (Django)**:
+
 ```bash
 python manage.py loaddata fixtures/sample_data.json
 ```
 
 **Ruby (Rails)**:
+
 ```bash
 rails db:seed
 ```
 
 **カスタムスクリプト**:
+
 ```bash
 npm run seed
 # または
@@ -255,9 +288,11 @@ node scripts/seed.js
 ### 7. ビルド・コンパイル（必要に応じて）
 
 **質問9: ビルドが必要**
+
 - 「初回ビルドが必要ですか？」
 
 **TypeScript プロジェクト**:
+
 ```bash
 npm run build
 # または
@@ -265,6 +300,7 @@ tsc
 ```
 
 **Webpack/Vite プロジェクト**:
+
 ```bash
 npm run build
 ```
@@ -272,6 +308,7 @@ npm run build
 ### 8. 開発サーバーの起動
 
 **開発サーバーを起動してテスト**:
+
 ```bash
 # Node.js
 npm run dev
@@ -289,12 +326,14 @@ rails server
 ```
 
 **質問10: サーバー起動確認**
+
 - 「開発サーバーが正常に起動しましたか？」
 - ブラウザで `http://localhost:<port>` にアクセスして確認
 
 ### 9. テストの実行
 
 **すべてのテストを実行して環境が正しくセットアップされたことを確認**:
+
 ```bash
 npm test
 # または
@@ -304,6 +343,7 @@ rails test
 ```
 
 **質問11: テスト結果**
+
 - 「すべてのテストが通りましたか？」
 - 失敗した場合、環境設定を見直す
 
@@ -312,14 +352,17 @@ rails test
 #### 10.1. エディタ設定
 
 **VS Code 拡張機能**:
+
 - `.vscode/extensions.json` が存在する場合、推奨拡張機能をインストール
 
 **EditorConfig**:
+
 - `.editorconfig` が存在する場合、エディタで読み込まれることを確認
 
 #### 10.2. Git Hooks
 
 **Husky のセットアップ**:
+
 ```bash
 npm run prepare
 # または
@@ -327,6 +370,7 @@ npx husky install
 ```
 
 **pre-commit フックの有効化**:
+
 ```bash
 pre-commit install
 ```
@@ -334,12 +378,14 @@ pre-commit install
 ### 11. ドキュメントの確認
 
 **質問12: ドキュメントの確認**
+
 - 「README.md に追加のセットアップ手順が記載されていますか？」
 - 追加手順がある場合、それに従う
 
 ### 12. セットアップ完了の確認
 
 **チェックリスト**:
+
 - [ ] 依存関係がすべてインストールされた
 - [ ] 環境変数が正しく設定された
 - [ ] データベースが作成され、マイグレーションが実行された
@@ -391,12 +437,14 @@ pre-commit install
 ## トラブルシューティング
 
 ### Node.js バージョンの不一致
+
 ```bash
 nvm install <version>
 nvm use <version>
 ```
 
 ### Python 仮想環境の問題
+
 ```bash
 # 仮想環境を削除して再作成
 rm -rf .venv
@@ -406,6 +454,7 @@ pip install -r requirements.txt
 ```
 
 ### データベースリセット
+
 ```bash
 # PostgreSQL
 dropdb <database_name>
@@ -417,6 +466,7 @@ rails db:drop db:create db:migrate db:seed
 ```
 
 ### キャッシュのクリア
+
 ```bash
 # npm
 npm cache clean --force

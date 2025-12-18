@@ -29,9 +29,11 @@ auto_execution_mode: 1
 ### 1. ドキュメント存在確認
 
 - 必要なすべてのドキュメントが存在するか確認する：
+
   ```bash
   ls -l docs/project/requirements/*.md docs/project/behavior/*.md docs/project/domain/*.md
   ```
+
 - 不足しているドキュメントがある場合、対応するワークフロー（a-002, a-003, a-004）の実行を促す。
 
 ### 2. 一貫性チェックの実行
@@ -39,25 +41,31 @@ auto_execution_mode: 1
 以下の項目について、自動検索（grep等）と手動確認を組み合わせて検証する。
 
 #### 2.1 ユーザーストーリー ↔ シナリオ
+
 - **カバレッジ**: すべてのユーザーストーリー（US-XXX）に対応するシナリオ（SC-XXX）が存在するか。
 - **整合性**: ストーリーの「価値」とシナリオの「結果」が一致しているか。
 
 #### 2.2 実装済み機能・予定機能 ↔ シナリオ
+
 - **実装済み機能**: `02-features-implemented.md` に記載の機能に、リグレッションテスト用のシナリオが存在するか。
 - **予定機能**: `03-features-planned.md` の優先度High機能にシナリオが存在するか。
 
 #### 2.3 非機能要件 ↔ ドメインモデル
+
 - **パフォーマンス**: `04-non-functional-requirements.md` の要件（読み込み速度など）に対し、Read ModelやCQRSが検討されているか。
 - **セキュリティ**: 認証・権限要件が Policy や Guard としてドメインモデルに含まれているか。
 
 #### 2.4 シナリオ ↔ ドメインモデル
+
 - **Command**: シナリオのWhen（アクション）がドメインモデルのCommandとして定義されているか。
 - **Event**: シナリオのThen（結果）がドメインモデルのDomain Eventとして定義されているか。
 - **Actor**: シナリオのActorがドメインモデルに存在するか。
 
 #### 2.5 ユビキタス言語の遵守
+
 - **用語定義**: ドメインモデルの主要要素（Aggregate, Command, Event）がユビキタス言語一覧にあるか。
 - **禁止用語**: 各ドキュメントに禁止用語（Data, Process等）が使われていないか。
+
   ```bash
   # 禁止用語の簡易検索（例）
   grep -r "Data" docs/project/domain/ || echo "No 'Data' found"
@@ -65,6 +73,7 @@ auto_execution_mode: 1
   ```
 
 #### 2.6 目的との整合性
+
 - システム概要の「目的」と、ドメインモデルの「Core Domain」が一致しているか。
 
 ### 3. レビュー結果レポートの作成
@@ -72,6 +81,7 @@ auto_execution_mode: 1
 - 検出された問題（Error/Warning）をまとめ、`docs/project/REVIEW-REPORT.md` を作成する。
 
 **レポートフォーマット例**:
+
 ```markdown
 # ドキュメント一貫性レビュー結果
 **実施日**: YYYY-MM-DD
@@ -113,6 +123,7 @@ auto_execution_mode: 1
 ### 5. Git への追加（オプション）
 
 - ユーザーが希望する場合、レポートをコミットする。
+
   ```bash
   git add docs/project/REVIEW-REPORT--YYYYMMDDHHMMSS.md
   git commit -m "docs: 要件・ドメイン整合性レビューレポートの作成"

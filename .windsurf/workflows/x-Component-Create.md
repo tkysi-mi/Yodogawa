@@ -25,18 +25,21 @@ auto_execution_mode: 1
 ### 1. コンポーネント設計の決定
 
 **コンポーネントの種類**:
+
 - **プレゼンテーショナル**: UI表示のみ、ロジックなし
 - **コンテナ**: データ取得やステート管理を含む
 - **レイアウト**: ページ構造を定義
 - **ユーティリティ**: 再利用可能な小さなコンポーネント
 
 **設計パターン**:
+
 - **Atomic Design**: Atoms → Molecules → Organisms → Templates → Pages
 - **Feature-Sliced Design**: features/{feature}/ui/
 - **Flat Structure**: components/
 - **Domain-Driven**: domains/{domain}/components/
 
 **命名規則**:
+
 - PascalCase（例: `UserCard`, `NavigationBar`）
 - 明確で説明的な名前
 - 単数形または複数形を適切に使い分け
@@ -46,11 +49,13 @@ auto_execution_mode: 1
 **一般的なパターン**:
 
 **単一ファイル**:
+
 ```
 src/components/Button.tsx
 ```
 
 **コロケーション**（推奨）:
+
 ```
 src/components/Button/
 ├── Button.tsx              # メインコンポーネント
@@ -61,6 +66,7 @@ src/components/Button/
 ```
 
 **複雑なコンポーネント**:
+
 ```
 src/components/UserCard/
 ├── UserCard.tsx
@@ -85,6 +91,7 @@ src/components/UserCard/
 4. **エクスポート**: デフォルトまたは名前付き
 
 **Props 設計のチェックリスト**:
+
 - [ ] 必須プロパティと任意プロパティを明確に区別
 - [ ] デフォルト値を適切に設定
 - [ ] 型定義にドキュメントコメントを追加
@@ -93,6 +100,7 @@ src/components/UserCard/
 - [ ] as/component prop でポリモーフィズムを実現（必要に応じて）
 
 **アクセシビリティチェックリスト**:
+
 - [ ] セマンティックHTML要素を使用（button, nav, main等）
 - [ ] ARIA属性を適切に設定
 - [ ] キーボードナビゲーションをサポート
@@ -102,6 +110,7 @@ src/components/UserCard/
 ### 4. スタイリングの実装
 
 **スタイリング手法の選択**:
+
 - **CSS Modules**: スコープ付きCSS、設定不要
 - **CSS-in-JS**: styled-components, Emotion, Vanilla Extract
 - **Utility-First**: Tailwind CSS, UnoCSS
@@ -109,6 +118,7 @@ src/components/UserCard/
 - **CSS Framework**: Bootstrap, Chakra UI, Material UI
 
 **レスポンシブデザイン**:
+
 - モバイルファースト設計
 - ブレークポイントの定義
 - フレキシブルレイアウト（Flexbox, Grid）
@@ -116,18 +126,21 @@ src/components/UserCard/
 ### 5. ストーリー/プレビューの作成
 
 **目的**:
+
 - コンポーネントの全バリエーションを可視化
 - 開発中の動作確認
 - デザインレビュー
 - ドキュメント生成
 
 **作成すべきストーリー**:
+
 - **デフォルト**: 基本的な使用例
 - **バリエーション**: すべての props の組み合わせ
 - **状態**: loading, error, empty等
 - **エッジケース**: 長いテキスト、空データ等
 
 **ストーリーの構造**:
+
 ```typescript
 // 例: Storybook形式
 export default {
@@ -152,12 +165,14 @@ export const Secondary = {
 ### 6. テストの作成
 
 **テスト戦略**:
+
 - **ユニットテスト**: コンポーネントの動作を検証
 - **スナップショットテスト**: UI の変更を検出
 - **インタラクションテスト**: ユーザー操作をシミュレート
 - **アクセシビリティテスト**: a11y 準拠を確認
 
 **テストケースの例**:
+
 ```typescript
 describe('Button', () => {
   // レンダリングテスト
@@ -200,6 +215,7 @@ describe('Button', () => {
 ### 7. Index ファイルの作成
 
 **エクスポートパターン**:
+
 ```typescript
 // Named export（推奨）
 export { Button } from './Button';
@@ -215,6 +231,7 @@ export { default } from './Button';
 ### 8. ドキュメント化
 
 **JSDocコメントの追加**:
+
 ```typescript
 /**
  * ボタンコンポーネント
@@ -235,6 +252,7 @@ export interface ButtonProps {
 ```
 
 **README または Storybook Docs**:
+
 - 使用例
 - Props の説明
 - アクセシビリティガイドライン
@@ -243,6 +261,7 @@ export interface ButtonProps {
 ### 9. 動作確認
 
 **確認項目**:
+
 - [ ] コンポーネントが正しくレンダリングされる
 - [ ] すべての props が機能する
 - [ ] イベントハンドラが正しく動作する
@@ -252,6 +271,7 @@ export interface ButtonProps {
 - [ ] テストがすべて通る
 
 **ストーリー/プレビューツールでの確認**:
+
 ```bash
 # Storybook
 npm run storybook
@@ -261,6 +281,7 @@ npm run story:dev
 ```
 
 **テストの実行**:
+
 ```bash
 npm test Button
 # または
@@ -333,6 +354,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 ## 参考: 技術スタック別のパターン
 
 **UI フレームワーク**:
+
 - React, Preact
 - Vue 3, Nuxt 3
 - Svelte, SvelteKit
@@ -340,6 +362,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 - Angular, Lit
 
 **スタイリング**:
+
 - CSS Modules
 - styled-components, Emotion
 - Tailwind CSS, UnoCSS
@@ -347,12 +370,14 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
 - Sass, Less, PostCSS
 
 **ストーリー/プレビュー**:
+
 - Storybook
 - Histoire (Vite)
 - Ladle
 - Component Story Format (CSF)
 
 **テスティング**:
+
 - Jest, Vitest
 - React Testing Library, Vue Testing Library
 - Playwright, Cypress

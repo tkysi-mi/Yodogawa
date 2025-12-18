@@ -21,6 +21,7 @@ description: ユーザーストーリーから具体的なGherkinシナリオを
 ### 1. ディレクトリと前提条件の確認
 
 - `docs/project/behavior/` ディレクトリの存在を確認：
+
   ```bash
   ls -la docs/project/behavior/ 2>/dev/null || echo "ディレクトリが存在しません"
   ```
@@ -34,6 +35,7 @@ description: ユーザーストーリーから具体的なGherkinシナリオを
 ### 2. テンプレートの準備
 
 - テンプレートをコピーして作業用ファイルを作成する：
+
   ```bash
   cp ".windsurf/templates/project/02-behavior/01-scenarios.md" "docs/project/behavior/01-scenarios.md"
   ```
@@ -52,19 +54,23 @@ description: ユーザーストーリーから具体的なGherkinシナリオを
 各機能について、以下の順序でヒアリングを行い、`docs/project/behavior/01-scenarios.md` を更新する。
 
 #### 4.1 Feature情報の定義
+
 - 機能名、説明、対応するユーザーストーリー（As a/I want/So that）を記入する。
 - **Background**（共通前提条件）がある場合は定義する。
 
 #### 4.2 シナリオの作成（ハッピーパス）
+
 - 「最も基本的な成功シナリオを教えてください。」
 - **Given**（前提）、**When**（アクション）、**Then**（結果）を確認し、Gherkin形式で記述する。
 - UI操作の詳細ではなく、ユーザーの意図を記述するよう注意する。
 
 #### 4.3 エラーケース・境界値の作成
+
 - 「エラーケースや境界値（エッジケース）はありますか？」
 - 必要に応じて **Scenario Outline**（パラメータ化）の使用を提案し、Examplesテーブルを作成する。
 
 #### 4.4 タグ付け
+
 - シナリオID（`@SC-XXX`）を採番する。
 - 適切なタグ（`@smoke`, `@happy-path`, `@error-handling` など）を付与する。
 
@@ -84,6 +90,7 @@ description: ユーザーストーリーから具体的なGherkinシナリオを
 - 以下の完了条件を満たしているか、コマンドとチェックリストで確認してください：
 
   1. **構造確認**:
+
      ```bash
      # シナリオ一覧テーブルの確認
      grep "| シナリオID | 機能 |" docs/project/behavior/01-scenarios.md && echo "OK" || echo "MISSING: Table Header"
@@ -103,11 +110,14 @@ description: ユーザーストーリーから具体的なGherkinシナリオを
 
 - ユーザーに確認：「作成したシナリオドキュメントを Git に追加しますか？」
 - 「はい」の場合、以下を実行：
+
   ```bash
   git add docs/project/behavior/
   git status
   ```
+
 - 推奨コミットメッセージ：
+
   ```
   docs: 振る舞い仕様（シナリオ）の作成
 

@@ -24,6 +24,7 @@ auto_execution_mode: 1
 ### 1. スキーマ変更の要件確認
 
 **変更の種類**:
+
 - **テーブル操作**: 新規作成、削除、リネーム
 - **カラム操作**: 追加、削除、リネーム、型変更
 - **制約操作**: 主キー、外部キー、一意制約、NOT NULL、CHECK制約
@@ -31,6 +32,7 @@ auto_execution_mode: 1
 - **データマイグレーション**: 既存データの変換
 
 **影響範囲の確認**:
+
 - どのテーブル/カラムに影響するか
 - 既存データへの影響（データ損失の可能性）
 - アプリケーションコードへの影響
@@ -41,16 +43,19 @@ auto_execution_mode: 1
 **マイグレーションの種類**:
 
 **スキーマのみのマイグレーション**:
+
 - DDL（Data Definition Language）のみ
 - データ変換なし
 - 高速に実行可能
 
 **データマイグレーション含む**:
+
 - DDL + DML（Data Manipulation Language）
 - 既存データの変換が必要
 - 実行時間が長い可能性
 
 **段階的マイグレーション**（破壊的変更の場合）:
+
 1. 第1段階: 新しいカラム/テーブルを追加（後方互換性あり）
 2. アプリケーションコードを更新
 3. 第2段階: 古いカラム/テーブルを削除
@@ -60,16 +65,19 @@ auto_execution_mode: 1
 **一般的なアプローチ**:
 
 **自動生成**:
+
 - スキーマ定義ファイルの差分から自動生成
 - ORM のモデル定義と DB の差分を検出
 - 手動レビューが必要
 
 **手動作成**:
+
 - SQL を直接記述
 - 細かい制御が可能
 - エラーのリスクが高い
 
 **マイグレーションファイルの基本構造**:
+
 ```
 マイグレーションファイル:
 ├── バージョン番号/タイムスタンプ
@@ -79,6 +87,7 @@ auto_execution_mode: 1
 ```
 
 **命名規則**:
+
 - タイムスタンプ + 説明: `20240101120000_add_age_to_users`
 - 連番 + 説明: `001_add_age_to_users`
 - 説明的で検索しやすい名前を使用
@@ -86,6 +95,7 @@ auto_execution_mode: 1
 ### 4. マイグレーションの設計
 
 **安全なマイグレーションのチェックリスト**:
+
 - [ ] ロールバック（down/revert）が実装されている
 - [ ] 冪等性が保証されている（複数回実行しても安全）
 - [ ] トランザクション内で実行される（可能な場合）
@@ -96,6 +106,7 @@ auto_execution_mode: 1
 **よくあるスキーマ変更パターン**:
 
 **カラム追加（安全）**:
+
 ```sql
 -- Up
 ALTER TABLE users ADD COLUMN age INTEGER;
@@ -105,6 +116,7 @@ ALTER TABLE users DROP COLUMN age;
 ```
 
 **NOT NULL カラム追加（段階的）**:
+
 ```sql
 -- 第1段階: NULL許可で追加
 ALTER TABLE users ADD COLUMN email VARCHAR(255);
@@ -115,6 +127,7 @@ ALTER TABLE users ALTER COLUMN email SET NOT NULL;
 ```
 
 **カラムリネーム（破壊的、段階的に実施）**:
+
 ```
 1. 新カラム追加
 2. データコピー
@@ -123,6 +136,7 @@ ALTER TABLE users ALTER COLUMN email SET NOT NULL;
 ```
 
 **インデックス追加（並列実行）**:
+
 ```sql
 -- PostgreSQL: ロックせずにインデックス作成
 CREATE INDEX CONCURRENTLY idx_users_email ON users(email);
@@ -136,6 +150,7 @@ DROP INDEX CONCURRENTLY idx_users_email;
 **データ変換が必要な場合**:
 
 **基本パターン**:
+
 ```sql
 -- カラム追加
 ALTER TABLE users ADD COLUMN full_name VARCHAR(200);
@@ -148,11 +163,13 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 ```
 
 **大量データの処理**:
+
 - バッチ処理で分割実行
 - トランザクションサイズの制御
 - 進捗ログの出力
 
 **ロールバック時のデータ復元**:
+
 - データバックアップの作成
 - 変換前のデータを一時保存
 - 可逆的な変換の設計
@@ -162,6 +179,7 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 **ローカル環境でのテスト**:
 
 **適用テスト**:
+
 ```bash
 # マイグレーション適用
 <migration-tool> migrate up
@@ -173,6 +191,7 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 ```
 
 **ロールバックテスト**:
+
 ```bash
 # ロールバック実行
 <migration-tool> migrate down
@@ -184,6 +203,7 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 ```
 
 **再適用テスト（冪等性確認）**:
+
 ```bash
 # 再度適用
 <migration-tool> migrate up
@@ -192,6 +212,7 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 ```
 
 **アプリケーションの動作確認**:
+
 - 開発サーバーを起動
 - CRUD 操作が正常に動作するか確認
 - 新しいカラム/テーブルが使用できるか確認
@@ -199,6 +220,7 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 ### 7. マイグレーションファイルの最終確認
 
 **レビューチェックリスト**:
+
 - [ ] SQL 構文が正しいか
 - [ ] データ損失のリスクがないか
 - [ ] パフォーマンスへの影響が許容範囲か
@@ -207,6 +229,7 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 - [ ] 依存する他のマイグレーションが明記されているか
 
 **破壊的変更の場合**:
+
 - チームレビューを必須にする
 - ステージング環境で先にテスト
 - データバックアップの確認
@@ -215,6 +238,7 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 ### 8. マイグレーション状態の確認
 
 **現在の状態確認**:
+
 ```bash
 # 適用済みマイグレーションの確認
 <migration-tool> migrate status
@@ -226,6 +250,7 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 ```
 
 **マイグレーションログの確認**:
+
 - いつ適用されたか
 - 誰が適用したか
 - どの環境で適用されたか
@@ -233,12 +258,14 @@ ALTER TABLE users ALTER COLUMN full_name SET NOT NULL;
 ### 9. ドキュメント化
 
 **マイグレーションの説明**:
+
 - 変更の目的
 - 影響範囲
 - ロールバック手順
 - 関連する Issue/Ticket番号
 
 **コメント例**:
+
 ```sql
 -- Migration: Add age column to users table
 -- Purpose: Store user age for age-based features
@@ -324,6 +351,7 @@ Co-Authored-By: Claude <noreply@anthropic.com)"
 ## 参考: ツール別の実装パターン
 
 **ORM 統合型マイグレーションツール**:
+
 - Prisma (Node.js)
 - TypeORM (Node.js)
 - Sequelize (Node.js)
@@ -334,6 +362,7 @@ Co-Authored-By: Claude <noreply@anthropic.com)"
 - GORM (Go)
 
 **スタンドアロンマイグレーションツール**:
+
 - Flyway (Java/多言語)
 - Liquibase (Java/多言語)
 - golang-migrate (Go)
@@ -341,6 +370,7 @@ Co-Authored-By: Claude <noreply@anthropic.com)"
 - sqitch (Perl/多言語)
 
 **マイグレーションコマンド例**:
+
 ```bash
 # ORM内蔵
 prisma migrate dev --name add_age_to_users

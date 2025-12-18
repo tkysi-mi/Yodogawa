@@ -20,9 +20,11 @@ auto_execution_mode: 1
 ### 1. 既存タスクの確認とID採番
 
 - 既存のタスクディレクトリを確認し、次のタスクIDを決定する。
+
   ```bash
   ls -d docs/tasks/task*
   ```
+
 - **採番ルール**:
   - 形式: `task{6桁連番}-{スラッグ}`
   - 例: `task000001-email-auth`
@@ -37,10 +39,13 @@ auto_execution_mode: 1
 ### 3. ディレクトリの作成
 
 - 決定したIDとスラッグを使用してディレクトリを作成する。
+
   ```bash
   mkdir -p docs/tasks/task{ID}-{SLUG}
   ```
+
   例:
+
   ```bash
   mkdir -p docs/tasks/task000001-email-auth
   ```
@@ -48,6 +53,7 @@ auto_execution_mode: 1
 ### 4. 作成確認
 
 - ディレクトリが正しく作成されたか確認する。
+
   ```bash
   ls -ld docs/tasks/task{ID}-{SLUG} && echo "OK" || echo "FAILED"
   ```

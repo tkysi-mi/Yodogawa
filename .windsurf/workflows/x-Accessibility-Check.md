@@ -26,11 +26,13 @@ auto_execution_mode: 1
 #### 1.1. axe DevTools のインストール
 
 **Chrome 拡張機能**:
+
 - Chrome Web Store で "axe DevTools" を検索してインストール
-- または: https://chrome.google.com/webstore/detail/axe-devtools-web-accessibility-testing/lhdoppojpmngadmnindnejefpokejbdd
+- または: <https://chrome.google.com/webstore/detail/axe-devtools-web-accessibility-testing/lhdoppojpmngadmnindnejefpokejbdd>
 
 **Firefox アドオン**:
-- https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/
+
+- <https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/>
 
 #### 1.2. axe DevTools の実行
 
@@ -41,6 +43,7 @@ auto_execution_mode: 1
 5. "Scan ALL of my page" をクリック
 
 **質問1: 検出された問題**
+
 - 「どのような問題が検出されましたか？」
 - 重要度：
   - **Critical**: 即座に修正が必要
@@ -55,6 +58,7 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 ```
 
 **スコア目標**:
+
 - **90-100**: 優秀
 - **80-89**: 良好
 - **<80**: 改善が必要
@@ -66,11 +70,13 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 **問題**: `<img>` タグに `alt` 属性がない
 
 **修正前**:
+
 ```html
 <img src="/logo.png" />
 ```
 
 **修正後**:
+
 ```html
 <img src="/logo.png" alt="Company Logo" />
 
@@ -83,11 +89,13 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 **問題**: `<input>` に対応する `<label>` がない
 
 **修正前**:
+
 ```html
 <input type="email" placeholder="Email" />
 ```
 
 **修正後**:
+
 ```html
 <label htmlFor="email">Email</label>
 <input id="email" type="email" placeholder="Enter your email" />
@@ -104,10 +112,12 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 **問題**: テキストと背景のコントラスト比が 4.5:1 未満
 
 **チェックツール**:
-- https://webaim.org/resources/contrastchecker/
+
+- <https://webaim.org/resources/contrastchecker/>
 - Chrome DevTools の Color Picker
 
 **修正前**:
+
 ```css
 .text {
   color: #999; /* グレー */
@@ -117,6 +127,7 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 ```
 
 **修正後**:
+
 ```css
 .text {
   color: #666; /* ダークグレー */
@@ -130,11 +141,13 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 **問題**: ボタンにテキストやラベルがない
 
 **修正前**:
+
 ```html
 <button><Icon /></button>
 ```
 
 **修正後**:
+
 ```html
 <!-- 方法1: aria-label -->
 <button aria-label="Close dialog"><CloseIcon /></button>
@@ -147,6 +160,7 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 ```
 
 **CSS for sr-only**:
+
 ```css
 .sr-only {
   position: absolute;
@@ -166,12 +180,14 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 **問題**: h1 → h3 のように見出しレベルをスキップ
 
 **修正前**:
+
 ```html
 <h1>Page Title</h1>
 <h3>Subsection</h3>
 ```
 
 **修正後**:
+
 ```html
 <h1>Page Title</h1>
 <h2>Section</h2>
@@ -183,11 +199,13 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 **問題**: "Click here" や "Read more" などの曖昧なリンクテキスト
 
 **修正前**:
+
 ```html
 <a href="/article">Read more</a>
 ```
 
 **修正後**:
+
 ```html
 <!-- 方法1: 説明的なリンクテキスト -->
 <a href="/article">Read more about accessibility best practices</a>
@@ -207,9 +225,11 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 ### 3. キーボードナビゲーションのテスト
 
 **質問2: キーボードナビゲーション**
+
 - 「キーボードのみですべての機能にアクセスできますか？」
 
 **テスト手順**:
+
 1. Tab キーで全要素を順番に移動できるか
 2. Shift+Tab で逆順に移動できるか
 3. Enter または Space キーでボタンを実行できるか
@@ -217,6 +237,7 @@ npx lighthouse https://localhost:3000 --view --only-categories=accessibility
 5. 矢印キーでドロップダウンやタブを操作できるか
 
 **フォーカスの可視化**:
+
 ```css
 /* フォーカスリングを明確にする */
 button:focus-visible,
@@ -230,6 +251,7 @@ input:focus-visible {
 ```
 
 **フォーカストラップ（モーダル）**:
+
 ```typescript
 import { useEffect, useRef } from 'react';
 
@@ -359,19 +381,23 @@ function Modal({ isOpen, onClose, children }) {
 ### 5. スクリーンリーダーでのテスト
 
 **質問3: スクリーンリーダーテスト**
+
 - 「スクリーンリーダーでテストしますか？」
 
 **スクリーンリーダー**:
+
 - **Windows**: NVDA (無料) または JAWS
 - **Mac**: VoiceOver (内蔵)
 - **Linux**: Orca
 
 **VoiceOver の起動** (Mac):
+
 ```
 Cmd + F5
 ```
 
 **基本的なテスト**:
+
 1. ページ全体を読み上げさせる
 2. 見出しのみをナビゲート
 3. リンクのみをナビゲート
@@ -381,6 +407,7 @@ Cmd + F5
 ### 6. 自動テストの追加
 
 **Jest + jest-axe**:
+
 ```bash
 npm install --save-dev jest-axe
 ```
@@ -402,6 +429,7 @@ describe('Button accessibility', () => {
 ```
 
 **Playwright + axe-playwright**:
+
 ```bash
 npm install --save-dev @axe-core/playwright
 ```

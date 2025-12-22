@@ -12,7 +12,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
-    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\""
+    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\"",
+    "prepare": "husky"
   },
   "keywords": [
     "windsurf",
@@ -28,6 +29,7 @@
     "prompts": "^2.4.2"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
     "markdownlint-cli2": "^0.20.0"
   }
 }

@@ -2,7 +2,7 @@
 description: 技術スタック、リポジトリ構造、データモデル、API仕様を統合し、システム全体のアーキテクチャ設計とADRを定義するワークフロー
 ---
 
-# DefineArchitecture (a-012)
+# DefineArchitecture (a-013)
 
 ## 目的
 
@@ -15,8 +15,8 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 
 - `docs/project/design/01-tech-stack.md` が作成されていること。
 - `docs/project/design/02-repository-structure.md` が作成されていること。
-- `docs/project/design/04-data-model.md` が作成されていること。
-- `docs/project/design/05-api-spec.md` が作成されていること。
+- `docs/project/design/05-data-model.md` が作成されていること。
+- `docs/project/design/06-api-spec.md` が作成されていること。
 - `docs/project/design/` ディレクトリが存在すること。
 
 ## 手順
@@ -26,8 +26,8 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 - 必要なドキュメントを読み込む：
   - `docs/project/design/01-tech-stack.md`
   - `docs/project/design/02-repository-structure.md`
-  - `docs/project/design/04-data-model.md`
-  - `docs/project/design/05-api-spec.md`
+  - `docs/project/design/05-data-model.md`
+  - `docs/project/design/06-api-spec.md`
 
 - ドキュメントが不足している場合、対応するワークフローの実行を促す。
 
@@ -36,7 +36,7 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 - テンプレートをコピーして作業用ファイルを作成する：
 
   ```bash
-  cp ".windsurf/templates/project/04-design/06-architecture.md" "docs/project/design/06-architecture.md"
+  cp ".windsurf/templates/project/04-design/07-architecture.md" "docs/project/design/07-architecture.md"
   ```
 
 ### 3. アーキテクチャの提案
@@ -67,7 +67,7 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 
 ### 5. ドキュメント作成
 
-- `docs/project/design/06-architecture.md` に決定事項を記入する。
+- `docs/project/design/07-architecture.md` に決定事項を記入する。
 - **必須項目**:
   - システムアーキテクチャ図 (Mermaid)
   - 採用アーキテクチャパターンの説明
@@ -76,20 +76,19 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 ### 6. 完了条件と構造の確認
 
 - 以下の完了条件を満たしているか、コマンドとチェックリストで確認してください：
-
   1. **構造確認**:
 
      ```bash
      # アーキテクチャ図の確認
-     grep "\`\`\`mermaid" docs/project/design/06-architecture.md && echo "OK" || echo "MISSING: Architecture Diagram"
+     grep "\`\`\`mermaid" docs/project/design/07-architecture.md && echo "OK" || echo "MISSING: Architecture Diagram"
      # パターン定義の確認
-     grep "## 採用アーキテクチャパターン" docs/project/design/06-architecture.md && echo "OK" || echo "MISSING: Pattern definition"
+     grep "## 採用アーキテクチャパターン" docs/project/design/07-architecture.md && echo "OK" || echo "MISSING: Pattern definition"
      # ADRセクションの確認
-     grep "## ADR" docs/project/design/06-architecture.md && echo "OK" || echo "MISSING: ADR section"
+     grep "## ADR" docs/project/design/07-architecture.md && echo "OK" || echo "MISSING: ADR section"
      ```
 
   2. **チェックリスト**:
-     - [ ] `docs/project/design/06-architecture.md` が作成されている
+     - [ ] `docs/project/design/07-architecture.md` が作成されている
      - [ ] システム全体像が視覚化されている
      - [ ] 重要な技術選定の理由（ADR）が記録されている
 
@@ -99,7 +98,7 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 - 「はい」の場合、以下を実行：
 
   ```bash
-  git add docs/project/design/06-architecture.md
+  git add docs/project/design/07-architecture.md
   git status
   ```
 
@@ -114,7 +113,7 @@ description: 技術スタック、リポジトリ構造、データモデル、A
 
 ## 完了条件
 
-- `docs/project/design/06-architecture.md` が作成されている。
+- `docs/project/design/07-architecture.md` が作成されている。
 - システム全体の構成要素と関係性が可視化されている。
 - 技術選定の背景（ADR）が文書化され、将来の参照用に残されている。
 - ユーザーが内容を承認している。

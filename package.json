@@ -1,6 +1,6 @@
 {
   "name": "yodogawa",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "CLI to install Yodogawa Slash Commands workflows",
   "bin": {
     "yodogawa": "./bin/cli.js"
@@ -18,8 +18,25 @@
   "keywords": [
     "windsurf",
     "antigravity",
+    "cursor",
+    "claude-code",
     "workflows",
-    "slash-commands"
+    "slash-commands",
+    "spec-driven-development",
+    "ai-coding",
+    "documentation",
+    "project-management",
+    "bdd",
+    "gherkin",
+    "domain-driven-design",
+    "event-storming",
+    "api-design",
+    "adr",
+    "task-management",
+    "user-stories",
+    "copilot",
+    "gpt",
+    "claude"
   ],
   "author": "",
   "license": "ISC",

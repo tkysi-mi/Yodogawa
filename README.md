@@ -100,22 +100,23 @@ Why? ─── What? ─── How?
 
 > プロジェクトの立ち上げや、大規模な設計変更時に使用
 
-|  #  | コマンド | 名前                      | 説明                                             |
-| :-: | :------- | :------------------------ | :----------------------------------------------- |
-|  1  | `/a-001` | **Setup Doc Structure**   | ドキュメント構造をセットアップ                   |
-|  2  | `/a-002` | **Initialize Project**    | プロジェクトの目的・課題・スコープを定義         |
-|  3  | `/a-003` | **Create Scenarios**      | ユーザーストーリーをBDD（Gherkin）シナリオに変換 |
-|  4  | `/a-004` | **Define Domain Model**   | Event Stormingでドメインモデルを定義             |
-|  5  | `/a-005` | **Create Domain Diagram** | ドメインモデルを図解（コンテキスト境界・集約）   |
-|  6  | `/a-006` | **Review Req & Domain**   | ⚠️ **要件とドメインモデルの整合性をレビュー**    |
-|  7  | `/a-007` | **Define Tech Stack**     | 技術スタック（言語・FW・DB）を選定               |
-|  8  | `/a-008` | **Define Repo Structure** | リポジトリのディレクトリ構成を定義               |
-|  9  | `/a-009` | **Define Screen Design**  | 画面遷移・UIコンポーネント・Empty Stateを設計    |
-| 10  | `/a-010` | **Define Data Model**     | データベーススキーマ・ER図を設計                 |
-| 11  | `/a-011` | **Define API Spec**       | APIエンドポイント・リクエスト/レスポンスを定義   |
-| 12  | `/a-012` | **Define Architecture**   | アーキテクチャ決定記録（ADR）を作成              |
-| 13  | `/a-013` | **Define Infrastructure** | インフラ構成・非機能要件（RPO/RTO）を定義        |
-| 14  | `/a-014` | **Review Design**         | ⚠️ **全体設計の一貫性をレビュー**                |
+|  #  | コマンド | 名前                      | 説明                                               |
+| :-: | :------- | :------------------------ | :------------------------------------------------- |
+|  1  | `/a-001` | **Setup Doc Structure**   | ドキュメント構造をセットアップ                     |
+|  2  | `/a-002` | **Initialize Project**    | プロジェクトの目的・課題・スコープを定義           |
+|  3  | `/a-003` | **Create Scenarios**      | ユーザーストーリーをBDD（Gherkin）シナリオに変換   |
+|  4  | `/a-004` | **Define Domain Model**   | Event Stormingでドメインモデルを定義               |
+|  5  | `/a-005` | **Create Domain Diagram** | ドメインモデルを図解（コンテキスト境界・集約）     |
+|  6  | `/a-006` | **Review Req & Domain**   | ⚠️ **要件とドメインモデルの整合性をレビュー**      |
+|  7  | `/a-007` | **Define Tech Stack**     | 技術スタック（言語・FW・DB）を選定                 |
+|  8  | `/a-008` | **Define Repo Structure** | リポジトリのディレクトリ構成を定義                 |
+|  9  | `/a-009` | **Define Screen Design**  | 画面遷移・UIコンポーネント・Empty Stateを設計      |
+| 10  | `/a-010` | **Define Design System**  | デザインシステム（カラー、タイポグラフィ等）を定義 |
+| 11  | `/a-011` | **Define Data Model**     | データベーススキーマ・ER図を設計                   |
+| 12  | `/a-012` | **Define API Spec**       | APIエンドポイント・リクエスト/レスポンスを定義     |
+| 13  | `/a-013` | **Define Architecture**   | アーキテクチャ決定記録（ADR）を作成                |
+| 14  | `/a-014` | **Define Infrastructure** | インフラ構成・非機能要件（RPO/RTO）を定義          |
+| 15  | `/a-015` | **Review Design**         | ⚠️ **全体設計の一貫性をレビュー**                  |
 
 > ⚠️ マークのワークフローは**必ず実施**してください。
 

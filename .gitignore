@@ -46,3 +46,6 @@ env/
 # Build outputs (if any)
 dist/
 build/
+
+# Local documentation
+README-UPDATING-NPM-PACKAGE.md

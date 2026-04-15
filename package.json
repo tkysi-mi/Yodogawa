@@ -1,13 +1,15 @@
 {
   "name": "yodogawa",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "CLI to install Yodogawa Slash Commands workflows",
   "bin": {
     "yodogawa": "./bin/cli.js"
   },
   "files": [
     "bin",
-    ".windsurf",
+    "skills",
+    "templates",
+    "scripts",
     "README.md",
     "CHANGELOG.md"
   ],
@@ -18,10 +20,10 @@
     "prepare": "husky"
   },
   "keywords": [
-    "windsurf",
     "antigravity",
     "cursor",
     "claude-code",
+    "codex",
     "workflows",
     "slash-commands",
     "spec-driven-development",

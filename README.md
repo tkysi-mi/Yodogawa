@@ -31,14 +31,14 @@ skills/
 
 ### 対応環境
 
-以下のAIネイティブIDE・コードエディタで使用できます：
+以下のAIネイティブIDE・コードエディタで使用できます。すべて Claude Code が策定したSKILL.md標準に収束しているため、2つのディレクトリのいずれかに配置するだけで動作します：
 
 | IDE / エディタ  | スキルの場所                                        | 呼び出し方              |
 | :-------------- | :-------------------------------------------------- | :---------------------- |
-| **Antigravity** | `.agent/skills/{name}/SKILL.md`                     | `/a-001` などで呼び出し |
-| **Cursor**      | `.cursor/skills/{name}/SKILL.md`                    | `/a-001` などで呼び出し |
 | **Claude Code** | `.claude/skills/{name}/SKILL.md`                    | `/a-001` などで呼び出し |
-| **Codex**       | `.codex/skills/{name}/SKILL.md`                     | `/a-001` などで呼び出し |
+| **Cursor**      | `.agents/skills/{name}/SKILL.md`                    | `/a-001` などで呼び出し |
+| **Codex**       | `.agents/skills/{name}/SKILL.md`                    | `/a-001` などで呼び出し |
+| **Antigravity** | `.agents/skills/{name}/SKILL.md`                    | `/a-001` などで呼び出し |
 
 ---
 
@@ -179,10 +179,8 @@ yodogawa
 
 このリポジトリの `skills/`, `templates/`, `scripts/` をプロジェクトの IDE ディレクトリにコピーしてください：
 
-- Antigravity: `.agent/`
-- Cursor: `.cursor/`
-- Claude Code: `.claude/`
-- Codex: `.codex/`
+- **Claude Code**: `.claude/` 配下にコピー
+- **Cursor / Codex / Antigravity**: `.agents/` 配下にコピー
 
 ---
 

@@ -13,10 +13,8 @@ async function main() {
     name: 'type',
     message: 'Which configuration would you like to install?',
     choices: [
-      { title: 'Antigravity (.agent)', value: 'antigravity' },
-      { title: 'Cursor (.cursor)', value: 'cursor' },
-      { title: 'Claude Code (.claude)', value: 'claude' },
-      { title: 'Codex (.codex)', value: 'codex' }
+      { title: 'Claude Code (.claude/skills/)', value: 'claude' },
+      { title: 'Other IDEs — Cursor / Codex / Antigravity (.agents/skills/)', value: 'agents' }
     ]
   });
 
@@ -27,10 +25,8 @@ async function main() {
 
   const pkgRoot = path.join(__dirname, '..');
   const dirMap = {
-    antigravity: '.agent',
-    cursor: '.cursor',
     claude: '.claude',
-    codex: '.codex',
+    agents: '.agents',
   };
   const targetDirName = dirMap[response.type];
   const targetDir = path.join(process.cwd(), targetDirName);

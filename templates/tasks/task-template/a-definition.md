@@ -3,7 +3,7 @@
 <!--
 このドキュメントについて:
   - 格納場所: docs/tasks/task000001-{スラッグ}/a-definition.md
-  - 作成方法: /b-001-CreateTaskDefinition ワークフローで作成
+  - 作成方法: /b-001-CreateTaskDefinition スキルで作成
   - 関連ドキュメント:
     - b-research.md (リサーチドキュメント)
     - c-implementation.md (実装タスクリスト)

@@ -29,7 +29,7 @@ disable-model-invocation: true
 ls -l docs/project/requirements/*.md docs/project/behavior/*.md docs/project/domain/*.md
 ```
 
-不足があれば、対応する `/a-002`, `/a-003`, `/a-004` ワークフローの実行を促す。
+不足があれば、対応する `/a-002`, `/a-003`, `/a-004` スキルの実行を促す。
 
 ### 2. 一貫性チェックの実行
 
@@ -50,7 +50,7 @@ ls -l docs/project/requirements/*.md docs/project/behavior/*.md docs/project/dom
 
 - サマリー（OK / Warning / Error の件数）
 - 詳細（上記 6 観点ごとの結果）
-- 推奨アクション（修正すべきタスクとワークフロー参照）
+- 推奨アクション（修正すべきタスクとスキル参照）
 
 ### 4. 結果の報告と修正提案
 

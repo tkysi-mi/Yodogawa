@@ -29,7 +29,7 @@ disable-model-invocation: true
 - `docs/project/behavior/01-scenarios.md`
 - `docs/project/design/01-tech-stack.md`（存在する場合）
 
-不足があれば対応ワークフロー（`/a-002`, `/a-003`, `/a-007`）の実行を促す。
+不足があれば対応スキル（`/a-002`, `/a-003`, `/a-007`）の実行を促す。
 
 ### 2. テンプレートの準備
 

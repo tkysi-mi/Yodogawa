@@ -28,7 +28,7 @@ disable-model-invocation: true
 - `docs/project/design/01-tech-stack.md`
 - `docs/project/design/07-architecture.md`
 
-不足があれば対応ワークフローの実行を促す。
+不足があれば対応スキルの実行を促す。
 
 ### 2. テンプレートの準備
 

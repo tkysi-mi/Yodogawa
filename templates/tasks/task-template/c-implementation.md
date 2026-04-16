@@ -3,8 +3,8 @@
 <!--
 このドキュメントについて:
   - 格納場所: docs/tasks/task000001-{スラッグ}/c-implementation.md
-  - 作成方法: /b-003-CreateTaskImplementation ワークフローで作成
-  - 実行方法: /c-001-ImplementTask ワークフローで各ステップを実行
+  - 作成方法: /b-003-CreateTaskImplementation スキルで作成
+  - 実行方法: /c-001-ImplementTask スキルで各ステップを実行
   - 前提条件: a-definition.md と b-research.md が作成済みであること
   - 関連ドキュメント:
     - a-definition.md (タスク定義ドキュメント)

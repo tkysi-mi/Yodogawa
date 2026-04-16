@@ -3,7 +3,7 @@
 <!--
 このドキュメントについて:
   - 格納場所: docs/tasks/task000001-{スラッグ}/b-research.md
-  - 作成方法: /b-002-CreateTaskResearch ワークフローで作成
+  - 作成方法: /b-002-CreateTaskResearch スキルで作成
   - 前提条件: a-definition.md が作成済みであること
   - 関連ドキュメント:
     - a-definition.md (タスク定義ドキュメント)

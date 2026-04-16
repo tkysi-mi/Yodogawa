@@ -31,7 +31,7 @@ disable-model-invocation: true
 - `docs/project/design/05-data-model.md`
 - `docs/project/design/03-screen-design.md`
 
-不足があれば対応ワークフローの実行を促す。
+不足があれば対応スキルの実行を促す。
 
 ### 2. テンプレートの準備
 

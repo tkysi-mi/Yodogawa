@@ -2,6 +2,7 @@
 name: a-005-create-domain-diagram
 description: ドメインモデルを Mermaid 図（Context Map・Aggregate 構造）として可視化する。ドメインモデル定義後、関係性を図で確認する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # CreateDomainDiagram (a-005)

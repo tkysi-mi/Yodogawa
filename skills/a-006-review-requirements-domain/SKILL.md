@@ -2,6 +2,8 @@
 name: a-006-review-requirements-domain
 description: 要件定義・シナリオ・ドメインモデル間の一貫性を検証し、不整合や抜け漏れを検出する。ドメイン設計完了後、技術選定フェーズへ移る前の検査として使用。
 disable-model-invocation: true
+context: fork
+allowed-tools: Read, Grep, Glob, Write, Bash
 ---
 
 # ReviewRequirementsDomain (a-006)

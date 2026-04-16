@@ -2,6 +2,7 @@
 name: a-004-define-domain-model
 description: Event Storming 形式でドメインモデル（イベント・コマンド・集約）を定義し、ユビキタス言語を整備する。シナリオ作成後、ドメイン設計を開始する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineDomainModel (a-004)

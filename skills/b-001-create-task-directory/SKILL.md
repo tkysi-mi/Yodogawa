@@ -2,6 +2,8 @@
 name: b-001-create-task-directory
 description: docs/tasks/ 配下に連番タスク ID 付きディレクトリ（a-definition.md / b-research.md / c-implementation.md）を作成する。新しい実装タスクに着手する最初の手順として使用。
 disable-model-invocation: true
+argument-hint: "[slug]"
+allowed-tools: Read, Write, Bash, Glob
 ---
 
 # CreateTaskDirectory (b-001)
@@ -28,7 +30,7 @@ ls -d docs/tasks/task*
 
 ### 2. タスク名の決定
 
-ユーザーにタスクのキーワード（スラッグ）を質問:
+`$ARGUMENTS` が指定されている場合はそれをスラッグとして使用する。未指定の場合のみユーザーに質問:
 
 - 「タスクの内容を 3〜5 語の英数字とハイフンで表現してください（例: `user-profile-edit`）。」
 

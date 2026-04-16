@@ -2,6 +2,7 @@
 name: a-007-define-tech-stack
 description: 要件とドメインモデルを踏まえて推奨技術スタックを提案し、対話で最終確定する。ドメイン設計完了後、実装技術を選定する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineTechStack (a-007)

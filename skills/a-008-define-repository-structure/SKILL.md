@@ -2,6 +2,7 @@
 name: a-008-define-repository-structure
 description: 技術スタックに基づきディレクトリ構造・アーキテクチャパターン・命名規則を定義する。技術選定後、コードの配置方針を決める際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineRepositoryStructure (a-008)

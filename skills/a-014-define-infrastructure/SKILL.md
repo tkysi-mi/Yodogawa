@@ -2,6 +2,7 @@
 name: a-014-define-infrastructure
 description: アーキテクチャ設計を基にインフラ構成図・環境構成・運用方針を定義する。アーキテクチャ確定後、デプロイ/運用環境を設計する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineInfrastructure (a-014)

@@ -2,6 +2,7 @@
 name: a-013-define-architecture
 description: 技術スタック・リポジトリ構造・データモデル・API 仕様を統合し、システムアーキテクチャと ADR を定義する。各設計ドキュメント確定後、全体像と意思決定を文書化する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineArchitecture (a-013)

@@ -2,6 +2,7 @@
 name: a-003-create-scenarios
 description: ユーザーストーリーから Gherkin 形式のシナリオを生成し、BDD で振る舞いを定義する。要件定義後、ドメインモデル設計前の振る舞い明確化に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # CreateScenarios (a-003)

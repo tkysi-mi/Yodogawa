@@ -2,6 +2,7 @@
 name: a-001-setup-doc-structure
 description: docs/ 配下にプロジェクト/タスク用のディレクトリ構造と README を作成する。新規リポジトリでドキュメント基盤を初期化する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Bash, Glob
 ---
 
 # SetupDocStructure (a-001)

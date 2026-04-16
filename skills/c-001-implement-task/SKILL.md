@@ -2,6 +2,7 @@
 name: c-001-implement-task
 description: c-implementation.md のステップを順次実行し、テスト・レビューを経て機能を完成させる。タスクレビュー後、実装を開始する際に使用（speckit.implement スタイル）。
 disable-model-invocation: true
+argument-hint: "[task-id]"
 ---
 
 # ImplementTask (c-001)
@@ -38,6 +39,8 @@ disable-model-invocation: true
 実装ループ全体の俯瞰図と speckit.implement との対応は [reference/implementation-loop.md](reference/implementation-loop.md) を参照。
 
 ## 手順
+
+`$ARGUMENTS` が指定されている場合は `task{ID}-{SLUG}`（例: `task000003-auth-login`）として使用する。未指定の場合はユーザーに対象タスクを確認する。
 
 ### 1. 実装前の検証
 

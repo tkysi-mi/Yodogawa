@@ -2,6 +2,8 @@
 name: b-002-create-task-definition
 description: 対話を通じてタスク定義（目的・変更内容・受け入れ基準）を a-definition.md に記録する。タスクディレクトリ作成後、仕様を確定する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: "[task-id]"
 ---
 
 # CreateTaskDefinition (b-002)
@@ -19,6 +21,8 @@ disable-model-invocation: true
 - タスクの概要が関係者と共有済み
 
 ## 手順
+
+`$ARGUMENTS` が指定されている場合は `task{ID}-{SLUG}`（例: `task000003-auth-login`）として使用する。未指定の場合はユーザーに対象タスクを確認する。
 
 ### 1. タスクディレクトリとテンプレートの確認
 

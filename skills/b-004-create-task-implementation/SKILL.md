@@ -2,6 +2,8 @@
 name: b-004-create-task-implementation
 description: タスクをステップ単位に分割し、各ステップの成果物・受け入れ基準を c-implementation.md に定義する。リサーチ完了後、実装着手前に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: "[task-id]"
 ---
 
 # CreateTaskImplementation (b-004)
@@ -19,6 +21,8 @@ disable-model-invocation: true
 - テンプレート: `{IDE_DIR}/templates/tasks/task-template/c-implementation.md`
 
 ## 手順
+
+`$ARGUMENTS` が指定されている場合は `task{ID}-{SLUG}`（例: `task000003-auth-login`）として使用する。未指定の場合はユーザーに対象タスクを確認する。
 
 ### 1. ドキュメント確認とテンプレート準備
 

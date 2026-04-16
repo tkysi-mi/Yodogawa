@@ -2,6 +2,7 @@
 name: a-010-define-design-system
 description: カラー・タイポグラフィ・スペーシング・コンポーネントスタイルを含むデザインシステムを定義する。画面設計後、UI 実装のスタイル基盤を固める際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineDesignSystem (a-010)

@@ -2,6 +2,8 @@
 name: a-015-review-design
 description: 設計ドキュメント（技術・画面・データ・API・アーキ・インフラ）間の一貫性を検証し、要件・ドメインモデルとの整合性を確認する。設計フェーズ完了後、タスク分解に入る前の検査として使用。
 disable-model-invocation: true
+context: fork
+allowed-tools: Read, Grep, Glob, Write, Bash
 ---
 
 # ReviewDesign (a-015)

@@ -2,6 +2,7 @@
 name: a-002-initialize-project
 description: プロジェクトの要件を対話形式で収集し、システム概要・機能要件・非機能要件・ユーザーストーリーのドキュメントを生成する。新規プロジェクト開始時、または要件が未整備の場合に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # InitializeProject (a-002)

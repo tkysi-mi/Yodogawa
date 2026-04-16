@@ -2,6 +2,7 @@
 name: a-011-define-data-model
 description: ドメインモデルと画面設計からデータベース構造（ERD・エンティティ・属性・リレーションシップ・制約）を定義する。画面設計後、永続化層を設計する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineDataModel (a-011)

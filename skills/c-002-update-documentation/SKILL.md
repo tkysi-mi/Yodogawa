@@ -2,6 +2,8 @@
 name: c-002-update-documentation
 description: 実装完了後にタスクドキュメント（a-definition / b-research / c-implementation）とプロジェクトドキュメント（要件・ドメイン・API・データモデル等）を実装結果に合わせて更新する。実装完了後、ドキュメントと実コードの整合を取る際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: "[task-id]"
 ---
 
 # UpdateDocumentation (c-002)
@@ -21,6 +23,8 @@ disable-model-invocation: true
 - プロジェクトドキュメント構造（`docs/01-requirements/`, `docs/03-domain/`, `docs/04-design/` など）が存在すること
 
 ## 手順
+
+`$ARGUMENTS` が指定されている場合は `task{ID}-{SLUG}`（例: `task000003-auth-login`）として使用する。未指定の場合はユーザーに対象タスクを確認する。
 
 ### 1. 実装完了の確認
 

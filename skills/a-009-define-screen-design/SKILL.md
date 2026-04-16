@@ -2,6 +2,7 @@
 name: a-009-define-screen-design
 description: ユーザーストーリーとシナリオから画面一覧・遷移フロー・レスポンシブポリシーを定義する。技術選定後、UI/UX 設計を開始する際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineScreenDesign (a-009)

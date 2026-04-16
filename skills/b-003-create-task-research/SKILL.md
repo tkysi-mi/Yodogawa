@@ -2,6 +2,8 @@
 name: b-003-create-task-research
 description: タスク実装前に既存コード・ベストプラクティス・再利用候補・リスクを調査し b-research.md に記録する。タスク定義確定後、実装計画作成前に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: "[task-id]"
 ---
 
 # CreateTaskResearch (b-003)
@@ -19,6 +21,8 @@ disable-model-invocation: true
 - テンプレート: `{IDE_DIR}/templates/tasks/task-template/b-research.md`
 
 ## 手順
+
+`$ARGUMENTS` が指定されている場合は `task{ID}-{SLUG}`（例: `task000003-auth-login`）として使用する。未指定の場合はユーザーに対象タスクを確認する。
 
 ### 1. ドキュメントとテンプレートの準備
 

@@ -2,6 +2,9 @@
 name: b-005-review-task
 description: タスクの定義・リサーチ・実装計画ドキュメント間の一貫性をレビューし、不整合や抜け漏れを検出する。タスク実装に着手する前の最終確認として使用。
 disable-model-invocation: true
+argument-hint: "[task-id]"
+context: fork
+allowed-tools: Read, Grep, Glob, Write, Bash
 ---
 
 # ReviewTask (b-005)
@@ -18,6 +21,8 @@ disable-model-invocation: true
 - レビュー結果を記録するレポート: `docs/tasks/task{ID}-{SLUG}/TASK-REVIEW-REPORT.md`
 
 ## 手順
+
+`$ARGUMENTS` が指定されている場合は `task{ID}-{SLUG}`（例: `task000003-auth-login`）として使用する。未指定の場合はユーザーに対象タスクを確認する。
 
 ### 1. 対象タスクの確認
 

@@ -2,6 +2,7 @@
 name: a-012-define-api-spec
 description: データモデルと画面設計から API 仕様（認証方式・エンドポイント一覧・共通レスポンス形式）を定義する。データモデル確定後、フロント/バック間のインターフェースを固める際に使用。
 disable-model-invocation: true
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # DefineAPISpec (a-012)

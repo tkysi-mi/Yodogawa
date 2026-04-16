@@ -1,7 +1,7 @@
 ---
 name: a-001-setup-doc-structure
-description: プロジェクトのドキュメントディレクトリ構造を作成し、README で構成を説明する軽量セットアップワークフロー
-auto_execution_mode: 1
+description: docs/ 配下にプロジェクト/タスク用のディレクトリ構造と README を作成する。新規リポジトリでドキュメント基盤を初期化する際に使用。
+disable-model-invocation: true
 ---
 
 # SetupDocStructure (a-001)
@@ -13,88 +13,54 @@ auto_execution_mode: 1
 
 ## 前提
 
-- プロジェクトのルートディレクトリへの書き込み権限があること。
-- `docs/` ディレクトリが存在しない、または既存の構造を拡張したいこと。
+- プロジェクトのルートディレクトリへの書き込み権限があること
+- `docs/` ディレクトリが存在しない、または既存の構造を拡張したいこと
 
 ## 手順
 
 ### 1. スクリプトの実行
 
-- ドキュメント構造セットアップのために、環境に応じたスクリプトを実行してください。
+環境に応じたスクリプトを実行。スクリプト本体とフォールバック実装は [reference/directory-structure.md](reference/directory-structure.md#スクリプト実行コマンド) を参照。
 
-  ```bash
-  # 環境を自動検出してスクリプトを実行
-  if [ -d ".agent" ]; then
-    SCRIPT_DIR=".agent"
-  elif [ -d ".cursor" ]; then
-    SCRIPT_DIR=".cursor"
-  elif [ -d ".claude" ]; then
-    SCRIPT_DIR=".claude"
-  elif [ -d ".codex" ]; then
-    SCRIPT_DIR=".codex"
-  else
-    echo "エラー: AI coding assistant ディレクトリが見つかりません"
-    exit 1
-  fi
-
-  bash "$SCRIPT_DIR/scripts/setup-docs.sh"
-  ```
+```bash
+SCRIPT_DIR=$(for d in .agent .cursor .claude .codex; do [ -d "$d" ] && echo "$d" && break; done)
+bash "$SCRIPT_DIR/scripts/setup-docs.sh"
+```
 
 ### 2. 結果の確認
 
-- スクリプトの実行結果を確認し、エラーがないことを確認してください。
-- 生成された構造：
-
-  ```
-  docs/
-  ├── README.md
-  ├── project/
-  │   ├── 01-requirements/
-  │   ├── 02-behavior/
-  │   ├── 03-domain/
-  │   └── 04-design/
-  └── tasks/
-  ```
+スクリプト実行結果にエラーがないこと、および期待した構造が生成されていることを確認。生成構造と各ディレクトリの用途は [reference/directory-structure.md](reference/directory-structure.md#生成されるディレクトリ構造) を参照。
 
 ### 3. Git への追加（オプション）
 
-- ユーザーに確認：「作成したディレクトリ構造を Git に追加しますか？」
-- 「はい」の場合、以下を実行：
+ユーザーに確認し、「はい」なら:
 
-  ```bash
-  git add docs/
-  git status
-  ```
+```bash
+git add docs/
+git status
+```
 
-- Git status の結果を表示し、コミットメッセージの提案をする：
-
-  ```
-  推奨コミットメッセージ:
-  ドキュメント構造の初期化
-
-  - 標準的な構造を持つ docs/ ディレクトリを追加
-  - ドキュメント構成を説明する docs/README.md を追加
-  ```
+推奨コミットメッセージは [reference/directory-structure.md](reference/directory-structure.md#git-追加時の推奨コミットメッセージ) を参照。
 
 ### 4. 完了条件の確認
 
-- 以下の完了条件を満たしているか、チェックリストで確認してください：
-  - [ ] スクリプトが正常に終了した
-  - [ ] `docs/` ディレクトリ構造が正しく作成されている
+- [ ] スクリプトが正常に終了した
+- [ ] `docs/` ディレクトリ構造が正しく作成されている
 
 ## 完了条件
 
-- プロジェクトルートに `docs/` ディレクトリが作成されている。
-- `docs/project/` 配下に `01-requirements/`, `02-behavior/`, `03-domain/`, `04-design/` ディレクトリが存在する。
-- `docs/tasks/` ディレクトリが存在する。
-- `docs/README.md` が作成されている。
-- ユーザーに作成結果が報告されている。
+- プロジェクトルートに `docs/` ディレクトリが作成されている
+- `docs/project/` 配下に `01-requirements/`, `02-behavior/`, `03-domain/`, `04-design/` が存在する
+- `docs/tasks/` ディレクトリが存在する
+- `docs/README.md` が作成されている
+- ユーザーに作成結果が報告されている
 
 ## エスカレーション
 
-- 既存の `docs/` ディレクトリが存在し、重要なファイルが含まれている場合：
-  - 「既存のドキュメント構造が検出されました。上書きや削除のリスクがあるため、手動で確認してください。」と警告し、処理を中断する。
-- ファイルシステムの権限エラーが発生した場合：
-  - 「ディレクトリの作成に失敗しました。書き込み権限を確認してください。」とユーザーに通知する。
-- Git リポジトリでない場合に Git 追加を試みた場合：
-  - 「このディレクトリは Git リポジトリではありません。Git の初期化が必要な場合は `git init` を実行してください。」と案内する。
+- **既存の `docs/` が存在し重要ファイルを含む**: 「既存のドキュメント構造が検出されました。上書きや削除のリスクがあるため、手動で確認してください。」と警告し処理を中断
+- **権限エラー**: 「ディレクトリの作成に失敗しました。書き込み権限を確認してください。」
+- **Git リポジトリでない**: 「このディレクトリは Git リポジトリではありません。必要なら `git init` を実行してください。」
+
+## 参考
+
+- [reference/directory-structure.md](reference/directory-structure.md) — 生成構造、各ディレクトリの用途、スクリプト詳細、推奨コミットメッセージ

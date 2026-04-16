@@ -1,78 +1,66 @@
 ---
 name: b-001-create-task-directory
-description: 新規タスク用のディレクトリを作成し、タスクIDを採番するワークフロー
-auto_execution_mode: 1
+description: docs/tasks/ 配下に連番タスク ID 付きディレクトリ（a-definition.md / b-research.md / c-implementation.md）を作成する。新しい実装タスクに着手する最初の手順として使用。
+disable-model-invocation: true
 ---
 
 # CreateTaskDirectory (b-001)
 
 ## 目的
 
-- 新しいタスクのための専用ディレクトリを作成する。
-- タスクIDの採番ルール（`taskXXXXXX`）を統一し、管理しやすくする。
-- **注意**: このワークフローはディレクトリ作成のみを行います。タスク定義書などのドキュメント作成は後続のワークフロー（`b-001` 等）で実施します。
+- 新しいタスク専用のディレクトリを作成する。
+- タスク ID の採番ルール（`taskXXXXXX`）を統一し、管理しやすくする。
+- **注意**: このスキルはディレクトリ作成のみ。タスク定義書などのドキュメント作成は後続のスキル（`/b-002-create-task-definition` など）で実施。
 
 ## 前提
 
-- `docs/tasks/` ディレクトリが存在すること。
+- `docs/tasks/` ディレクトリが存在すること
 
 ## 手順
 
-### 1. 既存タスクの確認とID採番
+### 1. 既存タスクの確認と ID 採番
 
-- 既存のタスクディレクトリを確認し、次のタスクIDを決定する。
+```bash
+ls -d docs/tasks/task*
+```
 
-  ```bash
-  ls -d docs/tasks/task*
-  ```
-
-- **採番ルール**:
-  - 形式: `task{6桁連番}-{スラッグ}`
-  - 例: `task000001-email-auth`
-  - 既存がない場合は `task000001` から開始。
-  - 既存がある場合は最大番号 + 1。
+採番ルールとスラッグ命名は [examples/naming-convention.md](examples/naming-convention.md) を参照。
 
 ### 2. タスク名の決定
 
-- ユーザーにタスクのキーワード（スラッグ）を質問する。
-  - 「タスクの内容を3-5語の英数字とハイフンで表現してください（例: `user-profile-edit`）。」
+ユーザーにタスクのキーワード（スラッグ）を質問:
+
+- 「タスクの内容を 3〜5 語の英数字とハイフンで表現してください（例: `user-profile-edit`）。」
 
 ### 3. ディレクトリの作成
 
-- 決定したIDとスラッグを使用してディレクトリを作成する。
-
-  ```bash
-  mkdir -p docs/tasks/task{ID}-{SLUG}
-  ```
-
-  例:
-
-  ```bash
-  mkdir -p docs/tasks/task000001-email-auth
-  ```
+```bash
+mkdir -p docs/tasks/task{ID}-{SLUG}
+# 例
+mkdir -p docs/tasks/task000001-email-auth
+```
 
 ### 4. 作成確認
 
-- ディレクトリが正しく作成されたか確認する。
-
-  ```bash
-  ls -ld docs/tasks/task{ID}-{SLUG} && echo "OK" || echo "FAILED"
-  ```
+```bash
+ls -ld docs/tasks/task{ID}-{SLUG} && echo "OK" || echo "FAILED"
+```
 
 ### 5. 次のステップの案内
 
-- ユーザーに次のアクションを提案する：
-  - 「ディレクトリ `docs/tasks/task{ID}-{SLUG}` を作成しました。」
-  - 「続いてタスク定義書を作成しますか？ (`CreateTaskDefinition` / b-001)」
+- 「ディレクトリ `docs/tasks/task{ID}-{SLUG}` を作成しました。」
+- 「続いてタスク定義書を作成しますか？（`/b-002-create-task-definition`）」
 
 ## 完了条件
 
-- `docs/tasks/task{ID}-{SLUG}/` ディレクトリが作成されている。
-- ユーザーにディレクトリパスが報告されている。
+- `docs/tasks/task{ID}-{SLUG}/` ディレクトリが作成されている
+- ユーザーにディレクトリパスが報告されている
 
 ## エスカレーション
 
-- `docs/tasks/` が見つからない場合:
-  - `mkdir -p docs/tasks` を実行するか、`SetupDocStructure` (a-001) の確認を促す。
-- 命名規則違反:
-  - タスク名にスペースや特殊文字が含まれる場合、修正を求める。
+- **`docs/tasks/` が見つからない**: `mkdir -p docs/tasks` を実行するか、`/a-001-setup-doc-structure` の確認を促す
+- **命名規則違反**: タスク名にスペースや特殊文字が含まれる場合、修正を求める
+
+## 参考
+
+- [examples/naming-convention.md](examples/naming-convention.md) — タスク ID の採番ルールとスラッグ命名規則

@@ -1,7 +1,7 @@
 ---
 name: a-006-review-requirements-domain
-description: 要件定義からドメインモデルまでのドキュメント間の一貫性をチェックし、不整合や漏れを検出するレビューワークフロー
-auto_execution_mode: 1
+description: 要件定義・シナリオ・ドメインモデル間の一貫性を検証し、不整合や抜け漏れを検出する。ドメイン設計完了後、技術選定フェーズへ移る前の検査として使用。
+disable-model-invocation: true
 ---
 
 # ReviewRequirementsDomain (a-006)
@@ -15,130 +15,69 @@ auto_execution_mode: 1
 
 ## 前提
 
-- 以下のドキュメントが作成されていること：
-  - `docs/project/requirements/01-system-overview.md`
-  - `docs/project/requirements/02-features-implemented.md`
-  - `docs/project/requirements/03-features-planned.md`
-  - `docs/project/requirements/04-non-functional-requirements.md`
-  - `docs/project/requirements/05-user-stories.md`
-  - `docs/project/behavior/01-scenarios.md`
-  - `docs/project/domain/01-domain-model.md`
-  - `docs/project/domain/02-ubiquitous-language.md`
+以下のドキュメントが作成されていること:
+
+- `docs/project/requirements/01-system-overview.md` 〜 `05-user-stories.md`
+- `docs/project/behavior/01-scenarios.md`
+- `docs/project/domain/01-domain-model.md`, `02-ubiquitous-language.md`
 
 ## 手順
 
 ### 1. ドキュメント存在確認
 
-- 必要なすべてのドキュメントが存在するか確認する：
+```bash
+ls -l docs/project/requirements/*.md docs/project/behavior/*.md docs/project/domain/*.md
+```
 
-  ```bash
-  ls -l docs/project/requirements/*.md docs/project/behavior/*.md docs/project/domain/*.md
-  ```
-
-- 不足しているドキュメントがある場合、対応するワークフロー（a-002, a-003, a-004）の実行を促す。
+不足があれば、対応する `/a-002`, `/a-003`, `/a-004` ワークフローの実行を促す。
 
 ### 2. 一貫性チェックの実行
 
-以下の項目について、自動検索（grep等）と手動確認を組み合わせて検証する。
+以下の 6 観点を自動検索（grep 等）と手動確認で検証する。詳細な観点・コマンドは [reference/consistency-checks.md](reference/consistency-checks.md) を参照。
 
-#### 2.1 ユーザーストーリー ↔ シナリオ
-
-- **カバレッジ**: すべてのユーザーストーリー（US-XXX）に対応するシナリオ（SC-XXX）が存在するか。
-- **整合性**: ストーリーの「価値」とシナリオの「結果」が一致しているか。
-
-#### 2.2 実装済み機能・予定機能 ↔ シナリオ
-
-- **実装済み機能**: `02-features-implemented.md` に記載の機能に、リグレッションテスト用のシナリオが存在するか。
-- **予定機能**: `03-features-planned.md` の優先度High機能にシナリオが存在するか。
-
-#### 2.3 非機能要件 ↔ ドメインモデル
-
-- **パフォーマンス**: `04-non-functional-requirements.md` の要件（読み込み速度など）に対し、Read ModelやCQRSが検討されているか。
-- **セキュリティ**: 認証・権限要件が Policy や Guard としてドメインモデルに含まれているか。
-
-#### 2.4 シナリオ ↔ ドメインモデル
-
-- **Command**: シナリオのWhen（アクション）がドメインモデルのCommandとして定義されているか。
-- **Event**: シナリオのThen（結果）がドメインモデルのDomain Eventとして定義されているか。
-- **Actor**: シナリオのActorがドメインモデルに存在するか。
-
-#### 2.5 ユビキタス言語の遵守
-
-- **用語定義**: ドメインモデルの主要要素（Aggregate, Command, Event）がユビキタス言語一覧にあるか。
-- **禁止用語**: 各ドキュメントに禁止用語（Data, Process等）が使われていないか。
-
-  ```bash
-  # 禁止用語の簡易検索（例）
-  grep -r "Data" docs/project/domain/ || echo "No 'Data' found"
-  grep -r "Process" docs/project/domain/ || echo "No 'Process' found"
-  ```
-
-#### 2.6 目的との整合性
-
-- システム概要の「目的」と、ドメインモデルの「Core Domain」が一致しているか。
+- **2.1 ユーザーストーリー ↔ シナリオ**: US-XXX に対応する SC-XXX の存在、価値と結果の整合
+- **2.2 実装済み/予定機能 ↔ シナリオ**: リグレッション用/優先度 High のカバレッジ
+- **2.3 非機能要件 ↔ ドメインモデル**: 性能要件（Read Model）、セキュリティ（Policy/Guard）
+- **2.4 シナリオ ↔ ドメインモデル**: Command / Event / Actor の対応
+- **2.5 ユビキタス言語**: 主要要素の登録、禁止用語の検出
+- **2.6 目的との整合性**: システム目的と Core Domain の一致
 
 ### 3. レビュー結果レポートの作成
 
-- 検出された問題（Error/Warning）をまとめ、`docs/project/REVIEW-REPORT.md` を作成する。
+検出された問題（Error / Warning / OK）をまとめ、`docs/project/REVIEW-REPORT-YYYYMMDDHHMMSS.md` を作成する。フォーマットは [examples/review-report-template.md](examples/review-report-template.md#レポートフォーマット) を参照。
 
-**レポートフォーマット例**:
+必須セクション:
 
-```markdown
-# ドキュメント一貫性レビュー結果
-**実施日**: YYYY-MM-DD
-
-## サマリー
-- ✅ OK: X項目
-- ⚠️ Warning: X項目
-- ❌ Error: X項目
-
-## 詳細
-
-### 1. ユーザーストーリー ↔ シナリオ
-- ❌ **Error**: US-005 に対応するシナリオが見つかりません。
-- ✅ OK: 優先度Highのストーリーはすべてカバーされています。
-
-### 2. 機能要件・非機能要件
-- ⚠️ **Warning**: 実装済み機能「決済」のシナリオが不足しています。
-- ✅ OK: パフォーマンス要件に対応するRead Modelが定義されています。
-
-### 3. シナリオ ↔ ドメインモデル
-- ⚠️ **Warning**: シナリオSC-003のCommand「在庫を引き当てる」がドメインモデルに未定義です。
-
-### 4. ユビキタス言語
-- ❌ **Error**: 用語「ShippingAddress」がユビキタス言語一覧にありません。
-- ⚠️ **Warning**: 禁止用語「User Data」が `01-domain-model.md` で使用されています。
-
-## 推奨アクション
-1. `CreateScenarios` (a-003) で US-005 のシナリオを追加する。
-2. `DefineDomainModel` (a-004) で「在庫を引き当てる」コマンドを定義する。
-3. `01-domain-model.md` の「User Data」を「User Profile」に修正する。
-```
+- サマリー（OK / Warning / Error の件数）
+- 詳細（上記 6 観点ごとの結果）
+- 推奨アクション（修正すべきタスクとワークフロー参照）
 
 ### 4. 結果の報告と修正提案
 
-- ユーザーにレポートの内容を要約して伝える。
-- 重大なエラー（❌）がある場合は、優先的に修正することを提案する。
-- 「修正作業を開始しますか？それともレポートをGitに保存して終了しますか？」
+- レポート内容を要約してユーザーに伝える。
+- 重大なエラー（Error）がある場合は優先修正を提案。
+- 「修正作業を開始しますか？それともレポートを Git に保存して終了しますか？」
 
-### 5. Git への追加（オプション）
+### 5. Git への追加（任意）
 
-- ユーザーが希望する場合、レポートをコミットする。
-
-  ```bash
-  git add docs/project/REVIEW-REPORT--YYYYMMDDHHMMSS.md
-  git commit -m "docs: 要件・ドメイン整合性レビューレポートの作成"
-  ```
+```bash
+git add docs/project/REVIEW-REPORT-*.md
+git commit -m "docs: 要件・ドメイン整合性レビューレポートの作成"
+```
 
 ## 完了条件
 
-- `docs/project/REVIEW-REPORT.md` が作成されている。
+- `docs/project/REVIEW-REPORT-YYYYMMDDHHMMSS.md` が作成されている。
 - 全ドキュメント間の整合性がチェックされ、結果（OK/Warning/Error）が記録されている。
 - 具体的な修正アクションが提案されている。
 
 ## エスカレーション
 
-- 多数のエラーが検出された場合：
-  - 「不整合が多いため、ドキュメントの信頼性が低くなっています。関係者を集めて大規模なレビュー会議を行うことを推奨します。」
-- 重要機能（Core Domain）で不整合がある場合：
-  - 「Core Domainにおける不整合はリスクが高いです。実装前に必ず解消してください。」
+- **多数のエラーが検出された**: 「不整合が多くドキュメント信頼性が低下しています。関係者を集めた大規模レビュー会議を推奨します。」
+- **Core Domain で不整合**: 「Core Domain における不整合はリスクが高いです。実装前に必ず解消してください。」
+- 判断材料の詳細は [reference/consistency-checks.md](reference/consistency-checks.md#エスカレーションの判断材料) を参照。
+
+## 参考
+
+- [examples/review-report-template.md](examples/review-report-template.md) — レビュー結果レポートのフォーマット例と重大度記号
+- [reference/consistency-checks.md](reference/consistency-checks.md) — 6 観点の詳細なチェック項目、grep コマンド例、エスカレーション基準

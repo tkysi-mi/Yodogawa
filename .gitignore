@@ -2,6 +2,12 @@
 .claude/
 .serena/
 
+# Yodogawa CLI install outputs (local test artifacts)
+.agents/
+.agent/
+.cursor/
+.codex/
+
 # Editor directories and files
 .vscode/
 .idea/

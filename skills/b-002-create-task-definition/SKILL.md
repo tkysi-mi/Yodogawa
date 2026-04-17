@@ -26,13 +26,13 @@ argument-hint: "[task-id]"
 
 ### 1. タスクディレクトリとテンプレートの確認
 
+対象タスクディレクトリを確認し、テンプレートをコピー。スクリプトが冪等なので、既存ファイルはスキップされる。
+
 ```bash
 ls -d docs/tasks/task*
 
-# テンプレート未配置ならコピー
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/tasks/task-template/a-definition.md" \
-   "docs/tasks/task{ID}-{SLUG}/a-definition.md"
+bash "$SCRIPT_DIR/scripts/init-task-doc.sh" "docs/tasks/task{ID}-{SLUG}" definition
 ```
 
 ### 2. 目的・背景のヒアリング

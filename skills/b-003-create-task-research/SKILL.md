@@ -26,14 +26,13 @@ argument-hint: "[task-id]"
 
 ### 1. ドキュメントとテンプレートの準備
 
+対象タスクディレクトリを確認し、テンプレートをコピー。スクリプトが冪等なので、既存ファイルはスキップされる。
+
 ```bash
-# 対象タスクの確認
 ls -d docs/tasks/task*
 
-# テンプレート未設置ならコピー
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/tasks/task-template/b-research.md" \
-   "docs/tasks/task{ID}-{SLUG}/b-research.md"
+bash "$SCRIPT_DIR/scripts/init-task-doc.sh" "docs/tasks/task{ID}-{SLUG}" research
 ```
 
 ### 2. 調査計画の立案

@@ -26,11 +26,13 @@ argument-hint: "[task-id]"
 
 ### 1. ドキュメント確認とテンプレート準備
 
+対象タスクディレクトリを確認し、テンプレートをコピー。スクリプトが冪等なので、既存ファイルはスキップされる。
+
 ```bash
 ls -d docs/tasks/task*
+
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/tasks/task-template/c-implementation.md" \
-   "docs/tasks/task{ID}-{SLUG}/c-implementation.md"
+bash "$SCRIPT_DIR/scripts/init-task-doc.sh" "docs/tasks/task{ID}-{SLUG}" implementation
 ```
 
 `a-definition.md` から目的・変更内容・受け入れ基準を、`b-research.md` から技術方針・ライブラリ選定・リスクを読み取る。

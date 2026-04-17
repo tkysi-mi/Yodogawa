@@ -17,7 +17,7 @@ argument-hint: "[task-id]"
 
 ## 前提
 
-- タスクディレクトリが既に作成されていること（`/b-000-CreateTaskDirectory` で作成済み）
+- タスクディレクトリが既に作成されていること（`/b-001-create-task-directory` で作成済み）
 - タスク定義ドキュメント（`a-definition.md`）が作成されていること
 - リサーチドキュメント（`b-research.md`）が作成されていること
 - 実装タスクリスト（`c-implementation.md`）が作成されていること

@@ -6,16 +6,16 @@ SKILL.md 手順6〜7 で使う確認コマンドとレビュー観点。
 
 ```bash
 # インフラ構成図の確認
-grep "\`\`\`mermaid" docs/project/design/08-infrastructure.md && echo "OK" || echo "MISSING: Infra Diagram"
+grep "\`\`\`mermaid" docs/project/04-design/08-infrastructure.md && echo "OK" || echo "MISSING: Infra Diagram"
 # 環境構成の確認
-grep "## 環境構成" docs/project/design/08-infrastructure.md && echo "OK" || echo "MISSING: Environments"
+grep "## 環境構成" docs/project/04-design/08-infrastructure.md && echo "OK" || echo "MISSING: Environments"
 # 運用方針の確認
-grep "## 主要な運用方針" docs/project/design/08-infrastructure.md && echo "OK" || echo "MISSING: Operations"
+grep "## 主要な運用方針" docs/project/04-design/08-infrastructure.md && echo "OK" || echo "MISSING: Operations"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/design/08-infrastructure.md` が作成されている
+- [ ] `docs/project/04-design/08-infrastructure.md` が作成されている
 - [ ] 本番環境の構成（冗長化、Multi-AZ など）が明確
 - [ ] ネットワーク分離（Public / Private / Data）が図示されている
 - [ ] セキュリティグループ方針と WAF 設定が記録されている
@@ -49,7 +49,7 @@ grep "## 主要な運用方針" docs/project/design/08-infrastructure.md && echo
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/design/08-infrastructure.md
+git add docs/project/04-design/08-infrastructure.md
 git status
 ```
 

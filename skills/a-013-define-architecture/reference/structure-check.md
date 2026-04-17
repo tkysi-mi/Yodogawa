@@ -6,16 +6,16 @@ SKILL.md 手順6〜7 で使う確認コマンドとレビュー観点。
 
 ```bash
 # アーキテクチャ図の確認
-grep "\`\`\`mermaid" docs/project/design/07-architecture.md && echo "OK" || echo "MISSING: Architecture Diagram"
+grep "\`\`\`mermaid" docs/project/04-design/07-architecture.md && echo "OK" || echo "MISSING: Architecture Diagram"
 # パターン定義の確認
-grep "## 採用アーキテクチャパターン" docs/project/design/07-architecture.md && echo "OK" || echo "MISSING: Pattern definition"
+grep "## 採用アーキテクチャパターン" docs/project/04-design/07-architecture.md && echo "OK" || echo "MISSING: Pattern definition"
 # ADR セクションの確認
-grep "## ADR" docs/project/design/07-architecture.md && echo "OK" || echo "MISSING: ADR section"
+grep "## ADR" docs/project/04-design/07-architecture.md && echo "OK" || echo "MISSING: ADR section"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/design/07-architecture.md` が作成されている
+- [ ] `docs/project/04-design/07-architecture.md` が作成されている
 - [ ] システム全体像（クライアント / API / DB / 外部サービス）が可視化されている
 - [ ] コンポーネント間のプロトコルがラベルで明示されている
 - [ ] スケーラビリティ・冗長化構成が反映されている
@@ -39,7 +39,7 @@ grep "## ADR" docs/project/design/07-architecture.md && echo "OK" || echo "MISSI
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/design/07-architecture.md
+git add docs/project/04-design/07-architecture.md
 git status
 ```
 

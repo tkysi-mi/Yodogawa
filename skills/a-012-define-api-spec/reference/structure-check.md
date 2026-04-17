@@ -6,16 +6,16 @@ SKILL.md 手順6〜7 で使う確認コマンドとレビュー観点。
 
 ```bash
 # 認証セクションの確認
-grep "## 認証・認可" docs/project/design/06-api-spec.md && echo "OK" || echo "MISSING: Auth section"
+grep "## 認証・認可" docs/project/04-design/06-api-spec.md && echo "OK" || echo "MISSING: Auth section"
 # エンドポイント一覧の確認
-grep "## エンドポイント一覧" docs/project/design/06-api-spec.md && echo "OK" || echo "MISSING: Endpoints"
+grep "## エンドポイント一覧" docs/project/04-design/06-api-spec.md && echo "OK" || echo "MISSING: Endpoints"
 # レスポンス形式の確認
-grep "## 共通レスポンス形式" docs/project/design/06-api-spec.md && echo "OK" || echo "MISSING: Response format"
+grep "## 共通レスポンス形式" docs/project/04-design/06-api-spec.md && echo "OK" || echo "MISSING: Response format"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/design/06-api-spec.md` が作成されている
+- [ ] `docs/project/04-design/06-api-spec.md` が作成されている
 - [ ] 認証方式（JWT / OAuth 等）が明確に定義されている
 - [ ] トークンの保存先（Cookie / Header）が決まっている
 - [ ] ロール・スコープが定義されている
@@ -35,7 +35,7 @@ grep "## 共通レスポンス形式" docs/project/design/06-api-spec.md && echo
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/design/06-api-spec.md
+git add docs/project/04-design/06-api-spec.md
 git status
 ```
 

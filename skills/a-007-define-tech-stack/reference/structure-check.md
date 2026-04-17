@@ -6,16 +6,16 @@ SKILL.md 手順6〜7 で使う確認コマンドとレビュー観点。
 
 ```bash
 # フロントエンドセクションの確認
-grep "### フロントエンド" docs/project/design/01-tech-stack.md && echo "OK" || echo "MISSING: Frontend section"
+grep "### フロントエンド" docs/project/04-design/01-tech-stack.md && echo "OK" || echo "MISSING: Frontend section"
 # バックエンドセクションの確認
-grep "### バックエンド" docs/project/design/01-tech-stack.md && echo "OK" || echo "MISSING: Backend section"
+grep "### バックエンド" docs/project/04-design/01-tech-stack.md && echo "OK" || echo "MISSING: Backend section"
 # 技術選定理由の確認（表形式）
-grep "|" docs/project/design/01-tech-stack.md | head -n 5
+grep "|" docs/project/04-design/01-tech-stack.md | head -n 5
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/design/01-tech-stack.md` が作成されている
+- [ ] `docs/project/04-design/01-tech-stack.md` が作成されている
 - [ ] 主要レイヤー（FE, BE, DB, Infra, 監視/テスト）の技術が選定されている
 - [ ] 各技術にバージョンが記載されている
 - [ ] 選定理由が要件とマッピングされている
@@ -37,7 +37,7 @@ grep "|" docs/project/design/01-tech-stack.md | head -n 5
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/design/01-tech-stack.md
+git add docs/project/04-design/01-tech-stack.md
 git status
 ```
 

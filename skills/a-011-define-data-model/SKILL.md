@@ -16,10 +16,10 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/domain/01-domain-model.md` が作成されていること。
-- `docs/project/design/01-tech-stack.md` が作成されていること（DB 選定済み）。
-- `docs/project/design/03-screen-design.md` が作成されていること。
-- `docs/project/design/` ディレクトリが存在すること。
+- `docs/project/03-domain/01-domain-model.md` が作成されていること。
+- `docs/project/04-design/01-tech-stack.md` が作成されていること（DB 選定済み）。
+- `docs/project/04-design/03-screen-design.md` が作成されていること。
+- `docs/project/04-design/` ディレクトリが存在すること。
 
 ## 手順
 
@@ -27,9 +27,9 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 以下を読み込む:
 
-- `docs/project/domain/01-domain-model.md`
-- `docs/project/design/01-tech-stack.md`
-- `docs/project/design/03-screen-design.md`
+- `docs/project/03-domain/01-domain-model.md`
+- `docs/project/04-design/01-tech-stack.md`
+- `docs/project/04-design/03-screen-design.md`
 
 不足があれば対応スキルの実行を促す。
 
@@ -37,7 +37,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ```bash
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/04-design/05-data-model.md" "docs/project/design/05-data-model.md"
+cp "$SCRIPT_DIR/templates/project/04-design/05-data-model.md" "docs/project/04-design/05-data-model.md"
 ```
 
 ### 3. エンティティの抽出と提案
@@ -78,7 +78,7 @@ cp "$SCRIPT_DIR/templates/project/04-design/05-data-model.md" "docs/project/desi
 
 ### 6. ドキュメント作成
 
-`docs/project/design/05-data-model.md` に以下を記入する:
+`docs/project/04-design/05-data-model.md` に以下を記入する:
 
 - エンティティ一覧
 - リレーションシップ定義
@@ -88,9 +88,9 @@ cp "$SCRIPT_DIR/templates/project/04-design/05-data-model.md" "docs/project/desi
 ### 7. 構造チェック
 
 ```bash
-grep "## エンティティ一覧" docs/project/design/05-data-model.md \
-  && grep "\`\`\`mermaid" docs/project/design/05-data-model.md \
-  && grep "## リレーションシップ" docs/project/design/05-data-model.md \
+grep "## エンティティ一覧" docs/project/04-design/05-data-model.md \
+  && grep "\`\`\`mermaid" docs/project/04-design/05-data-model.md \
+  && grep "## リレーションシップ" docs/project/04-design/05-data-model.md \
   && echo "OK" || echo "MISSING SECTION"
 ```
 
@@ -99,13 +99,13 @@ grep "## エンティティ一覧" docs/project/design/05-data-model.md \
 ### 8. Git への追加（任意）
 
 ```bash
-git add docs/project/design/05-data-model.md
+git add docs/project/04-design/05-data-model.md
 git commit -m "docs: データモデル（ERD）の定義"
 ```
 
 ## 完了条件
 
-- `docs/project/design/05-data-model.md` が作成されている。
+- `docs/project/04-design/05-data-model.md` が作成されている。
 - データベーススキーマ（テーブル、カラム、型、制約）が定義されている。
 - エンティティ間の関係性が可視化（ERD）されている。
 - ユーザーが内容を承認している。

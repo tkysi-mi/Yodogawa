@@ -9,9 +9,9 @@ SKILL.md 手順2 で実施する各チェック項目の詳細。自動検索（
 
 ```bash
 # 全ユーザーストーリーの ID 抽出
-grep -oE "US-[0-9]+" docs/project/requirements/05-user-stories.md | sort -u
+grep -oE "US-[0-9]+" docs/project/01-requirements/05-user-stories.md | sort -u
 # シナリオ側の参照
-grep -oE "US-[0-9]+" docs/project/behavior/01-scenarios.md | sort -u
+grep -oE "US-[0-9]+" docs/project/02-behavior/01-scenarios.md | sort -u
 ```
 
 ## 2.2 実装済み機能・予定機能 ↔ シナリオ
@@ -37,9 +37,9 @@ grep -oE "US-[0-9]+" docs/project/behavior/01-scenarios.md | sort -u
 
 ```bash
 # 禁止用語の簡易検索
-grep -rn "Data" docs/project/domain/ || echo "No 'Data' found"
-grep -rn "Process" docs/project/domain/ || echo "No 'Process' found"
-grep -rn "Manager" docs/project/domain/ || echo "No 'Manager' found"
+grep -rn "Data" docs/project/03-domain/ || echo "No 'Data' found"
+grep -rn "Process" docs/project/03-domain/ || echo "No 'Process' found"
+grep -rn "Manager" docs/project/03-domain/ || echo "No 'Manager' found"
 ```
 
 ## 2.6 目的との整合性

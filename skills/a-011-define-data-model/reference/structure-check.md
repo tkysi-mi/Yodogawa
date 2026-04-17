@@ -6,16 +6,16 @@ SKILL.md 手順7〜8 で使う確認コマンドとレビュー観点。
 
 ```bash
 # エンティティ一覧の確認
-grep "## エンティティ一覧" docs/project/design/05-data-model.md && echo "OK" || echo "MISSING: Entities"
+grep "## エンティティ一覧" docs/project/04-design/05-data-model.md && echo "OK" || echo "MISSING: Entities"
 # ERD の確認
-grep "\`\`\`mermaid" docs/project/design/05-data-model.md && echo "OK" || echo "MISSING: ERD"
+grep "\`\`\`mermaid" docs/project/04-design/05-data-model.md && echo "OK" || echo "MISSING: ERD"
 # リレーションシップ定義の確認
-grep "## リレーションシップ" docs/project/design/05-data-model.md && echo "OK" || echo "MISSING: Relationships"
+grep "## リレーションシップ" docs/project/04-design/05-data-model.md && echo "OK" || echo "MISSING: Relationships"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/design/05-data-model.md` が作成されている
+- [ ] `docs/project/04-design/05-data-model.md` が作成されている
 - [ ] 全エンティティの物理名・論理名が定義されている
 - [ ] 各カラムの型・制約・デフォルト値が定義されている
 - [ ] 主キー戦略（Auto Increment / UUID / CUID）が明記されている
@@ -42,7 +42,7 @@ grep "## リレーションシップ" docs/project/design/05-data-model.md && ec
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/design/05-data-model.md
+git add docs/project/04-design/05-data-model.md
 git status
 ```
 

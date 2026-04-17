@@ -15,7 +15,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/requirements/` ディレクトリが存在すること（なければ先に `/a-001-setup-doc-structure` を実行）
+- `docs/project/01-requirements/` ディレクトリが存在すること（なければ先に `/a-001-setup-doc-structure` を実行）
 - `docs/` に書き込み権限があること
 - ユーザーがプロジェクト概要と主要機能の基本情報を提供できること
 
@@ -24,10 +24,10 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ### 1. ドキュメントディレクトリの確認
 
 ```bash
-ls -la docs/project/requirements/ 2>/dev/null || echo "ディレクトリが存在しません"
+ls -la docs/project/01-requirements/ 2>/dev/null || echo "ディレクトリが存在しません"
 ```
 
-存在しない場合: 「`docs/project/requirements/` がありません。先に `/a-001-setup-doc-structure` を実行してください。」
+存在しない場合: 「`docs/project/01-requirements/` がありません。先に `/a-001-setup-doc-structure` を実行してください。」
 
 ### 2. コードベースの自動分析と提案
 
@@ -56,7 +56,7 @@ find src app lib -maxdepth 2 2>/dev/null
    ```bash
    SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
    cp "$SCRIPT_DIR/templates/project/01-requirements/01-system-overview.md" \
-      "docs/project/requirements/01-system-overview.md"
+      "docs/project/01-requirements/01-system-overview.md"
    ```
 
 2. 「背景」「目的」をヒアリングして記入。質問例は [reference/hearing-questions.md](reference/hearing-questions.md) を参照。
@@ -107,7 +107,7 @@ find src app lib -maxdepth 2 2>/dev/null
 
 ## 完了条件
 
-- `docs/project/requirements/` に 5 つの要件定義ドキュメントが作成されている
+- `docs/project/01-requirements/` に 5 つの要件定義ドキュメントが作成されている
 - すべてのドキュメントで抽象的表現が最小化され、具体的な数値・期限・制約が記載されている
 - ユーザーがドキュメント内容を確認し、承認またはフィードバックを提供している
 

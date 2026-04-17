@@ -563,10 +563,10 @@ argument-hint: [project-name]
 
 # プロジェクト初期化
 
-docs/project/requirements/ にプロジェクト要件ドキュメントを作成する。
+docs/project/01-requirements/ にプロジェクト要件ドキュメントを作成する。
 
 ## 前提
-- `docs/project/requirements/` が存在すること（なければ `/setup-docs` を先に実行）
+- `docs/project/01-requirements/` が存在すること（なければ `/setup-docs` を先に実行）
 
 ## 手順
 

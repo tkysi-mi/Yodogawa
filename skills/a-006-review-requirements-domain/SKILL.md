@@ -19,16 +19,16 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 
 以下のドキュメントが作成されていること:
 
-- `docs/project/requirements/01-system-overview.md` 〜 `05-user-stories.md`
-- `docs/project/behavior/01-scenarios.md`
-- `docs/project/domain/01-domain-model.md`, `02-ubiquitous-language.md`
+- `docs/project/01-requirements/01-system-overview.md` 〜 `05-user-stories.md`
+- `docs/project/02-behavior/01-scenarios.md`
+- `docs/project/03-domain/01-domain-model.md`, `02-ubiquitous-language.md`
 
 ## 手順
 
 ### 1. ドキュメント存在確認
 
 ```bash
-ls -l docs/project/requirements/*.md docs/project/behavior/*.md docs/project/domain/*.md
+ls -l docs/project/01-requirements/*.md docs/project/02-behavior/*.md docs/project/03-domain/*.md
 ```
 
 不足があれば、対応する `/a-002`, `/a-003`, `/a-004` スキルの実行を促す。

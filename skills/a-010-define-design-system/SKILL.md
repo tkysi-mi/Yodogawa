@@ -15,15 +15,15 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/design/03-screen-design.md` が作成されている（画面設計完了）
-- `docs/project/design/01-tech-stack.md` が作成されている（UI フレームワーク決定）
+- `docs/project/04-design/03-screen-design.md` が作成されている（画面設計完了）
+- `docs/project/04-design/01-tech-stack.md` が作成されている（UI フレームワーク決定）
 
 ## 手順
 
 ### 1. 既存ドキュメントの確認
 
-- `docs/project/design/01-tech-stack.md` — 使用する CSS フレームワーク（Tailwind, MUI 等）
-- `docs/project/design/03-screen-design.md` — 画面設計とレスポンシブポリシー
+- `docs/project/04-design/01-tech-stack.md` — 使用する CSS フレームワーク（Tailwind, MUI 等）
+- `docs/project/04-design/03-screen-design.md` — 画面設計とレスポンシブポリシー
 - ブランドガイドラインがあれば参照
 
 ### 2. テンプレートの準備
@@ -31,7 +31,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ```bash
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
 cp "$SCRIPT_DIR/templates/project/04-design/04-design-system.md" \
-   "docs/project/design/04-design-system.md"
+   "docs/project/04-design/04-design-system.md"
 ```
 
 ### 3. カラーパレットの定義
@@ -84,7 +84,7 @@ CSS 変数のサンプルは [examples/css-tokens.md](examples/css-tokens.md#カ
 
 ### 9. ドキュメント作成
 
-`docs/project/design/04-design-system.md` に以下を必須セクションとして記入:
+`docs/project/04-design/04-design-system.md` に以下を必須セクションとして記入:
 
 - カラーパレット
 - タイポグラフィ
@@ -102,7 +102,7 @@ CSS 変数のサンプルは [examples/css-tokens.md](examples/css-tokens.md#カ
 ### 11. Git への追加（オプション）
 
 ```bash
-git add docs/project/design/04-design-system.md
+git add docs/project/04-design/04-design-system.md
 git status
 ```
 
@@ -117,7 +117,7 @@ docs: デザインシステムの定義
 
 ## 完了条件
 
-- `docs/project/design/04-design-system.md` が作成されている
+- `docs/project/04-design/04-design-system.md` が作成されている
 - カラー・タイポグラフィ・スペーシングが定義されている
 - 主要コンポーネントのスタイルが定義されている
 - ユーザーが内容を承認している

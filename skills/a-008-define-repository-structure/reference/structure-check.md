@@ -6,16 +6,16 @@ SKILL.md 手順6〜7 で使う確認コマンドとレビュー観点。
 
 ```bash
 # ディレクトリ構造図の確認
-grep "project-root/" docs/project/design/02-repository-structure.md && echo "OK" || echo "MISSING: Directory tree"
+grep "project-root/" docs/project/04-design/02-repository-structure.md && echo "OK" || echo "MISSING: Directory tree"
 # アーキテクチャパターンセクションの確認
-grep "## アーキテクチャパターン" docs/project/design/02-repository-structure.md && echo "OK" || echo "MISSING: Architecture section"
+grep "## アーキテクチャパターン" docs/project/04-design/02-repository-structure.md && echo "OK" || echo "MISSING: Architecture section"
 # 命名規則セクションの確認
-grep "## 命名規則" docs/project/design/02-repository-structure.md && echo "OK" || echo "MISSING: Naming convention section"
+grep "## 命名規則" docs/project/04-design/02-repository-structure.md && echo "OK" || echo "MISSING: Naming convention section"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/design/02-repository-structure.md` が作成されている
+- [ ] `docs/project/04-design/02-repository-structure.md` が作成されている
 - [ ] ディレクトリツリーが技術スタックと整合している
 - [ ] 各ディレクトリの責務が定義されている
 - [ ] 採用アーキテクチャパターンの理由が記載されている
@@ -41,7 +41,7 @@ grep "## 命名規則" docs/project/design/02-repository-structure.md && echo "O
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/design/02-repository-structure.md
+git add docs/project/04-design/02-repository-structure.md
 git status
 ```
 

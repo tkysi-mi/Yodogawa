@@ -15,16 +15,16 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/design/01-tech-stack.md` が作成されていること（`/a-007-define-tech-stack` 実行済み）。
-- `docs/project/domain/01-domain-model.md` が作成されていること（推奨）。
-- `docs/project/design/` ディレクトリが存在すること。
+- `docs/project/04-design/01-tech-stack.md` が作成されていること（`/a-007-define-tech-stack` 実行済み）。
+- `docs/project/03-domain/01-domain-model.md` が作成されていること（推奨）。
+- `docs/project/04-design/` ディレクトリが存在すること。
 
 ## 手順
 
 ### 1. ドキュメントと前提条件の確認
 
 ```bash
-ls -la docs/project/design/01-tech-stack.md 2>/dev/null || echo "ファイルが存在しません"
+ls -la docs/project/04-design/01-tech-stack.md 2>/dev/null || echo "ファイルが存在しません"
 ```
 
 `01-tech-stack.md` を読み込み、技術スタックを把握する。
@@ -33,7 +33,7 @@ ls -la docs/project/design/01-tech-stack.md 2>/dev/null || echo "ファイルが
 
 ```bash
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/04-design/02-repository-structure.md" "docs/project/design/02-repository-structure.md"
+cp "$SCRIPT_DIR/templates/project/04-design/02-repository-structure.md" "docs/project/04-design/02-repository-structure.md"
 ```
 
 ### 3. アーキテクチャパターンの提案
@@ -56,7 +56,7 @@ cp "$SCRIPT_DIR/templates/project/04-design/02-repository-structure.md" "docs/pr
 
 ### 5. ドキュメント作成
 
-`docs/project/design/02-repository-structure.md` に以下を記入する:
+`docs/project/04-design/02-repository-structure.md` に以下を記入する:
 
 - ディレクトリツリー図（`tree` 形式）
 - 各ディレクトリの役割説明
@@ -66,9 +66,9 @@ cp "$SCRIPT_DIR/templates/project/04-design/02-repository-structure.md" "docs/pr
 ### 6. 構造チェック
 
 ```bash
-grep "project-root/" docs/project/design/02-repository-structure.md \
-  && grep "## アーキテクチャパターン" docs/project/design/02-repository-structure.md \
-  && grep "## 命名規則" docs/project/design/02-repository-structure.md \
+grep "project-root/" docs/project/04-design/02-repository-structure.md \
+  && grep "## アーキテクチャパターン" docs/project/04-design/02-repository-structure.md \
+  && grep "## 命名規則" docs/project/04-design/02-repository-structure.md \
   && echo "OK" || echo "MISSING SECTION"
 ```
 
@@ -77,13 +77,13 @@ grep "project-root/" docs/project/design/02-repository-structure.md \
 ### 7. Git への追加（任意）
 
 ```bash
-git add docs/project/design/02-repository-structure.md
+git add docs/project/04-design/02-repository-structure.md
 git commit -m "docs: リポジトリ構造とアーキテクチャ定義の作成"
 ```
 
 ## 完了条件
 
-- `docs/project/design/02-repository-structure.md` が作成されている。
+- `docs/project/04-design/02-repository-structure.md` が作成されている。
 - プロジェクトのディレクトリ構造が明確に定義されている。
 - チーム開発に必要なルール（命名、配置、依存）が文書化されている。
 - ユーザーが内容を承認している。

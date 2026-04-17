@@ -17,11 +17,11 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ## 前提
 
 - 以下が作成されていること:
-  - `docs/project/design/01-tech-stack.md`
-  - `docs/project/design/02-repository-structure.md`
-  - `docs/project/design/05-data-model.md`
-  - `docs/project/design/06-api-spec.md`
-- `docs/project/design/` ディレクトリが存在すること。
+  - `docs/project/04-design/01-tech-stack.md`
+  - `docs/project/04-design/02-repository-structure.md`
+  - `docs/project/04-design/05-data-model.md`
+  - `docs/project/04-design/06-api-spec.md`
+- `docs/project/04-design/` ディレクトリが存在すること。
 
 ## 手順
 
@@ -33,7 +33,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ```bash
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/04-design/07-architecture.md" "docs/project/design/07-architecture.md"
+cp "$SCRIPT_DIR/templates/project/04-design/07-architecture.md" "docs/project/04-design/07-architecture.md"
 ```
 
 ### 3. アーキテクチャの提案
@@ -59,7 +59,7 @@ cp "$SCRIPT_DIR/templates/project/04-design/07-architecture.md" "docs/project/de
 
 ### 5. ドキュメント作成
 
-`docs/project/design/07-architecture.md` に以下を記入する:
+`docs/project/04-design/07-architecture.md` に以下を記入する:
 
 - システムアーキテクチャ図（Mermaid）
 - 採用アーキテクチャパターンの説明
@@ -68,9 +68,9 @@ cp "$SCRIPT_DIR/templates/project/04-design/07-architecture.md" "docs/project/de
 ### 6. 構造チェック
 
 ```bash
-grep "\`\`\`mermaid" docs/project/design/07-architecture.md \
-  && grep "## 採用アーキテクチャパターン" docs/project/design/07-architecture.md \
-  && grep "## ADR" docs/project/design/07-architecture.md \
+grep "\`\`\`mermaid" docs/project/04-design/07-architecture.md \
+  && grep "## 採用アーキテクチャパターン" docs/project/04-design/07-architecture.md \
+  && grep "## ADR" docs/project/04-design/07-architecture.md \
   && echo "OK" || echo "MISSING SECTION"
 ```
 
@@ -79,13 +79,13 @@ grep "\`\`\`mermaid" docs/project/design/07-architecture.md \
 ### 7. Git への追加（任意）
 
 ```bash
-git add docs/project/design/07-architecture.md
+git add docs/project/04-design/07-architecture.md
 git commit -m "docs: アーキテクチャ設計の定義"
 ```
 
 ## 完了条件
 
-- `docs/project/design/07-architecture.md` が作成されている。
+- `docs/project/04-design/07-architecture.md` が作成されている。
 - システム全体の構成要素と関係性が可視化されている。
 - 技術選定の背景（ADR）が文書化され、将来の参照用に残されている。
 - ユーザーが内容を承認している。

@@ -53,11 +53,11 @@ SKILL.md 手順3〜6で使うドメインモデル定義の観点集。
 ## 構造確認コマンド
 
 ```bash
-grep "Bounded Context:" docs/project/domain/01-domain-model.md \
+grep "Bounded Context:" docs/project/03-domain/01-domain-model.md \
   && echo "OK" || echo "MISSING: Bounded Context definition"
-grep "### Aggregates" docs/project/domain/01-domain-model.md \
+grep "### Aggregates" docs/project/03-domain/01-domain-model.md \
   && echo "OK" || echo "MISSING: Aggregates section"
-grep "| 用語 | 定義 |" docs/project/domain/02-ubiquitous-language.md \
+grep "| 用語 | 定義 |" docs/project/03-domain/02-ubiquitous-language.md \
   && echo "OK" || echo "MISSING: Terminology table"
 ```
 

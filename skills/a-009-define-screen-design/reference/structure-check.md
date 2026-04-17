@@ -6,16 +6,16 @@ SKILL.md 手順7〜8 で使う確認コマンドとレビュー観点。
 
 ```bash
 # 画面一覧セクションの確認
-grep "## 画面一覧" docs/project/design/03-screen-design.md && echo "OK" || echo "MISSING: Screen list"
+grep "## 画面一覧" docs/project/04-design/03-screen-design.md && echo "OK" || echo "MISSING: Screen list"
 # 画面遷移図の確認
-grep "\`\`\`mermaid" docs/project/design/03-screen-design.md && echo "OK" || echo "MISSING: Flowchart"
+grep "\`\`\`mermaid" docs/project/04-design/03-screen-design.md && echo "OK" || echo "MISSING: Flowchart"
 # レスポンシブポリシーの確認
-grep "## レスポンシブデザインポリシー" docs/project/design/03-screen-design.md && echo "OK" || echo "MISSING: Responsive policy"
+grep "## レスポンシブデザインポリシー" docs/project/04-design/03-screen-design.md && echo "OK" || echo "MISSING: Responsive policy"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/design/03-screen-design.md` が作成されている
+- [ ] `docs/project/04-design/03-screen-design.md` が作成されている
 - [ ] 主要な画面がすべて網羅されている
 - [ ] 各画面の URL パスとアクセス権限が定義されている
 - [ ] Empty State / Loading / Error の各状態が考慮されている
@@ -33,7 +33,7 @@ grep "## レスポンシブデザインポリシー" docs/project/design/03-scre
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/design/03-screen-design.md
+git add docs/project/04-design/03-screen-design.md
 git status
 ```
 

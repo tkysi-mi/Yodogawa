@@ -17,10 +17,10 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/design/01-tech-stack.md` が作成されていること（API スタイル選定済み）。
-- `docs/project/design/05-data-model.md` が作成されていること。
-- `docs/project/design/03-screen-design.md` が作成されていること。
-- `docs/project/design/` ディレクトリが存在すること。
+- `docs/project/04-design/01-tech-stack.md` が作成されていること（API スタイル選定済み）。
+- `docs/project/04-design/05-data-model.md` が作成されていること。
+- `docs/project/04-design/03-screen-design.md` が作成されていること。
+- `docs/project/04-design/` ディレクトリが存在すること。
 
 ## 手順
 
@@ -28,9 +28,9 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 以下を読み込む:
 
-- `docs/project/design/01-tech-stack.md`
-- `docs/project/design/05-data-model.md`
-- `docs/project/design/03-screen-design.md`
+- `docs/project/04-design/01-tech-stack.md`
+- `docs/project/04-design/05-data-model.md`
+- `docs/project/04-design/03-screen-design.md`
 
 不足があれば対応スキルの実行を促す。
 
@@ -38,7 +38,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ```bash
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/04-design/06-api-spec.md" "docs/project/design/06-api-spec.md"
+cp "$SCRIPT_DIR/templates/project/04-design/06-api-spec.md" "docs/project/04-design/06-api-spec.md"
 ```
 
 ### 3. API スタイルの確認と提案
@@ -64,7 +64,7 @@ cp "$SCRIPT_DIR/templates/project/04-design/06-api-spec.md" "docs/project/design
 
 ### 5. ドキュメント作成
 
-`docs/project/design/06-api-spec.md` に以下を記入する:
+`docs/project/04-design/06-api-spec.md` に以下を記入する:
 
 - 認証・認可仕様
 - エンドポイント一覧（リソース別）
@@ -74,9 +74,9 @@ cp "$SCRIPT_DIR/templates/project/04-design/06-api-spec.md" "docs/project/design
 ### 6. 構造チェック
 
 ```bash
-grep "## 認証・認可" docs/project/design/06-api-spec.md \
-  && grep "## エンドポイント一覧" docs/project/design/06-api-spec.md \
-  && grep "## 共通レスポンス形式" docs/project/design/06-api-spec.md \
+grep "## 認証・認可" docs/project/04-design/06-api-spec.md \
+  && grep "## エンドポイント一覧" docs/project/04-design/06-api-spec.md \
+  && grep "## 共通レスポンス形式" docs/project/04-design/06-api-spec.md \
   && echo "OK" || echo "MISSING SECTION"
 ```
 
@@ -85,13 +85,13 @@ grep "## 認証・認可" docs/project/design/06-api-spec.md \
 ### 7. Git への追加（任意）
 
 ```bash
-git add docs/project/design/06-api-spec.md
+git add docs/project/04-design/06-api-spec.md
 git commit -m "docs: API 仕様（基本設計）の作成"
 ```
 
 ## 完了条件
 
-- `docs/project/design/06-api-spec.md` が作成されている。
+- `docs/project/04-design/06-api-spec.md` が作成されている。
 - 認証・認可の仕組みが定義されている。
 - エンドポイント一覧（メソッド、パス、認証要否）が定義されている。
 - 共通レスポンス形式（成功/エラー）が定義されている。

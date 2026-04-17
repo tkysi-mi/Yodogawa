@@ -6,16 +6,16 @@ SKILL.md 手順6〜7 で使う構造確認コマンドとレビュー観点。
 
 ```bash
 # シナリオ一覧テーブルの確認
-grep "| シナリオID | 機能 |" docs/project/behavior/01-scenarios.md && echo "OK" || echo "MISSING: Table Header"
+grep "| シナリオID | 機能 |" docs/project/02-behavior/01-scenarios.md && echo "OK" || echo "MISSING: Table Header"
 # Feature 定義の確認
-grep "Feature:" docs/project/behavior/01-scenarios.md && echo "OK" || echo "MISSING: Feature definition"
+grep "Feature:" docs/project/02-behavior/01-scenarios.md && echo "OK" || echo "MISSING: Feature definition"
 # Scenario 定義の確認
-grep "Scenario:" docs/project/behavior/01-scenarios.md && echo "OK" || echo "MISSING: Scenario definition"
+grep "Scenario:" docs/project/02-behavior/01-scenarios.md && echo "OK" || echo "MISSING: Scenario definition"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/behavior/01-scenarios.md` が作成されている
+- [ ] `docs/project/02-behavior/01-scenarios.md` が作成されている
 - [ ] シナリオ一覧テーブルが更新されている
 - [ ] 各 Feature が Gherkin 形式で記述されている
 - [ ] 正常系と異常系のシナリオが網羅されている
@@ -32,7 +32,7 @@ grep "Scenario:" docs/project/behavior/01-scenarios.md && echo "OK" || echo "MIS
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/behavior/
+git add docs/project/02-behavior/
 git status
 ```
 

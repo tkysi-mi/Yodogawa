@@ -19,20 +19,20 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 
 - 要件・ドメインレビューが完了していること（`/a-006-review-requirements-domain` 実施済み）。
 - 以下の設計ドキュメントが作成されていること:
-  - `docs/project/design/01-tech-stack.md`
-  - `docs/project/design/02-repository-structure.md`
-  - `docs/project/design/03-screen-design.md`
-  - `docs/project/design/05-data-model.md`
-  - `docs/project/design/06-api-spec.md`
-  - `docs/project/design/07-architecture.md`
-  - `docs/project/design/08-infrastructure.md`
+  - `docs/project/04-design/01-tech-stack.md`
+  - `docs/project/04-design/02-repository-structure.md`
+  - `docs/project/04-design/03-screen-design.md`
+  - `docs/project/04-design/05-data-model.md`
+  - `docs/project/04-design/06-api-spec.md`
+  - `docs/project/04-design/07-architecture.md`
+  - `docs/project/04-design/08-infrastructure.md`
 
 ## 手順
 
 ### 1. ドキュメント存在確認
 
 ```bash
-ls -l docs/project/design/*.md
+ls -l docs/project/04-design/*.md
 ```
 
 不足しているドキュメントがあれば、対応するスキルの実行を促す。

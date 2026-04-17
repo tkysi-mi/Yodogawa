@@ -15,8 +15,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/behavior/01-scenarios.md` が作成されている（`/a-003-create-scenarios` 実行済み）
-- `docs/project/domain/` ディレクトリが存在（なければ `/a-001-setup-doc-structure`）
+- `docs/project/02-behavior/01-scenarios.md` が作成されている（`/a-003-create-scenarios` 実行済み）
+- `docs/project/03-domain/` ディレクトリが存在（なければ `/a-001-setup-doc-structure`）
 - ドメインエキスパートと協力できる
 
 ## 手順
@@ -24,17 +24,17 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ### 1. ディレクトリと前提条件の確認
 
 ```bash
-ls -la docs/project/domain/ 2>/dev/null || echo "ディレクトリが存在しません"
+ls -la docs/project/03-domain/ 2>/dev/null || echo "ディレクトリが存在しません"
 ```
 
-存在しなければ `/a-001-setup-doc-structure` を促す。`docs/project/behavior/01-scenarios.md` を読み込み内容確認。
+存在しなければ `/a-001-setup-doc-structure` を促す。`docs/project/02-behavior/01-scenarios.md` を読み込み内容確認。
 
 ### 2. テンプレートの準備
 
 ```bash
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/03-domain/01-domain-model.md" "docs/project/domain/01-domain-model.md"
-cp "$SCRIPT_DIR/templates/project/03-domain/02-ubiquitous-language.md" "docs/project/domain/02-ubiquitous-language.md"
+cp "$SCRIPT_DIR/templates/project/03-domain/01-domain-model.md" "docs/project/03-domain/01-domain-model.md"
+cp "$SCRIPT_DIR/templates/project/03-domain/02-ubiquitous-language.md" "docs/project/03-domain/02-ubiquitous-language.md"
 ```
 
 ### 3. Bounded Context の特定
@@ -76,7 +76,7 @@ Context 間の関係性（Customer-Supplier, Shared Kernel 等）を Mermaid 図
 ### 9. Git への追加（オプション）
 
 ```bash
-git add docs/project/domain/
+git add docs/project/03-domain/
 git status
 ```
 
@@ -84,7 +84,7 @@ git status
 
 ## 完了条件
 
-- `docs/project/domain/01-domain-model.md` と `02-ubiquitous-language.md` が作成されている
+- `docs/project/03-domain/01-domain-model.md` と `02-ubiquitous-language.md` が作成されている
 - 各 Bounded Context の主要ドメイン要素（Aggregates, Commands, Events）が定義されている
 - ドメインモデルで使用される用語がユビキタス言語として定義されている
 - ユーザーが内容を承認している

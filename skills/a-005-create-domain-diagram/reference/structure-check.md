@@ -6,14 +6,14 @@ SKILL.md 手順5〜7 で使用する確認コマンドとレビュー観点。
 
 ```bash
 # Mermaid ブロックの存在確認
-grep "\`\`\`mermaid" docs/project/domain/01-domain-model.md && echo "OK" || echo "MISSING: Mermaid diagram"
+grep "\`\`\`mermaid" docs/project/03-domain/01-domain-model.md && echo "OK" || echo "MISSING: Mermaid diagram"
 # Context Map セクションの確認
-grep "## Context Map" docs/project/domain/01-domain-model.md && echo "OK" || echo "MISSING: Context Map section"
+grep "## Context Map" docs/project/03-domain/01-domain-model.md && echo "OK" || echo "MISSING: Context Map section"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/domain/01-domain-model.md` に Context Map 図が含まれている
+- [ ] `docs/project/03-domain/01-domain-model.md` に Context Map 図が含まれている
 - [ ] Mermaid 図が正しくレンダリングされる（構文エラーがない）
 - [ ] 戦略的分類に応じて色分けされている（Core / Supporting / Generic）
 - [ ] 関係パターン（Customer/Supplier など）と通信方法がエッジに記載されている
@@ -29,7 +29,7 @@ grep "## Context Map" docs/project/domain/01-domain-model.md && echo "OK" || ech
 ## Git への追加（任意）
 
 ```bash
-git add docs/project/domain/01-domain-model.md
+git add docs/project/03-domain/01-domain-model.md
 git status
 ```
 

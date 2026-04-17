@@ -16,9 +16,9 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/requirements/05-user-stories.md` が作成されていること。
-- `docs/project/behavior/01-scenarios.md` が作成されていること。
-- `docs/project/design/` ディレクトリが存在すること。
+- `docs/project/01-requirements/05-user-stories.md` が作成されていること。
+- `docs/project/02-behavior/01-scenarios.md` が作成されていること。
+- `docs/project/04-design/` ディレクトリが存在すること。
 
 ## 手順
 
@@ -26,9 +26,9 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 以下を読み込む:
 
-- `docs/project/requirements/05-user-stories.md`
-- `docs/project/behavior/01-scenarios.md`
-- `docs/project/design/01-tech-stack.md`（存在する場合）
+- `docs/project/01-requirements/05-user-stories.md`
+- `docs/project/02-behavior/01-scenarios.md`
+- `docs/project/04-design/01-tech-stack.md`（存在する場合）
 
 不足があれば対応スキル（`/a-002`, `/a-003`, `/a-007`）の実行を促す。
 
@@ -36,7 +36,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ```bash
 SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/04-design/03-screen-design.md" "docs/project/design/03-screen-design.md"
+cp "$SCRIPT_DIR/templates/project/04-design/03-screen-design.md" "docs/project/04-design/03-screen-design.md"
 ```
 
 ### 3. 画面の抽出と提案
@@ -63,7 +63,7 @@ cp "$SCRIPT_DIR/templates/project/04-design/03-screen-design.md" "docs/project/d
 
 ### 6. ドキュメント作成
 
-`docs/project/design/03-screen-design.md` に以下を記入する:
+`docs/project/04-design/03-screen-design.md` に以下を記入する:
 
 - 画面一覧テーブル
 - 画面遷移図（Mermaid）
@@ -72,9 +72,9 @@ cp "$SCRIPT_DIR/templates/project/04-design/03-screen-design.md" "docs/project/d
 ### 7. 構造チェック
 
 ```bash
-grep "## 画面一覧" docs/project/design/03-screen-design.md \
-  && grep "\`\`\`mermaid" docs/project/design/03-screen-design.md \
-  && grep "## レスポンシブデザインポリシー" docs/project/design/03-screen-design.md \
+grep "## 画面一覧" docs/project/04-design/03-screen-design.md \
+  && grep "\`\`\`mermaid" docs/project/04-design/03-screen-design.md \
+  && grep "## レスポンシブデザインポリシー" docs/project/04-design/03-screen-design.md \
   && echo "OK" || echo "MISSING SECTION"
 ```
 
@@ -83,13 +83,13 @@ grep "## 画面一覧" docs/project/design/03-screen-design.md \
 ### 8. Git への追加（任意）
 
 ```bash
-git add docs/project/design/03-screen-design.md
+git add docs/project/04-design/03-screen-design.md
 git commit -m "docs: 画面設計ドキュメントの作成"
 ```
 
 ## 完了条件
 
-- `docs/project/design/03-screen-design.md` が作成されている。
+- `docs/project/04-design/03-screen-design.md` が作成されている。
 - 全画面のリストと役割が定義されている。
 - 画面遷移が可視化されている。
 - レスポンシブ対応方針が明確になっている。

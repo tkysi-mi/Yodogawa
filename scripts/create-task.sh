@@ -27,15 +27,10 @@ if ! [[ "$SLUG" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
   exit 1
 fi
 
-# 3. 単語数チェック（3〜5 語を推奨、範囲外は確認）
+# 3. 単語数の警告（3〜5 語を推奨、範囲外は警告のみで続行）
 WORD_COUNT=$(echo "$SLUG" | awk -F'-' '{print NF}')
 if [ "$WORD_COUNT" -lt 3 ] || [ "$WORD_COUNT" -gt 5 ]; then
   echo "⚠️  スラッグは 3〜5 語を推奨しています（現在: ${WORD_COUNT} 語）。"
-  read -p "このまま続行しますか？ (y/N): " confirm
-  if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
-    echo "❌ 中断しました。"
-    exit 0
-  fi
 fi
 
 # 4. docs/tasks/ の存在確認

@@ -54,7 +54,7 @@ find src app lib -maxdepth 2 2>/dev/null
 1. テンプレートをコピー:
 
    ```bash
-   SCRIPT_DIR=$(for d in .agent .cursor .claude .codex; do [ -d "$d" ] && echo "$d" && break; done)
+   SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
    cp "$SCRIPT_DIR/templates/project/01-requirements/01-system-overview.md" \
       "docs/project/requirements/01-system-overview.md"
    ```

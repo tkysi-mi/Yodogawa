@@ -35,16 +35,12 @@ docs/
 ## スクリプト実行コマンド
 
 ```bash
-if [ -d ".agent" ]; then
-  SCRIPT_DIR=".agent"
-elif [ -d ".cursor" ]; then
-  SCRIPT_DIR=".cursor"
-elif [ -d ".claude" ]; then
+if [ -d ".claude" ]; then
   SCRIPT_DIR=".claude"
-elif [ -d ".codex" ]; then
-  SCRIPT_DIR=".codex"
+elif [ -d ".agents" ]; then
+  SCRIPT_DIR=".agents"
 else
-  echo "エラー: AI coding assistant ディレクトリが見つかりません"
+  echo "エラー: .claude または .agents ディレクトリが見つかりません"
   exit 1
 fi
 

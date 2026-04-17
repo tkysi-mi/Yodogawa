@@ -37,7 +37,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ### 2. テンプレートの準備
 
 ```bash
-SCRIPT_DIR=$(for d in .agent .cursor .claude .codex; do [ -d "$d" ] && echo "$d" && break; done)
+SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
 cp "$SCRIPT_DIR/templates/project/04-design/06-api-spec.md" "docs/project/design/06-api-spec.md"
 ```
 

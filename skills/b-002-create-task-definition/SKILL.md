@@ -30,7 +30,7 @@ argument-hint: "[task-id]"
 ls -d docs/tasks/task*
 
 # テンプレート未配置ならコピー
-SCRIPT_DIR=$(for d in .agent .cursor .claude .codex; do [ -d "$d" ] && echo "$d" && break; done)
+SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
 cp "$SCRIPT_DIR/templates/tasks/task-template/a-definition.md" \
    "docs/tasks/task{ID}-{SLUG}/a-definition.md"
 ```

@@ -28,7 +28,7 @@ argument-hint: "[task-id]"
 
 ```bash
 ls -d docs/tasks/task*
-SCRIPT_DIR=$(for d in .agent .cursor .claude .codex; do [ -d "$d" ] && echo "$d" && break; done)
+SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
 cp "$SCRIPT_DIR/templates/tasks/task-template/c-implementation.md" \
    "docs/tasks/task{ID}-{SLUG}/c-implementation.md"
 ```

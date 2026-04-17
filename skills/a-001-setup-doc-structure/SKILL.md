@@ -24,7 +24,7 @@ allowed-tools: Read, Write, Bash, Glob
 環境に応じたスクリプトを実行。スクリプト本体とフォールバック実装は [reference/directory-structure.md](reference/directory-structure.md#スクリプト実行コマンド) を参照。
 
 ```bash
-SCRIPT_DIR=$(for d in .agent .cursor .claude .codex; do [ -d "$d" ] && echo "$d" && break; done)
+SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
 bash "$SCRIPT_DIR/scripts/setup-docs.sh"
 ```
 

@@ -1,0 +1,22 @@
+{
+  "name": "yodogawa",
+  "owner": {
+    "name": "tkysi-mi"
+  },
+  "plugins": [
+    {
+      "name": "yodogawa",
+      "source": "./",
+      "description": "AIネイティブIDE向け仕様駆動開発スキル集",
+      "category": "development",
+      "homepage": "https://github.com/tkysi-mi/Yodogawa",
+      "tags": [
+        "skills",
+        "spec-driven-development",
+        "workflows",
+        "documentation",
+        "task-management"
+      ]
+    }
+  ]
+}

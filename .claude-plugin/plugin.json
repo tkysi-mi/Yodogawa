@@ -1,0 +1,19 @@
+{
+  "name": "yodogawa",
+  "version": "2.1.1",
+  "description": "AIネイティブIDE向け仕様駆動開発スキル集",
+  "author": {
+    "name": "tkysi-mi"
+  },
+  "homepage": "https://github.com/tkysi-mi/Yodogawa",
+  "repository": "https://github.com/tkysi-mi/Yodogawa",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skills",
+    "spec-driven-development",
+    "workflows",
+    "documentation",
+    "task-management"
+  ]
+}

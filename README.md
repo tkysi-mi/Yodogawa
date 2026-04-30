@@ -165,7 +165,7 @@ Why? ─── What? ─── How?
 
 ## 導入
 
-### 方法1: NPMパッケージ（推奨）
+### 方法1: NPMパッケージ（推奨／全IDE対応）
 
 ```bash
 npm install -g yodogawa
@@ -175,7 +175,22 @@ yodogawa
 
 対話形式でIDEを選択すると、`skills/`, `templates/`, `scripts/` がプロジェクトの IDE ディレクトリに配置されます。
 
-### 方法2: 手動導入
+### 方法2: Claude Code Plugin（Claude Code 限定）
+
+Claude Code から直接マーケットプレイスを追加してインストールできます。リポジトリにファイルをコピーせず、`.claude/settings.json` に参照エントリのみ追加されます。
+
+```bash
+# Claude Code 内で以下を実行
+/plugin marketplace add tkysi-mi/Yodogawa
+/plugin install yodogawa@yodogawa
+/reload-plugins
+```
+
+スキルは `/yodogawa:a-001` のようにプラグイン名のプレフィックス付きで呼び出されます。
+
+> ℹ️ Plugin 機能は Claude Code 固有です。Cursor / Codex / Antigravity を使う場合は方法1または方法3を選んでください。
+
+### 方法3: 手動導入
 
 このリポジトリの `skills/`, `templates/`, `scripts/` をプロジェクトの IDE ディレクトリにコピーしてください：
 

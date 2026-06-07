@@ -1,0 +1,21 @@
+# Dependabot 設定: npm 依存関係を週次でチェックして更新 PR を作成する
+# 参照: https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+    groups:
+      # パッチ・マイナー更新はまとめて 1 つの PR にする
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"

@@ -5,6 +5,12 @@
 フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [Semantic Versioning](https://semver.org/lang/ja/spec/v2.0.0.html) に準拠しています。
 
+## [2.1.2] - 2026-06-16
+
+### 削除
+
+- **孤立テンプレートの削除**: どのスキルからも参照されず、内容も実構造（`templates/project/**` の各テンプレート）と乖離していた `templates/documentation-rules.md` を削除しました。各ドキュメントに記載する内容は各テンプレートファイル本体が単一の情報源（Single Source of Truth）です。
+
 ## [2.1.0] - 2026-04-16
 
 ### 変更

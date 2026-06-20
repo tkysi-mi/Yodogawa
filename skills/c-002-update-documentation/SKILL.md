@@ -133,7 +133,7 @@ git add README.md CHANGELOG.md .env.example
 
 - `c-implementation.md` の振り返りから共通化候補を特定
 - ベストプラクティスを次タスクのリサーチ入力として記録
-- 必要に応じてタスクテンプレート (`{IDE_DIR}/templates/tasks/task-template/`) を改善
+- 必要に応じてタスクテンプレート (`templates/tasks/task-template/`) を改善
 
 ## 完了条件
 

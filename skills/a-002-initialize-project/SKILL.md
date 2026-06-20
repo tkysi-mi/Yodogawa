@@ -31,20 +31,13 @@ ls -la docs/project/01-requirements/ 2>/dev/null || echo "ディレクトリが�
 
 ### 2. テンプレート一括コピー
 
-要件定義に必要な 5 ファイルのテンプレートを `docs/project/01-requirements/` に一括コピーする。既存ファイルはスキップされる（冪等）。
+このスキルの配置ディレクトリ（`skills/a-002-initialize-project/`）を起点に、`docs/project/01-requirements/` へ次の 5 ファイルを Read→Write する（FOR EACH）。出力先に既に存在するファイルは上書きせずスキップして報告する（冪等）。出力先ディレクトリが無ければ作成する。
 
-```bash
-SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-bash "$SCRIPT_DIR/scripts/init-project-docs.sh" requirements
-```
-
-コピーされるファイル:
-
-- `01-system-overview.md`
-- `02-features-implemented.md`
-- `03-features-planned.md`
-- `04-non-functional-requirements.md`
-- `05-user-stories.md`
+- `../../templates/project/01-requirements/01-system-overview.md` → `docs/project/01-requirements/01-system-overview.md`
+- `../../templates/project/01-requirements/02-features-implemented.md` → `docs/project/01-requirements/02-features-implemented.md`
+- `../../templates/project/01-requirements/03-features-planned.md` → `docs/project/01-requirements/03-features-planned.md`
+- `../../templates/project/01-requirements/04-non-functional-requirements.md` → `docs/project/01-requirements/04-non-functional-requirements.md`
+- `../../templates/project/01-requirements/05-user-stories.md` → `docs/project/01-requirements/05-user-stories.md`
 
 ### 3. コードベースの自動分析と提案
 

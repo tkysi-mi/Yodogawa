@@ -19,18 +19,19 @@ allowed-tools: Read, Write, Bash, Glob
 
 ## 手順
 
-### 1. スクリプトの実行
+### 1. ディレクトリ構造の作成
 
-環境に応じたスクリプトを実行。スクリプト本体とフォールバック実装は [reference/directory-structure.md](reference/directory-structure.md#スクリプト実行コマンド) を参照。
+次のディレクトリを作成する（`mkdir -p` なので既存の場合は不足分のみ追加される）。
 
 ```bash
-SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-bash "$SCRIPT_DIR/scripts/setup-docs.sh"
+mkdir -p docs/project/01-requirements docs/project/02-behavior docs/project/03-domain docs/project/04-design docs/tasks
 ```
+
+続いて `docs/README.md` を作成する。内容は [reference/directory-structure.md](reference/directory-structure.md#docsreadmemd-テンプレート) の「docs/README.md テンプレート」をそのまま Write する。`docs/README.md` が既に存在する場合は、上書き前にユーザーへ確認する。
 
 ### 2. 結果の確認
 
-スクリプト実行結果にエラーがないこと、および期待した構造が生成されていることを確認。生成構造と各ディレクトリの用途は [reference/directory-structure.md](reference/directory-structure.md#生成されるディレクトリ構造) を参照。
+ディレクトリ構造と `docs/README.md` が期待どおり生成されていることを確認。生成構造と各ディレクトリの用途は [reference/directory-structure.md](reference/directory-structure.md#生成されるディレクトリ構造) を参照。
 
 ### 3. Git への追加（オプション）
 
@@ -45,8 +46,8 @@ git status
 
 ### 4. 完了条件の確認
 
-- [ ] スクリプトが正常に終了した
 - [ ] `docs/` ディレクトリ構造が正しく作成されている
+- [ ] `docs/README.md` が作成されている
 
 ## 完了条件
 

@@ -173,7 +173,7 @@ cd your-project-dir
 yodogawa
 ```
 
-対話形式でIDEを選択すると、`skills/`, `templates/`, `scripts/` がプロジェクトの IDE ディレクトリに配置されます。
+対話形式でIDEを選択すると、`skills/`, `templates/` がプロジェクトの IDE ディレクトリに配置されます。
 
 ### 方法2: Claude Code Plugin（Claude Code 限定）
 
@@ -189,10 +189,12 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 スキルは `/yodogawa:a-001` のようにプラグイン名のプレフィックス付きで呼び出されます。
 
 > ℹ️ Plugin 機能は Claude Code 固有です。Cursor / Codex / Antigravity を使う場合は方法1または方法3を選んでください。
+>
+> ℹ️ スキルが参照するテンプレート（`templates/`）は、各スキルの配置ディレクトリを起点に相対参照で解決されるため、Plugin 導入でもプラグインキャッシュ上のテンプレートが利用されます。実行環境の差異で解決できない場合は、確実な方法1（NPM）または方法3（手動）を利用してください。
 
 ### 方法3: 手動導入
 
-このリポジトリの `skills/`, `templates/`, `scripts/` をプロジェクトの IDE ディレクトリにコピーしてください：
+このリポジトリの `skills/`, `templates/` をプロジェクトの IDE ディレクトリにコピーしてください：
 
 - **Claude Code**: `.claude/` 配下にコピー
 - **Cursor / Codex / Antigravity**: `.agents/` 配下にコピー

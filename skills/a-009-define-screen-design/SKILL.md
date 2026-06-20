@@ -34,10 +34,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ### 2. テンプレートの準備
 
-```bash
-SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/04-design/03-screen-design.md" "docs/project/04-design/03-screen-design.md"
-```
+このスキルの配置ディレクトリ（`skills/a-009-define-screen-design/`）を起点に、相対パス `../../templates/project/04-design/03-screen-design.md` を Read で読み込み、その内容を `docs/project/04-design/03-screen-design.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。出力先ディレクトリ（`docs/project/04-design/`）が無ければ作成する。
 
 ### 3. 画面の抽出と提案
 

@@ -28,18 +28,25 @@ allowed-tools: Read, Write, Bash, Glob
 
 命名規則の詳細は [examples/naming-convention.md](examples/naming-convention.md) を参照。
 
-### 2. スクリプトの実行
+### 2. タスク ID の採番とディレクトリ作成
 
-決定したスラッグを引数にして `create-task.sh` を呼び出す。スクリプトが既存タスク走査・ID 採番・形式チェック・ディレクトリ作成までを自動実行する。
+決定したスラッグについて、次を順に行う。
+
+1. **形式チェック**: スラッグが正規表現 `^[a-z0-9]+(-[a-z0-9]+)*$`（英小文字・数字・ハイフンのみ、連続ハイフン禁止）に一致するか確認。3〜5 語を推奨（範囲外は警告のみで続行）。違反時はエスカレーション参照。
+2. **ID の採番**: `docs/tasks/` 配下の `task{6桁数字}-*` ディレクトリから最大 ID を求め、+1 を 6 桁ゼロ詰めした `task{ID}`（例: `task000003`）とする。タスクが無ければ `task000001`。
+3. **ディレクトリ作成**: `docs/tasks/task{ID}-{SLUG}` を作成する。
 
 ```bash
-SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-bash "$SCRIPT_DIR/scripts/create-task.sh" "<SLUG>"
+# 既存タスクを確認して最大 ID を把握
+ls -d docs/tasks/task* 2>/dev/null
+
+# 採番した ID とスラッグでディレクトリを作成（{ID}/{SLUG} は実値に置換）
+mkdir -p "docs/tasks/task{ID}-{SLUG}"
 ```
 
 ### 3. 結果の確認
 
-スクリプトの終了コードが 0 であることと、出力された作成パス（`docs/tasks/task{ID}-{SLUG}`）を確認。
+作成パス（`docs/tasks/task{ID}-{SLUG}`）が生成されたことを確認。
 
 ### 4. 次のステップの案内
 
@@ -53,9 +60,8 @@ bash "$SCRIPT_DIR/scripts/create-task.sh" "<SLUG>"
 
 ## エスカレーション
 
-- **`docs/tasks/` が見つからない**: スクリプトがエラー終了するので、`/a-001-setup-doc-structure` の実行を促す
-- **スラッグ形式違反**: スクリプトがエラー終了するので、英小文字・数字・ハイフンのみで再入力を求める
-- **スクリプトが見つからない**: `.claude/` または `.agents/` 配下に `scripts/create-task.sh` がない場合、`yodogawa` CLI での再インストールを促す
+- **`docs/tasks/` が見つからない**: ディレクトリが無い場合は `/a-001-setup-doc-structure` の実行を促す
+- **スラッグ形式違反**: 英小文字・数字・ハイフンのみ（連続ハイフン禁止）で再入力を求める
 
 ## 参考
 

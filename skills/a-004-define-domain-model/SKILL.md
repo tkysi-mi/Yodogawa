@@ -31,11 +31,10 @@ ls -la docs/project/03-domain/ 2>/dev/null || echo "ディレクトリが存在�
 
 ### 2. テンプレートの準備
 
-```bash
-SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/03-domain/01-domain-model.md" "docs/project/03-domain/01-domain-model.md"
-cp "$SCRIPT_DIR/templates/project/03-domain/02-ubiquitous-language.md" "docs/project/03-domain/02-ubiquitous-language.md"
-```
+このスキルの配置ディレクトリ（`skills/a-004-define-domain-model/`）を起点に、`docs/project/03-domain/` へ次の 2 ファイルを Read→Write する（FOR EACH）。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。出力先ディレクトリ（`docs/project/03-domain/`）が無ければ作成する。
+
+- `../../templates/project/03-domain/01-domain-model.md` → `docs/project/03-domain/01-domain-model.md`
+- `../../templates/project/03-domain/02-ubiquitous-language.md` → `docs/project/03-domain/02-ubiquitous-language.md`
 
 ### 3. Bounded Context の特定
 

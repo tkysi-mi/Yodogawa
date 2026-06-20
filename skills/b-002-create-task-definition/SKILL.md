@@ -17,7 +17,7 @@ argument-hint: "[task-id]"
 ## 前提
 
 - `docs/tasks/task{ID}-{SLUG}/` が `/b-001-create-task-directory` で作成済み
-- テンプレート: `{IDE_DIR}/templates/tasks/task-template/a-definition.md`
+- テンプレート: `../../templates/tasks/task-template/a-definition.md`（スキル配置ディレクトリ起点の相対参照）
 - タスクの概要が関係者と共有済み
 
 ## 手順
@@ -26,14 +26,13 @@ argument-hint: "[task-id]"
 
 ### 1. タスクディレクトリとテンプレートの確認
 
-対象タスクディレクトリを確認し、テンプレートをコピー。スクリプトが冪等なので、既存ファイルはスキップされる。
+対象タスクディレクトリを確認する。
 
 ```bash
 ls -d docs/tasks/task*
-
-SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-bash "$SCRIPT_DIR/scripts/init-task-doc.sh" "docs/tasks/task{ID}-{SLUG}" definition
 ```
+
+このスキルの配置ディレクトリ（`skills/b-002-create-task-definition/`）を起点に、相対パス `../../templates/tasks/task-template/a-definition.md` を Read で読み込み、`docs/tasks/task{ID}-{SLUG}/a-definition.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。
 
 ### 2. 目的・背景のヒアリング
 

@@ -31,10 +31,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ### 2. テンプレートの準備
 
-```bash
-SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-cp "$SCRIPT_DIR/templates/project/04-design/07-architecture.md" "docs/project/04-design/07-architecture.md"
-```
+このスキルの配置ディレクトリ（`skills/a-013-define-architecture/`）を起点に、相対パス `../../templates/project/04-design/07-architecture.md` を Read で読み込み、その内容を `docs/project/04-design/07-architecture.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。出力先ディレクトリ（`docs/project/04-design/`）が無ければ作成する。
 
 ### 3. アーキテクチャの提案
 

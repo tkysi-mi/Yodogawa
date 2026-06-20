@@ -49,7 +49,6 @@ async function main() {
 
     await fs.copy(path.join(pkgRoot, 'skills'), path.join(targetDir, 'skills'));
     await fs.copy(path.join(pkgRoot, 'templates'), path.join(targetDir, 'templates'));
-    await fs.copy(path.join(pkgRoot, 'scripts'), path.join(targetDir, 'scripts'));
 
     console.log(green(`\n✔ Successfully installed Yodogawa skills for ${response.type}!`));
     console.log(`\nNext steps:`);

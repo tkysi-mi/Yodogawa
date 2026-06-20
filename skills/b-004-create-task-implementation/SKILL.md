@@ -18,7 +18,7 @@ argument-hint: "[task-id]"
 
 - `a-definition.md`（b-002）と `b-research.md`（b-003）が作成済み
 - タスクディレクトリ: `docs/tasks/task{ID}-{SLUG}/`
-- テンプレート: `{IDE_DIR}/templates/tasks/task-template/c-implementation.md`
+- テンプレート: `../../templates/tasks/task-template/c-implementation.md`（スキル配置ディレクトリ起点の相対参照）
 
 ## 手順
 
@@ -26,14 +26,13 @@ argument-hint: "[task-id]"
 
 ### 1. ドキュメント確認とテンプレート準備
 
-対象タスクディレクトリを確認し、テンプレートをコピー。スクリプトが冪等なので、既存ファイルはスキップされる。
+対象タスクディレクトリを確認する。
 
 ```bash
 ls -d docs/tasks/task*
-
-SCRIPT_DIR=$(for d in .claude .agents; do [ -d "$d" ] && echo "$d" && break; done)
-bash "$SCRIPT_DIR/scripts/init-task-doc.sh" "docs/tasks/task{ID}-{SLUG}" implementation
 ```
+
+このスキルの配置ディレクトリ（`skills/b-004-create-task-implementation/`）を起点に、相対パス `../../templates/tasks/task-template/c-implementation.md` を Read で読み込み、`docs/tasks/task{ID}-{SLUG}/c-implementation.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。
 
 `a-definition.md` から目的・変更内容・受け入れ基準を、`b-research.md` から技術方針・ライブラリ選定・リスクを読み取る。
 

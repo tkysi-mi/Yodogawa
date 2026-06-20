@@ -26,7 +26,7 @@ node bin/cli.js
 
 ### CLIツール (`bin/cli.js`)
 
-npmパッケージ `yodogawa` のエントリポイント。対話形式で配置先（Claude Code 用 `.claude/` または Cursor/Codex/Antigravity 共通の `.agents/`）を選択し、`skills/`, `templates/`, `scripts/` をそのまま `{IDE_DIR}/` 配下にコピーする。4つのIDEは全て Claude Code の SKILL.md 標準に収束しているため、配置先ディレクトリの違いだけで対応できる。
+npmパッケージ `yodogawa` のエントリポイント。対話形式で配置先（Claude Code 用 `.claude/` または Cursor/Codex/Antigravity 共通の `.agents/`）を選択し、`skills/`, `templates/` をそのまま `{IDE_DIR}/` 配下にコピーする。4つのIDEは全て Claude Code の SKILL.md 標準に収束しているため、配置先ディレクトリの違いだけで対応できる。
 
 依存: `fs-extra`, `kleur`, `prompts`
 
@@ -64,7 +64,7 @@ npmパッケージ `yodogawa` のエントリポイント。対話形式で配�
 
 ## npmパッケージ配布
 
-`package.json` の `files` フィールドで `bin`, `skills`, `templates`, `scripts`, `README.md`, `CHANGELOG.md` のみを配布対象にしている。スキルやテンプレートの追加・変更時はバージョンを上げて `npm publish` する。
+`package.json` の `files` フィールドで `bin`, `skills`, `templates`, `README.md`, `CHANGELOG.md` のみを配布対象にしている。スキルやテンプレートの追加・変更時はバージョンを上げて `npm publish` する。
 
 ## Markdownlint設定
 

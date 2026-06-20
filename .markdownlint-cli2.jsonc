@@ -1,0 +1,7 @@
+{
+  // ルール設定は .markdownlint.json から読み込まれる。
+  // ここでは markdownlint-cli2 固有のオプションのみ指定する。
+  // gitignore 対象（.claude/ 等のローカル専用ツール）を lint 対象外にし、
+  // pre-commit フックが追跡外ファイルで失敗しないようにする。
+  "gitignore": true
+}

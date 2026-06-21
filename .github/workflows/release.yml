@@ -1,0 +1,36 @@
+name: Release (npm publish)
+
+# v* タグの push で npm へ公開する。
+# 認証は OIDC Trusted Publishing を使うため npm トークンは不要。
+# 事前に npmjs.com 側で本リポジトリの Trusted Publisher 設定が必要:
+#   package "yodogawa" → Trusted Publisher → GitHub Actions
+#   owner: tkysi-mi / repository: Yodogawa / workflow: release.yml
+# 運用: ローカルで `npm version patch && git push origin main --follow-tags` するだけ。
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  id-token: write # OIDC トークン発行（Trusted Publishing に必須）
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: "https://registry.npmjs.org"
+
+      # Trusted Publishing は npm 11.5.1+ が必要（node 22 同梱の npm は 10 系）
+      - run: npm install -g npm@latest
+
+      - run: npm ci
+
+      # トークン不要・provenance は Trusted Publishing で自動付与される
+      - run: npm publish

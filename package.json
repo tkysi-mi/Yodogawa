@@ -2,6 +2,10 @@
   "name": "yodogawa",
   "version": "2.1.3",
   "description": "CLI to install Yodogawa Slash Commands workflows",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkysi-mi/Yodogawa.git"
+  },
   "bin": {
     "yodogawa": "bin/cli.js"
   },

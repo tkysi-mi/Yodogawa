@@ -17,6 +17,26 @@
 
 - **孤立テンプレートの削除**: どのスキルからも参照されず、内容も実構造（`templates/project/**` の各テンプレート）と乖離していた `templates/documentation-rules.md` を削除しました。各ドキュメントに記載する内容は各テンプレートファイル本体が単一の情報源（Single Source of Truth）です。
 
+## [2.1.1] - 2026-04-19
+
+### 追加
+
+- **タスク/要件ドキュメント初期化のスクリプト化**: 決定論的な処理（ID 採番・形式チェック・テンプレートコピー）をシェルスクリプトに切り出し、各スキルの SKILL.md を判断ステップに集中させました。
+  - `b-001-create-task-directory`: タスクディレクトリ作成（ID 採番・mkdir）を `scripts/create-task.sh` に集約。
+  - `b-002/003/004`: タスク 3 ドキュメント（definition/research/implementation）の初期化を `scripts/init-task-doc.sh` に統一（既存ファイルはスキップする冪等設計）。
+  - `a-002-initialize-project`: 要件定義テンプレートの一括コピーを `scripts/init-project-docs.sh` に集約（category 引数で requirements/behavior/domain/design を切り替え、冪等）。
+- **MIT LICENSE の追加**: `package.json` が `npm init` 既定の ISC のままで README の想定と齟齬があったため、MIT LICENSE 本文をルートに追加し、`package.json` を MIT に修正、README にライセンス節を追記しました。
+
+### 変更
+
+- **`docs/project` のパス参照を番号付きディレクトリに統一**: スキル内のパス参照を `setup-docs.sh` が生成する番号付き構造（`01-requirements/` / `02-behavior/` / `03-domain/` / `04-design/`）に揃え、フェーズ順の可読性を維持しました。
+
+### 修正
+
+- **SKILL.md の配置先表記を `.claude`/`.agents` の 2 択に統一**: CLI リファクタで配置先が簡素化された後も旧表記（`.agent` / `.cursor` / `.codex`）が残っていた 15 スキル＋1 リファレンスを現行仕様に揃えました。
+- **`create-task.sh` の非対話実行での破綻を修正**: 非 TTY 環境で単語数確認プロンプト（`read -p`）が `set -e` 下の EOF により即時 `exit 1` となる問題と、終了コード契約の矛盾を解消し、警告のみ残して続行する形にしました。
+- **`c-001-implement-task` の前提スキル参照を現行名に修正**: 旧名 `/b-000-CreateTaskDirectory` を現行の `/b-001-create-task-directory` に置き換えました。
+
 ## [2.1.0] - 2026-04-16
 
 ### 変更

@@ -5,6 +5,12 @@
 フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [Semantic Versioning](https://semver.org/lang/ja/spec/v2.0.0.html) に準拠しています。
 
+## [2.1.3] - 2026-06-22
+
+### 修正
+
+- **スキル参照の採番ズレと旧 PascalCase 名を修正**: ドキュメント生成スキル（`c-001-implement-task` / `b-005-review-task`）と配布テンプレート（`templates/tasks/task-template/`）に残っていた、1つ手前のスキルを指す採番ズレと、kebab-case でないと解決しない旧 PascalCase スラッシュ名（`/c-001-ImplementTask` 等）を正しいスキル名・採番へ修正しました（#4）。`templates/` は利用者へ配布されるため、誤ったスキル実行への誘導が解消されます。
+
 ## [2.1.2] - 2026-06-16
 
 ### 削除

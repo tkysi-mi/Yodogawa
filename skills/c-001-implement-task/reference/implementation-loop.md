@@ -51,7 +51,7 @@ SKILL.md の手順全体を俯瞰するための参考資料。
 
 ## speckit.implement との対応
 
-| speckit.implement | c-001-ImplementTask | 説明 |
+| speckit.implement | c-001-implement-task | 説明 |
 |-------------------|---------------------|------|
 | constitution ファイル確認 | タスク定義ドキュメント確認 | プロジェクトのガバナンスと標準 |
 | specification ドキュメント確認 | タスク定義・リサーチ確認 | 何を構築するかの仕様 |

@@ -3,8 +3,8 @@
 <!--
 このドキュメントについて:
   - 格納場所: docs/tasks/task000001-{スラッグ}/c-implementation.md
-  - 作成方法: /b-003-CreateTaskImplementation スキルで作成
-  - 実行方法: /c-001-ImplementTask スキルで各ステップを実行
+  - 作成方法: /b-004-create-task-implementation スキルで作成
+  - 実行方法: /c-001-implement-task スキルで各ステップを実行
   - 前提条件: a-definition.md と b-research.md が作成済みであること
   - 関連ドキュメント:
     - a-definition.md (タスク定義ドキュメント)
@@ -18,7 +18,7 @@
 
 更新タイミング:
   - 実装開始前にフェーズ分割を計画
-  - 各ステップ完了時にチェック（/c-001-ImplementTask が自動更新）
+  - 各ステップ完了時にチェック（/c-001-implement-task が自動更新）
   - 新たな作業が発覚した際に追加
   - レビュー指摘事項を反映
 -->

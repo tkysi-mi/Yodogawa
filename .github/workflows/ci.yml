@@ -30,3 +30,7 @@ jobs:
       - run: npm ci
 
       - run: npm run lint:md
+
+      # package.json を編集して plugin.json/marketplace.json の同期を忘れた PR を落とす。
+      - name: Check plugin manifests are in sync with package.json
+        run: node scripts/sync-plugin-manifests.mjs --check

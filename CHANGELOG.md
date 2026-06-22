@@ -5,6 +5,12 @@
 フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [Semantic Versioning](https://semver.org/lang/ja/spec/v2.0.0.html) に準拠しています。
 
+## [2.1.5] - 2026-06-23
+
+### 修正
+
+- **プラグインマニフェストのメタデータ乖離を解消し単一情報源化**: `package.json` と `.claude-plugin/plugin.json` / `.claude-plugin/marketplace.json` が version/keywords/homepage 等を三重保持し乖離していた問題（`plugin.json` の version が `npm version` に追従せず古いまま、旧用語 `workflows` の残存、`homepage` の表記差）を解消しました。`package.json` を単一の情報源とし、`scripts/sync-plugin-manifests.mjs`（`npm run sync:manifests`）で両マニフェストへ共有メタデータを同期します。`npm version` の version ライフサイクルに組み込んで bump 時に自動追従させ、CI に同期チェック（`--check`）を追加して `package.json` 編集時の同期忘れを検知します（#28）。
+
 ## [2.1.4] - 2026-06-23
 
 ### 修正

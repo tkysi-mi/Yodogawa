@@ -24,6 +24,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
     "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\"",
+    "sync:manifests": "node scripts/sync-plugin-manifests.mjs",
+    "version": "node scripts/sync-plugin-manifests.mjs && git add .claude-plugin/plugin.json .claude-plugin/marketplace.json",
     "prepare": "husky"
   },
   "keywords": [

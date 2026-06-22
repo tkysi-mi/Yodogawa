@@ -1,0 +1,4 @@
+# 同期スクリプトが生成する JSON マニフェストのコミット blob を LF で決定論化し、
+# CI のドリフトチェックが OS の行末差で誤検知しないようにする。
+*.json text eol=lf
+*.mjs  text eol=lf

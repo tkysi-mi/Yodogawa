@@ -9,13 +9,28 @@
       "source": "./",
       "description": "AIネイティブIDE向け仕様駆動開発スキル集",
       "category": "development",
-      "homepage": "https://github.com/tkysi-mi/Yodogawa",
+      "homepage": "https://github.com/tkysi-mi/Yodogawa#readme",
       "tags": [
+        "antigravity",
+        "cursor",
+        "claude-code",
+        "codex",
         "skills",
         "spec-driven-development",
-        "workflows",
+        "ai-coding",
         "documentation",
-        "task-management"
+        "project-management",
+        "bdd",
+        "gherkin",
+        "domain-driven-design",
+        "event-storming",
+        "api-design",
+        "adr",
+        "task-management",
+        "user-stories",
+        "copilot",
+        "gpt",
+        "claude"
       ]
     }
   ]

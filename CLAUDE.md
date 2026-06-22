@@ -26,7 +26,7 @@ node bin/cli.js
 
 ### CLIツール (`bin/cli.js`)
 
-npmパッケージ `yodogawa` のエントリポイント。対話形式で配置先（Claude Code 用 `.claude/` または Cursor/Codex/Antigravity 共通の `.agents/`）を選択し、`skills/`, `templates/` をそのまま `{IDE_DIR}/` 配下にコピーする。4つのIDEは全て Claude Code の SKILL.md 標準に収束しているため、配置先ディレクトリの違いだけで対応できる。
+npmパッケージ `yodogawa` のエントリポイント。対話形式で配置先（Claude Code 用 `.claude/` または Cursor/Codex/Antigravity 共通の `.agents/`）を選択し、`skills/`, `templates/` をそのまま `{IDE_DIR}/` 配下にコピーする。スキルの中核は `name` / `description` ＋ Markdown 本文で、配置先ディレクトリの違いで各 IDE に対応する。一部の frontmatter フィールド（`disable-model-invocation` / `allowed-tools` / `argument-hint` / `context: fork`）は Claude Code 向けの拡張で、他 IDE での対応は各 IDE 仕様に依存する（README「設計上の決定」参照）。
 
 依存: `fs-extra`, `kleur`, `prompts`
 

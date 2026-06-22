@@ -43,6 +43,8 @@ skills/
 > ℹ️ 表中の `/a-001` 等は短縮表記です。実際の呼び出しはフルのスキル名（例 `/a-001-setup-doc-structure`）を使います。Plugin 導入時は `/yodogawa:a-001-setup-doc-structure` のようにプレフィックスが付きます。
 >
 > ℹ️ frontmatter には Claude Code 向けの拡張フィールドが含まれます（`disable-model-invocation` は全スキル、`allowed-tools` / `argument-hint` / `context: fork` は一部スキルに設定）。これらの他 IDE での扱いは各 IDE の仕様に依存し、本プロジェクトでは検証していません。詳細は下記「設計上の決定」を参照。
+>
+> ℹ️ 一部のスキルは手順内でエージェントが `ls` / `cat` / `find` / `grep` などの POSIX シェルコマンドを実行します（大半のスキルが `allowed-tools` に `Bash` を含みます）。Windows ネイティブ環境では bash 互換シェル（Git Bash / WSL 等）が利用できる状態を推奨します。各 IDE での実行可否は IDE の仕様に依存します。
 
 ---
 

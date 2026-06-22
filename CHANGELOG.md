@@ -5,6 +5,12 @@
 フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [Semantic Versioning](https://semver.org/lang/ja/spec/v2.0.0.html) に準拠しています。
 
+## [2.1.4] - 2026-06-23
+
+### 修正
+
+- **クロス IDE 互換の記述を正確化**: README / CLAUDE.md が「全 IDE が SKILL.md 標準に収束しており配置するだけで動作する」と読める断定を緩和し、中核フォーマット（`name` / `description` ＋ Markdown 本文）と Claude Code 向け拡張フィールド（`disable-model-invocation` / `allowed-tools` / `argument-hint` / `context: fork`）を区別、他 IDE での扱いは各 IDE 仕様に依存し未検証であることを明記しました。あわせて `allowed-tools` の適用範囲を正確化（22 スキル中 21、`c-001-implement-task` は未指定）し、`context: fork` をレビュー系スキルに採用した意図を README「設計上の決定」に追記しました（#12）。
+
 ## [2.1.3] - 2026-06-22
 
 ### 修正

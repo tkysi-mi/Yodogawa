@@ -31,7 +31,7 @@ skills/
 
 ### 対応環境
 
-以下のAIネイティブIDE・コードエディタで使用できます。すべて Claude Code が策定したSKILL.md標準に収束しているため、2つのディレクトリのいずれかに配置するだけで動作します：
+以下のAIネイティブIDE・コードエディタに導入できます。本ツールは各 IDE のスキルディレクトリ（Claude Code は `.claude/`、その他は `.agents/`）へ `skills/` / `templates/` をコピーします。スキルは `name` / `description` を持つ YAML frontmatter と Markdown 本文で構成されます。各 IDE での認識・呼び出し挙動はそれぞれの仕様に依存します：
 
 | IDE / エディタ  | スキルの場所                                        | 呼び出し方              |
 | :-------------- | :-------------------------------------------------- | :---------------------- |
@@ -41,6 +41,8 @@ skills/
 | **Antigravity** | `.agents/skills/{name}/SKILL.md`                    | `/a-001` などで呼び出し |
 
 > ℹ️ 表中の `/a-001` 等は短縮表記です。実際の呼び出しはフルのスキル名（例 `/a-001-setup-doc-structure`）を使います。Plugin 導入時は `/yodogawa:a-001-setup-doc-structure` のようにプレフィックスが付きます。
+>
+> ℹ️ frontmatter には Claude Code 向けの拡張フィールドが含まれます（`disable-model-invocation` は全スキル、`allowed-tools` / `argument-hint` / `context: fork` は一部スキルに設定）。これらの他 IDE での扱いは各 IDE の仕様に依存し、本プロジェクトでは検証していません。詳細は下記「設計上の決定」を参照。
 
 ---
 
@@ -271,6 +273,15 @@ description: プロジェクトのドキュメントディレクトリ構造を�
 仕様駆動開発では、各フェーズ（要件定義 → 設計 → タスク → 実装）を**正しい順序で・適切なタイミングで**実行することが品質を左右します。AIが文脈から自動でスキルを起動すると、順序の飛ばしや意図しない実行が起きやすくなります。そこで Yodogawaは、ユーザーが `/a-001-setup-doc-structure` のように明示的に呼び出す設計を採用し、段階的で制御可能なワークフローを保証しています。
 
 このため frontmatter の `description` は「AIが呼び出すトリガー」ではなく、**スキル一覧での識別・説明用のメタ情報**として機能します。
+
+### frontmatter フィールドと IDE 互換性
+
+スキルの中核は `name` / `description` と Markdown 本文ですが、各スキルの frontmatter には Claude Code 向けの拡張フィールドも含まれます。これらは Claude Code で機能し、他 IDE（Cursor / Codex / Antigravity）での扱いは各 IDE の仕様に依存します（本プロジェクトでは未検証）。
+
+- **`disable-model-invocation`**: AIエージェントによる自動呼び出しを無効化（前述）。全 22 スキルに設定。
+- **`allowed-tools`**: スキルに必要な最小限のツール権限を明示。22 スキル中 21（`c-001-implement-task` のみ未指定）。
+- **`argument-hint`**: コマンド引数のヒント（例 `[task-id]`）。引数を取る B/C 系の 7 スキルに設定。
+- **`context: fork`**: Claude Code でレビュー系スキル（`a-006` / `a-015` / `b-005`）を別コンテキストで実行させる指定。メインの作業文脈を汚さずに整合性チェックを行うために採用。
 
 ---
 

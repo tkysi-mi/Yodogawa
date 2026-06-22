@@ -36,7 +36,7 @@ async function main() {
       const confirm = await prompts({
         type: 'confirm',
         name: 'overwrite',
-        message: `Directory ${targetDirName} already exists. Overwrite?`,
+        message: `Directory ${targetDirName} already exists. Merge and update its contents?`,
         initial: false
       });
       if (!confirm.overwrite) {
@@ -54,6 +54,7 @@ async function main() {
     console.log(`\nNext steps:`);
     console.log(`1. Open ${bold(targetDirName + '/skills/')} to explore the skills.`);
     console.log(`2. Start using them in your project!\n`);
+    console.log(`Note: reinstalling merges into existing files. Renamed or removed skills are not auto-deleted — delete ${bold(targetDirName + '/skills')} and ${bold(targetDirName + '/templates')} first to reflect them.\n`);
 
   } catch (err) {
     console.error(red(`\n✖ Error installing skills: ${err.message}`));

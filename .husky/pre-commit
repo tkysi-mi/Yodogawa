@@ -1,1 +1,2 @@
 npm run lint:md
+node --check bin/cli.js

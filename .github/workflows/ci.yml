@@ -1,6 +1,6 @@
 name: CI
 
-# PR とブランチ push で品質ゲート（markdownlint）を実行する。
+# PR とブランチ push で品質ゲート（markdownlint・CLI テスト）を実行する。
 # release.yml（タグ push で npm publish）とは責務を分離する。
 
 on:
@@ -30,6 +30,8 @@ jobs:
       - run: npm ci
 
       - run: npm run lint:md
+
+      - run: npm test
 
       # package.json を編集して plugin.json/marketplace.json の同期を忘れた PR を落とす。
       - name: Check plugin manifests are in sync with package.json

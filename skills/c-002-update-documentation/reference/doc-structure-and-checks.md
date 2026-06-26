@@ -6,7 +6,7 @@ SKILL.md 手順5（整合性検証）とベストプラクティスで参照す�
 
 ### クロスリファレンスの確認
 
-- [ ] **要件 ↔ ドメインモデル**: features-implemented.md の機能が domain-model.md に反映されているか
+- [ ] **要件 ↔ ドメインモデル**: 06-features-implemented.md の機能が domain-model.md に反映されているか
 - [ ] **ドメインモデル ↔ データモデル**: domain-model.md のエンティティが data-model.md のテーブルに対応しているか
 - [ ] **ドメインモデル ↔ API 仕様**: domain-model.md の振る舞いが api-spec.md のエンドポイントに対応しているか
 - [ ] **API 仕様 ↔ 実装**: api-spec.md のエンドポイントが実際に実装されているか
@@ -55,9 +55,11 @@ SKILL.md 手順5（整合性検証）とベストプラクティスで参照す�
 ### プロジェクトレベル（`docs/`）
 
 - `01-requirements/`: 要件定義
-  - `02-features-implemented.md`: 実装済み機能
-  - `03-features-planned.md`: 計画中機能
+  - `01-product-brief.md`: Product Brief
+  - `02-mvp-scope.md`: MVP スコープ（Must / Not Now / Won't）
+  - `03-parking-lot.md`: アイデア backlog
   - `05-user-stories.md`: ユーザーストーリー
+  - `06-features-implemented.md`: 実装済み機能（existing モード）
 - `03-domain/`: ドメイン
   - `01-domain-model.md`: ドメインモデル
   - `02-ubiquitous-language.md`: ユビキタス言語
@@ -88,7 +90,7 @@ Task-level documentation:
 - Update c-implementation.md with implementation notes and retrospective
 
 Project-level documentation:
-- Add {機能名} to features-implemented.md
+- Add {機能名} to 06-features-implemented.md
 - Update domain-model.md / data-model.md / api-spec.md
 - Update README.md with setup instructions
 - Add changelog entry

@@ -124,12 +124,13 @@ Why? ─── What? ─── How?
 
 |  #  | コマンド | 名前                      | 説明                                               |
 | :-: | :------- | :------------------------ | :------------------------------------------------- |
-|  1  | `/a-001` | **Setup Doc Structure**   | ドキュメント構造をセットアップ                     |
-|  2  | `/a-002` | **Initialize Project**    | プロジェクトの目的・課題・スコープを定義           |
+|  1  | `/a-001` | **Setup Doc Structure**   | ドキュメント構造をセットアップ（a-002 が自動実行するため任意） |
+|  2  | `/a-002` | **Initialize Project**    | Product Brief（課題・ユーザー・価値・成功指標）を作成（新規/既存モード対応） |
+| 2a  | `/a-002a`| **Slice MVP Scope**       | MVP を Must/Not Now/Won't に切り分け、やらないこと（Out of Scope）を明示 |
 |  3  | `/a-003` | **Create Scenarios**      | ユーザーストーリーをBDD（Gherkin）シナリオに変換   |
 |  4  | `/a-004` | **Define Domain Model**   | Event Stormingでドメインモデルを定義               |
 |  5  | `/a-005` | **Create Domain Diagram** | ドメインモデルを図解（コンテキスト境界・集約）     |
-|  6  | `/a-006` | **Review Req & Domain**   | ⚠️ **要件とドメインモデルの整合性をレビュー**      |
+|  6  | `/a-006` | **Review & PM Gate**      | ⚠️ **整合性レビュー＋PM Gate（Go/No-Go）、STAKEHOLDER-SUMMARY・AI_CONTEXT を生成** |
 |  7  | `/a-007` | **Define Tech Stack**     | 技術スタック（言語・FW・DB）を選定                 |
 |  8  | `/a-008` | **Define Repo Structure** | リポジトリのディレクトリ構成を定義                 |
 |  9  | `/a-009` | **Define Screen Design**  | 画面遷移・UIコンポーネント・Empty Stateを設計      |
@@ -217,10 +218,21 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 
 | ステップ | コマンド            | 内容                                                                      |
 | :------: | :------------------ | :------------------------------------------------------------------------ |
-|    1     | `/a-001` → `/a-005` | ドキュメント構造、プロジェクト定義、シナリオ、ドメインモデル              |
-|    2     | `/a-006`            | ⚠️ **要件・ドメインレビュー（必須）**                                     |
+|    1     | `/a-002` → `/a-002a` → `/a-005` | Product Brief、MVP スコープ、シナリオ、ドメインモデル（a-002 がドキュメント構造を自動初期化） |
+|    2     | `/a-006`            | ⚠️ **PM Gate（整合性レビュー＋Go/No-Go、AI_CONTEXT 生成）（必須）**        |
 |    3     | `/a-007` → `/a-014` | 技術スタック、リポジトリ構成、画面設計、DB、API、アーキテクチャ、インフラ |
 |    4     | `/a-015`            | ⚠️ **全体設計レビュー（必須）**                                           |
+
+#### プロダクト性質別の推奨フロー
+
+プロダクトの性質に応じて、A-Series 前半の進め方を2つ用意しています。
+
+- **新規プロダクト向け（greenfield）**: Product Brief → MVP Scope → Core Scenarios → Domain Sketch → PM Gate
+- **既存プロダクト向け（existing / brownfield）**: Codebase Inventory → Product Brief 補完 → Scope 再定義
+
+> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として、**MVP Scope** は `/a-002a`（Slice MVP Scope）が `02-mvp-scope.md`（Must/Not Now/Won't ＋ Out of Scope）として、**PM Gate** は `/a-006` が整合性レビュー＋ Go/Go with caveats/No-Go 判定として実行し、`STAKEHOLDER-SUMMARY.md`（合意用1枚）と `AI_CONTEXT.md`（AI 実装用コンテキスト）を生成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`06-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**Core Scenarios**（a-003 軽量化）は順次統合中です。
+>
+> 🤖 `a-006` 完了後、Go / Go with caveats なら `docs/project/AI_CONTEXT.md` を実装エージェント（Vibe coding / AI 実装）へ渡すと、スコープ境界（作る/作らないもの）を保ったまま実装に入れます。
 
 ---
 

@@ -82,8 +82,8 @@ git log --name-only --oneline main..HEAD
 
 **要件** (`docs/01-requirements/`):
 
-- [ ] `02-features-implemented.md`: 実装済み機能リストに追加
-- [ ] `03-features-planned.md`: 計画中機能リストから削除
+- [ ] `06-features-implemented.md`: 実装済み機能リストに追加（existing モードのみ）
+- [ ] `03-parking-lot.md`: 実装した（または不要判断した）アイデアを backlog から削除
 - [ ] `05-user-stories.md`: ユーザーストーリーのステータス更新
 
 **ドメイン** (`docs/03-domain/`):

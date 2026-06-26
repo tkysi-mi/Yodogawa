@@ -1,6 +1,6 @@
 # レビュー結果レポートテンプレート
 
-SKILL.md 手順3 で作成する `docs/project/REVIEW-REPORT-*.md` のフォーマット例。
+SKILL.md 手順4 で作成する `docs/project/REVIEW-REPORT-*.md` のフォーマット例。
 
 ## レポートフォーマット
 
@@ -36,10 +36,22 @@ SKILL.md 手順3 で作成する `docs/project/REVIEW-REPORT-*.md` のフォー�
 - **Error**: 用語「ShippingAddress」がユビキタス言語一覧にありません。
 - **Warning**: 禁止用語「User Data」が `01-domain-model.md` で使用されています。
 
+### 5. MVP 正当化 / 過剰作り込み（YAGNI）
+
+- **過剰作り込み候補**: Must 機能「実績バッジ」が課題・ペルソナ・成功指標のいずれにも trace しません。Not Now / Won't への変更を検討してください。
+- OK: その他の Must はすべて検証仮説・成功指標に紐づいています。
+- OK: Out of Scope（Won't）と矛盾する実装記述はありません。
+
+## PM Gate 判定
+
+**判定**: Go with caveats
+
+**根拠**: 整合性は良好。ただし Must「実績バッジ」が正当化されていないため、スコープから外すことを条件に実装着手可。
+
 ## 推奨アクション
 
-1. `/a-003-create-scenarios` で US-005 のシナリオを追加する。
-2. `/a-004-define-domain-model` で「在庫を引き当てる」コマンドを定義する。
+1. `02-mvp-scope.md` の「実績バッジ」を Won't に変更する（過剰作り込み）。
+2. `/a-003-create-scenarios` で US-005 のシナリオを追加する。
 3. `01-domain-model.md` の「User Data」を「User Profile」に修正する。
 ```
 
@@ -50,6 +62,14 @@ SKILL.md 手順3 で作成する `docs/project/REVIEW-REPORT-*.md` のフォー�
 | OK | 問題なし | 記録のみ |
 | Warning | 軽微な不整合 | 計画的に修正 |
 | Error | 重大な不整合 | 実装前に必ず修正 |
+
+## PM Gate 判定の使い方
+
+| 判定 | 意味 | 次のアクション |
+|:--|:--|:--|
+| Go | 実装着手してよい | `AI_CONTEXT.md` を実装エージェントへ渡す |
+| Go with caveats | 条件付きで着手可 | caveat を明記し、合意の上で着手 |
+| No-Go | 重大課題あり | 実装前に該当ドキュメントを修正し再レビュー |
 
 ## コミットメッセージ例
 

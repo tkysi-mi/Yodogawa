@@ -48,6 +48,21 @@ grep -rn "Manager" docs/project/03-domain/ || echo "No 'Manager' found"
 - Product Brief（`01-product-brief.md`）の「価値提案 / 差別化」とドメインモデルの「Core Domain」が一致しているか。
 - ビジネス価値の提供元が Core に寄っているか（Generic に偏っていないか）。
 
+## 2.7 MVP 正当化 / 過剰作り込み（YAGNI / PM Gate）
+
+「要らないものを作らない」を守るためのスコープ妥当性検査。
+
+- **Must の trace**: `02-mvp-scope.md` の各 Must 機能が、Product Brief の 課題 / ターゲット（ペルソナ）/ 成功指標 / 検証仮説 のいずれかに紐づくか。**いずれにも trace しない Must は過剰作り込み候補としてフラグ**する。
+- **Out of Scope の矛盾**: `02-mvp-scope.md` の Won't / Out of Scope に挙げた機能が、他ドキュメント（シナリオ・ドメインモデル・`05-user-stories.md`）で実装対象として記述されていないか。
+- **安い代替手段**: 手作業・既存ツール・外部サービスで足りるものが Must になっていないか（`02-mvp-scope.md` の「より安い代替手段」列を確認）。
+- **成功指標 ↔ 目的**: `01-product-brief.md` の成功指標が「価値提案 / 解く課題」と整合しているか。
+- **仮説の数**: 検証する仮説が 1〜3 個に絞れているか（多すぎる＝MVP が過大）。
+
+```bash
+# Out of Scope（Won't）に挙げた機能名が他 doc に混入していないか（例）
+grep -rn "{Won't機能名}" docs/project/02-behavior/ docs/project/03-domain/
+```
+
 ## エスカレーションの判断材料
 
 - **多数の Error が検出された場合**: ドキュメント信頼性が低い → 関係者を集めた大規模レビュー会議を推奨。

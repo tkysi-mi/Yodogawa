@@ -1,6 +1,13 @@
 # ドメインモデル (Event Storming)
 
 <!--
+位置づけ（任意 / advanced テンプレート）:
+  - これは MVP 標準フローのテンプレートではない。標準は軽量な Domain Sketch
+    （templates/project/03-domain/01-domain-sketch.md、/a-004 が生成）。
+  - 完全な Event Storming（Bounded Context / Commands / Events / Policies / Aggregates /
+    Read Models / Context Map）が必要な複雑ドメインで、任意スキル /a-005-create-domain-diagram
+    （advanced）から使う。図を作ること自体が目的化しないよう注意する。
+
 何を書くか: Event Storming形式でドメインモデルを記述したドキュメント
 
 目的:

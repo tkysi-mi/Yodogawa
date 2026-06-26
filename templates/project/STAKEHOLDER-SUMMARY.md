@@ -9,7 +9,7 @@
   - 1〜2ページに収める。詳細は参照先に委ねる。
   - 判定（Go / Go with caveats / No-Go）を必ず明記する。
 
-参照元: 01-product-brief.md / 02-mvp-scope.md / 02-behavior/01-scenarios.md / 03-domain/
+参照元: 01-product-brief.md / 02-mvp-scope.md / 02-behavior/01-core-scenarios.md / 03-domain/
 -->
 
 ## なぜ作るか（背景・課題）

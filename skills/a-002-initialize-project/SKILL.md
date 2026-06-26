@@ -11,7 +11,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 - Product Brief を中核に、誰のどの課題を・なぜ今・どう解き・どう成功を測るかをステークホルダーと合意できる形で言語化する。
 - 新規（greenfield）/ 既存（existing）の2モードに分岐し、既定は新規プロダクト。
-- Product Brief を起点に、Parking Lot（アイデア backlog）・非機能要件・ユーザーストーリーへ展開する（実装済み機能は existing モードのみ）。MVP スコープの確定は次スキル `/a-002a-slice-mvp-scope` が担う。
+- Product Brief を起点に、Parking Lot（アイデア backlog）・ユーザーストーリーへ展開する（実装済み機能は existing モードのみ）。MVP スコープの確定は次スキル `/a-002a-slice-mvp-scope` が担う。
+- 詳細な非機能要件（応答時間・稼働率・スケーラビリティ等の定量値）は初期フェーズでは扱わない。MVP の作り方を変えるほど重要な制約のみを Product Brief の「クリティカル制約」に集約し、定量 NFR は設計フェーズ `/a-014-define-infrastructure` が所有する。
 - 抽象的・曖昧な表現を避け、対話を通じて具体的な数値・期限・制約・優先度を明確化する。
 
 ## 前提
@@ -58,17 +59,18 @@ mkdir -p docs/project/01-requirements docs/project/02-behavior docs/project/03-d
 
 このスキルの配置ディレクトリ（`skills/a-002-initialize-project/`）を起点に、`docs/project/01-requirements/` へテンプレートを Read→Write する（FOR EACH）。出力先に既に存在するファイルは上書きせずスキップして報告する（冪等）。出力先ディレクトリが無ければ作成する。
 
-**existing モード**（5 ファイル）:
+**existing モード**（4 ファイル）:
 
 - `../../templates/project/01-requirements/01-product-brief.md` → `docs/project/01-requirements/01-product-brief.md`
 - `../../templates/project/01-requirements/03-parking-lot.md` → `docs/project/01-requirements/03-parking-lot.md`
-- `../../templates/project/01-requirements/04-non-functional-requirements.md` → `docs/project/01-requirements/04-non-functional-requirements.md`
 - `../../templates/project/01-requirements/05-user-stories.md` → `docs/project/01-requirements/05-user-stories.md`
 - `../../templates/project/01-requirements/06-features-implemented.md` → `docs/project/01-requirements/06-features-implemented.md`
 
-**greenfield モード**（必須 4 ファイル）: 上記から `06-features-implemented.md` を**除く**。新規プロダクトでは実装済み機能がまだ存在しないため、`06-features-implemented.md` は**任意**扱いとし、ユーザーが棚卸しを希望した場合のみ「空の任意資料」としてコピーする。
+**greenfield モード**（必須 3 ファイル）: 上記から `06-features-implemented.md` を**除く**。新規プロダクトでは実装済み機能がまだ存在しないため、`06-features-implemented.md` は**任意**扱いとし、ユーザーが棚卸しを希望した場合のみ「空の任意資料」としてコピーする。
 
 > `02-mvp-scope.md` は本スキルでは生成しない。次スキル `/a-002a-slice-mvp-scope` が作成する。
+>
+> `04-non-functional-requirements.md`（詳細な定量 NFR）は初期フェーズでは生成しない。クリティカル制約は Product Brief（手順5）に集約し、詳細 NFR は設計フェーズ `/a-014-define-infrastructure` が扱う（採番上 04 は欠番）。
 
 ### 4. コードベースの自動分析と提案（existing モードのみ）
 
@@ -108,33 +110,27 @@ find src app lib -maxdepth 2 2>/dev/null
 
 > MVP の取捨選択（Must / Not Now / Won't と優先順位付け）は次スキル `/a-002a-slice-mvp-scope` が `02-mvp-scope.md` で行う。本手順はその入力となるアイデア backlog を用意する。
 
-### 8. 非機能要件の記入
-
-`04-non-functional-requirements.md` に、詳細定義が必要か確認の上、パフォーマンス/セキュリティ/可用性/スケーラビリティ/ユーザビリティ・保守性の観点で**定量的な目標**をヒアリングして記入する。不要なら標準ベースライン（[examples/nfr-baseline.md](examples/nfr-baseline.md)）で仮置きする。
-
-> 移管予定: 後続再設計で、要点を Product Brief の「クリティカル制約」へ集約し本ドキュメントは縮小予定。現状は後続スキル互換のため本手順で生成する。
-
-### 9. ユーザーストーリーの記入
+### 8. ユーザーストーリーの記入
 
 `05-user-stories.md` に、作成済みドキュメントから主要ユーザージャーニーを抽出してストーリー案を提示し、ヒアリング結果をテーブルに記入する（優先度・受け入れ基準含む）。
 
 ストーリーテンプレート: 「[役割]として、[〇〇機能]を使いたい、なぜなら[価値]だから」
 
-> 移管予定: 後続再設計で Core Scenarios / Behavior へ移管予定。現状は `/a-003-create-scenarios` 等の互換のため本手順で生成する。
+> User Story は要約レベルの受け入れ基準（AC）を担い、実行時の主要行動は `/a-003-create-scenarios` の Core Scenarios が担う（SSoT の住み分け）。
 
-### 10. 全体レビュー
+### 9. 全体レビュー
 
 - 作成した全ドキュメントをユーザーに提示し、以下を確認:
   - 「記載内容に誤りや漏れはありませんか？」
   - 「抽象的すぎる記述や、解釈が分かれそうな表現はありますか？」
   - 「テンプレートのコメントや不要な例示は適切に処理されていますか？」
 
-### 11. 完了条件と構造の確認
+### 10. 完了条件と構造の確認
 
 - ファイルの存在と主要セクション/テーブル構造を検証。
 - 検証コマンド・チェックリスト・Git コミット手順は [reference/structure-check.md](reference/structure-check.md) を参照。
 
-### 12. Git への追加（オプション）
+### 11. Git への追加（オプション）
 
 詳細は [reference/structure-check.md](reference/structure-check.md#git-への追加オプション) を参照。
 
@@ -142,8 +138,9 @@ find src app lib -maxdepth 2 2>/dev/null
 
 - `docs/project/01-requirements/01-product-brief.md` が作成され、課題・ターゲット・代替手段・価値提案・Why now・成功指標・クリティカル制約・非ゴールが具体的に埋まっている（**中核成果物**）
 - あわせて要件定義ドキュメントが作成されている
-  - existing モード: `01`, `03`, `04`, `05`, `06` の 5 ドキュメント
-  - greenfield モード: `01`, `03`, `04`, `05`。`06-features-implemented.md` は任意
+  - existing モード: `01`, `03`, `05`, `06` の 4 ドキュメント
+  - greenfield モード: `01`, `03`, `05`。`06-features-implemented.md` は任意
+  - `04`（詳細 NFR）は初期フェーズでは生成しない（設計フェーズ `/a-014` が所有）
 - MVP スコープ（`02-mvp-scope.md`）は次スキル `/a-002a-slice-mvp-scope` で作成する
 - すべてのドキュメントで抽象的表現が最小化され、具体的な数値・期限・制約が記載されている
 - ユーザーがドキュメント内容を確認し、承認またはフィードバックを提供している
@@ -157,5 +154,4 @@ find src app lib -maxdepth 2 2>/dev/null
 ## 参考
 
 - [reference/hearing-questions.md](reference/hearing-questions.md) — Product Brief（手順5）および各成果物のヒアリング質問集
-- [reference/structure-check.md](reference/structure-check.md) — 手順11の構造チェックコマンドと Git コミット手順（手順12）
-- [examples/nfr-baseline.md](examples/nfr-baseline.md) — 非機能要件の標準ベースライン提案値
+- [reference/structure-check.md](reference/structure-check.md) — 手順10の構造チェックコマンドと Git コミット手順（手順11）

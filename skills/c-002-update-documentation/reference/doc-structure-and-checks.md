@@ -61,7 +61,7 @@ SKILL.md 手順5（整合性検証）とベストプラクティスで参照す�
   - `05-user-stories.md`: ユーザーストーリー
   - `06-features-implemented.md`: 実装済み機能（existing モード）
 - `03-domain/`: ドメイン
-  - `01-domain-model.md`: ドメインモデル
+  - `01-domain-sketch.md`: ドメイン（Full DDD 採用時は `01-domain-model.md`）
   - `02-ubiquitous-language.md`: ユビキタス言語
 - `04-design/`: 設計
   - `03-screen-design.md`: 画面設計

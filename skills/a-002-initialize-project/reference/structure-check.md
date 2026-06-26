@@ -1,6 +1,6 @@
 # 構造チェックコマンド集
 
-SKILL.md 手順11で使う、生成済みドキュメントの構造確認用コマンド。
+SKILL.md 手順10で使う、生成済みドキュメントの構造確認用コマンド。
 
 ## a-002 生成ドキュメントの必須セクション/テーブル検証
 
@@ -12,10 +12,6 @@ grep "## 非ゴール" docs/project/01-requirements/01-product-brief.md && echo 
 
 # 03-parking-lot.md: テーブルヘッダー
 grep "| Category 1 | Category 2 |" docs/project/01-requirements/03-parking-lot.md \
-  && echo "OK" || echo "MISSING: Table Header"
-
-# 04-non-functional-requirements.md: テーブルヘッダー
-grep "| カテゴリ | 要件 |" docs/project/01-requirements/04-non-functional-requirements.md \
   && echo "OK" || echo "MISSING: Table Header"
 
 # 05-user-stories.md: テーブルヘッダー
@@ -45,5 +41,5 @@ git status
 ```
 docs: 要件定義ドキュメントの作成
 
-- Product Brief、機能要件、非機能要件、ユーザーストーリーを追加
+- Product Brief、Parking Lot、ユーザーストーリーを追加
 ```

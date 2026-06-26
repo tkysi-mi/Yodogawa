@@ -16,7 +16,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ## 前提
 
 - `docs/project/04-design/01-tech-stack.md` が作成されていること（`/a-007-define-tech-stack` 実行済み）。
-- `docs/project/03-domain/01-domain-model.md` が作成されていること（推奨）。
+- `docs/project/03-domain/01-domain-sketch.md` が作成されていること（推奨。Full DDD 採用時は `01-domain-model.md`）。
 - `docs/project/04-design/` ディレクトリが存在すること。
 
 ## 手順

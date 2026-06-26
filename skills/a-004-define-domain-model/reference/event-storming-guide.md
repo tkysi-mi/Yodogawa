@@ -1,10 +1,12 @@
 # Event Storming ガイド
 
-SKILL.md 手順3〜6で使うドメインモデル定義の観点集。
+ドメイン概念抽出の観点集。a-004（Domain Sketch）の手順3・4 では主要概念・境界・中核エンティティ・重要ルールの抽出に使う。
+
+> 以下の **Bounded Context / コマンドとイベント / 集約とモデル / Context Map の関係性** は完全な Event Storming の観点であり、標準フローでは必須ではない。複雑ドメインで Full DDD が必要なときに、任意スキル `/a-005-create-domain-diagram`（advanced）と `01-domain-model.md` で用いる。a-004 の Domain Sketch では、これらを軽量に（中核エンティティ・境界の把握に必要な範囲で）参照する。
 
 ## Bounded Context の特定
 
-シナリオとユーザーストーリーを分析し、ビジネス領域を特定。
+Core Scenarios と MVP Scope を分析し、ビジネス領域を特定。
 
 - **戦略的分類**:
   - **Core**: ビジネスの中核的な競争優位を生む領域
@@ -52,20 +54,31 @@ SKILL.md 手順3〜6で使うドメインモデル定義の観点集。
 
 ## 構造確認コマンド
 
+標準フロー（Domain Sketch）:
+
+```bash
+grep "## 中核エンティティと責務" docs/project/03-domain/01-domain-sketch.md \
+  && echo "OK" || echo "MISSING: 中核エンティティ"
+grep "## 重要なビジネスルール" docs/project/03-domain/01-domain-sketch.md \
+  && echo "OK" || echo "MISSING: 重要なビジネスルール"
+grep "| 用語 | 定義 |" docs/project/03-domain/02-ubiquitous-language.md \
+  && echo "OK" || echo "MISSING: Terminology table"
+```
+
+advanced（Full Event Storming / a-005 実行時の `01-domain-model.md`）:
+
 ```bash
 grep "Bounded Context:" docs/project/03-domain/01-domain-model.md \
   && echo "OK" || echo "MISSING: Bounded Context definition"
 grep "### Aggregates" docs/project/03-domain/01-domain-model.md \
   && echo "OK" || echo "MISSING: Aggregates section"
-grep "| 用語 | 定義 |" docs/project/03-domain/02-ubiquitous-language.md \
-  && echo "OK" || echo "MISSING: Terminology table"
 ```
 
 ## Git コミットメッセージ
 
 ```
-docs: ドメインモデルとユビキタス言語の定義
+docs: Domain Sketch とユビキタス言語の定義
 
-- Event Stormingによるドメインモデルの作成
-- Bounded Contextごとのユビキタス言語の整備
+- Core Scenarios からの主要概念・境界・中核エンティティの整理
+- ユビキタス言語の整備
 ```

@@ -17,8 +17,8 @@ docs/
 
 ### 各ディレクトリの用途
 
-- `project/01-requirements/` — 要件定義（Product Brief、機能要件、非機能要件、ユーザーストーリー）
-- `project/02-behavior/` — 振る舞い定義（Gherkin シナリオ）
+- `project/01-requirements/` — 要件定義（Product Brief、MVP スコープ、Parking Lot、ユーザーストーリー。詳細な非機能要件は設計フェーズ/a-014 で扱う）
+- `project/02-behavior/` — 振る舞い定義（Core Scenarios）
 - `project/03-domain/` — ドメインモデル、ユビキタス言語
 - `project/04-design/` — 画面設計、データモデル、API 仕様、アーキテクチャ等
 - `tasks/` — 個別タスク（`task{ID}-{SLUG}/` 形式）
@@ -46,8 +46,8 @@ SKILL.md 手順1で `docs/README.md` として Write する内容。
 ### project/
 プロジェクト全体のドキュメント。要件定義、設計、アーキテクチャなど、プロジェクトスコープ全体に関わる情報を記載します。
 
-- **01-requirements/**: 要件定義（Product Brief、機能要件、非機能要件、ユーザーストーリーなど）
-- **02-behavior/**: 振る舞い定義（シナリオ、ユースケース、ユーザージャーニーなど）
+- **01-requirements/**: 要件定義（Product Brief、MVP スコープ、Parking Lot、ユーザーストーリーなど。詳細な非機能要件は設計フェーズ/a-014 で扱う）
+- **02-behavior/**: 振る舞い定義（Core Scenarios、ユースケース、ユーザージャーニーなど）
 - **03-domain/**: ドメインモデル（エンティティ、用語集など）
 - **04-design/**: 設計（アーキテクチャ、データモデル、API仕様など）
 

@@ -2,16 +2,16 @@
 
 SKILL.md 手順2 で実施する各チェック項目の詳細。自動検索（grep 等）と手動確認を組み合わせる。
 
-## 2.1 ユーザーストーリー ↔ シナリオ
+## 2.1 ユーザーストーリー ↔ Core Scenario
 
-- **カバレッジ**: すべての US-XXX に対応する SC-XXX が存在するか。
-- **整合性**: ストーリーの「価値」とシナリオの「結果（Then）」が一致しているか。
+- **カバレッジ**: MVP Scope の Must 機能に対応する Core Scenario（Day 1 Happy Path）が存在するか。User Story は要約 AC、Core Scenario は実行時の主要行動という SSoT の住み分けを保つ（全 US を逐一シナリオ化しない）。
+- **整合性**: ストーリーの「価値」と Core Scenario の「結果（Then）」が一致しているか。
 
 ```bash
 # 全ユーザーストーリーの ID 抽出
 grep -oE "US-[0-9]+" docs/project/01-requirements/05-user-stories.md | sort -u
-# シナリオ側の参照
-grep -oE "US-[0-9]+" docs/project/02-behavior/01-scenarios.md | sort -u
+# Core Scenario 側の対応 Must / フロー参照
+grep -oE "FN-[0-9]+|CS-[0-9]+" docs/project/02-behavior/01-core-scenarios.md | sort -u
 ```
 
 ## 2.2 MVP スコープ・実装済み機能 ↔ シナリオ
@@ -20,20 +20,23 @@ grep -oE "US-[0-9]+" docs/project/02-behavior/01-scenarios.md | sort -u
 - **実装済み機能**: `06-features-implemented.md`（existing モード）の機能にリグレッション用シナリオが存在するか。
 - **Parking Lot**: `03-parking-lot.md` は backlog のためシナリオ必須ではない（MVP 昇格時に MVP スコープ側で扱う）。
 
-## 2.3 非機能要件 ↔ ドメインモデル
+## 2.3 クリティカル制約 ↔ スコープ/ドメイン
 
-- **パフォーマンス**: `04-non-functional-requirements.md` の要件（読み込み速度、スループット等）に対し、Read Model や CQRS が検討されているか。
-- **セキュリティ**: 認証・権限要件が Policy や Guard としてドメインモデルに含まれているか。
+初期フェーズでは定量 NFR ではなく、Product Brief の「クリティカル制約」を確認する（詳細な定量 NFR は設計フェーズ `/a-014-define-infrastructure` の責務）。
 
-## 2.4 シナリオ ↔ ドメインモデル
+- **制約の反映**: `01-product-brief.md` のクリティカル制約（法務・セキュリティ・期限・予算・外部 API 等）が `02-mvp-scope.md` の Must 判断やドメインモデルに反映されているか。
+- **セキュリティ・権限**: 制約に挙げた認証・権限要件が Policy や Guard としてドメインモデルに含まれているか。
 
-- **Command**: シナリオの When（アクション）がドメインモデルの Command として定義されているか。
-- **Event**: シナリオの Then（結果）が Domain Event として定義されているか。
-- **Actor**: シナリオの Actor がドメインモデルに存在するか。
+## 2.4 Core Scenario ↔ Domain Sketch
+
+- **アクター**: Core Scenario のアクターが Domain Sketch の「アクター / 外部システム」に存在するか。
+- **中核エンティティ**: Core Scenario が扱う対象が Domain Sketch の「中核エンティティ」に定義されているか。
+- **重要ルール**: Critical Failure を防ぐルールが「重要なビジネスルール」に反映されているか。
+- **Full DDD 採用時**: `01-domain-model.md` がある場合は、When→Command / Then→Event / Actor の対応も確認する。
 
 ## 2.5 ユビキタス言語の遵守
 
-- **用語定義**: ドメインモデルの主要要素（Aggregate, Command, Event）がユビキタス言語一覧にあるか。
+- **用語定義**: Domain Sketch の主要用語・中核エンティティ（Full DDD 採用時は Aggregate / Command / Event）がユビキタス言語一覧にあるか。
 - **禁止用語**: 各ドキュメントに禁止用語（Data, Process, Manager 等）が使われていないか。
 
 ```bash
@@ -45,8 +48,8 @@ grep -rn "Manager" docs/project/03-domain/ || echo "No 'Manager' found"
 
 ## 2.6 目的との整合性
 
-- Product Brief（`01-product-brief.md`）の「価値提案 / 差別化」とドメインモデルの「Core Domain」が一致しているか。
-- ビジネス価値の提供元が Core に寄っているか（Generic に偏っていないか）。
+- Product Brief（`01-product-brief.md`）の「価値提案 / 差別化」が Domain Sketch の「中核エンティティ」「重要なビジネスルール」に反映されているか。
+- Full DDD（`01-domain-model.md`）採用時は、ビジネス価値の提供元が Core Domain に寄っているか（Generic に偏っていないか）も確認する。
 
 ## 2.7 MVP 正当化 / 過剰作り込み（YAGNI / PM Gate）
 

@@ -5,27 +5,30 @@ SKILL.md 手順6〜7 で使う構造確認コマンドとレビュー観点。
 ## セクション存在確認
 
 ```bash
-# シナリオ一覧テーブルの確認
-grep "| シナリオID | 機能 |" docs/project/02-behavior/01-scenarios.md && echo "OK" || echo "MISSING: Table Header"
-# Feature 定義の確認
-grep "Feature:" docs/project/02-behavior/01-scenarios.md && echo "OK" || echo "MISSING: Feature definition"
-# Scenario 定義の確認
-grep "Scenario:" docs/project/02-behavior/01-scenarios.md && echo "OK" || echo "MISSING: Scenario definition"
+# Core Flow 一覧の確認
+grep "## Core Flow 一覧" docs/project/02-behavior/01-core-scenarios.md && echo "OK" || echo "MISSING: Core Flow"
+# Day 1 Happy Path の確認
+grep "## Day 1 Happy Path" docs/project/02-behavior/01-core-scenarios.md && echo "OK" || echo "MISSING: Happy Path"
+# Critical Failure の確認
+grep "## Critical Failure" docs/project/02-behavior/01-core-scenarios.md && echo "OK" || echo "MISSING: Critical Failure"
+# Not Covered in MVP の確認
+grep "## Not Covered in MVP" docs/project/02-behavior/01-core-scenarios.md && echo "OK" || echo "MISSING: Not Covered"
 ```
 
 ## チェックリスト
 
-- [ ] `docs/project/02-behavior/01-scenarios.md` が作成されている
-- [ ] シナリオ一覧テーブルが更新されている
-- [ ] 各 Feature が Gherkin 形式で記述されている
-- [ ] 正常系と異常系のシナリオが網羅されている
-- [ ] Empty State や境界値も考慮されている
-- [ ] タグ（@SC-XXX, @smoke 等）が付与されている
+- [ ] `docs/project/02-behavior/01-core-scenarios.md` が作成されている
+- [ ] 対象が MVP Scope の Must 機能に絞られている（Not Now / Won't を扱っていない）
+- [ ] Day 1 Happy Path が 1〜3 本に固定されている
+- [ ] Critical Failure が「価値を壊す重大失敗」に限定されている（網羅していない）
+- [ ] Not Covered in MVP が明示され、`02-mvp-scope.md` の Not Now / Won't と整合している
+- [ ] User Story（要約 AC）と Core Scenario（実行時主要行動）が二重化していない
 
 ## レビュー確認質問
 
-- 「シナリオは実際の動作を正しく表現していますか？」
-- 「漏れているケース（エラー、境界値）はありませんか？」
+- 「Day 1 の成功体験を正しく表現していますか？」
+- 「価値を壊す Critical Failure に漏れはありませんか？（法務・課金・権限・データ消失）」
+- 「Not Covered in MVP は MVP Scope の Not Now / Won't と矛盾していませんか？」
 - 「非技術者でも理解できる表現になっていますか？」
 - 「UI 操作に依存せず、ユーザーの意図を表現できていますか？」
 
@@ -39,8 +42,8 @@ git status
 推奨コミットメッセージ:
 
 ```text
-docs: 振る舞い仕様（シナリオ）の作成
+docs: Core Scenarios（MVP 主要行動）の作成
 
-- ユーザーストーリーに基づく Gherkin シナリオを追加
-- 正常系・異常系・境界値ケースを定義
+- Must 機能の Day 1 Happy Path と Critical Failure を定義
+- Not Covered in MVP を明示
 ```

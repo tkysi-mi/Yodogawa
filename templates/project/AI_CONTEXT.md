@@ -9,7 +9,7 @@
   - 「作らないもの（Must NOT build）」を必ず明示し、過剰実装を防ぐ。
   - 曖昧表現を避け、固有名・数値で書く。
 
-参照元: 01-product-brief.md / 02-mvp-scope.md / 02-behavior/01-scenarios.md / 03-domain/
+参照元: 01-product-brief.md / 02-mvp-scope.md / 02-behavior/01-core-scenarios.md / 03-domain/
 -->
 
 ## Product / Target
@@ -32,19 +32,19 @@
 
 ## Core user flow
 
-<!-- 02-behavior/01-scenarios.md の Day 1 成功フロー（1〜3本）を要約。 -->
+<!-- 02-behavior/01-core-scenarios.md の Day 1 Happy Path（1〜3本）を要約。 -->
 
 -
 
 ## Key domain concepts / boundaries
 
-<!-- 03-domain/ の中核エンティティ・境界・主要ビジネスルール・外部依存。 -->
+<!-- 03-domain/01-domain-sketch.md の中核エンティティ・境界・主要ビジネスルール・外部依存。 -->
 
 -
 
 ## Hard constraints
 
-<!-- 01-product-brief.md「クリティカル制約」＋ 04-non-functional の必須要件。 -->
+<!-- 01-product-brief.md「クリティカル制約」（守らねば成立しない制約のみ）。詳細な定量 NFR は設計フェーズ/a-014 で扱うため初期 AI コンテキストには含めない。 -->
 
 -
 

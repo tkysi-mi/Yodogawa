@@ -22,10 +22,10 @@ SKILL.md 手順4 で作成する `docs/project/REVIEW-REPORT-*.md` のフォー�
 - **Error**: US-005 に対応するシナリオが見つかりません。
 - OK: 優先度 High のストーリーはすべてカバーされています。
 
-### 2. 機能要件・非機能要件
+### 2. MVP スコープ・クリティカル制約
 
 - **Warning**: 実装済み機能「決済」のシナリオが不足しています。
-- OK: パフォーマンス要件に対応する Read Model が定義されています。
+- OK: Product Brief のクリティカル制約「社内 SSO 必須」が MVP スコープ・ドメインに反映されています。
 
 ### 3. シナリオ ↔ ドメインモデル
 
@@ -34,7 +34,7 @@ SKILL.md 手順4 で作成する `docs/project/REVIEW-REPORT-*.md` のフォー�
 ### 4. ユビキタス言語
 
 - **Error**: 用語「ShippingAddress」がユビキタス言語一覧にありません。
-- **Warning**: 禁止用語「User Data」が `01-domain-model.md` で使用されています。
+- **Warning**: 禁止用語「User Data」が `01-domain-sketch.md` で使用されています。
 
 ### 5. MVP 正当化 / 過剰作り込み（YAGNI）
 
@@ -52,7 +52,7 @@ SKILL.md 手順4 で作成する `docs/project/REVIEW-REPORT-*.md` のフォー�
 
 1. `02-mvp-scope.md` の「実績バッジ」を Won't に変更する（過剰作り込み）。
 2. `/a-003-create-scenarios` で US-005 のシナリオを追加する。
-3. `01-domain-model.md` の「User Data」を「User Profile」に修正する。
+3. `01-domain-sketch.md` の「User Data」を「User Profile」に修正する。
 ```
 
 ## 重大度記号の使い方

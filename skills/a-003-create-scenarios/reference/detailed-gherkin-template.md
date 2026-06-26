@@ -1,6 +1,13 @@
 # Gherkinシナリオ一覧
 
 <!--
+位置づけ（任意の詳細テンプレート）:
+  - これは MVP 標準フローのテンプレートではない。標準は軽量な Core Scenarios
+    （templates/project/02-behavior/01-core-scenarios.md）。
+  - 詳細な Gherkin / 境界値 / Scenario Outline / タグ運用が必要になったとき
+    （実装直前またはテスト設計時）に、任意でこのテンプレートを使う。
+  - 全ケース網羅の BDD はテスト設計の作業であり、MVP の初期探索では先送りしてよい。
+
 何を書くか: Gherkin形式で記述した振る舞いシナリオ（BDD）
 
 目的:

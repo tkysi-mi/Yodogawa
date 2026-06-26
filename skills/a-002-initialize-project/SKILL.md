@@ -1,6 +1,6 @@
 ---
 name: a-002-initialize-project
-description: プロジェクトの要件を対話形式で収集し、システム概要・機能要件・非機能要件・ユーザーストーリーのドキュメントを生成する。新規プロジェクト開始時、または要件が未整備の場合に使用。
+description: プロジェクトの要件を対話形式で収集し、システム概要・機能要件・非機能要件・ユーザーストーリーのドキュメントを生成する。新規（greenfield）/ 既存（existing）の2モードに対応し、既定は新規。新規プロジェクト開始時、または要件が未整備の場合に使用。
 disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
@@ -10,7 +10,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ## 目的
 
 - プロジェクトの目的・背景・機能要件を詳細にヒアリングし、具体的で実装可能なドキュメントを作成する。
-- システム概要・実装済み機能・予定機能・非機能要件・ユーザーストーリーを網羅する。
+- 新規（greenfield）/ 既存（existing）の2モードに分岐し、既定は新規プロダクト。
+- システム概要・予定機能・非機能要件・ユーザーストーリーを網羅する（実装済み機能は existing モードのみ）。
 - 抽象的・曖昧な表現を避け、対話を通じて具体的な数値・期限・制約・優先度を明確化する。
 
 ## 前提
@@ -29,9 +30,34 @@ ls -la docs/project/01-requirements/ 2>/dev/null || echo "ディレクトリが�
 
 存在しない場合: 「`docs/project/01-requirements/` がありません。先に `/a-001-setup-doc-structure` を実行してください。」
 
-### 2. テンプレート一括コピー
+### 2. モード判定（greenfield / existing）
 
-このスキルの配置ディレクトリ（`skills/a-002-initialize-project/`）を起点に、`docs/project/01-requirements/` へ次の 5 ファイルを Read→Write する（FOR EACH）。出力先に既に存在するファイルは上書きせずスキップして報告する（冪等）。出力先ディレクトリが無ければ作成する。
+このスキルは新規プロダクト（**greenfield**）と既存プロダクト（**existing / brownfield**）の2モードに対応する。後続手順（テンプレート選定・コード分析・実装済み機能の棚卸し）の分岐に影響するため、最初にモードを確定する。
+
+判定ロジック:
+
+- ユーザーがモードを明示した場合はそれを優先する。
+- 明示がない場合は、軽量シグナルから推定する。
+
+  ```bash
+  ls -F
+  cat package.json 2>/dev/null
+  cat README.md 2>/dev/null
+  find src app lib -maxdepth 2 2>/dev/null
+  ```
+
+  - ソースコード・`package.json`・既存ドキュメントが揃い相応の規模があれば **existing** を候補にする。
+  - ファイルがほとんど無い／ソースコードが無い場合は **greenfield** を候補にする。
+- 推定が曖昧な場合の**既定は greenfield**（Yodogawa の主目的は新規プロダクトの仕様駆動立ち上げのため）。
+- 「このプロジェクトを greenfield（新規）/ existing（既存）として進めます。よろしいですか？」とユーザーに提示し、確認を取る。
+
+確定したモードを以降の手順で参照する。
+
+### 3. テンプレートのコピー（モード別）
+
+このスキルの配置ディレクトリ（`skills/a-002-initialize-project/`）を起点に、`docs/project/01-requirements/` へテンプレートを Read→Write する（FOR EACH）。出力先に既に存在するファイルは上書きせずスキップして報告する（冪等）。出力先ディレクトリが無ければ作成する。
+
+**existing モード**（5 ファイル）:
 
 - `../../templates/project/01-requirements/01-system-overview.md` → `docs/project/01-requirements/01-system-overview.md`
 - `../../templates/project/01-requirements/02-features-implemented.md` → `docs/project/01-requirements/02-features-implemented.md`
@@ -39,17 +65,13 @@ ls -la docs/project/01-requirements/ 2>/dev/null || echo "ディレクトリが�
 - `../../templates/project/01-requirements/04-non-functional-requirements.md` → `docs/project/01-requirements/04-non-functional-requirements.md`
 - `../../templates/project/01-requirements/05-user-stories.md` → `docs/project/01-requirements/05-user-stories.md`
 
-### 3. コードベースの自動分析と提案
+**greenfield モード**（必須 4 ファイル）: 上記から `02-features-implemented.md` を**除く**。新規プロダクトでは実装済み機能がまだ存在しないため、`02-features-implemented.md` は**任意**扱いとし、ユーザーが棚卸しを希望した場合のみ「空の任意資料」としてコピーする。
 
-**規模確認**:
+### 4. コードベースの自動分析と提案（existing モードのみ）
 
-```bash
-ls -F
-```
+> greenfield モードではこの手順をスキップする。
 
-ファイルがほとんど無い／ソースコードが無い場合はスキップし、ユーザーへ通知。
-
-**詳細調査**（コードがある場合）:
+**詳細調査**:
 
 ```bash
 cat package.json 2>/dev/null
@@ -59,49 +81,53 @@ find src app lib -maxdepth 2 2>/dev/null
 
 結果から以下を推測・提示: システム概要（目的・技術スタック）、実装済み機能（ファイル構造からの推測）、想定ユーザー像。
 
-### 4. システム概要の記入
+### 5. システム概要の記入
 
 `01-system-overview.md` を開き、「背景」「目的」をヒアリングして記入する。質問例は [reference/hearing-questions.md](reference/hearing-questions.md) を参照。
 
-### 5. 実装済み機能一覧の記入
+### 6. 実装済み機能一覧の記入（existing モードのみ）
+
+> greenfield モードではこの手順をスキップする（`02-features-implemented.md` は任意の空資料）。
 
 `02-features-implemented.md` に、コードベース調査で検出したディレクトリ/ファイル名から機能を提案し、ヒアリング結果をテーブルに記入する（Category 1/2、機能名、説明、機能 ID）。
 
 コード調査コマンドとヒアリング項目は [reference/hearing-questions.md](reference/hearing-questions.md#手順4-実装済み機能一覧) を参照。
 
-### 6. 予定機能一覧の記入
+### 7. 予定機能一覧の記入
 
-`03-features-planned.md` に、システム概要と実装済み機能のギャップを分析して未実装機能を提案し、ヒアリング結果をテーブルに記入する（機能 ID・優先度は未確定のまま）。
+`03-features-planned.md` に、システム概要（existing モードでは加えて実装済み機能）とのギャップを分析して未実装機能を提案し、ヒアリング結果をテーブルに記入する（機能 ID・優先度は未確定のまま）。
 
-### 7. 非機能要件の記入
+### 8. 非機能要件の記入
 
 `04-non-functional-requirements.md` に、詳細定義が必要か確認の上、パフォーマンス/セキュリティ/可用性/スケーラビリティ/ユーザビリティ・保守性の観点で**定量的な目標**をヒアリングして記入する。不要なら標準ベースライン（[examples/nfr-baseline.md](examples/nfr-baseline.md)）で仮置きする。
 
-### 8. ユーザーストーリーの記入
+### 9. ユーザーストーリーの記入
 
 `05-user-stories.md` に、作成済みドキュメントから主要ユーザージャーニーを抽出してストーリー案を提示し、ヒアリング結果をテーブルに記入する（優先度・受け入れ基準含む）。
 
 ストーリーテンプレート: 「[役割]として、[〇〇機能]を使いたい、なぜなら[価値]だから」
 
-### 9. 全体レビュー
+### 10. 全体レビュー
 
 - 作成した全ドキュメントをユーザーに提示し、以下を確認:
   - 「記載内容に誤りや漏れはありませんか？」
   - 「抽象的すぎる記述や、解釈が分かれそうな表現はありますか？」
   - 「テンプレートのコメントや不要な例示は適切に処理されていますか？」
 
-### 10. 完了条件と構造の確認
+### 11. 完了条件と構造の確認
 
 - ファイルの存在と主要セクション/テーブル構造を検証。
 - 検証コマンド・チェックリスト・Git コミット手順は [reference/structure-check.md](reference/structure-check.md) を参照。
 
-### 11. Git への追加（オプション）
+### 12. Git への追加（オプション）
 
 詳細は [reference/structure-check.md](reference/structure-check.md#git-への追加オプション) を参照。
 
 ## 完了条件
 
-- `docs/project/01-requirements/` に 5 つの要件定義ドキュメントが作成されている
+- `docs/project/01-requirements/` に要件定義ドキュメントが作成されている
+  - existing モード: 5 ドキュメント（`01`〜`05`）
+  - greenfield モード: 必須 4 ドキュメント（`01`, `03`, `04`, `05`）。`02-features-implemented.md` は任意
 - すべてのドキュメントで抽象的表現が最小化され、具体的な数値・期限・制約が記載されている
 - ユーザーがドキュメント内容を確認し、承認またはフィードバックを提供している
 

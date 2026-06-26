@@ -125,7 +125,7 @@ Why? ─── What? ─── How?
 |  #  | コマンド | 名前                      | 説明                                               |
 | :-: | :------- | :------------------------ | :------------------------------------------------- |
 |  1  | `/a-001` | **Setup Doc Structure**   | ドキュメント構造をセットアップ                     |
-|  2  | `/a-002` | **Initialize Project**    | プロジェクトの目的・課題・スコープを定義           |
+|  2  | `/a-002` | **Initialize Project**    | 目的・課題・スコープを定義（新規/既存モード対応）  |
 |  3  | `/a-003` | **Create Scenarios**      | ユーザーストーリーをBDD（Gherkin）シナリオに変換   |
 |  4  | `/a-004` | **Define Domain Model**   | Event Stormingでドメインモデルを定義               |
 |  5  | `/a-005` | **Create Domain Diagram** | ドメインモデルを図解（コンテキスト境界・集約）     |
@@ -221,6 +221,15 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 |    2     | `/a-006`            | ⚠️ **要件・ドメインレビュー（必須）**                                     |
 |    3     | `/a-007` → `/a-014` | 技術スタック、リポジトリ構成、画面設計、DB、API、アーキテクチャ、インフラ |
 |    4     | `/a-015`            | ⚠️ **全体設計レビュー（必須）**                                           |
+
+#### プロダクト性質別の推奨フロー
+
+プロダクトの性質に応じて、A-Series 前半の進め方を2つ用意しています。
+
+- **新規プロダクト向け（greenfield）**: Product Brief → MVP Scope → Core Scenarios → Domain Sketch → PM Gate
+- **既存プロダクト向け（existing / brownfield）**: Codebase Inventory → Product Brief 補完 → Scope 再定義
+
+> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状は `/a-002`（Initialize Project）が **greenfield / existing の2モード**に分岐してこれを担います。新規プロダクトでは実装済み機能の棚卸し（`02-features-implemented.md`）をスキップし、既存プロダクトではコードベース分析と棚卸しを実行します。モードを明示しない場合の既定は greenfield です。
 
 ---
 

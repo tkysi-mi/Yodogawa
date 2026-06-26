@@ -44,7 +44,7 @@
 
 ## Hard constraints
 
-<!-- 01-product-brief.md「クリティカル制約」＋ 04-non-functional の必須要件。 -->
+<!-- 01-product-brief.md「クリティカル制約」（守らねば成立しない制約のみ）。詳細な定量 NFR は設計フェーズ/a-014 で扱うため初期 AI コンテキストには含めない。 -->
 
 -
 

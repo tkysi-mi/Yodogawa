@@ -13,11 +13,13 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 - クラウドリソース、ネットワーク、セキュリティ、監視を含む全体構成を可視化する。
 - 環境ごとの構成（開発、ステージング、本番）を明確化する。
 - 高可用性、冗長化、スケーラビリティ、セキュリティの方針を定義する。
+- Product Brief の「クリティカル制約」を起点に、初期フェーズで保留した**詳細な非機能要件（応答時間・稼働率・スケーラビリティ・RPO/RTO 等の定量値）を本フェーズで定量化・所有する**。
 
 ## 前提
 
 - `docs/project/04-design/01-tech-stack.md` が作成されていること（デプロイ環境、インフラ技術選定済み）。
 - `docs/project/04-design/07-architecture.md` が作成されていること（推奨）。
+- `docs/project/01-requirements/01-product-brief.md` の「クリティカル制約」（詳細 NFR 定量化の起点）。
 - `docs/project/04-design/` ディレクトリが存在すること。
 
 ## 手順
@@ -61,6 +63,10 @@ Multi-AZ 構成、リードレプリカ、バックアップ（頻度、保持�
 #### 4.4 環境構成
 
 開発/ステージング/本番環境の差異（リソースサイズ、冗長化、WAF など）。表形式のテンプレートは [examples/infrastructure-templates.md](examples/infrastructure-templates.md#環境構成表) を参照。
+
+#### 4.5 詳細な非機能要件（定量化）
+
+Product Brief の「クリティカル制約」を起点に、性能（応答時間・スループット）・可用性（稼働率・RPO/RTO）・スケーラビリティ・セキュリティ等を定量化する。初期フェーズでは保留していた定量値をここで確定する。テンプレートは [examples/non-functional-requirements.md](examples/non-functional-requirements.md)、特に指定が無い場合の標準提案値は [examples/nfr-baseline.md](examples/nfr-baseline.md) を参照。
 
 ### 5. ドキュメント作成
 
@@ -107,4 +113,6 @@ git commit -m "docs: インフラ設計の定義"
 ## 参考
 
 - [examples/infrastructure-templates.md](examples/infrastructure-templates.md) — インフラ構成図、環境構成表、運用方針の定義項目
+- [examples/non-functional-requirements.md](examples/non-functional-requirements.md) — 詳細な非機能要件テンプレート（設計フェーズで定量化）
+- [examples/nfr-baseline.md](examples/nfr-baseline.md) — 非機能要件の標準ベースライン提案値
 - [reference/structure-check.md](reference/structure-check.md) — 構造確認コマンド、チェックリスト、非機能要件対応、レビュー質問

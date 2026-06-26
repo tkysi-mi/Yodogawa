@@ -138,10 +138,12 @@ Why? ─── What? ─── How?
 | 11  | `/a-011` | **Define Data Model**     | データベーススキーマ・ER図を設計                   |
 | 12  | `/a-012` | **Define API Spec**       | APIエンドポイント・リクエスト/レスポンスを定義     |
 | 13  | `/a-013` | **Define Architecture**   | アーキテクチャ決定記録（ADR）を作成                |
-| 14  | `/a-014` | **Define Infrastructure** | インフラ構成・非機能要件（RPO/RTO）を定義          |
+| 14  | `/a-014` | **Define Infrastructure** | インフラ構成・**詳細な非機能要件（性能/可用性/RPO/RTO）を所有** |
 | 15  | `/a-015` | **Review Design**         | ⚠️ **全体設計の一貫性をレビュー**                  |
 
 > ⚠️ マークのスキルは**必ず実施**してください。
+>
+> ℹ️ **非機能要件（NFR）の扱い**: 初期フェーズ（a-002）では、MVP の作り方を変えるほど重要な制約のみを Product Brief の「クリティカル制約」に集約します。応答時間・稼働率・スケーラビリティ等の**詳細な定量 NFR は設計フェーズ（a-014）が所有**します（責務分離）。そのため `01-requirements/` の採番は `04` を欠番とし、`01`(Product Brief) / `02`(MVP Scope) / `03`(Parking Lot) / `05`(User Stories) / `06`(Features Implemented, existing のみ) になります。
 
 ---
 

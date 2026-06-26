@@ -20,10 +20,12 @@ grep -oE "US-[0-9]+" docs/project/02-behavior/01-scenarios.md | sort -u
 - **実装済み機能**: `06-features-implemented.md`（existing モード）の機能にリグレッション用シナリオが存在するか。
 - **Parking Lot**: `03-parking-lot.md` は backlog のためシナリオ必須ではない（MVP 昇格時に MVP スコープ側で扱う）。
 
-## 2.3 非機能要件 ↔ ドメインモデル
+## 2.3 クリティカル制約 ↔ スコープ/ドメイン
 
-- **パフォーマンス**: `04-non-functional-requirements.md` の要件（読み込み速度、スループット等）に対し、Read Model や CQRS が検討されているか。
-- **セキュリティ**: 認証・権限要件が Policy や Guard としてドメインモデルに含まれているか。
+初期フェーズでは定量 NFR ではなく、Product Brief の「クリティカル制約」を確認する（詳細な定量 NFR は設計フェーズ `/a-014-define-infrastructure` の責務）。
+
+- **制約の反映**: `01-product-brief.md` のクリティカル制約（法務・セキュリティ・期限・予算・外部 API 等）が `02-mvp-scope.md` の Must 判断やドメインモデルに反映されているか。
+- **セキュリティ・権限**: 制約に挙げた認証・権限要件が Policy や Guard としてドメインモデルに含まれているか。
 
 ## 2.4 シナリオ ↔ ドメインモデル
 

@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 目的
 
-- 既存の要件ドキュメント（Product Brief、非機能要件、ドメインモデル）を分析し、適合する技術スタックを推奨する。
+- 既存の要件ドキュメント（Product Brief（クリティカル制約含む）、ドメインモデル）を分析し、適合する技術スタックを推奨する。
 - 推奨案を提示した上で、ユーザーと詳細なインタビューを行い、すべての技術選定を明確化する。
 - 技術選定の理由、バージョン、選定タイミング（初期/中期/後期/随時）を明確に記録する。
 
@@ -27,7 +27,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ls -la docs/project/04-design/ 2>/dev/null || echo "ディレクトリが存在しません"
 ```
 
-要件ドキュメント（`01-product-brief.md`, `02-mvp-scope.md`, `04-non-functional-requirements.md`）とドメインモデル（`01-domain-model.md`）を読み込む。
+要件ドキュメント（`01-product-brief.md`（クリティカル制約含む）, `02-mvp-scope.md`）とドメインモデル（`01-domain-model.md`）を読み込む。
 
 ### 2. テンプレートの準備
 
@@ -35,7 +35,7 @@ ls -la docs/project/04-design/ 2>/dev/null || echo "ディレクトリが存在�
 
 ### 3. 要件分析と推奨技術スタックの生成
 
-- **システム特性の分析**: アプリケーションタイプ（SPA/SSR 等）、非機能要件、ドメイン複雑度
+- **システム特性の分析**: アプリケーションタイプ（SPA/SSR 等）、クリティカル制約（NFR の要点）、ドメイン複雑度
 - **レイヤー別推奨**: フロントエンド / バックエンド / データベース / インフラ・CI/CD / 監視・テスト
 - **提示形式**: 各技術に「推奨理由」と「代替案」を付ける
 

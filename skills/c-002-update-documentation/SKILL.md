@@ -88,7 +88,7 @@ git log --name-only --oneline main..HEAD
 
 **ドメイン** (`docs/03-domain/`):
 
-- [ ] `01-domain-model.md`: エンティティ・値オブジェクトの追加
+- [ ] `01-domain-sketch.md`: 中核エンティティ・重要ルールの更新（Full DDD 採用時は `01-domain-model.md`）
 - [ ] `02-ubiquitous-language.md`: 新しいドメイン用語の追加
 
 **設計** (`docs/04-design/`):

@@ -128,8 +128,8 @@ Why? ─── What? ─── How?
 |  2  | `/a-002` | **Initialize Project**    | Product Brief（課題・ユーザー・価値・成功指標）を作成（新規/既存モード対応） |
 | 2a  | `/a-002a`| **Slice MVP Scope**       | MVP を Must/Not Now/Won't に切り分け、やらないこと（Out of Scope）を明示 |
 |  3  | `/a-003` | **Create Core Scenarios** | MVP の主要行動（Day 1 Happy Path・Critical Failure）を定義（詳細 Gherkin は任意） |
-|  4  | `/a-004` | **Define Domain Model**   | Event Stormingでドメインモデルを定義               |
-|  5  | `/a-005` | **Create Domain Diagram** | ドメインモデルを図解（コンテキスト境界・集約）     |
+|  4  | `/a-004` | **Define Domain Sketch**  | 軽量ドメイン（主要用語・境界・中核エンティティ・重要ルール）を定義 |
+|  5  | `/a-005` | **Create Domain Diagram** | （任意/Advanced）Full DDD・Context Map を図解（複雑ドメインのみ） |
 |  6  | `/a-006` | **Review & PM Gate**      | ⚠️ **整合性レビュー＋PM Gate（Go/No-Go）、STAKEHOLDER-SUMMARY・AI_CONTEXT を生成** |
 |  7  | `/a-007` | **Define Tech Stack**     | 技術スタック（言語・FW・DB）を選定                 |
 |  8  | `/a-008` | **Define Repo Structure** | リポジトリのディレクトリ構成を定義                 |
@@ -220,7 +220,7 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 
 | ステップ | コマンド            | 内容                                                                      |
 | :------: | :------------------ | :------------------------------------------------------------------------ |
-|    1     | `/a-002` → `/a-002a` → `/a-005` | Product Brief、MVP スコープ、シナリオ、ドメインモデル（a-002 がドキュメント構造を自動初期化） |
+|    1     | `/a-002` → `/a-002a` → `/a-003` → `/a-004` | Product Brief、MVP スコープ、Core Scenarios、Domain Sketch（a-002 がドキュメント構造を自動初期化。`/a-005` は複雑ドメイン向けの任意 Advanced） |
 |    2     | `/a-006`            | ⚠️ **PM Gate（整合性レビュー＋Go/No-Go、AI_CONTEXT 生成）（必須）**        |
 |    3     | `/a-007` → `/a-014` | 技術スタック、リポジトリ構成、画面設計、DB、API、アーキテクチャ、インフラ |
 |    4     | `/a-015`            | ⚠️ **全体設計レビュー（必須）**                                           |
@@ -232,7 +232,7 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 - **新規プロダクト向け（greenfield）**: Product Brief → MVP Scope → Core Scenarios → Domain Sketch → PM Gate
 - **既存プロダクト向け（existing / brownfield）**: Codebase Inventory → Product Brief 補完 → Scope 再定義
 
-> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として、**MVP Scope** は `/a-002a`（Slice MVP Scope）が `02-mvp-scope.md`（Must/Not Now/Won't ＋ Out of Scope）として、**PM Gate** は `/a-006` が整合性レビュー＋ Go/Go with caveats/No-Go 判定として実行し、`STAKEHOLDER-SUMMARY.md`（合意用1枚）と `AI_CONTEXT.md`（AI 実装用コンテキスト）を生成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`06-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**Core Scenarios** は `/a-003`（Create Core Scenarios）が `01-core-scenarios.md`（Day 1 Happy Path・Critical Failure・Not Covered in MVP）として実行します。詳細な Gherkin は任意（`skills/a-003-create-scenarios/reference/detailed-gherkin-template.md`）です。
+> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として、**MVP Scope** は `/a-002a`（Slice MVP Scope）が `02-mvp-scope.md`（Must/Not Now/Won't ＋ Out of Scope）として、**PM Gate** は `/a-006` が整合性レビュー＋ Go/Go with caveats/No-Go 判定として実行し、`STAKEHOLDER-SUMMARY.md`（合意用1枚）と `AI_CONTEXT.md`（AI 実装用コンテキスト）を生成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`06-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**Core Scenarios** は `/a-003`（Create Core Scenarios）が `01-core-scenarios.md`（Day 1 Happy Path・Critical Failure・Not Covered in MVP）として実行します。詳細な Gherkin は任意（`skills/a-003-create-scenarios/reference/detailed-gherkin-template.md`）です。**Domain Sketch** は `/a-004`（Define Domain Sketch）が `01-domain-sketch.md`（主要用語・境界・中核エンティティ・重要ルール・MVP で作らない範囲・簡易図）として実行します。**標準は Domain Sketch、複雑なドメインのみ Full DDD（`/a-005` で Bounded Context・Aggregate・Context Map を `01-domain-model.md` に展開）** という分担で、`/a-005` は標準フローには含まれない任意 Advanced です。
 >
 > 🤖 `a-006` 完了後、Go / Go with caveats なら `docs/project/AI_CONTEXT.md` を実装エージェント（Vibe coding / AI 実装）へ渡すと、スコープ境界（作る/作らないもの）を保ったまま実装に入れます。
 

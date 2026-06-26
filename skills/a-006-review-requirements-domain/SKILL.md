@@ -24,7 +24,7 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 
 - `docs/project/01-requirements/` の各ドキュメント（`01-product-brief.md`, `02-mvp-scope.md`, `03-parking-lot.md`, `05-user-stories.md`、existing モードは加えて `06-features-implemented.md`）
 - `docs/project/02-behavior/01-core-scenarios.md`
-- `docs/project/03-domain/01-domain-model.md`, `02-ubiquitous-language.md`
+- `docs/project/03-domain/01-domain-sketch.md`, `02-ubiquitous-language.md`（Full DDD を採用した場合は加えて `01-domain-model.md`）
 
 ## 手順
 
@@ -43,9 +43,9 @@ ls -l docs/project/01-requirements/*.md docs/project/02-behavior/*.md docs/proje
 - **2.1 ユーザーストーリー ↔ シナリオ**: US-XXX に対応する SC-XXX の存在、価値と結果の整合
 - **2.2 MVP スコープ/実装済み機能 ↔ シナリオ**: Must 機能/リグレッション用のカバレッジ
 - **2.3 クリティカル制約 ↔ スコープ/ドメイン**: Product Brief のクリティカル制約（法務・セキュリティ・期限・予算等）が MVP スコープ判断・ドメインモデルに反映されているか（初期フェーズでは定量 NFR ではなく制約を確認。詳細 NFR は a-014 の責務）
-- **2.4 シナリオ ↔ ドメインモデル**: Command / Event / Actor の対応
+- **2.4 Core Scenario ↔ Domain Sketch**: アクター・中核エンティティ・重要ビジネスルールの対応（Full DDD 採用時は Command / Event / Actor の対応も）
 - **2.5 ユビキタス言語**: 主要要素の登録、禁止用語の検出
-- **2.6 目的との整合性**: システム目的と Core Domain の一致
+- **2.6 目的との整合性**: Product Brief の価値提案と Domain Sketch の中核エンティティ（Full DDD 採用時は Core Domain）の一致
 - **2.7 MVP 正当化 / 過剰作り込み（YAGNI）**: 各 Must が課題/ペルソナ/指標/仮説に trace するか、Out of Scope と矛盾しないか、安い代替手段で済むものが Must になっていないか
 
 ### 3. PM Gate 判定（Go / Go with caveats / No-Go）

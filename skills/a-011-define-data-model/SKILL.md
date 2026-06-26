@@ -9,14 +9,14 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 目的
 
-- ドメインモデル（Aggregates）と画面設計を基に、データベース構造を定義する。
+- ドメイン（Domain Sketch の中核エンティティ、Full DDD 採用時は Aggregates）と画面設計を基に、データベース構造を定義する。
 - エンティティ（テーブル）、属性（カラム）、リレーションシップを明確化する。
 - データ型、制約（NOT NULL、UNIQUE、CHECK）、インデックス戦略を決定する。
 - Mermaid ERD（Entity Relationship Diagram）で視覚化し、開発者間の認識を統一する。
 
 ## 前提
 
-- `docs/project/03-domain/01-domain-model.md` が作成されていること。
+- `docs/project/03-domain/01-domain-sketch.md` が作成されていること（Full DDD 採用時は `01-domain-model.md`）。
 - `docs/project/04-design/01-tech-stack.md` が作成されていること（DB 選定済み）。
 - `docs/project/04-design/03-screen-design.md` が作成されていること。
 - `docs/project/04-design/` ディレクトリが存在すること。
@@ -27,7 +27,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 以下を読み込む:
 
-- `docs/project/03-domain/01-domain-model.md`
+- `docs/project/03-domain/01-domain-sketch.md`（Full DDD 採用時は `01-domain-model.md`）
 - `docs/project/04-design/01-tech-stack.md`
 - `docs/project/04-design/03-screen-design.md`
 

@@ -27,7 +27,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ls -la docs/project/04-design/ 2>/dev/null || echo "ディレクトリが存在しません"
 ```
 
-要件ドキュメント（`01-product-brief.md`（クリティカル制約含む）, `02-mvp-scope.md`）とドメインモデル（`01-domain-model.md`）を読み込む。
+要件ドキュメント（`01-product-brief.md`（クリティカル制約含む）, `02-mvp-scope.md`）とドメイン（`01-domain-sketch.md`、Full DDD 採用時は `01-domain-model.md`）を読み込む。
 
 ### 2. テンプレートの準備
 

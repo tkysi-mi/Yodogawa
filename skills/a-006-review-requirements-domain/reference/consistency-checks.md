@@ -27,15 +27,16 @@ grep -oE "FN-[0-9]+|CS-[0-9]+" docs/project/02-behavior/01-core-scenarios.md | s
 - **制約の反映**: `01-product-brief.md` のクリティカル制約（法務・セキュリティ・期限・予算・外部 API 等）が `02-mvp-scope.md` の Must 判断やドメインモデルに反映されているか。
 - **セキュリティ・権限**: 制約に挙げた認証・権限要件が Policy や Guard としてドメインモデルに含まれているか。
 
-## 2.4 シナリオ ↔ ドメインモデル
+## 2.4 Core Scenario ↔ Domain Sketch
 
-- **Command**: シナリオの When（アクション）がドメインモデルの Command として定義されているか。
-- **Event**: シナリオの Then（結果）が Domain Event として定義されているか。
-- **Actor**: シナリオの Actor がドメインモデルに存在するか。
+- **アクター**: Core Scenario のアクターが Domain Sketch の「アクター / 外部システム」に存在するか。
+- **中核エンティティ**: Core Scenario が扱う対象が Domain Sketch の「中核エンティティ」に定義されているか。
+- **重要ルール**: Critical Failure を防ぐルールが「重要なビジネスルール」に反映されているか。
+- **Full DDD 採用時**: `01-domain-model.md` がある場合は、When→Command / Then→Event / Actor の対応も確認する。
 
 ## 2.5 ユビキタス言語の遵守
 
-- **用語定義**: ドメインモデルの主要要素（Aggregate, Command, Event）がユビキタス言語一覧にあるか。
+- **用語定義**: Domain Sketch の主要用語・中核エンティティ（Full DDD 採用時は Aggregate / Command / Event）がユビキタス言語一覧にあるか。
 - **禁止用語**: 各ドキュメントに禁止用語（Data, Process, Manager 等）が使われていないか。
 
 ```bash
@@ -47,8 +48,8 @@ grep -rn "Manager" docs/project/03-domain/ || echo "No 'Manager' found"
 
 ## 2.6 目的との整合性
 
-- Product Brief（`01-product-brief.md`）の「価値提案 / 差別化」とドメインモデルの「Core Domain」が一致しているか。
-- ビジネス価値の提供元が Core に寄っているか（Generic に偏っていないか）。
+- Product Brief（`01-product-brief.md`）の「価値提案 / 差別化」が Domain Sketch の「中核エンティティ」「重要なビジネスルール」に反映されているか。
+- Full DDD（`01-domain-model.md`）採用時は、ビジネス価値の提供元が Core Domain に寄っているか（Generic に偏っていないか）も確認する。
 
 ## 2.7 MVP 正当化 / 過剰作り込み（YAGNI / PM Gate）
 

@@ -38,7 +38,7 @@
 
 ## Key domain concepts / boundaries
 
-<!-- 03-domain/ の中核エンティティ・境界・主要ビジネスルール・外部依存。 -->
+<!-- 03-domain/01-domain-sketch.md の中核エンティティ・境界・主要ビジネスルール・外部依存。 -->
 
 -
 

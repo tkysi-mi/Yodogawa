@@ -15,7 +15,7 @@ grep -oE "PostgreSQL|Redis|NestJS|Next.js" docs/project/04-design/07-architectur
 
 ## 2.2 データモデル ↔ ドメインモデル
 
-- **カバレッジ**: ドメインモデルの Aggregate（`01-domain-model.md`）がデータモデル（`05-data-model.md`）のエンティティとして定義されているか。
+- **カバレッジ**: ドメインの中核エンティティ（`01-domain-sketch.md`、Full DDD 採用時は `01-domain-model.md` の Aggregate）がデータモデル（`05-data-model.md`）のエンティティとして定義されているか。
 - **用語統一**: テーブル名・カラム名がユビキタス言語と一致しているか。
 
 ## 2.3 API 仕様 ↔ データモデル

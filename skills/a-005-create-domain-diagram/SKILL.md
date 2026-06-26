@@ -1,40 +1,38 @@
 ---
 name: a-005-create-domain-diagram
-description: ドメインモデルを Mermaid 図（Context Map・Aggregate 構造）として可視化する。ドメインモデル定義後、関係性を図で確認する際に使用。
+description: （任意 / advanced）Domain Sketch を完全な Event Storming（Bounded Context・Aggregate・Context Map）へ拡張し、Mermaid 図で可視化する。複雑なドメインで Full DDD が必要なときに使用。標準の MVP フローには含まれない。
 disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # CreateDomainDiagram (a-005)
 
+> ⚠️ これは**任意 / advanced スキル**。標準の MVP フローには含まれない。a-004 の軽量な Domain Sketch（`01-domain-sketch.md`）で十分なドメインでは実行不要。Bounded Context が複数に分かれる、集約境界の検討が必要、Context 間連携が複雑、といった場合にのみ使う。
+
 ## 目的
 
-- ドメインモデルドキュメント（`01-domain-model.md`）を基に、視覚的なダイアグラムを作成する。
-- Context Map（Bounded Context 間の関係図）を Mermaid 形式で図示する。
-- 各 Bounded Context 内の Aggregate 構造や関係性を図示する（オプション）。
+- 軽量な Domain Sketch（`01-domain-sketch.md`）を入力に、完全な Event Storming 形式のドメインモデル（`01-domain-model.md`）へ拡張する。
+- Bounded Context・Commands・Events・Policies・Aggregates・Read Models・External Systems を体系的に整理する。
+- Context Map（Bounded Context 間の関係図）と Aggregate 構造を Mermaid 形式で図示する。
 
 ## 前提
 
-- `docs/project/03-domain/01-domain-model.md` が作成されていること（`/a-004-define-domain-model` 実行済み）。
-- ドメインモデルドキュメントに Bounded Context の一覧と関係性が記述されていること。
+- `docs/project/03-domain/01-domain-sketch.md` が作成されていること（`/a-004-define-domain-model` 実行済み）。
+- ドメインが複雑で、軽量な Domain Sketch だけでは設計判断が難しいこと（そうでなければ本スキルは不要）。
 
 ## 手順
 
 ### 1. ドキュメントの確認
 
 ```bash
-ls -la docs/project/03-domain/01-domain-model.md 2>/dev/null || echo "ファイルが存在しません"
+ls -la docs/project/03-domain/01-domain-sketch.md 2>/dev/null || echo "Domain Sketch が存在しません"
 ```
 
-未作成の場合、`/a-004-define-domain-model` の実行を促す。
+未作成の場合、`/a-004-define-domain-model` の実行を促す。`01-domain-sketch.md` を読み込み、主要概念・境界・中核エンティティを把握する。
 
-### 2. Context Map の情報収集と提案
+### 2. Full DDD テンプレートの準備
 
-`docs/project/03-domain/01-domain-model.md` から以下を抽出し、構成案を提示する:
-
-- Bounded Context のリスト
-- 戦略的分類（Core / Supporting / Generic）
-- Context 間の関係性と通信方法
+このスキルの配置ディレクトリ（`skills/a-005-create-domain-diagram/`）を起点に、相対パス `../../templates/project/03-domain/01-domain-model.md` を Read で読み込み、その内容を `docs/project/03-domain/01-domain-model.md` へ Write する（冪等。既存ならスキップして報告する）。Domain Sketch の内容を起点に、Bounded Context・Commands・Events・Policies・Aggregates・Read Models・External Systems を埋める。
 
 ### 3. Context Map 図の作成
 
@@ -70,14 +68,14 @@ grep "\`\`\`mermaid" docs/project/03-domain/01-domain-model.md \
 
 ```bash
 git add docs/project/03-domain/01-domain-model.md
-git commit -m "docs: ドメインモデル図（Context Map）の追加"
+git commit -m "docs: Full DDD ドメインモデル・Context Map 図の作成"
 ```
 
 詳細は [reference/structure-check.md](reference/structure-check.md#git-への追加任意) を参照。
 
 ## 完了条件
 
-- `docs/project/03-domain/01-domain-model.md` に Context Map 図が追加されている。
+- `docs/project/03-domain/01-domain-model.md` が Full Event Storming 形式で作成され、Context Map 図が追加されている。
 - Bounded Context 間の関係性が正しく表現されている。
 - 戦略的分類が視覚的に区別されている。
 - オプションの詳細図（Aggregate 図、シーケンス図）が必要に応じて追加されている。
@@ -85,10 +83,12 @@ git commit -m "docs: ドメインモデル図（Context Map）の追加"
 
 ## エスカレーション
 
-- **ドメインモデルが不完全で図を作成できない**: 「`/a-004-define-domain-model` に戻って定義を補完しましょう。」
+- **Domain Sketch が不完全で拡張できない**: 「`/a-004-define-domain-model` に戻って Domain Sketch を補完しましょう。」
+- **そもそも Full DDD が過剰**: 「MVP 段階では Domain Sketch で十分なことが多いです。本スキルは複雑ドメインに限って使いましょう。」
 - **図が複雑すぎて読みにくい**: 「主要な関係のみに絞るか、図を分割することを検討しましょう。」
 
 ## 参考
 
 - [examples/mermaid-templates.md](examples/mermaid-templates.md) — Context Map / Aggregate / シーケンス図の Mermaid テンプレート、スタイル定義、エッジラベル例
 - [reference/structure-check.md](reference/structure-check.md) — 構造確認コマンド、チェックリスト、レビュー質問、Git 追加例
+- [../../templates/project/03-domain/01-domain-model.md](../../templates/project/03-domain/01-domain-model.md) — Full Event Storming（advanced）テンプレート

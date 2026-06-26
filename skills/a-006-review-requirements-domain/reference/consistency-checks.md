@@ -44,7 +44,7 @@ grep -rn "Manager" docs/project/03-domain/ || echo "No 'Manager' found"
 
 ## 2.6 目的との整合性
 
-- システム概要（`01-system-overview.md`）の「目的」とドメインモデルの「Core Domain」が一致しているか。
+- Product Brief（`01-product-brief.md`）の「価値提案 / 差別化」とドメインモデルの「Core Domain」が一致しているか。
 - ビジネス価値の提供元が Core に寄っているか（Generic に偏っていないか）。
 
 ## エスカレーションの判断材料

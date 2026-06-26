@@ -1,6 +1,6 @@
 ---
 name: a-002-initialize-project
-description: プロジェクトの要件を対話形式で収集し、システム概要・機能要件・非機能要件・ユーザーストーリーのドキュメントを生成する。新規（greenfield）/ 既存（existing）の2モードに対応し、既定は新規。新規プロジェクト開始時、または要件が未整備の場合に使用。
+description: プロジェクトの Product Brief（誰のどの課題を・なぜ今・どう解き・どう成功を測るか）を対話形式で作成し、要件定義ドキュメント群の起点とする。新規（greenfield）/ 既存（existing）の2モードに対応し、既定は新規。新規プロジェクト開始時、または要件が未整備の場合に使用。
 disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
@@ -9,26 +9,27 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 目的
 
-- プロジェクトの目的・背景・機能要件を詳細にヒアリングし、具体的で実装可能なドキュメントを作成する。
+- Product Brief を中核に、誰のどの課題を・なぜ今・どう解き・どう成功を測るかをステークホルダーと合意できる形で言語化する。
 - 新規（greenfield）/ 既存（existing）の2モードに分岐し、既定は新規プロダクト。
-- システム概要・予定機能・非機能要件・ユーザーストーリーを網羅する（実装済み機能は existing モードのみ）。
+- Product Brief を起点に、予定機能・非機能要件・ユーザーストーリーへ展開する（実装済み機能は existing モードのみ）。
 - 抽象的・曖昧な表現を避け、対話を通じて具体的な数値・期限・制約・優先度を明確化する。
 
 ## 前提
 
-- `docs/project/01-requirements/` ディレクトリが存在すること（なければ先に `/a-001-setup-doc-structure` を実行）
-- `docs/` に書き込み権限があること
-- ユーザーがプロジェクト概要と主要機能の基本情報を提供できること
+- `docs/` 配下への書き込み権限があること（必要なディレクトリ構造は本スキルが自動作成するため、`/a-001-setup-doc-structure` の事前実行は不要）
+- ユーザーがプロジェクトの課題・対象ユーザー・期待価値の基本情報を提供できること
 
 ## 手順
 
-### 1. ドキュメントディレクトリの確認
+### 1. ドキュメント基盤の確保
+
+要件定義に必要なディレクトリ構造を確保する。`mkdir -p` なので冪等で、明示的な `/a-001-setup-doc-structure` 実行は不要（必要時に本手順が自動で初期化する）。
 
 ```bash
-ls -la docs/project/01-requirements/ 2>/dev/null || echo "ディレクトリが存在しません"
+mkdir -p docs/project/01-requirements docs/project/02-behavior docs/project/03-domain docs/project/04-design docs/tasks
 ```
 
-存在しない場合: 「`docs/project/01-requirements/` がありません。先に `/a-001-setup-doc-structure` を実行してください。」
+`docs/README.md` が無ければ、[../a-001-setup-doc-structure/reference/directory-structure.md](../a-001-setup-doc-structure/reference/directory-structure.md#docsreadmemd-テンプレート) の「docs/README.md テンプレート」を Write する（既存の場合は上書きしない）。
 
 ### 2. モード判定（greenfield / existing）
 
@@ -59,7 +60,7 @@ ls -la docs/project/01-requirements/ 2>/dev/null || echo "ディレクトリが�
 
 **existing モード**（5 ファイル）:
 
-- `../../templates/project/01-requirements/01-system-overview.md` → `docs/project/01-requirements/01-system-overview.md`
+- `../../templates/project/01-requirements/01-product-brief.md` → `docs/project/01-requirements/01-product-brief.md`
 - `../../templates/project/01-requirements/02-features-implemented.md` → `docs/project/01-requirements/02-features-implemented.md`
 - `../../templates/project/01-requirements/03-features-planned.md` → `docs/project/01-requirements/03-features-planned.md`
 - `../../templates/project/01-requirements/04-non-functional-requirements.md` → `docs/project/01-requirements/04-non-functional-requirements.md`
@@ -79,11 +80,17 @@ cat README.md 2>/dev/null
 find src app lib -maxdepth 2 2>/dev/null
 ```
 
-結果から以下を推測・提示: システム概要（目的・技術スタック）、実装済み機能（ファイル構造からの推測）、想定ユーザー像。
+結果から以下を推測・提示: Product Brief の下書き（課題・目的・技術スタック）、実装済み機能（ファイル構造からの推測）、想定ユーザー像。
 
-### 5. システム概要の記入
+### 5. Product Brief の記入（中核）
 
-`01-system-overview.md` を開き、「背景」「目的」をヒアリングして記入する。質問例は [reference/hearing-questions.md](reference/hearing-questions.md) を参照。
+`01-product-brief.md` を開き、深掘りヒアリングで埋める。**これがこのスキルの中核成果物**で、後続スキル（MVP Scope / Core Scenarios / PM Gate）が参照する。
+
+- 記入対象: 背景/解く課題（証拠・規模つき）、ターゲットユーザー、ステークホルダー、現在の代替手段、価値提案/差別化、Why now、成功指標（North Star / KPI / Guardrail）、クリティカル制約、非ゴール、未確定事項。
+- 「課題 → なぜ → なぜ」と3段以上掘り下げ、表層の要望ではなく本質的な課題に到達する。
+- 「この課題を作らずに放置したら何が起きるか」「既存の代替手段で十分ではないか」を必ず確認する。
+
+質問例は [reference/hearing-questions.md](reference/hearing-questions.md#手順3-product-brief) を参照。
 
 ### 6. 実装済み機能一覧の記入（existing モードのみ）
 
@@ -95,17 +102,23 @@ find src app lib -maxdepth 2 2>/dev/null
 
 ### 7. 予定機能一覧の記入
 
-`03-features-planned.md` に、システム概要（existing モードでは加えて実装済み機能）とのギャップを分析して未実装機能を提案し、ヒアリング結果をテーブルに記入する（機能 ID・優先度は未確定のまま）。
+`03-features-planned.md` に、Product Brief（existing モードでは加えて実装済み機能）とのギャップを分析して未実装機能を提案し、ヒアリング結果をテーブルに記入する（機能 ID・優先度は未確定のまま）。
+
+> 移管予定: 後続の MVP Scope スキルで `02-mvp-scope.md`（Must / Not Now / Won't）と Parking Lot に再編される予定。現状は後続スキル互換のため本手順で生成する。
 
 ### 8. 非機能要件の記入
 
 `04-non-functional-requirements.md` に、詳細定義が必要か確認の上、パフォーマンス/セキュリティ/可用性/スケーラビリティ/ユーザビリティ・保守性の観点で**定量的な目標**をヒアリングして記入する。不要なら標準ベースライン（[examples/nfr-baseline.md](examples/nfr-baseline.md)）で仮置きする。
+
+> 移管予定: 後続再設計で、要点を Product Brief の「クリティカル制約」へ集約し本ドキュメントは縮小予定。現状は後続スキル互換のため本手順で生成する。
 
 ### 9. ユーザーストーリーの記入
 
 `05-user-stories.md` に、作成済みドキュメントから主要ユーザージャーニーを抽出してストーリー案を提示し、ヒアリング結果をテーブルに記入する（優先度・受け入れ基準含む）。
 
 ストーリーテンプレート: 「[役割]として、[〇〇機能]を使いたい、なぜなら[価値]だから」
+
+> 移管予定: 後続再設計で Core Scenarios / Behavior へ移管予定。現状は `/a-003-create-scenarios` 等の互換のため本手順で生成する。
 
 ### 10. 全体レビュー
 
@@ -125,9 +138,10 @@ find src app lib -maxdepth 2 2>/dev/null
 
 ## 完了条件
 
-- `docs/project/01-requirements/` に要件定義ドキュメントが作成されている
-  - existing モード: 5 ドキュメント（`01`〜`05`）
-  - greenfield モード: 必須 4 ドキュメント（`01`, `03`, `04`, `05`）。`02-features-implemented.md` は任意
+- `docs/project/01-requirements/01-product-brief.md` が作成され、課題・ターゲット・代替手段・価値提案・Why now・成功指標・クリティカル制約・非ゴールが具体的に埋まっている（**中核成果物**）
+- あわせて要件定義ドキュメントが作成されている
+  - existing モード: `01`〜`05` の 5 ドキュメント
+  - greenfield モード: `01`, `03`, `04`, `05`。`02-features-implemented.md` は任意
 - すべてのドキュメントで抽象的表現が最小化され、具体的な数値・期限・制約が記載されている
 - ユーザーがドキュメント内容を確認し、承認またはフィードバックを提供している
 
@@ -139,6 +153,6 @@ find src app lib -maxdepth 2 2>/dev/null
 
 ## 参考
 
-- [reference/hearing-questions.md](reference/hearing-questions.md) — 手順4〜8のヒアリング質問集
-- [reference/structure-check.md](reference/structure-check.md) — 手順10の構造チェックコマンドと Git コミット手順
+- [reference/hearing-questions.md](reference/hearing-questions.md) — Product Brief（手順5）および各成果物のヒアリング質問集
+- [reference/structure-check.md](reference/structure-check.md) — 手順11の構造チェックコマンドと Git コミット手順（手順12）
 - [examples/nfr-baseline.md](examples/nfr-baseline.md) — 非機能要件の標準ベースライン提案値

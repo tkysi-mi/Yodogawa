@@ -5,9 +5,10 @@ SKILL.md 手順9で使う、生成済みドキュメントの構造確認用コ�
 ## 5ドキュメントの必須セクション/テーブル検証
 
 ```bash
-# 01-system-overview.md: 主要セクションの確認
-grep "## 背景" docs/project/01-requirements/01-system-overview.md && echo "OK" || echo "MISSING: 背景"
-grep "## 目的" docs/project/01-requirements/01-system-overview.md && echo "OK" || echo "MISSING: 目的"
+# 01-product-brief.md: 主要セクションの確認
+grep "## 背景 / 解く課題" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 背景 / 解く課題"
+grep "## 成功指標" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 成功指標"
+grep "## 非ゴール" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 非ゴール"
 
 # 02-features-implemented.md: テーブルヘッダー
 grep "| 機能ID | Category 1 |" docs/project/01-requirements/02-features-implemented.md \
@@ -44,5 +45,5 @@ git status
 ```
 docs: 要件定義ドキュメントの作成
 
-- システム概要、機能要件、非機能要件、ユーザーストーリーを追加
+- Product Brief、機能要件、非機能要件、ユーザーストーリーを追加
 ```

@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 目的
 
-- 既存の要件ドキュメント（システム概要、非機能要件、ドメインモデル）を分析し、適合する技術スタックを推奨する。
+- 既存の要件ドキュメント（Product Brief、非機能要件、ドメインモデル）を分析し、適合する技術スタックを推奨する。
 - 推奨案を提示した上で、ユーザーと詳細なインタビューを行い、すべての技術選定を明確化する。
 - 技術選定の理由、バージョン、選定タイミング（初期/中期/後期/随時）を明確に記録する。
 
@@ -27,7 +27,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ls -la docs/project/04-design/ 2>/dev/null || echo "ディレクトリが存在しません"
 ```
 
-要件ドキュメント（`01-system-overview.md`, `03-features-planned.md`, `04-non-functional-requirements.md`）とドメインモデル（`01-domain-model.md`）を読み込む。
+要件ドキュメント（`01-product-brief.md`, `03-features-planned.md`, `04-non-functional-requirements.md`）とドメインモデル（`01-domain-model.md`）を読み込む。
 
 ### 2. テンプレートの準備
 

@@ -19,7 +19,7 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 
 以下のドキュメントが作成されていること:
 
-- `docs/project/01-requirements/01-system-overview.md` 〜 `05-user-stories.md`
+- `docs/project/01-requirements/01-product-brief.md`, `02-features-implemented.md` 〜 `05-user-stories.md`
 - `docs/project/02-behavior/01-scenarios.md`
 - `docs/project/03-domain/01-domain-model.md`, `02-ubiquitous-language.md`
 

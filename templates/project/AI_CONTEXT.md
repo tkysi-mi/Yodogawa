@@ -9,7 +9,7 @@
   - 「作らないもの（Must NOT build）」を必ず明示し、過剰実装を防ぐ。
   - 曖昧表現を避け、固有名・数値で書く。
 
-参照元: 01-product-brief.md / 02-mvp-scope.md / 02-behavior/01-scenarios.md / 03-domain/
+参照元: 01-product-brief.md / 02-mvp-scope.md / 02-behavior/01-core-scenarios.md / 03-domain/
 -->
 
 ## Product / Target
@@ -32,7 +32,7 @@
 
 ## Core user flow
 
-<!-- 02-behavior/01-scenarios.md の Day 1 成功フロー（1〜3本）を要約。 -->
+<!-- 02-behavior/01-core-scenarios.md の Day 1 Happy Path（1〜3本）を要約。 -->
 
 -
 

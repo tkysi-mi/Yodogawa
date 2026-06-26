@@ -17,7 +17,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ## 前提
 
 - `docs/project/01-requirements/05-user-stories.md` が作成されていること。
-- `docs/project/02-behavior/01-scenarios.md` が作成されていること。
+- `docs/project/02-behavior/01-core-scenarios.md` が作成されていること。
 - `docs/project/04-design/` ディレクトリが存在すること。
 
 ## 手順
@@ -27,7 +27,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 以下を読み込む:
 
 - `docs/project/01-requirements/05-user-stories.md`
-- `docs/project/02-behavior/01-scenarios.md`
+- `docs/project/02-behavior/01-core-scenarios.md`
 - `docs/project/04-design/01-tech-stack.md`（存在する場合）
 
 不足があれば対応スキル（`/a-002`, `/a-003`, `/a-007`）の実行を促す。

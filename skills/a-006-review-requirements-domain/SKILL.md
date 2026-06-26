@@ -23,7 +23,7 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 以下のドキュメントが作成されていること:
 
 - `docs/project/01-requirements/` の各ドキュメント（`01-product-brief.md`, `02-mvp-scope.md`, `03-parking-lot.md`, `05-user-stories.md`、existing モードは加えて `06-features-implemented.md`）
-- `docs/project/02-behavior/01-scenarios.md`
+- `docs/project/02-behavior/01-core-scenarios.md`
 - `docs/project/03-domain/01-domain-model.md`, `02-ubiquitous-language.md`
 
 ## 手順
@@ -84,7 +84,7 @@ ls -l docs/project/01-requirements/*.md docs/project/02-behavior/*.md docs/proje
 - `../../templates/project/STAKEHOLDER-SUMMARY.md` → `docs/project/STAKEHOLDER-SUMMARY.md`
 - `../../templates/project/AI_CONTEXT.md` → `docs/project/AI_CONTEXT.md`
 
-上流ドキュメント（`01-product-brief.md` / `02-mvp-scope.md` / `02-behavior/01-scenarios.md` / `03-domain/`）を**要約・参照**して各テンプレートを埋める（single source of truth を複製しない）。`AI_CONTEXT.md` には **MVP must NOT build**（Won't / Out of Scope）を必ず明記する。`STAKEHOLDER-SUMMARY.md` には手順3の PM Gate 判定を転記する。
+上流ドキュメント（`01-product-brief.md` / `02-mvp-scope.md` / `02-behavior/01-core-scenarios.md` / `03-domain/`）を**要約・参照**して各テンプレートを埋める（single source of truth を複製しない）。`AI_CONTEXT.md` には **MVP must NOT build**（Won't / Out of Scope）を必ず明記する。`STAKEHOLDER-SUMMARY.md` には手順3の PM Gate 判定を転記する。
 
 ### 6. 結果の報告と修正提案
 

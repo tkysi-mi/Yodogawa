@@ -2,16 +2,16 @@
 
 SKILL.md 手順2 で実施する各チェック項目の詳細。自動検索（grep 等）と手動確認を組み合わせる。
 
-## 2.1 ユーザーストーリー ↔ シナリオ
+## 2.1 ユーザーストーリー ↔ Core Scenario
 
-- **カバレッジ**: すべての US-XXX に対応する SC-XXX が存在するか。
-- **整合性**: ストーリーの「価値」とシナリオの「結果（Then）」が一致しているか。
+- **カバレッジ**: MVP Scope の Must 機能に対応する Core Scenario（Day 1 Happy Path）が存在するか。User Story は要約 AC、Core Scenario は実行時の主要行動という SSoT の住み分けを保つ（全 US を逐一シナリオ化しない）。
+- **整合性**: ストーリーの「価値」と Core Scenario の「結果（Then）」が一致しているか。
 
 ```bash
 # 全ユーザーストーリーの ID 抽出
 grep -oE "US-[0-9]+" docs/project/01-requirements/05-user-stories.md | sort -u
-# シナリオ側の参照
-grep -oE "US-[0-9]+" docs/project/02-behavior/01-scenarios.md | sort -u
+# Core Scenario 側の対応 Must / フロー参照
+grep -oE "FN-[0-9]+|CS-[0-9]+" docs/project/02-behavior/01-core-scenarios.md | sort -u
 ```
 
 ## 2.2 MVP スコープ・実装済み機能 ↔ シナリオ

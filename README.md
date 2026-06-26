@@ -127,7 +127,7 @@ Why? ─── What? ─── How?
 |  1  | `/a-001` | **Setup Doc Structure**   | ドキュメント構造をセットアップ（a-002 が自動実行するため任意） |
 |  2  | `/a-002` | **Initialize Project**    | Product Brief（課題・ユーザー・価値・成功指標）を作成（新規/既存モード対応） |
 | 2a  | `/a-002a`| **Slice MVP Scope**       | MVP を Must/Not Now/Won't に切り分け、やらないこと（Out of Scope）を明示 |
-|  3  | `/a-003` | **Create Scenarios**      | ユーザーストーリーをBDD（Gherkin）シナリオに変換   |
+|  3  | `/a-003` | **Create Core Scenarios** | MVP の主要行動（Day 1 Happy Path・Critical Failure）を定義（詳細 Gherkin は任意） |
 |  4  | `/a-004` | **Define Domain Model**   | Event Stormingでドメインモデルを定義               |
 |  5  | `/a-005` | **Create Domain Diagram** | ドメインモデルを図解（コンテキスト境界・集約）     |
 |  6  | `/a-006` | **Review & PM Gate**      | ⚠️ **整合性レビュー＋PM Gate（Go/No-Go）、STAKEHOLDER-SUMMARY・AI_CONTEXT を生成** |
@@ -232,7 +232,7 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 - **新規プロダクト向け（greenfield）**: Product Brief → MVP Scope → Core Scenarios → Domain Sketch → PM Gate
 - **既存プロダクト向け（existing / brownfield）**: Codebase Inventory → Product Brief 補完 → Scope 再定義
 
-> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として、**MVP Scope** は `/a-002a`（Slice MVP Scope）が `02-mvp-scope.md`（Must/Not Now/Won't ＋ Out of Scope）として、**PM Gate** は `/a-006` が整合性レビュー＋ Go/Go with caveats/No-Go 判定として実行し、`STAKEHOLDER-SUMMARY.md`（合意用1枚）と `AI_CONTEXT.md`（AI 実装用コンテキスト）を生成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`06-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**Core Scenarios**（a-003 軽量化）は順次統合中です。
+> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として、**MVP Scope** は `/a-002a`（Slice MVP Scope）が `02-mvp-scope.md`（Must/Not Now/Won't ＋ Out of Scope）として、**PM Gate** は `/a-006` が整合性レビュー＋ Go/Go with caveats/No-Go 判定として実行し、`STAKEHOLDER-SUMMARY.md`（合意用1枚）と `AI_CONTEXT.md`（AI 実装用コンテキスト）を生成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`06-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**Core Scenarios** は `/a-003`（Create Core Scenarios）が `01-core-scenarios.md`（Day 1 Happy Path・Critical Failure・Not Covered in MVP）として実行します。詳細な Gherkin は任意（`skills/a-003-create-scenarios/reference/detailed-gherkin-template.md`）です。
 >
 > 🤖 `a-006` 完了後、Go / Go with caveats なら `docs/project/AI_CONTEXT.md` を実装エージェント（Vibe coding / AI 実装）へ渡すと、スコープ境界（作る/作らないもの）を保ったまま実装に入れます。
 

@@ -15,7 +15,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/02-behavior/01-scenarios.md` が作成されている（`/a-003-create-scenarios` 実行済み）
+- `docs/project/02-behavior/01-core-scenarios.md` が作成されている（`/a-003-create-scenarios` 実行済み）
 - `docs/project/03-domain/` ディレクトリが存在（なければ `/a-001-setup-doc-structure`）
 - ドメインエキスパートと協力できる
 
@@ -27,7 +27,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ls -la docs/project/03-domain/ 2>/dev/null || echo "ディレクトリが存在しません"
 ```
 
-存在しなければ `/a-001-setup-doc-structure` を促す。`docs/project/02-behavior/01-scenarios.md` を読み込み内容確認。
+存在しなければ `/a-001-setup-doc-structure` を促す。`docs/project/02-behavior/01-core-scenarios.md` を読み込み内容確認。
 
 ### 2. テンプレートの準備
 

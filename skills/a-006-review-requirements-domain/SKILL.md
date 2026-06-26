@@ -19,7 +19,7 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 
 以下のドキュメントが作成されていること:
 
-- `docs/project/01-requirements/01-product-brief.md`, `02-features-implemented.md` 〜 `05-user-stories.md`
+- `docs/project/01-requirements/` の各ドキュメント（`01-product-brief.md`, `02-mvp-scope.md`, `03-parking-lot.md`, `04-non-functional-requirements.md`, `05-user-stories.md`、existing モードは加えて `06-features-implemented.md`）
 - `docs/project/02-behavior/01-scenarios.md`
 - `docs/project/03-domain/01-domain-model.md`, `02-ubiquitous-language.md`
 
@@ -31,14 +31,14 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 ls -l docs/project/01-requirements/*.md docs/project/02-behavior/*.md docs/project/03-domain/*.md
 ```
 
-不足があれば、対応する `/a-002`, `/a-003`, `/a-004` スキルの実行を促す。
+不足があれば、対応する `/a-002`, `/a-002a`, `/a-003`, `/a-004` スキルの実行を促す。
 
 ### 2. 一貫性チェックの実行
 
 以下の 6 観点を自動検索（grep 等）と手動確認で検証する。詳細な観点・コマンドは [reference/consistency-checks.md](reference/consistency-checks.md) を参照。
 
 - **2.1 ユーザーストーリー ↔ シナリオ**: US-XXX に対応する SC-XXX の存在、価値と結果の整合
-- **2.2 実装済み/予定機能 ↔ シナリオ**: リグレッション用/優先度 High のカバレッジ
+- **2.2 MVP スコープ/実装済み機能 ↔ シナリオ**: Must 機能/リグレッション用のカバレッジ
 - **2.3 非機能要件 ↔ ドメインモデル**: 性能要件（Read Model）、セキュリティ（Policy/Guard）
 - **2.4 シナリオ ↔ ドメインモデル**: Command / Event / Actor の対応
 - **2.5 ユビキタス言語**: 主要要素の登録、禁止用語の検出

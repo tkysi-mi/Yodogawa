@@ -2,7 +2,7 @@
 
 SKILL.md 手順4で使うテンプレート。要件・ドメイン・設計・README など各ドキュメントに追記するサンプル。
 
-## features-implemented.md
+## 06-features-implemented.md
 
 ```markdown
 ## ユーザー認証・認可
@@ -27,10 +27,10 @@ SKILL.md 手順4で使うテンプレート。要件・ドメイン・設計・R
 **PR/MR**: #123
 ```
 
-## features-planned.md
+## 03-parking-lot.md
 
-- 実装完了した機能をリストから削除
-- または、ステータスを「実装済み」に変更し `02-features-implemented.md` への参照を追加
+- 実装完了した（または不要判断した）アイデアを backlog から削除
+- または、ステータスを「実装済み」に変更し `06-features-implemented.md` への参照を追加
 
 ## domain-model.md
 

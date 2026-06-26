@@ -14,10 +14,11 @@ grep -oE "US-[0-9]+" docs/project/01-requirements/05-user-stories.md | sort -u
 grep -oE "US-[0-9]+" docs/project/02-behavior/01-scenarios.md | sort -u
 ```
 
-## 2.2 実装済み機能・予定機能 ↔ シナリオ
+## 2.2 MVP スコープ・実装済み機能 ↔ シナリオ
 
-- **実装済み機能**: `02-features-implemented.md` の機能にリグレッション用シナリオが存在するか。
-- **予定機能**: `03-features-planned.md` の優先度 High 機能にシナリオが存在するか。
+- **MVP スコープ**: `02-mvp-scope.md` の Must 機能にシナリオが存在するか。
+- **実装済み機能**: `06-features-implemented.md`（existing モード）の機能にリグレッション用シナリオが存在するか。
+- **Parking Lot**: `03-parking-lot.md` は backlog のためシナリオ必須ではない（MVP 昇格時に MVP スコープ側で扱う）。
 
 ## 2.3 非機能要件 ↔ ドメインモデル
 

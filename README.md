@@ -126,6 +126,7 @@ Why? ─── What? ─── How?
 | :-: | :------- | :------------------------ | :------------------------------------------------- |
 |  1  | `/a-001` | **Setup Doc Structure**   | ドキュメント構造をセットアップ（a-002 が自動実行するため任意） |
 |  2  | `/a-002` | **Initialize Project**    | Product Brief（課題・ユーザー・価値・成功指標）を作成（新規/既存モード対応） |
+| 2a  | `/a-002a`| **Slice MVP Scope**       | MVP を Must/Not Now/Won't に切り分け、やらないこと（Out of Scope）を明示 |
 |  3  | `/a-003` | **Create Scenarios**      | ユーザーストーリーをBDD（Gherkin）シナリオに変換   |
 |  4  | `/a-004` | **Define Domain Model**   | Event Stormingでドメインモデルを定義               |
 |  5  | `/a-005` | **Create Domain Diagram** | ドメインモデルを図解（コンテキスト境界・集約）     |
@@ -217,7 +218,7 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 
 | ステップ | コマンド            | 内容                                                                      |
 | :------: | :------------------ | :------------------------------------------------------------------------ |
-|    1     | `/a-002` → `/a-005` | Product Brief、シナリオ、ドメインモデル（a-002 がドキュメント構造を自動初期化） |
+|    1     | `/a-002` → `/a-002a` → `/a-005` | Product Brief、MVP スコープ、シナリオ、ドメインモデル（a-002 がドキュメント構造を自動初期化） |
 |    2     | `/a-006`            | ⚠️ **要件・ドメインレビュー（必須）**                                     |
 |    3     | `/a-007` → `/a-014` | 技術スタック、リポジトリ構成、画面設計、DB、API、アーキテクチャ、インフラ |
 |    4     | `/a-015`            | ⚠️ **全体設計レビュー（必須）**                                           |
@@ -229,7 +230,7 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 - **新規プロダクト向け（greenfield）**: Product Brief → MVP Scope → Core Scenarios → Domain Sketch → PM Gate
 - **既存プロダクト向け（existing / brownfield）**: Codebase Inventory → Product Brief 補完 → Scope 再定義
 
-> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として作成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`02-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**MVP Scope / Core Scenarios / PM Gate** は順次 a-002〜a-006 へ統合中です。
+> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として、**MVP Scope** は `/a-002a`（Slice MVP Scope）が `02-mvp-scope.md`（Must/Not Now/Won't ＋ Out of Scope）として作成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`06-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**Core Scenarios / PM Gate** は順次 a-003〜a-006 へ統合中です。
 
 ---
 

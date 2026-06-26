@@ -11,7 +11,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 - Product Brief を中核に、誰のどの課題を・なぜ今・どう解き・どう成功を測るかをステークホルダーと合意できる形で言語化する。
 - 新規（greenfield）/ 既存（existing）の2モードに分岐し、既定は新規プロダクト。
-- Product Brief を起点に、予定機能・非機能要件・ユーザーストーリーへ展開する（実装済み機能は existing モードのみ）。
+- Product Brief を起点に、Parking Lot（アイデア backlog）・非機能要件・ユーザーストーリーへ展開する（実装済み機能は existing モードのみ）。MVP スコープの確定は次スキル `/a-002a-slice-mvp-scope` が担う。
 - 抽象的・曖昧な表現を避け、対話を通じて具体的な数値・期限・制約・優先度を明確化する。
 
 ## 前提
@@ -61,12 +61,14 @@ mkdir -p docs/project/01-requirements docs/project/02-behavior docs/project/03-d
 **existing モード**（5 ファイル）:
 
 - `../../templates/project/01-requirements/01-product-brief.md` → `docs/project/01-requirements/01-product-brief.md`
-- `../../templates/project/01-requirements/02-features-implemented.md` → `docs/project/01-requirements/02-features-implemented.md`
-- `../../templates/project/01-requirements/03-features-planned.md` → `docs/project/01-requirements/03-features-planned.md`
+- `../../templates/project/01-requirements/03-parking-lot.md` → `docs/project/01-requirements/03-parking-lot.md`
 - `../../templates/project/01-requirements/04-non-functional-requirements.md` → `docs/project/01-requirements/04-non-functional-requirements.md`
 - `../../templates/project/01-requirements/05-user-stories.md` → `docs/project/01-requirements/05-user-stories.md`
+- `../../templates/project/01-requirements/06-features-implemented.md` → `docs/project/01-requirements/06-features-implemented.md`
 
-**greenfield モード**（必須 4 ファイル）: 上記から `02-features-implemented.md` を**除く**。新規プロダクトでは実装済み機能がまだ存在しないため、`02-features-implemented.md` は**任意**扱いとし、ユーザーが棚卸しを希望した場合のみ「空の任意資料」としてコピーする。
+**greenfield モード**（必須 4 ファイル）: 上記から `06-features-implemented.md` を**除く**。新規プロダクトでは実装済み機能がまだ存在しないため、`06-features-implemented.md` は**任意**扱いとし、ユーザーが棚卸しを希望した場合のみ「空の任意資料」としてコピーする。
+
+> `02-mvp-scope.md` は本スキルでは生成しない。次スキル `/a-002a-slice-mvp-scope` が作成する。
 
 ### 4. コードベースの自動分析と提案（existing モードのみ）
 
@@ -94,17 +96,17 @@ find src app lib -maxdepth 2 2>/dev/null
 
 ### 6. 実装済み機能一覧の記入（existing モードのみ）
 
-> greenfield モードではこの手順をスキップする（`02-features-implemented.md` は任意の空資料）。
+> greenfield モードではこの手順をスキップする（`06-features-implemented.md` は任意の空資料）。
 
-`02-features-implemented.md` に、コードベース調査で検出したディレクトリ/ファイル名から機能を提案し、ヒアリング結果をテーブルに記入する（Category 1/2、機能名、説明、機能 ID）。
+`06-features-implemented.md` に、コードベース調査で検出したディレクトリ/ファイル名から機能を提案し、ヒアリング結果をテーブルに記入する（Category 1/2、機能名、説明、機能 ID）。
 
 コード調査コマンドとヒアリング項目は [reference/hearing-questions.md](reference/hearing-questions.md#手順4-実装済み機能一覧) を参照。
 
-### 7. 予定機能一覧の記入
+### 7. Parking Lot（アイデア backlog）の記入
 
-`03-features-planned.md` に、Product Brief（existing モードでは加えて実装済み機能）とのギャップを分析して未実装機能を提案し、ヒアリング結果をテーブルに記入する（機能 ID・優先度は未確定のまま）。
+`03-parking-lot.md` に、Product Brief（existing モードでは加えて実装済み機能）とのギャップから出てきた未実装アイデアを記入する（優先度は緩め。ここは確定スコープではない）。
 
-> 移管予定: 後続の MVP Scope スキルで `02-mvp-scope.md`（Must / Not Now / Won't）と Parking Lot に再編される予定。現状は後続スキル互換のため本手順で生成する。
+> MVP の取捨選択（Must / Not Now / Won't と優先順位付け）は次スキル `/a-002a-slice-mvp-scope` が `02-mvp-scope.md` で行う。本手順はその入力となるアイデア backlog を用意する。
 
 ### 8. 非機能要件の記入
 
@@ -140,8 +142,9 @@ find src app lib -maxdepth 2 2>/dev/null
 
 - `docs/project/01-requirements/01-product-brief.md` が作成され、課題・ターゲット・代替手段・価値提案・Why now・成功指標・クリティカル制約・非ゴールが具体的に埋まっている（**中核成果物**）
 - あわせて要件定義ドキュメントが作成されている
-  - existing モード: `01`〜`05` の 5 ドキュメント
-  - greenfield モード: `01`, `03`, `04`, `05`。`02-features-implemented.md` は任意
+  - existing モード: `01`, `03`, `04`, `05`, `06` の 5 ドキュメント
+  - greenfield モード: `01`, `03`, `04`, `05`。`06-features-implemented.md` は任意
+- MVP スコープ（`02-mvp-scope.md`）は次スキル `/a-002a-slice-mvp-scope` で作成する
 - すべてのドキュメントで抽象的表現が最小化され、具体的な数値・期限・制約が記載されている
 - ユーザーがドキュメント内容を確認し、承認またはフィードバックを提供している
 

@@ -8,6 +8,7 @@ SKILL.md 手順8で使う、生成済みドキュメントの構造確認用コ�
 # 01-product-brief.md: 主要セクションの確認
 grep "## 背景 / 解く課題" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 背景 / 解く課題"
 grep "## 成功指標" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 成功指標"
+grep "計測方法" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 成功指標の計測方法列"
 grep "## 非ゴール" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 非ゴール"
 
 # 06-features-implemented.md（existing モードのみ）: テーブルヘッダー

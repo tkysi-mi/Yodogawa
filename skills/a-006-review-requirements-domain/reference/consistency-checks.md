@@ -14,6 +14,18 @@ grep -oE "US-[0-9]+" docs/project/01-requirements/05-user-stories.md | sort -u
 grep -oE "FN-[0-9]+|CS-[0-9]+" docs/project/02-behavior/01-core-scenarios.md | sort -u
 ```
 
+### ユーザーストーリーの役割 ↔ ペルソナ（trace）
+
+- **役割が宙に浮かない**: `05-user-stories.md` の各ストーリーの「ペルソナ」列が、`01-product-brief.md` のペルソナ表で定義済みの ID（P-XXX）を参照しているか。**未定義のペルソナを参照する US はフラグ**する（役割の trace 切れ）。
+- **逆方向（任意）**: どの US からも参照されない主要ペルソナがあれば、スコープ漏れか過剰ペルソナのどちらかとして確認する。
+
+```bash
+# US が参照するペルソナ ID のうち、Product Brief に未定義のもの（出力があれば trace 切れ）
+comm -23 \
+  <(grep -oE "P-[0-9]+" docs/project/01-requirements/05-user-stories.md | sort -u) \
+  <(grep -oE "P-[0-9]+" docs/project/01-requirements/01-product-brief.md | sort -u)
+```
+
 ## 2.2 MVP スコープ・実装済み機能 ↔ シナリオ
 
 - **MVP スコープ**: `02-mvp-scope.md` の Must 機能にシナリオが存在するか。

@@ -1,6 +1,6 @@
 ---
 name: a-002-initialize-project
-description: プロジェクトの Product Brief（誰のどの課題を・なぜ今・どう解き・どう成功を測るか）を対話形式で作成し、要件定義ドキュメント群の起点とする。新規（greenfield）/ 既存（existing）の2モードに対応し、既定は新規。新規プロジェクト開始時、または要件が未整備の場合に使用。
+description: プロジェクトの問題定義(Why)を Product Brief（誰のどの課題を・なぜ今・どう解き・どう成功を測るか）として対話形式で作成し、要件定義の起点とする。MVP スコープ・ユーザーストーリーは後続スキルが担う。新規（greenfield）/ 既存（existing）の2モードに対応し、既定は新規。新規プロジェクト開始時、または要件が未整備の場合に使用。
 disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
@@ -11,7 +11,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 - Product Brief を中核に、誰のどの課題を・なぜ今・どう解き・どう成功を測るかをステークホルダーと合意できる形で言語化する。
 - 新規（greenfield）/ 既存（existing）の2モードに分岐し、既定は新規プロダクト。
-- Product Brief を起点に、Parking Lot（アイデア backlog）・ユーザーストーリーへ展開する（実装済み機能は existing モードのみ）。MVP スコープの確定は次スキル `/a-002a-slice-mvp-scope` が担う。
+- Product Brief を起点に後続スキルへ展開する: Parking Lot（アイデア backlog）と MVP スコープは `/a-002a-slice-mvp-scope`、ユーザーストーリーは `/a-002b-define-user-stories` が担う（実装済み機能の棚卸しは existing モードのみ本スキルが扱う）。
 - 詳細な非機能要件（応答時間・稼働率・スケーラビリティ等の定量値）は初期フェーズでは扱わない。MVP の作り方を変えるほど重要な制約のみを Product Brief の「クリティカル制約」に集約し、定量 NFR は設計フェーズ `/a-014-define-infrastructure` が所有する。
 - 抽象的・曖昧な表現を避け、対話を通じて具体的な数値・期限・制約・優先度を明確化する。
 
@@ -59,16 +59,15 @@ mkdir -p docs/project/01-requirements docs/project/02-behavior docs/project/03-d
 
 このスキルの配置ディレクトリ（`skills/a-002-initialize-project/`）を起点に、`docs/project/01-requirements/` へテンプレートを Read→Write する（FOR EACH）。出力先に既に存在するファイルは上書きせずスキップして報告する（冪等）。出力先ディレクトリが無ければ作成する。
 
-**existing モード**（4 ファイル）:
+**existing モード**（2 ファイル）:
 
 - `../../templates/project/01-requirements/01-product-brief.md` → `docs/project/01-requirements/01-product-brief.md`
-- `../../templates/project/01-requirements/03-parking-lot.md` → `docs/project/01-requirements/03-parking-lot.md`
-- `../../templates/project/01-requirements/05-user-stories.md` → `docs/project/01-requirements/05-user-stories.md`
 - `../../templates/project/01-requirements/06-features-implemented.md` → `docs/project/01-requirements/06-features-implemented.md`
 
-**greenfield モード**（必須 3 ファイル）: 上記から `06-features-implemented.md` を**除く**。新規プロダクトでは実装済み機能がまだ存在しないため、`06-features-implemented.md` は**任意**扱いとし、ユーザーが棚卸しを希望した場合のみ「空の任意資料」としてコピーする。
+**greenfield モード**（必須 1 ファイル）: `01-product-brief.md` のみ。新規プロダクトでは実装済み機能がまだ存在しないため、`06-features-implemented.md` は**任意**扱いとし、ユーザーが棚卸しを希望した場合のみ「空の任意資料」としてコピーする。
 
-> `02-mvp-scope.md` は本スキルでは生成しない。次スキル `/a-002a-slice-mvp-scope` が作成する。
+> `03-parking-lot.md` / `02-mvp-scope.md` は本スキルでは生成しない。次スキル `/a-002a-slice-mvp-scope` が作成する。
+> `05-user-stories.md` は `/a-002b-define-user-stories` が作成する。
 >
 > `04-non-functional-requirements.md`（詳細な定量 NFR）は初期フェーズでは生成しない。クリティカル制約は Product Brief（手順5）に集約し、詳細 NFR は設計フェーズ `/a-014-define-infrastructure` が扱う（採番上 04 は欠番）。
 
@@ -94,7 +93,7 @@ find src app lib -maxdepth 2 2>/dev/null
 - 「課題 → なぜ → なぜ」と3段以上掘り下げ、表層の要望ではなく本質的な課題に到達する。
 - 「この課題を作らずに放置したら何が起きるか」「既存の代替手段で十分ではないか」を必ず確認する。
 
-質問例は [reference/hearing-questions.md](reference/hearing-questions.md#手順3-product-brief) を参照。
+質問例は [reference/hearing-questions.md](reference/hearing-questions.md#手順5-product-brief) を参照。
 
 ### 6. 実装済み機能一覧の記入（existing モードのみ）
 
@@ -102,35 +101,21 @@ find src app lib -maxdepth 2 2>/dev/null
 
 `06-features-implemented.md` に、コードベース調査で検出したディレクトリ/ファイル名から機能を提案し、ヒアリング結果をテーブルに記入する（Category 1/2、機能名、説明、機能 ID）。
 
-コード調査コマンドとヒアリング項目は [reference/hearing-questions.md](reference/hearing-questions.md#手順4-実装済み機能一覧) を参照。
+コード調査コマンドとヒアリング項目は [reference/hearing-questions.md](reference/hearing-questions.md#手順6-実装済み機能一覧) を参照。
 
-### 7. Parking Lot（アイデア backlog）の記入
-
-`03-parking-lot.md` に、Product Brief（existing モードでは加えて実装済み機能）とのギャップから出てきた未実装アイデアを記入する（優先度は緩め。ここは確定スコープではない）。
-
-> MVP の取捨選択（Must / Not Now / Won't と優先順位付け）は次スキル `/a-002a-slice-mvp-scope` が `02-mvp-scope.md` で行う。本手順はその入力となるアイデア backlog を用意する。
-
-### 8. ユーザーストーリーの記入
-
-`05-user-stories.md` に、作成済みドキュメントから主要ユーザージャーニーを抽出してストーリー案を提示し、ヒアリング結果をテーブルに記入する（優先度・受け入れ基準含む）。
-
-ストーリーテンプレート: 「[役割]として、[〇〇機能]を使いたい、なぜなら[価値]だから」
-
-> User Story は要約レベルの受け入れ基準（AC）を担い、実行時の主要行動は `/a-003-create-scenarios` の Core Scenarios が担う（SSoT の住み分け）。
-
-### 9. 全体レビュー
+### 7. 全体レビュー
 
 - 作成した全ドキュメントをユーザーに提示し、以下を確認:
   - 「記載内容に誤りや漏れはありませんか？」
   - 「抽象的すぎる記述や、解釈が分かれそうな表現はありますか？」
   - 「テンプレートのコメントや不要な例示は適切に処理されていますか？」
 
-### 10. 完了条件と構造の確認
+### 8. 完了条件と構造の確認
 
 - ファイルの存在と主要セクション/テーブル構造を検証。
 - 検証コマンド・チェックリスト・Git コミット手順は [reference/structure-check.md](reference/structure-check.md) を参照。
 
-### 11. Git への追加（オプション）
+### 9. Git への追加（オプション）
 
 詳細は [reference/structure-check.md](reference/structure-check.md#git-への追加オプション) を参照。
 
@@ -138,10 +123,10 @@ find src app lib -maxdepth 2 2>/dev/null
 
 - `docs/project/01-requirements/01-product-brief.md` が作成され、課題・ターゲット・代替手段・価値提案・Why now・成功指標・クリティカル制約・非ゴールが具体的に埋まっている（**中核成果物**）
 - あわせて要件定義ドキュメントが作成されている
-  - existing モード: `01`, `03`, `05`, `06` の 4 ドキュメント
-  - greenfield モード: `01`, `03`, `05`。`06-features-implemented.md` は任意
+  - existing モード: `01`, `06` の 2 ドキュメント
+  - greenfield モード: `01`。`06-features-implemented.md` は任意
   - `04`（詳細 NFR）は初期フェーズでは生成しない（設計フェーズ `/a-014` が所有）
-- MVP スコープ（`02-mvp-scope.md`）は次スキル `/a-002a-slice-mvp-scope` で作成する
+- Parking Lot（`03-parking-lot.md`）・MVP スコープ（`02-mvp-scope.md`）は次スキル `/a-002a-slice-mvp-scope` で、ユーザーストーリー（`05-user-stories.md`）は `/a-002b-define-user-stories` で作成する
 - すべてのドキュメントで抽象的表現が最小化され、具体的な数値・期限・制約が記載されている
 - ユーザーがドキュメント内容を確認し、承認またはフィードバックを提供している
 
@@ -153,6 +138,5 @@ find src app lib -maxdepth 2 2>/dev/null
 
 ## 参考
 
-- [reference/hearing-questions.md](reference/hearing-questions.md) — Product Brief（手順5）および各成果物のヒアリング質問集。末尾に深掘りフレーム集（5 Whys / Pre-mortem / 代替手段・競合 / Day 1 MVP / 検証仮説 / Inversion）
-- [reference/user-stories-guide.md](reference/user-stories-guide.md) — ユーザーストーリーの INVEST・受け入れ基準・優先度付け・3C などの詳しい考え方（手順8）
-- [reference/structure-check.md](reference/structure-check.md) — 手順10の構造チェックコマンドと Git コミット手順（手順11）
+- [reference/hearing-questions.md](reference/hearing-questions.md) — Product Brief（手順5）・実装済み機能（手順6）のヒアリング質問集。末尾に深掘りフレーム集（5 Whys / Pre-mortem / 代替手段・競合 / Day 1 MVP / 検証仮説 / Inversion）。深掘りフレーム集は `/a-002a-slice-mvp-scope` からも参照される
+- [reference/structure-check.md](reference/structure-check.md) — 手順8の構造チェックコマンドと Git コミット手順（手順9）

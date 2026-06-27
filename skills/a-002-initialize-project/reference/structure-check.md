@@ -1,6 +1,6 @@
 # 構造チェックコマンド集
 
-SKILL.md 手順10で使う、生成済みドキュメントの構造確認用コマンド。
+SKILL.md 手順8で使う、生成済みドキュメントの構造確認用コマンド。
 
 ## a-002 生成ドキュメントの必須セクション/テーブル検証
 
@@ -9,14 +9,6 @@ SKILL.md 手順10で使う、生成済みドキュメントの構造確認用コ
 grep "## 背景 / 解く課題" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 背景 / 解く課題"
 grep "## 成功指標" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 成功指標"
 grep "## 非ゴール" docs/project/01-requirements/01-product-brief.md && echo "OK" || echo "MISSING: 非ゴール"
-
-# 03-parking-lot.md: テーブルヘッダー
-grep "| Category 1 | Category 2 |" docs/project/01-requirements/03-parking-lot.md \
-  && echo "OK" || echo "MISSING: Table Header"
-
-# 05-user-stories.md: テーブルヘッダー
-grep "| ストーリーID | ストーリー |" docs/project/01-requirements/05-user-stories.md \
-  && echo "OK" || echo "MISSING: Table Header"
 
 # 06-features-implemented.md（existing モードのみ）: テーブルヘッダー
 grep "| 機能ID | Category 1 |" docs/project/01-requirements/06-features-implemented.md \
@@ -39,7 +31,7 @@ git status
 推奨コミットメッセージ:
 
 ```
-docs: 要件定義ドキュメントの作成
+docs: Product Brief（問題定義/Why）の作成
 
-- Product Brief、Parking Lot、ユーザーストーリーを追加
+- Product Brief を追加（existing モードは実装済み機能も）
 ```

@@ -18,7 +18,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 - `docs/project/01-requirements/01-product-brief.md` が作成されていること（なければ先に `/a-002-initialize-project` を実行）。
 - 課題・ターゲット・成功指標・非ゴールが Product Brief に記載されていること。
-- アイデアの backlog は `03-parking-lot.md`（a-002 が生成）を入力として利用できる。
+- アイデアの backlog（`03-parking-lot.md`）は本スキルが生成・管理する（Product Brief から候補を起こす）。
 
 ## 手順
 
@@ -32,11 +32,19 @@ ls -l docs/project/01-requirements/01-product-brief.md 2>/dev/null || echo "MISS
 
 ### 2. テンプレートの準備
 
-このスキルの配置ディレクトリ（`skills/a-002a-slice-mvp-scope/`）を起点に、`../../templates/project/01-requirements/02-mvp-scope.md` を Read→Write で `docs/project/01-requirements/02-mvp-scope.md` へコピーする。出力先に既に存在する場合は上書きせずスキップして報告する（冪等）。
+このスキルの配置ディレクトリ（`skills/a-002a-slice-mvp-scope/`）を起点に、以下を Read→Write でコピーする（FOR EACH）。出力先に既に存在する場合は上書きせずスキップして報告する（冪等）。
 
-### 3. 候補機能の洗い出し
+- `../../templates/project/01-requirements/02-mvp-scope.md` → `docs/project/01-requirements/02-mvp-scope.md`
+- `../../templates/project/01-requirements/03-parking-lot.md` → `docs/project/01-requirements/03-parking-lot.md`
 
-`01-product-brief.md`（課題・価値提案・成功指標）と `03-parking-lot.md`（アイデア backlog）を読み込み、候補機能を列挙する。Product Brief の課題・価値提案から、それを満たすのに必要な機能を逆算する。
+### 3. 候補機能の洗い出し（Parking Lot への記入）
+
+`01-product-brief.md`（課題・価値提案・成功指標）を読み込み、課題・価値提案を満たすのに必要な機能を逆算して候補を列挙する。列挙したアイデアは `03-parking-lot.md` に幅広く記入する（この段階では**優先度・機能 ID を厳密に決めず**拾う）。
+
+- 差分提案例: 「Product Brief で『〇〇機能』への言及がありましたが backlog に未記載です。Parking Lot に追加しますか？」
+- 記入項目: Category 1 / Category 2 / 機能名（アイデア段階でも可）/ 説明（目的・価値中心）。
+
+> existing モードでは `06-features-implemented.md`（実装済み機能、a-002 が生成）も読み込み、未実装のギャップを Parking Lot 候補に加える。
 
 ### 4. MVP 判定（Must / Not Now / Won't）
 
@@ -68,11 +76,19 @@ Not Now / Won't と判定したアイデアを `03-parking-lot.md` に移動・�
 
 ## 完了条件
 
+- `docs/project/01-requirements/03-parking-lot.md` が作成され、候補アイデアが幅広く記入されている（優先度・機能 ID は未確定でよい）。
 - `docs/project/01-requirements/02-mvp-scope.md` が作成され、各候補機能に Must / Not Now / Won't 判定が入っている。
 - すべての Must 機能が課題 / 検証仮説 / 成功指標のいずれかに紐づいている。
 - Out of Scope（Won't）が理由付きで記入されている。
 - 検証する仮説が 1〜3 個に絞られている。
 - ユーザーがスコープに合意またはフィードバックを提供している。
+
+構造チェック:
+
+```bash
+grep "| Category 1 | Category 2 |" docs/project/01-requirements/03-parking-lot.md && echo "OK" || echo "MISSING: parking-lot Table Header"
+grep -E "Must|Not Now|Won't" docs/project/01-requirements/02-mvp-scope.md && echo "OK" || echo "MISSING: MVP 判定"
+```
 
 ## エスカレーション
 
@@ -83,6 +99,7 @@ Not Now / Won't と判定したアイデアを `03-parking-lot.md` に移動・�
 ## 参考
 
 - [../../templates/project/01-requirements/02-mvp-scope.md](../../templates/project/01-requirements/02-mvp-scope.md) — MVP Scope テンプレート（判定基準・列定義）
+- [../../templates/project/01-requirements/03-parking-lot.md](../../templates/project/01-requirements/03-parking-lot.md) — Parking Lot テンプレート（アイデア backlog）
 - [../a-002-initialize-project/reference/hearing-questions.md](../a-002-initialize-project/reference/hearing-questions.md) — 深掘りフレーム集（より安い代替手段・競合 / Day 1 MVP / 1ヶ月後に検証したい仮説 / Inversion）。手順4・5 のスコープ判定で活用する
 - `01-product-brief.md` — 課題・成功指標・非ゴールの参照元
 - `03-parking-lot.md` — Not Now / Won't アイデアの backlog

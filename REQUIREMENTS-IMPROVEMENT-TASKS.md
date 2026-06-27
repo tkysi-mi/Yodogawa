@@ -7,7 +7,9 @@
 
 > ⚠️ **このリストは A-Series 再設計（#33）より前に作成された。** PM/MVP 中心への再設計（P1-P3, マージ済み）で要件定義の構造が変わったため、以下は再設計後の構造へ整合済み。各タスクに状態タグを付し、旧ファイル参照を新ファイル名へ更新した。
 >
-> 再設計後の `01-requirements/` 構造: `01-product-brief.md` / `02-mvp-scope.md` / `03-parking-lot.md` / `05-user-stories.md` / `06-features-implemented.md`（existing のみ）。`04` は欠番（詳細 NFR は設計フェーズ `a-014-define-infrastructure` が所有）。振る舞いは `02-behavior/01-core-scenarios.md`、ドメインは `03-domain/01-domain-sketch.md`（軽量・標準）＋ `01-domain-model.md`（Full DDD・任意）。
+> 再設計後の `01-requirements/` 構造: `01-product-brief.md`（a-002 が所有）/ `02-mvp-scope.md` ＋ `03-parking-lot.md`（a-002a が所有）/ `05-user-stories.md`（a-002b が所有）/ `06-features-implemented.md`（existing のみ、a-002）。`04` は欠番（詳細 NFR は設計フェーズ `a-014-define-infrastructure` が所有）。振る舞いは `02-behavior/01-core-scenarios.md`、ドメインは `03-domain/01-domain-sketch.md`（軽量・標準）＋ `01-domain-model.md`（Full DDD・任意）。
+>
+> #36（a-002 単一責任分割）対応: a-002 を問題定義(Why)専任に縮小、Parking Lot を a-002a へ統合、User Stories を新規 `a-002b-define-user-stories` へ分離（英字 suffix 採番）。
 >
 > 状態タグ凡例: **✅完了**（再設計 P1-P3 で対応済み）/ **🟡一部**（別手段で概ね対応・残りは任意）/ **🔁再ターゲット**（パス・所有者変更、未対応）/ **⛔再設計で不要**（再設計の方針と矛盾するため取り下げ）/ **⬜未対応**（再設計後も有効な未着手タスク）。
 
@@ -68,9 +70,9 @@ ISO/IEC 25010 の網羅チェックが薄く、測定方法と違反時影響が
 
 US の AC（Given-When-Then）と `01-core-scenarios.md`（旧 `01-scenarios.md`）の Scenario が二重に Gherkin 化される問題。
 
-- [x] **[P2] ✅完了** US と Scenario の **SSoT 関係を明文化** → P2 で確立: **User Story = 要約レベルの AC / Core Scenario = 実行時の主要行動**。`05-user-stories.md` コメント・`01-core-scenarios.md`・a-002 SKILL 手順8・a-003 SKILL 前提に記載済み。
+- [x] **[P2] ✅完了** US と Scenario の **SSoT 関係を明文化** → P2 で確立: **User Story = 要約レベルの AC / Core Scenario = 実行時の主要行動**。`05-user-stories.md` コメント・`01-core-scenarios.md`・a-002b SKILL（#36 で a-002 から分離）・a-003 SKILL 前提に記載済み。
 - [ ] **[P2] ⬜未対応** US テーブルに `Scenarios:` 列（SC-XXX のリスト）を追加し参照を一方向化。※SSoT は明文化済みだが明示的な相互参照列は未追加。
-- [ ] **[P3] 🟡一部** a-002 手順8 に **INVEST 原則のチェック**を組み込む → P3 で `user-stories-guide.md`（INVEST・受け入れ基準・優先度）を新設し SKILL 手順8 から参照。実行時チェックリスト化が必要なら追加。
+- [ ] **[P3] 🟡一部** ユーザーストーリー作成スキル（a-002b）に **INVEST 原則のチェック**を組み込む → P3 で `user-stories-guide.md`（INVEST・受け入れ基準・優先度）を新設し a-002b SKILL から参照（#36 で a-002 から a-002b へ移設）。実行時チェックリスト化が必要なら追加。
 
 ---
 

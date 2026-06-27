@@ -41,7 +41,7 @@
 
 ## 成功指標
 
-<!-- 01-product-brief.md「成功指標」を要約（North Star / KPI / Guardrail）。 -->
+<!-- 01-product-brief.md「成功指標」を要約（North Star / KPI / Guardrail）。各指標は計測方法（どこで・どう取得）も一言添える。 -->
 
 - North Star:
 - KPI / Guardrail:

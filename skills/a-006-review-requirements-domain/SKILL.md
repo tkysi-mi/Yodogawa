@@ -45,7 +45,7 @@ ls -l docs/project/01-requirements/*.md docs/project/02-behavior/*.md docs/proje
 - **2.3 クリティカル制約 ↔ スコープ/ドメイン**: Product Brief のクリティカル制約（法務・セキュリティ・期限・予算等）が MVP スコープ判断・ドメインモデルに反映されているか（初期フェーズでは定量 NFR ではなく制約を確認。詳細 NFR は a-014 の責務）
 - **2.4 Core Scenario ↔ Domain Sketch**: アクター・中核エンティティ・重要ビジネスルールの対応（Full DDD 採用時は Command / Event / Actor の対応も）
 - **2.5 ユビキタス言語**: 主要要素の登録、禁止用語の検出
-- **2.6 目的との整合性**: Product Brief の価値提案と Domain Sketch の中核エンティティ（Full DDD 採用時は Core Domain）の一致
+- **2.6 目的との整合性**: Product Brief の価値提案と Domain Sketch の中核エンティティ（Full DDD 採用時は Core Domain）の一致、および**目的 ↔ 成功指標**の整合・成功指標の計測可能性
 - **2.7 MVP 正当化 / 過剰作り込み（YAGNI）**: 各 Must が課題/ペルソナ/指標/仮説に trace するか、Out of Scope と矛盾しないか、安い代替手段で済むものが Must になっていないか
 
 ### 3. PM Gate 判定（Go / Go with caveats / No-Go）

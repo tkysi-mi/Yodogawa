@@ -104,3 +104,4 @@ git status
 ## 参考
 
 - [reference/event-storming-guide.md](reference/event-storming-guide.md) — ドメイン概念抽出の観点、（advanced）Event Storming / Context Map パターン、構造確認コマンド
+- [reference/ubiquitous-language-guide.md](reference/ubiquitous-language-guide.md) — ユビキタス言語の記載ポイント・禁止用語の選び方・Living Document 運用（手順6）

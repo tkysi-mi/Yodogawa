@@ -83,5 +83,6 @@ Not Now / Won't と判定したアイデアを `03-parking-lot.md` に移動・�
 ## 参考
 
 - [../../templates/project/01-requirements/02-mvp-scope.md](../../templates/project/01-requirements/02-mvp-scope.md) — MVP Scope テンプレート（判定基準・列定義）
+- [../a-002-initialize-project/reference/hearing-questions.md](../a-002-initialize-project/reference/hearing-questions.md) — 深掘りフレーム集（より安い代替手段・競合 / Day 1 MVP / 1ヶ月後に検証したい仮説 / Inversion）。手順4・5 のスコープ判定で活用する
 - `01-product-brief.md` — 課題・成功指標・非ゴールの参照元
 - `03-parking-lot.md` — Not Now / Won't アイデアの backlog

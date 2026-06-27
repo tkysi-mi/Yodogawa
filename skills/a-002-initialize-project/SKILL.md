@@ -153,5 +153,6 @@ find src app lib -maxdepth 2 2>/dev/null
 
 ## 参考
 
-- [reference/hearing-questions.md](reference/hearing-questions.md) — Product Brief（手順5）および各成果物のヒアリング質問集
+- [reference/hearing-questions.md](reference/hearing-questions.md) — Product Brief（手順5）および各成果物のヒアリング質問集。末尾に深掘りフレーム集（5 Whys / Pre-mortem / 代替手段・競合 / Day 1 MVP / 検証仮説 / Inversion）
+- [reference/user-stories-guide.md](reference/user-stories-guide.md) — ユーザーストーリーの INVEST・受け入れ基準・優先度付け・3C などの詳しい考え方（手順8）
 - [reference/structure-check.md](reference/structure-check.md) — 手順10の構造チェックコマンドと Git コミット手順（手順11）

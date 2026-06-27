@@ -306,7 +306,7 @@ description: プロジェクトのドキュメントディレクトリ構造を�
 
 `templates/` のテンプレートは**記入欄＋簡潔なヒント＋例**を中心に構成し、長大な HTML コメント解説は持たせません。生成される docs はステークホルダーと AI coding が読む成果物であり、大量の解説コメントが残ると合意・実装の両方でノイズになるためです。
 
-原則・理論・ベストプラクティス・用語定義などの詳しい解説は、各スキルの `reference/`（例: `a-002` の `hearing-questions.md` / `user-stories-guide.md`、`a-004` の `event-storming-guide.md` / `ubiquitous-language-guide.md`）に置き、テンプレートのコメントからはパスで参照します。テンプレートを記入するときに必要なら参照すればよく、生成 docs はクリーンに保たれます。
+原則・理論・ベストプラクティス・用語定義などの詳しい解説は、各スキルの `reference/`（例: `a-002` の `hearing-questions.md`、`a-002b` の `user-stories-guide.md`、`a-004` の `event-storming-guide.md` / `ubiquitous-language-guide.md`）に置き、テンプレートのコメントからはパスで参照します。テンプレートを記入するときに必要なら参照すればよく、生成 docs はクリーンに保たれます。
 
 > 設計フェーズ（`04-design/` 配下、`a-007`〜`a-014` が生成）の一部テンプレートは、まだ解説コメントが厚い状態です。これらの圧縮は今後のフォローアップ対象です。
 

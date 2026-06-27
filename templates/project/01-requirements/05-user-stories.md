@@ -5,7 +5,7 @@
 使い方:
   - 各行は「[役割]として、[目的]がしたい、なぜなら[理由]」で書く。実装方法(How)ではなく目的(What/Why)に集中。
   - 受け入れ基準は Given-When-Then かチェックリストで、テスト可能に。通常 3〜7 個。
-  - INVEST 原則・優先度付け・3C 等の詳しい考え方は skills/a-002-initialize-project/reference/user-stories-guide.md を参照。
+  - INVEST 原則・優先度付け・3C 等の詳しい考え方は skills/a-002b-define-user-stories/reference/user-stories-guide.md を参照。
   - MVP の取捨選択（Must / Not Now / Won't）は 02-mvp-scope.md（/a-002a）が担う。本書の優先度は実装順の目安。
 -->
 

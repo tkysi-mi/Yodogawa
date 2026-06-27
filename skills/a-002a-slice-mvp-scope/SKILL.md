@@ -1,6 +1,6 @@
 ---
 name: a-002a-slice-mvp-scope
-description: 候補機能を Must / Not Now / Won't に切り分けて MVP スコープを確定し、各 Must 機能を課題・仮説・成功指標に紐づけて正当化する。やらないこと（Out of Scope）も明示する。Product Brief 作成後（a-002 の後）に実行。
+description: Product Brief を起点に Parking Lot（アイデア backlog）を生成し、候補機能を Must / Not Now / Won't に切り分けて MVP スコープを確定する。各 Must 機能を課題・仮説・成功指標に紐づけて正当化し、やらないこと（Out of Scope）も明示する。Product Brief 作成後（a-002 の後）に実行。
 disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---

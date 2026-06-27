@@ -45,6 +45,19 @@ Core Scenarios と MVP Scope を分析し、ビジネス領域を特定。
 - **Anticorruption Layer**: 外部モデルの変換層
 - **Conformist**: 上流に従う
 - **Partnership**: 相互協調
+- **Open Host Service**: API 経由で公開
+- **Published Language**: 共通のデータフォーマットで連携
+- **Separate Ways**: 連携しない（独立）
+
+## Full DDD テンプレート（01-domain-model.md）の補足
+
+任意スキル `/a-005-create-domain-diagram` で `01-domain-model.md` を埋めるときの追加メモ。
+
+- **付箋の色（Event Storming 表記）**: Actors=小さな黄 / Commands=青 / Domain Events=オレンジ / Policies=紫(ライラック) / Aggregates=大きな黄 / Read Models=緑 / External Systems=ピンク。
+- **Commands / Events**: Command は動詞・命令形（`RegisterUser`）で必ず Domain Event をトリガーする。Event は過去形（`UserRegistered`）でビジネス上意味のある出来事を表し、技術イベント（「DB 保存」）は書かない。
+- **Aggregates**: トランザクション境界＝一貫性の保証範囲。1 Aggregate は 1 ルートエンティティを持ち、コマンドを受けてルールを適用しイベントを発行する。他 Aggregate とは疎結合でイベント経由で連携する。
+- **Read Models（CQRS）**: Command（書き込み）と Query（読み込み）を分離し、UI のニーズに合わせた読み取り専用モデルをイベントから構築する。複数 Aggregate を集約する場合もある。
+- **External Systems**: 外部システムとの境界には Anticorruption Layer（腐敗防止層）の要否を検討し、外部障害がこの Context に与える影響を考慮する。
 
 ## レビュー観点
 

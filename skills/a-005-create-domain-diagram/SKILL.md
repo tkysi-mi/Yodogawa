@@ -91,4 +91,5 @@ git commit -m "docs: Full DDD ドメインモデル・Context Map 図の作成"
 
 - [examples/mermaid-templates.md](examples/mermaid-templates.md) — Context Map / Aggregate / シーケンス図の Mermaid テンプレート、スタイル定義、エッジラベル例
 - [reference/structure-check.md](reference/structure-check.md) — 構造確認コマンド、チェックリスト、レビュー質問、Git 追加例
+- [../a-004-define-domain-model/reference/event-storming-guide.md](../a-004-define-domain-model/reference/event-storming-guide.md) — Actors / Commands / Events / Policies / Aggregates / Context Map パターンなど各要素の意味・付箋の色・CQRS / ACL の解説
 - [../../templates/project/03-domain/01-domain-model.md](../../templates/project/03-domain/01-domain-model.md) — Full Event Storming（advanced）テンプレート

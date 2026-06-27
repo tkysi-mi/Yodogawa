@@ -16,7 +16,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## 前提
 
-- `docs/project/01-requirements/01-product-brief.md` と `docs/project/01-requirements/02-mvp-scope.md` が作成されていること（`/a-002-initialize-project` → `/a-002a-slice-mvp-scope` 実行済み）。
+- `docs/project/01-requirements/01-product-brief.md` / `02-mvp-scope.md` / `05-user-stories.md` が作成されていること（`/a-002-initialize-project` → `/a-002a-slice-mvp-scope` → `/a-002b-define-user-stories` 実行済み）。
 - `docs/project/02-behavior/` ディレクトリが存在すること（未作成なら本スキルが作成する）。
 - ユーザーが Must 機能の主要な利用シーンを説明できること。
 

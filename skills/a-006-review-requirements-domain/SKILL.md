@@ -34,7 +34,7 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 ls -l docs/project/01-requirements/*.md docs/project/02-behavior/*.md docs/project/03-domain/*.md
 ```
 
-不足があれば、対応する `/a-002`, `/a-002a`, `/a-003`, `/a-004` スキルの実行を促す。
+不足があれば、対応する `/a-002`, `/a-002a`, `/a-002b`, `/a-003`, `/a-004` スキルの実行を促す。
 
 ### 2. 一貫性チェックの実行
 

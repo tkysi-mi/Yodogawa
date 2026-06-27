@@ -125,8 +125,9 @@ Why? ─── What? ─── How?
 |  #  | コマンド | 名前                      | 説明                                               |
 | :-: | :------- | :------------------------ | :------------------------------------------------- |
 |  1  | `/a-001` | **Setup Doc Structure**   | ドキュメント構造をセットアップ（a-002 が自動実行するため任意） |
-|  2  | `/a-002` | **Initialize Project**    | Product Brief（課題・ユーザー・価値・成功指標）を作成（新規/既存モード対応） |
-| 2a  | `/a-002a`| **Slice MVP Scope**       | MVP を Must/Not Now/Won't に切り分け、やらないこと（Out of Scope）を明示 |
+|  2  | `/a-002` | **Initialize Project**    | 問題定義(Why) を Product Brief（課題・ユーザー・価値・成功指標）として作成（新規/既存モード対応） |
+| 2a  | `/a-002a`| **Slice MVP Scope**       | Parking Lot（アイデア backlog）を生成し、MVP を Must/Not Now/Won't に切り分け、やらないこと（Out of Scope）を明示 |
+| 2b  | `/a-002b`| **Define User Stories**   | Must 機能を起点にユーザーストーリー（役割・目的・価値・受け入れ基準）を作成 |
 |  3  | `/a-003` | **Create Core Scenarios** | MVP の主要行動（Day 1 Happy Path・Critical Failure）を定義（詳細 Gherkin は任意） |
 |  4  | `/a-004` | **Define Domain Sketch**  | 軽量ドメイン（主要用語・境界・中核エンティティ・重要ルール）を定義 |
 |  5  | `/a-005` | **Create Domain Diagram** | （任意/Advanced）Full DDD・Context Map を図解（複雑ドメインのみ） |
@@ -144,6 +145,8 @@ Why? ─── What? ─── How?
 > ⚠️ マークのスキルは**必ず実施**してください。
 >
 > ℹ️ **非機能要件（NFR）の扱い**: 初期フェーズ（a-002）では、MVP の作り方を変えるほど重要な制約のみを Product Brief の「クリティカル制約」に集約します。応答時間・稼働率・スケーラビリティ等の**詳細な定量 NFR は設計フェーズ（a-014）が所有**します（責務分離）。そのため `01-requirements/` の採番は `04` を欠番とし、`01`(Product Brief) / `02`(MVP Scope) / `03`(Parking Lot) / `05`(User Stories) / `06`(Features Implemented, existing のみ) になります。
+>
+> ℹ️ **スキルの採番方針**: 番号プレフィックス（`a-002` 等）はフェーズ標識として安定維持し、**振り直しません**。フェーズ間に新スキルを挿入する場合は**英字 suffix**（`a-002a` = MVP Scope、`a-002b` = User Stories）を用います。これにより既存の相互参照・推奨フローへの影響を最小化します。
 
 ---
 
@@ -220,7 +223,7 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 
 | ステップ | コマンド            | 内容                                                                      |
 | :------: | :------------------ | :------------------------------------------------------------------------ |
-|    1     | `/a-002` → `/a-002a` → `/a-003` → `/a-004` | Product Brief、MVP スコープ、Core Scenarios、Domain Sketch（a-002 がドキュメント構造を自動初期化。`/a-005` は複雑ドメイン向けの任意 Advanced） |
+|    1     | `/a-002` → `/a-002a` → `/a-002b` → `/a-003` → `/a-004` | Product Brief、MVP スコープ、User Stories、Core Scenarios、Domain Sketch（a-002 がドキュメント構造を自動初期化。`/a-005` は複雑ドメイン向けの任意 Advanced） |
 |    2     | `/a-006`            | ⚠️ **PM Gate（整合性レビュー＋Go/No-Go、AI_CONTEXT 生成）（必須）**        |
 |    3     | `/a-007` → `/a-014` | 技術スタック、リポジトリ構成、画面設計、DB、API、アーキテクチャ、インフラ |
 |    4     | `/a-015`            | ⚠️ **全体設計レビュー（必須）**                                           |
@@ -229,10 +232,10 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 
 プロダクトの性質に応じて、A-Series 前半の進め方を2つ用意しています。
 
-- **新規プロダクト向け（greenfield）**: Product Brief → MVP Scope → Core Scenarios → Domain Sketch → PM Gate
+- **新規プロダクト向け（greenfield）**: Product Brief → MVP Scope → User Stories → Core Scenarios → Domain Sketch → PM Gate
 - **既存プロダクト向け（existing / brownfield）**: Codebase Inventory → Product Brief 補完 → Scope 再定義
 
-> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として、**MVP Scope** は `/a-002a`（Slice MVP Scope）が `02-mvp-scope.md`（Must/Not Now/Won't ＋ Out of Scope）として、**PM Gate** は `/a-006` が整合性レビュー＋ Go/Go with caveats/No-Go 判定として実行し、`STAKEHOLDER-SUMMARY.md`（合意用1枚）と `AI_CONTEXT.md`（AI 実装用コンテキスト）を生成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`06-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**Core Scenarios** は `/a-003`（Create Core Scenarios）が `01-core-scenarios.md`（Day 1 Happy Path・Critical Failure・Not Covered in MVP）として実行します。詳細な Gherkin は任意（`skills/a-003-create-scenarios/reference/detailed-gherkin-template.md`）です。**Domain Sketch** は `/a-004`（Define Domain Sketch）が `01-domain-sketch.md`（主要用語・境界・中核エンティティ・重要ルール・MVP で作らない範囲・簡易図）として実行します。**標準は Domain Sketch、複雑なドメインのみ Full DDD（`/a-005` で Bounded Context・Aggregate・Context Map を `01-domain-model.md` に展開）** という分担で、`/a-005` は標準フローには含まれない任意 Advanced です。
+> ℹ️ 上記のフェーズ名は A-Series 再構成後の呼称です。現状、**Product Brief** は `/a-002`（Initialize Project）が `01-product-brief.md` として、**MVP Scope** は `/a-002a`（Slice MVP Scope）が `02-mvp-scope.md`（Must/Not Now/Won't ＋ Out of Scope）と `03-parking-lot.md` として、**User Stories** は `/a-002b`（Define User Stories）が `05-user-stories.md` として、**PM Gate** は `/a-006` が整合性レビュー＋ Go/Go with caveats/No-Go 判定として実行し、`STAKEHOLDER-SUMMARY.md`（合意用1枚）と `AI_CONTEXT.md`（AI 実装用コンテキスト）を生成します。a-002 は **greenfield / existing の2モード**に分岐し、新規プロダクトでは実装済み機能の棚卸し（`06-features-implemented.md`）をスキップ、既存プロダクトではコードベース分析と棚卸しを実行します（モード未指定時の既定は greenfield）。**Core Scenarios** は `/a-003`（Create Core Scenarios）が `01-core-scenarios.md`（Day 1 Happy Path・Critical Failure・Not Covered in MVP）として実行します。詳細な Gherkin は任意（`skills/a-003-create-scenarios/reference/detailed-gherkin-template.md`）です。**Domain Sketch** は `/a-004`（Define Domain Sketch）が `01-domain-sketch.md`（主要用語・境界・中核エンティティ・重要ルール・MVP で作らない範囲・簡易図）として実行します。**標準は Domain Sketch、複雑なドメインのみ Full DDD（`/a-005` で Bounded Context・Aggregate・Context Map を `01-domain-model.md` に展開）** という分担で、`/a-005` は標準フローには含まれない任意 Advanced です。
 >
 > 🤖 `a-006` 完了後、Go / Go with caveats なら `docs/project/AI_CONTEXT.md` を実装エージェント（Vibe coding / AI 実装）へ渡すと、スコープ境界（作る/作らないもの）を保ったまま実装に入れます。
 
@@ -303,7 +306,7 @@ description: プロジェクトのドキュメントディレクトリ構造を�
 
 `templates/` のテンプレートは**記入欄＋簡潔なヒント＋例**を中心に構成し、長大な HTML コメント解説は持たせません。生成される docs はステークホルダーと AI coding が読む成果物であり、大量の解説コメントが残ると合意・実装の両方でノイズになるためです。
 
-原則・理論・ベストプラクティス・用語定義などの詳しい解説は、各スキルの `reference/`（例: `a-002` の `hearing-questions.md` / `user-stories-guide.md`、`a-004` の `event-storming-guide.md` / `ubiquitous-language-guide.md`）に置き、テンプレートのコメントからはパスで参照します。テンプレートを記入するときに必要なら参照すればよく、生成 docs はクリーンに保たれます。
+原則・理論・ベストプラクティス・用語定義などの詳しい解説は、各スキルの `reference/`（例: `a-002` の `hearing-questions.md`、`a-002b` の `user-stories-guide.md`、`a-004` の `event-storming-guide.md` / `ubiquitous-language-guide.md`）に置き、テンプレートのコメントからはパスで参照します。テンプレートを記入するときに必要なら参照すればよく、生成 docs はクリーンに保たれます。
 
 > 設計フェーズ（`04-design/` 配下、`a-007`〜`a-014` が生成）の一部テンプレートは、まだ解説コメントが厚い状態です。これらの圧縮は今後のフォローアップ対象です。
 

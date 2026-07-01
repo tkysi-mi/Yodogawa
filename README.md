@@ -314,4 +314,4 @@ description: プロジェクトのドキュメントディレクトリ構造を�
 
 ## ライセンス
 
-[MIT License](LICENSE) — Copyright (c) 2025 tkysi-mi
+[MIT License](LICENSE) — Copyright (c) 2025-2026 tkysi-mi

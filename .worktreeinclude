@@ -1,0 +1,20 @@
+# .worktreeinclude
+# 新規 git worktree に「main checkout から持ち込む」gitignore 済みファイルを宣言する。
+# git worktree は tracked ファイルしか checkout しないため、これらは別途コピーが要る。
+# 各行はリポジトリ相対の *リテラルパス*（gitignore の glob ではない）。tracked は複製しない／
+# ディレクトリは再帰コピー／既存ファイルは上書きしない。
+# これを読んでコピーするのは scripts/worktree-setup.sh。新 worktree の cwd で
+#   bash scripts/worktree-setup.sh
+# を実行すると走る（このファイル自体を読む自動機構は他に無い）。
+#
+# 方針: ここに載せるのは「再生成できないローカル設定・秘密・エージェント資産」のみ。
+# .agents / .agent / .cursor / .codex は Yodogawa CLI のインストール出力（再生成物）なので
+# 載せない（worktree 側で CLI を実行すれば復元できる＝コピーは無駄かつ陳腐化の元）。
+
+# --- エージェント設定・スキル ---
+.claude/
+.serena/
+
+# --- ローカル環境変数 ---
+# 完全一致 ".env" のみ。.env.local / .env.*.local は意図的に対象外。
+.env

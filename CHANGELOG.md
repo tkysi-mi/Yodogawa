@@ -5,6 +5,14 @@
 フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [Semantic Versioning](https://semver.org/lang/ja/spec/v2.0.0.html) に準拠しています。
 
+## [未リリース]
+
+### 追加
+
+- **`yodogawa doctor` サブコマンドの新設**: レビュー系スキル（`a-006` / `a-015` / `b-005`）が自然言語で指示していた決定的検査（grep 照合）をスクリプト群に切り出し、CLI サブコマンドとして同梱しました（#60）。`docs/project/` の ID トレーサビリティ（`P-XXX` / `US-XXX` / `FN-XXX` / `CS-XXX` / `CF-XXX` の参照整合・孤児検出）、構造検証（必須ファイル・必須見出し。フェーズ進行に応じたフロンティア方式）、テンプレート未記入検出、`docs/` 内の相対リンク切れ検査を実行し、人間可読出力と `--json` の機械可読出力、exit code（0 = Error なし / 1 = Error あり / 2 = 使い方の誤り）を提供します。各チェックは単体スクリプト（`node bin/checks/<name>.js <dir>`）としても実行できます。
+- **`yodogawa new-task <slug>` サブコマンドの新設**: `b-001-create-task-directory` の決定的な採番ルール（スラッグ形式検証・最大 ID + 1 の 6 桁ゼロ詰め・ディレクトリ作成のみ）を CLI 化しました（#60）。`--json` で採番結果を機械可読に取得できます。
+- **リポジトリ整合性チェックの CI 組み込み**: スキル間 `/xxx` 参照先の実在（短縮形の曖昧一致検出を含む）、README スキル表 ↔ `skills/` の双方向一致、`skills/`・`templates/` の相対リンク切れを検証する `scripts/repo-check.mjs`（`npm run check:repo`、dev 専用・非配布）を追加し、CI に組み込みました（#60）。
+
 ## [2.1.5] - 2026-06-23
 
 ### 修正

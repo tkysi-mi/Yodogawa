@@ -1,65 +1,51 @@
 #!/usr/bin/env node
+'use strict';
 
-const fs = require('fs-extra');
-const path = require('path');
-const prompts = require('prompts');
-const { bold, green, cyan, red } = require('kleur');
+const { red } = require('kleur');
+const install = require('./commands/install');
 
-async function main({ cwd = process.cwd(), pkgRoot = path.join(__dirname, '..') } = {}) {
-  console.log(bold().cyan('\n🚀 Welcome to Yodogawa Skills Installer!\n'));
+const HELP = `Usage: yodogawa [command] [options]
 
-  const response = await prompts({
-    type: 'select',
-    name: 'type',
-    message: 'Which configuration would you like to install?',
-    choices: [
-      { title: 'Claude Code (.claude/skills/)', value: 'claude' },
-      { title: 'Other IDEs — Cursor / Codex / Antigravity (.agents/skills/)', value: 'agents' }
-    ]
-  });
+Commands:
+  (なし)             対話形式でスキル・テンプレートをインストール
+  doctor             docs/project/ のトレーサビリティ・構造を検査
+  new-task <slug>    docs/tasks/ に連番タスクディレクトリを作成
+  help               このヘルプを表示
 
-  if (!response.type) {
-    console.log(red('✖ Operation cancelled.'));
-    return;
-  }
+各コマンドの詳細は yodogawa <command> --help を参照してください。`;
 
-  const dirMap = {
-    claude: '.claude',
-    agents: '.agents',
-  };
-  const targetDirName = dirMap[response.type];
-  const targetDir = path.join(cwd, targetDirName);
-
-  if (fs.existsSync(targetDir)) {
-    const confirm = await prompts({
-      type: 'confirm',
-      name: 'overwrite',
-      message: `Directory ${targetDirName} already exists. Merge and update its contents?`,
-      initial: false
-    });
-    if (!confirm.overwrite) {
-      console.log(red('✖ Operation cancelled.'));
-      return;
-    }
-  }
-
-  console.log(`\nInstalling Yodogawa skills to ${bold(targetDirName)}...`);
-
-  await fs.copy(path.join(pkgRoot, 'skills'), path.join(targetDir, 'skills'));
-  await fs.copy(path.join(pkgRoot, 'templates'), path.join(targetDir, 'templates'));
-
-  console.log(green(`\n✔ Successfully installed Yodogawa skills for ${response.type}!`));
-  console.log(`\nNext steps:`);
-  console.log(`1. Open ${bold(targetDirName + '/skills/')} to explore the skills.`);
-  console.log(`2. Start using them in your project!\n`);
-  console.log(`Note: reinstalling merges into existing files. Renamed or removed skills are not auto-deleted — delete ${bold(targetDirName + '/skills')} and ${bold(targetDirName + '/templates')} first to reflect them.\n`);
+function printHelp() {
+  console.log(HELP);
 }
 
-module.exports = { main };
+async function run(argv = process.argv.slice(2), { cwd = process.cwd() } = {}) {
+  const [command, ...rest] = argv;
+  if (command === undefined) {
+    // 後方互換: 引数なしは従来どおり対話インストール
+    await install.main({ cwd });
+    return 0;
+  }
+  if (command === 'doctor') return require('./commands/doctor').main(rest, { cwd });
+  if (command === 'new-task') return require('./commands/new-task').main(rest, { cwd });
+  if (command === '--help' || command === '-h' || command === 'help') {
+    printHelp();
+    return 0;
+  }
+  console.error(red(`✖ Unknown command: ${command}`));
+  console.error(HELP);
+  return 2;
+}
+
+// main は install の別名（既存利用箇所の後方互換のため維持）
+module.exports = { main: install.main, run };
 
 if (require.main === module) {
-  main().catch(err => {
-    console.error(red(`\n✖ Error installing skills: ${err.message}`));
-    process.exit(1);
-  });
+  run()
+    .then((code) => {
+      process.exitCode = code;
+    })
+    .catch((err) => {
+      console.error(red(`\n✖ Error: ${err.message}`));
+      process.exitCode = 1;
+    });
 }

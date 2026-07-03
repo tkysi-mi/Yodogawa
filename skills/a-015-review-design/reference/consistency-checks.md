@@ -1,14 +1,16 @@
 # 設計ドキュメント間の一貫性チェック項目
 
-SKILL.md 手順2 で実施する 5 観点の詳細。自動検索（grep 等）と手動確認を組み合わせる。
+SKILL.md 手順2 で実施する 5 観点の詳細。**5観点すべて doctor 非対応**（`bin/lib/project-spec.js` の `ID_FAMILIES` に 04-design 向けの ID 族が定義されていないため、`id-trace` は 04-design 配下を検査対象にしない）。手順1の doctor 呼び出しは `structure` チェックによる存在確認・必須見出し確認にのみ使う。5観点はすべて Read/Grep による手動確認＋file:line引用で判定する。
 
 ## 2.1 テックスタック ↔ アーキテクチャ
 
 - **整合性**: `01-tech-stack.md` で選定された技術がアーキテクチャ図（`07-architecture.md`）のコンポーネントと一致しているか。
 - **ADR**: 重要な技術選定理由が ADR として記録されているか。
 
+以下の grep は固定語リストによる補助検索であり、判定の代わりにはならない（新しい技術選定が語彙に含まれず検出漏れになりうる）。判定は必ず Read で該当箇所を確認し file:line を引用して行う。
+
 ```bash
-# tech-stack で挙がった技術が architecture に登場するか
+# tech-stack で挙がった技術が architecture に登場するか（補助検索）
 grep -oE "PostgreSQL|Redis|NestJS|Next.js" docs/project/04-design/01-tech-stack.md | sort -u
 grep -oE "PostgreSQL|Redis|NestJS|Next.js" docs/project/04-design/07-architecture.md | sort -u
 ```

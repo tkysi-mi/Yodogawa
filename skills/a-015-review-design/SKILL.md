@@ -29,17 +29,19 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 
 ## 手順
 
-### 1. ドキュメント存在確認
+### 1. doctor によるドキュメント健全性検査
 
 ```bash
-ls -l docs/project/04-design/*.md
+npx -y yodogawa doctor --json
 ```
 
-不足しているドキュメントがあれば、対応するスキルの実行を促す。
+`findings` から `check: "structure"` かつ `file` が `docs/project/04-design/` で始まる項目を確認し、必須ファイル・見出しの欠落があれば対応するスキル（a-007〜a-014）の実行を促す。**`id-trace` は 04-design 配下を対象にした ID 体系を持たないため、5観点すべてに直接的な機械判定は無い**（`bin/lib/project-spec.js` の `ID_FAMILIES` に 04-design 向けの族が定義されていないため）。`placeholder`/`links` の finding は前提整合性の補助シグナルとして使う（未記入セクション・リンク切れの有無）。doctor が実行できない場合のみ、代替として `ls -l docs/project/04-design/*.md` を実行する。
 
-### 2. 一貫性チェックの実行
+### 2. 一貫性チェックの実行（観点別 PASS/FAIL + 根拠引用）
 
-以下の 5 観点を自動検索（grep 等）と手動確認で検証する。詳細な観点・コマンドは [reference/consistency-checks.md](reference/consistency-checks.md) を参照。
+以下の 5 観点を **PASS / FAIL** で判定する（判定ルール: 観点内に Error 相当の指摘が1件以上あれば FAIL、Warning 相当のみなら PASS+注記）。**doctor の id-trace は 04-design を検査対象にしないため、2.1〜2.5 のすべてがエージェント自身の Read/Grep による判断**になる。各判定には file:line の引用を必須とする（詳細は [reference/consistency-checks.md](reference/consistency-checks.md)）。
+
+> **エージェントの役割範囲**: doctor が既に検査済みの機械的観点（手順1の存在確認）は再実装しない。一方、この手順2の5観点はすべて doctor 非対応の意味判断であり、役割は「読解判断＋証拠引用」である。Read/Grep/Glob を自由に使ってよい（むしろ必須）。判断した結果は必ず file:line の引用を伴わせる。
 
 - **2.1 テックスタック ↔ アーキテクチャ**: 選定技術の反映、ADR の記録
 - **2.2 データモデル ↔ ドメインモデル**: Aggregate のカバレッジ、用語統一
@@ -47,14 +49,16 @@ ls -l docs/project/04-design/*.md
 - **2.4 画面設計 ↔ API 仕様**: 必要なエンドポイントのカバレッジ、状態対応
 - **2.5 インフラ ↔ アーキテクチャ**: 構成の網羅、非機能要件の反映
 
+`structure`/`placeholder`/`links` の finding は各観点に一対一対応しないため、判断材料としてのみ利用する。
+
 ### 3. レビュー結果レポートの作成
 
-検出された問題（Error / Warning / OK）をまとめ、`docs/project/DESIGN-REVIEW-REPORT-YYYYMMDDHHMMSS.md` を作成する。フォーマットは [examples/review-report-template.md](examples/review-report-template.md#レポートフォーマット) を参照。
+観点別 PASS/FAIL の結果をまとめ、`docs/project/DESIGN-REVIEW-REPORT-YYYYMMDDHHMMSS.md` を作成する。フォーマットは [examples/review-report-template.md](examples/review-report-template.md#レポートフォーマット) を参照。
 
 必須セクション:
 
-- サマリー（OK / Warning / Error の件数）
-- 詳細（上記 5 観点ごとの結果）
+- サマリー（観点別 PASS/FAIL の件数）
+- 詳細（上記 5 観点ごとの PASS/FAIL・根拠(file:line引用)・コメント）
 - 推奨アクション（修正すべきタスクとスキル参照）
 
 ### 4. 結果の報告と修正提案
@@ -73,7 +77,7 @@ git commit -m "docs: 設計整合性レビューレポートの作成"
 ## 完了条件
 
 - `docs/project/DESIGN-REVIEW-REPORT-YYYYMMDDHHMMSS.md` が作成されている。
-- 全設計ドキュメント間の整合性がチェックされ、結果（OK/Warning/Error）が記録されている。
+- 全設計ドキュメント間の整合性がチェックされ、観点ごとの判定（PASS/FAIL）と根拠（file:line引用）が記録されている。
 - 具体的な修正アクションが提案されている。
 
 ## エスカレーション
@@ -84,5 +88,5 @@ git commit -m "docs: 設計整合性レビューレポートの作成"
 
 ## 参考
 
-- [examples/review-report-template.md](examples/review-report-template.md) — レビュー結果レポートのフォーマット例、重大度記号
-- [reference/consistency-checks.md](reference/consistency-checks.md) — 5 観点の詳細なチェック項目、grep コマンド例、エスカレーション基準
+- [examples/review-report-template.md](examples/review-report-template.md) — レビュー結果レポートのフォーマット例、PASS/FAIL判定ルール
+- [reference/consistency-checks.md](reference/consistency-checks.md) — 5 観点の詳細なチェック項目（すべてdoctor非対応）、grep補助例、エスカレーション基準

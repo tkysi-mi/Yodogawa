@@ -19,6 +19,7 @@ argument-hint: "[task-id]"
 - `CreateTaskDefinition (b-002)` が完了し、`a-definition.md` に目的・変更内容が記載されている。
 - タスクディレクトリ: `docs/tasks/task{ID}-{SLUG}/`
 - テンプレート: `../../templates/tasks/task-template/b-research.md`（スキル配置ディレクトリ起点の相対参照）
+- `docs/LESSONS.md` があれば参照する（`d-001-review-retrospective` が過去タスクの振り返りから蓄積する汎用的な学び。無ければスキップ）。
 
 ## 手順
 
@@ -49,6 +50,7 @@ ls -d docs/tasks/task*
 
 ### 4. ベストプラクティス・外部情報の調査
 
+- `docs/LESSONS.md` が存在すれば読み、過去タスクの摩擦点・ベストプラクティスを踏まえる（無ければスキップ）。
 - 公式ドキュメント、信頼できる記事、社内ナレッジを確認し、採用すべきパターン/アンチパターンを整理。
 - 調査内容（タイトル、要点、URL）を記録。例）フォームバリデーション、非同期通信、セキュリティガイドライン。
 

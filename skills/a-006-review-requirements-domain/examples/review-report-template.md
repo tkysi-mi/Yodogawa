@@ -8,68 +8,63 @@ SKILL.md 手順4 で作成する `docs/project/REVIEW-REPORT-*.md` のフォー�
 # ドキュメント一貫性レビュー結果
 
 **実施日**: YYYY-MM-DD
+**doctor**: `yodogawa doctor --json` 実行結果 summary = errors: 2, warnings: 3
 
 ## サマリー
 
-- OK: X 項目
-- Warning: X 項目
-- Error: X 項目
+- 観点別判定: PASS 6 / FAIL 1（全7観点）
+- PM Gate 判定: Go with caveats
 
-## 詳細
+## 詳細（観点別 PASS/FAIL）
 
-### 1. ユーザーストーリー ↔ シナリオ
-
-- **Error**: US-005 に対応するシナリオが見つかりません。
-- OK: 優先度 High のストーリーはすべてカバーされています。
-
-### 2. MVP スコープ・クリティカル制約
-
-- **Warning**: 実装済み機能「決済」のシナリオが不足しています。
-- OK: Product Brief のクリティカル制約「社内 SSO 必須」が MVP スコープ・ドメインに反映されています。
-
-### 3. シナリオ ↔ ドメインモデル
-
-- **Warning**: シナリオ SC-003 の Command「在庫を引き当てる」がドメインモデルに未定義です。
-
-### 4. ユビキタス言語
-
-- **Error**: 用語「ShippingAddress」がユビキタス言語一覧にありません。
-- **Warning**: 禁止用語「User Data」が `01-domain-sketch.md` で使用されています。
-
-### 5. MVP 正当化 / 過剰作り込み（YAGNI）
-
-- **過剰作り込み候補**: Must 機能「実績バッジ」が課題・ペルソナ・成功指標のいずれにも trace しません。Not Now / Won't への変更を検討してください。
-- OK: その他の Must はすべて検証仮説・成功指標に紐づいています。
-- OK: Out of Scope（Won't）と矛盾する実装記述はありません。
+| 観点 | 判定 | 根拠（file:line） | コメント |
+|:--|:--:|:--|:--|
+| 2.1 ユーザーストーリー ↔ シナリオ | FAIL | `docs/project/01-requirements/05-user-stories.md:18`: 「ペルソナ: P-999」 | US-005 が参照する P-999 が product-brief 未定義（doctor id-trace error）。逆方向coverage・「価値」↔「Then」整合は未確認（doctor非対応部分） |
+| 2.2 MVP スコープ ↔ シナリオ | PASS | `docs/project/02-behavior/01-core-scenarios.md:40`: 「## CS-003 決済」 | 全 Must がシナリオでカバー済み（doctor id-trace: FN未参照Warningなし） |
+| 2.3 クリティカル制約 ↔ スコープ/ドメイン | PASS | `docs/project/01-requirements/01-product-brief.md:23`: 「社内SSO必須」 | MVP Scope・ドメインに反映確認済み（Read手動確認、doctor非対応） |
+| 2.4 Core Scenario ↔ Domain Sketch | PASS | `docs/project/02-behavior/01-core-scenarios.md:52`: 「在庫を引き当てる」 | Domain Sketch の重要ビジネスルールに対応記述あり（Read手動確認、doctor非対応） |
+| 2.5 ユビキタス言語 | PASS | `docs/project/03-domain/02-ubiquitous-language.md:9`: 「ShippingAddress」 | 用語登録済み。禁止用語なし（Read手動確認、doctor非対応） |
+| 2.6 目的との整合性 | PASS | `docs/project/01-requirements/01-product-brief.md:30`: 「North Star: 週次アクティブ率」 | 価値提案と成功指標は整合（Read手動確認、doctor非対応） |
+| 2.7 MVP正当化/過剰作り込み | PASS | `docs/project/01-requirements/02-mvp-scope.md:15`: 「実績バッジ→Not Now」 | 全MustがProduct Briefの課題/指標/仮説にtrace済み（Read手動確認）。注記(Warning): 孤児ペルソナ `01-product-brief.md:8` P-004 が `05-user-stories.md` から未参照（doctor id-trace warning）。過剰ペルソナの可能性、次回改訂で確認 |
 
 ## PM Gate 判定
 
+観点別 PASS/FAIL 表から次の規則で導出する（恣意的な総合判断をしない）。
+
+- クリティカル観点（2.3/2.4/2.7）はすべて PASS
+- FAIL は 2.1（非クリティカル）の1件のみ → 「Go with caveats」の条件（FAIL1〜2件、すべて非クリティカル）に合致
+
 **判定**: Go with caveats
 
-**根拠**: 整合性は良好。ただし Must「実績バッジ」が正当化されていないため、スコープから外すことを条件に実装着手可。
+**根拠**: FAIL = 2.1（1件、非クリティカル）。クリティカル観点（2.3/2.4/2.7）はすべて PASS。
+
+**caveat**:
+1. 2.1: US-005 のペルソナ参照修正を条件に着手可
 
 ## 推奨アクション
 
-1. `02-mvp-scope.md` の「実績バッジ」を Won't に変更する（過剰作り込み）。
-2. `/a-003-create-scenarios` で US-005 のシナリオを追加する。
-3. `01-domain-sketch.md` の「User Data」を「User Profile」に修正する。
+1. `docs/project/01-requirements/05-user-stories.md` の US-005 ペルソナ参照を修正する。
+2. （Warning注記）孤児ペルソナ P-004 がスコープ漏れか過剰ペルソナか、次回改訂で確認する。
 ```
 
-## 重大度記号の使い方
+## 判定ルールの使い方
 
-| 記号 | 意味 | 対応 |
+| 判定 | 意味 | 根拠列の要件 |
 |:--|:--|:--|
-| OK | 問題なし | 記録のみ |
-| Warning | 軽微な不整合 | 計画的に修正 |
-| Error | 重大な不整合 | 実装前に必ず修正 |
+| PASS | 観点内に Error 相当の指摘が無い | Warning相当の注記があれば file:line 付きでコメント欄に残す（消さない） |
+| FAIL | 観点内に Error 相当の指摘が1件以上 | 根拠列に file:line と該当行の引用が1件以上必須 |
+
+doctor findingsを転記する場合も、`message`をそのままコピペせず、file:lineをReadで開いて実際の行を引用する（詳細は[reference/consistency-checks.md](../reference/consistency-checks.md#doctor-findings-の観点マッピング)）。
 
 ## PM Gate 判定の使い方
 
-| 判定 | 意味 | 次のアクション |
+観点別 PASS/FAIL 表からの機械的導出規則（SKILL.md 手順3参照）:
+
+| 判定 | 導出条件 | 次のアクション |
 |:--|:--|:--|
-| Go | 実装着手してよい | `AI_CONTEXT.md` を実装エージェントへ渡す |
-| Go with caveats | 条件付きで着手可 | caveat を明記し、合意の上で着手 |
-| No-Go | 重大課題あり | 実装前に該当ドキュメントを修正し再レビュー |
+| Go | 全観点 PASS | `AI_CONTEXT.md` を実装エージェントへ渡す |
+| Go with caveats | FAILが1〜2件、すべて非クリティカル観点（2.1/2.2/2.5/2.6） | caveat を明記し、合意の上で着手 |
+| No-Go | クリティカル観点（2.3/2.4/2.7）がFAIL、またはFAIL総数3以上 | 実装前に該当ドキュメントを修正し再レビュー |
 
 ## コミットメッセージ例
 

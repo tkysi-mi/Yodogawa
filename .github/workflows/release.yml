@@ -22,10 +22,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # registry-url は指定しない: 指定すると setup-node が .npmrc に
+      # _authToken=${NODE_AUTH_TOKEN}（未設定時はプレースホルダ）を書き込み、
+      # それが OIDC Trusted Publishing より優先されて E404 になる
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: "https://registry.npmjs.org"
 
       # Trusted Publishing は npm 11.5.1+ が必要（node 22 同梱の npm は 10 系）
       - run: npm install -g npm@latest

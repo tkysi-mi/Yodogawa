@@ -215,6 +215,40 @@ Claude Code から直接マーケットプレイスを追加してインスト�
 
 ---
 
+## CLI コマンド
+
+インストーラに加えて、決定的に判定できる検査・操作を CLI サブコマンドとして同梱しています（`npx -y yodogawa <command>` でインストール不要でも実行可能）。
+
+### `yodogawa doctor` — ドキュメントの健全性検査
+
+`docs/project/` のトレーサビリティと構造をスクリプトで決定的に検査します。レビュー系スキル（`/a-006` / `/a-015` / `/b-005`）が自然言語で指示していた grep 照合の置き換えです。
+
+```bash
+yodogawa doctor            # カレントディレクトリを検査（人間可読）
+yodogawa doctor --json     # 機械可読な JSON を出力
+yodogawa doctor --dir path/to/project
+```
+
+| チェック | 内容 |
+|:--|:--|
+| `structure` | 必須ファイル・必須見出し・テーブル骨格の存在（フェーズ進行に応じて未着手分は対象外） |
+| `id-trace` | `P-XXX` / `US-XXX` / `FN-XXX` / `CS-XXX` / `CF-XXX` の参照整合（trace 切れ = Error、孤児 ID = Warning） |
+| `placeholder` | テンプレート未記入（コメントのみのセル・プレースホルダ・`**例:**`・空セクション）の残置 |
+| `links` | `docs/` 内の相対リンク切れ |
+
+Exit code は `0` = Error なし（Warning のみ含む）、`1` = Error あり、`2` = 使い方の誤り。各チェックは単体でも実行できます（例: `node bin/checks/id-trace.js <dir>`）。
+
+### `yodogawa new-task <slug>` — タスクディレクトリの採番作成
+
+`/b-001-create-task-directory` の採番規則（`task{6桁連番}-{スラッグ}`）で `docs/tasks/` にディレクトリを作成します。
+
+```bash
+yodogawa new-task user-profile-edit          # docs/tasks/task000001-user-profile-edit
+yodogawa new-task user-profile-edit --json   # {"id":"task000001", "slug":"...", "path":"..."}
+```
+
+---
+
 ## 使い方
 
 ### 1️⃣ プロジェクトの立ち上げ（A-Series スキル）

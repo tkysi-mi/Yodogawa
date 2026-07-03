@@ -36,3 +36,7 @@ jobs:
       # package.json を編集して plugin.json/marketplace.json の同期を忘れた PR を落とす。
       - name: Check plugin manifests are in sync with package.json
         run: node scripts/sync-plugin-manifests.mjs --check
+
+      # スキル間 /xxx 参照の実在・README スキル表との一致・skills/templates の相対リンクを検証する。
+      - name: Check skill cross-references, README table and relative links
+        run: node scripts/repo-check.mjs

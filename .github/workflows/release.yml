@@ -34,7 +34,5 @@ jobs:
 
       - run: npm ci
 
-      - run: npm -v
-
       # トークン不要・provenance は Trusted Publishing で自動付与される
-      - run: npm publish --loglevel=http
+      - run: npm publish

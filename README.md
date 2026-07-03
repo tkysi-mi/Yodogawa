@@ -355,6 +355,16 @@ description: プロジェクトのドキュメントディレクトリ構造を�
 
 > 設計フェーズ（`04-design/` 配下、`a-007`〜`a-014` が生成）の一部テンプレートは、まだ解説コメントが厚い状態です。これらの圧縮は今後のフォローアップ対象です。
 
+### スキルの評価（evals）
+
+最重要スキル（`a-002-initialize-project` / `a-006-review-requirements-domain`）には、[skill-creator 流](https://agentskills.io/skill-creation/evaluating-skills)の評価用テストケースを `skills/{name}/evals/evals.json` として同梱しています（入力フィクスチャは `evals/files/`）。スキル改修が改善か改悪かを、感覚ではなく数値（合格率・トークン・時間）で判断するためのものです。
+
+- **評価スコープは出力品質のみ**: トリガー（discovery）精度は測定しません。全スキルが `disable-model-invocation: true` の明示呼び出し設計（前述）のため、評価対象になり得ないからです。
+- **実行方法**: ケースごとに fresh session の隔離サブエージェント（Claude Code のサブエージェント等）で、with-skill / without-skill の 2 構成を実行して比較します。実行結果（`grading.json` / `timing.json` / `benchmark.json`）はリポジトリルート直下の `{skill-name}-workspace/iteration-N/` に生成します（gitignore 済み）。**workspace を `skills/` 配下に作らないでください**（`/a-002` 等の短縮参照が前方一致で解決されるため、リポジトリ整合性チェックが壊れます）。
+- **ベースラインが正**: 確定した基準値は `skills/{name}/evals/baseline.json` にコミットします（計測日・モデル・iteration 数・yodogawa CLI バージョンを併記）。更新するときは eval を再実行し、新しい数値を転記して同一 PR でコミットします。
+- **PR 運用**: `a-002` / `a-006` の SKILL.md・参照 reference・関連テンプレートを変更する PR では eval を再実行し、「eval 再実行済み（pass rate X/Y、baseline 比 ±Z）」を PR 本文に記載してください。baseline から悪化した場合はマージ前に原因を調査します。
+- **配布物には含めない**: `evals/` は開発用資産のため、`skills/.npmignore` で npm パッケージから除外しています。
+
 ---
 
 ## ライセンス

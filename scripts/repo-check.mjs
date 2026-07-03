@@ -33,6 +33,10 @@ const TABLE_CODE_RE = new RegExp("`/(" + CODE + ")`", "g");
 
 const problems = [];
 
+// skills/{name}/evals/ 配下はスキル評価用の入力データ（壊れた参照・リンクを
+// 意図的に含むフィクスチャ）なので、参照・リンク検査の対象外とする。
+const isEvalsAsset = (posixPath) => posixPath.split("/").includes("evals");
+
 // --- skills/ ディレクトリのコード集合 -------------------------------------
 const skillsDir = join(ROOT, "skills");
 const skillDirNames = existsSync(skillsDir)
@@ -55,6 +59,7 @@ if (existsSync(join(ROOT, "README.md"))) scanTargets.push(join(ROOT, "README.md"
 
 for (const file of scanTargets) {
   const rel = toPosixRelative(ROOT, file);
+  if (isEvalsAsset(rel)) continue;
   for (const line of parseLines(readFileSync(file, "utf8"))) {
     for (const m of line.visible.matchAll(REF_RE)) {
       const [, code, suffix] = m;
@@ -101,6 +106,7 @@ if (existsSync(readmePath)) {
 for (const dir of ["skills", "templates"]) {
   const abs = join(ROOT, dir);
   for (const f of collectBrokenLinks(abs, `${dir}/`)) {
+    if (isEvalsAsset(f.file)) continue;
     problems.push(`${f.file}:${f.line} ${f.message}`);
   }
 }

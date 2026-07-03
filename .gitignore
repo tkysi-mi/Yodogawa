@@ -30,6 +30,9 @@ Desktop.ini
 *.temp
 *.log
 
+# Skill eval run outputs (repo-root {skill}-workspace/, see README「スキルの評価」)
+*-workspace/
+
 # Node modules (if any scripts are added in the future)
 node_modules/
 npm-debug.log*

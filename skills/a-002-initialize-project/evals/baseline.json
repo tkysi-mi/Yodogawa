@@ -1,0 +1,92 @@
+{
+  "skill_name": "a-002-initialize-project",
+  "measured_at": "2026-07-04",
+  "model": "claude-fable-5",
+  "iterations": 1,
+  "runs_per_case": 1,
+  "yodogawa_cli_version": "2.3.0",
+  "grading": "メイン セッションの LLM 採点＋機械チェック（yodogawa doctor / grep / ファイル存在）。証拠は各 run の grading.json 参照",
+  "note": "iteration 1・各ケース 1 run のため stddev は算出しない（README「スキルの評価（evals）」参照）",
+  "workspace": "a-002-initialize-project-workspace/iteration-1",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1,
+        "per_case": [
+          1,
+          1,
+          1
+        ]
+      },
+      "passed": 24,
+      "total_assertions": 24,
+      "time_seconds": {
+        "mean": 171.3
+      },
+      "tokens": {
+        "mean": 45529
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.581,
+        "per_case": [
+          0.6,
+          0.714,
+          0.429
+        ]
+      },
+      "passed": 14,
+      "total_assertions": 24,
+      "time_seconds": {
+        "mean": 168.9
+      },
+      "tokens": {
+        "mean": 32421
+      }
+    },
+    "delta": {
+      "pass_rate": 0.419,
+      "time_seconds": 2.4,
+      "tokens": 13108
+    }
+  },
+  "cases": [
+    {
+      "id": 1,
+      "name": "greenfield-complete-info",
+      "with_skill": {
+        "passed": 10,
+        "total": 10
+      },
+      "without_skill": {
+        "passed": 6,
+        "total": 10
+      }
+    },
+    {
+      "id": 2,
+      "name": "ambiguous-input-no-fabrication",
+      "with_skill": {
+        "passed": 7,
+        "total": 7
+      },
+      "without_skill": {
+        "passed": 5,
+        "total": 7
+      }
+    },
+    {
+      "id": 3,
+      "name": "existing-mode-code-inventory",
+      "with_skill": {
+        "passed": 7,
+        "total": 7
+      },
+      "without_skill": {
+        "passed": 3,
+        "total": 7
+      }
+    }
+  ]
+}

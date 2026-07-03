@@ -3,28 +3,24 @@
 const fs = require('fs');
 const path = require('path');
 
-const { parseLines, splitTableCells } = require('../lib/markdown');
+const { parseLines, splitTableCells, HEADING_RE } = require('../lib/markdown');
 const { SEVERITY, makeFinding, toPosixRelative } = require('../lib/findings');
 const { walkMdFiles } = require('../lib/walk-md');
+const { KNOWN_TOKENS } = require('../lib/project-spec');
 
 const CHECK = 'placeholder';
-const HEADING_RE = /^ {0,3}(#{1,6})\s+(.+)$/;
 const COMMENT_ONLY_CELL_RE = /^<!--[\s\S]*-->$/;
 const HR_RE = /^(-{3,}|\*{3,}|_{3,})$/;
 
-// templates/ 由来の意味プレースホルダ（実測列挙）。コメント外に残っていたら
-// テンプレート未記入とみなす。汎用の \[.+\] はチェックボックスや Markdown
-// リンクと衝突するため、既知トークンの完全一致のみ検出する。
-const KNOWN_TOKENS = [
-  '[役割]',
-  '[目的]',
-  '[理由]',
-  '[課題]',
-  '[画面名]',
-  '[フェーズ名]',
-  '[コンテキスト名]',
-  '[Bounded Context名]',
-];
+// 行内にトークンが「リンク [token](...) 以外の形で」1 回でも出現するか
+function hasRawToken(text, token) {
+  let idx = text.indexOf(token);
+  while (idx !== -1) {
+    if (text[idx + token.length] !== '(') return true;
+    idx = text.indexOf(token, idx + 1);
+  }
+  return false;
+}
 
 // 空でも正常なセクション（テンプレート上、空欄がありうるもの）
 function isExemptHeading(text) {
@@ -60,10 +56,7 @@ function checkFile(absPath, file, findings) {
     }
 
     // 2. 既知の角括弧プレースホルダ（リンク [text](...) は除外）
-    const tokens = KNOWN_TOKENS.filter((token) => {
-      const idx = line.visible.indexOf(token);
-      return idx !== -1 && line.visible[idx + token.length] !== '(';
-    });
+    const tokens = KNOWN_TOKENS.filter((token) => hasRawToken(line.visible, token));
     if (tokens.length > 0) {
       findings.push(
         makeFinding(

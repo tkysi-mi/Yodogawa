@@ -36,7 +36,7 @@ node bin/cli.js new-task some-task-slug                     # タスク採番
 
 npmパッケージ `yodogawa` のエントリポイント。`bin/cli.js` は argv ディスパッチャで、引数なしは対話インストール（`bin/commands/install.js`）、`doctor`（`bin/commands/doctor.js`）と `new-task`（`bin/commands/new-task.js`）をサブコマンドとして持つ。インストールは配置先（Claude Code 用 `.claude/` または Cursor/Codex/Antigravity 共通の `.agents/`）を選択し、`skills/`, `templates/` をそのまま `{IDE_DIR}/` 配下にコピーする。スキルの中核は `name` / `description` ＋ Markdown 本文で、配置先ディレクトリの違いで各 IDE に対応する。一部の frontmatter フィールド（`disable-model-invocation` / `allowed-tools` / `argument-hint` / `context: fork`）は Claude Code 向けの拡張で、他 IDE での対応は各 IDE 仕様に依存する（README「設計上の決定」参照）。
 
-`doctor` の各チェックは `bin/checks/*.js`（`run({ rootDir })` を export、単体実行シム付き）、共有ロジックは `bin/lib/`（`project-spec.js` が docs/project の正準構造・ID 体系の SSoT）。npm の `files` は `bin`/`skills`/`templates` のみ配布のため、配布物から参照されるコードは `bin/` 配下に置くこと（`scripts/` は dev 専用で非配布）。
+`doctor` の各チェックは `bin/checks/*.js`（`run({ rootDir })` を export、単体実行シム付き）、共有ロジックは `bin/lib/`（`project-spec.js` が docs/project の正準構造・ID 体系の SSoT。templates/ との同期は `test/project-spec-sync.test.js` が検証）。npm の `files` が配布するコードは `bin` のみ（他は `skills`/`templates`/`README.md`/`CHANGELOG.md`）。配布物から参照されるコードは `bin/` 配下に置くこと（`scripts/` は dev 専用で非配布）。
 
 依存: `fs-extra`, `kleur`, `prompts`（サブコマンドは非対話のため `prompts` を使わない）
 

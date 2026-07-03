@@ -12,11 +12,12 @@
 
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, join, resolve, relative, sep } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
 const { parseLines } = require("../bin/lib/markdown.js");
+const { toPosixRelative } = require("../bin/lib/findings.js");
 const { walkMdFiles } = require("../bin/lib/walk-md.js");
 const { collectBrokenLinks } = require("../bin/checks/links.js");
 
@@ -30,7 +31,6 @@ const CODE = String.raw`[abc]-\d{3}[a-z]?`;
 const REF_RE = new RegExp(String.raw`(?<![\w./-])/(${CODE})((?:-[a-z0-9]+)*)`, "g");
 const TABLE_CODE_RE = new RegExp("`/(" + CODE + ")`", "g");
 
-const toPosix = (p) => p.split(sep).join("/");
 const problems = [];
 
 // --- skills/ ディレクトリのコード集合 -------------------------------------
@@ -54,7 +54,7 @@ for (const dir of ["skills", "templates"]) {
 if (existsSync(join(ROOT, "README.md"))) scanTargets.push(join(ROOT, "README.md"));
 
 for (const file of scanTargets) {
-  const rel = toPosix(relative(ROOT, file));
+  const rel = toPosixRelative(ROOT, file);
   for (const line of parseLines(readFileSync(file, "utf8"))) {
     for (const m of line.visible.matchAll(REF_RE)) {
       const [, code, suffix] = m;
@@ -106,9 +106,11 @@ for (const dir of ["skills", "templates"]) {
 }
 
 // --- 報告 -------------------------------------------------------------------
+// process.exit() はパイプへの stderr フラッシュを打ち切ることがあるため使わない
 if (problems.length > 0) {
   for (const p of problems) console.error(p);
   console.error(`\n${problems.length} 件の問題が見つかりました。`);
-  process.exit(1);
+  process.exitCode = 1;
+} else {
+  console.log("ok: スキル参照・README 表・相対リンクは健全です");
 }
-console.log("ok: スキル参照・README 表・相対リンクは健全です");

@@ -78,20 +78,36 @@ test('doctor: --dir が存在しないパスなら exit 2（使い方の誤り�
   assert.ok(stderr.length > 0);
 });
 
-test('doctor: docs/project が無いプロジェクトは exit 1、他チェックは skip', async () => {
+test('doctor: docs/project が無ければ docs/project 前提のチェックのみ skip し、links は走る', async () => {
   const root = tmpdir();
   try {
+    // docs/project は無いが docs/tasks にリンク切れがある → links は報告すべき
+    fs.outputFileSync(
+      path.join(root, 'docs', 'tasks', 'task000001-demo', 'a-definition.md'),
+      '[定義](../missing/b.md)\n'
+    );
     const { code, stdout } = await doctor(['--dir', root, '--json']);
     assert.strictEqual(code, 1);
     const report = JSON.parse(stdout);
-    assert.strictEqual(report.summary.errors, 1);
+    assert.strictEqual(report.summary.errors, 2, 'structure の Error と links の Error');
     assert.deepStrictEqual(
-      report.checks.filter((c) => c.name !== 'structure').map((c) => c.status),
-      ['skip', 'skip', 'skip']
+      report.checks,
+      [
+        { name: 'structure', status: 'fail' },
+        { name: 'id-trace', status: 'skip' },
+        { name: 'placeholder', status: 'skip' },
+        { name: 'links', status: 'fail' },
+      ]
     );
   } finally {
     fs.removeSync(root);
   }
+});
+
+test('doctor: --dir の直後がフラグなら値の欠落として exit 2', async () => {
+  const { code, stderr } = await doctor(['--dir', '--json']);
+  assert.strictEqual(code, 2);
+  assert.match(stderr, /--dir にはパスを指定してください/);
 });
 
 test('doctor: 未知のオプションは exit 2', async () => {

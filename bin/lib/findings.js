@@ -23,4 +23,9 @@ function toPosixRelative(baseDir, absPath) {
   return path.relative(baseDir, absPath).split(path.sep).join('/');
 }
 
-module.exports = { SEVERITY, makeFinding, summarize, toPosixRelative };
+// finding の位置表示（file または file:line）
+function formatPosition(finding) {
+  return finding.line == null ? finding.file : `${finding.file}:${finding.line}`;
+}
+
+module.exports = { SEVERITY, makeFinding, summarize, toPosixRelative, formatPosition };

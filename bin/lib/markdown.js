@@ -6,6 +6,8 @@
 
 const FENCE_RE = /^ {0,3}(`{3,}|~{3,})/;
 const LINK_RE = /!?\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
+// ATX 見出し。m[1] = レベル（# の数）、m[2] = 見出しテキスト
+const HEADING_RE = /^ {0,3}(#{1,6})\s+(.+)$/;
 
 // content → [{ raw, visible, line, inFence }]
 // - line: 1 始まり
@@ -98,4 +100,4 @@ function splitTableCells(raw) {
   return inner.split('|').map((cell) => cell.trim());
 }
 
-module.exports = { parseLines, extractLinks, splitTableCells };
+module.exports = { parseLines, extractLinks, splitTableCells, HEADING_RE };

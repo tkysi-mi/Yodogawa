@@ -91,6 +91,18 @@ test('id-trace: 見出しで定義されていない CS の参照は Error', () 
   }
 });
 
+test('id-trace: ハイフンで連結された複合語（CS-001-detail 等）は ID として抽出しない', () => {
+  const root = tmpdir();
+  try {
+    fs.copySync(VALID, root);
+    const sketch = path.join(root, 'docs', 'project', '03-domain', '01-domain-sketch.md');
+    fs.appendFileSync(sketch, '\n付録 CS-999-detail と US-001-005 は複合語であり ID 参照ではない。\n');
+    assert.deepStrictEqual(run({ rootDir: root }), []);
+  } finally {
+    fs.removeSync(root);
+  }
+});
+
 test('id-trace: 定義ファイル自体が無い族は検査をスキップする', () => {
   const root = tmpdir();
   try {

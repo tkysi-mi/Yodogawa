@@ -8,7 +8,9 @@ const { SEVERITY, makeFinding, toPosixRelative } = require('../lib/findings');
 const { walkMdFiles } = require('../lib/walk-md');
 
 const CHECK = 'links';
-const SKIP_TARGET_RE = /^(https?:|mailto:|#|\/)/;
+// URI スキーム付き（http/mailto/tel/data 等すべて）・アンカーのみ・絶対パスは
+// 相対リンク検査の対象外（ネットワークアクセスはしない＝決定性）
+const SKIP_TARGET_RE = /^([a-z][a-z0-9+.-]*:|#|\/)/i;
 
 // dir 配下の Markdown の相対リンク切れを findings として返す。
 // リポジトリ側（scripts/repo-check.mjs）から skills/・templates/ にも

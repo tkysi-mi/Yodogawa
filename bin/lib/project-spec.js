@@ -77,6 +77,20 @@ const REQUIRED_TABLE_HEADERS = {
 // 04-design に着手しているのに無い場合は a-006 未実施の示唆として Warning。
 const REVIEW_ARTIFACTS = ['AI_CONTEXT.md', 'STAKEHOLDER-SUMMARY.md'];
 
+// templates/project/ 由来の意味プレースホルダ（placeholder チェックが検出）。
+// コメント外に残っていたらテンプレート未記入とみなす。汎用の \[.+\] は
+// チェックボックスや Markdown リンクと衝突するため、既知トークンのみ検出する。
+// テンプレートとの同期は test/project-spec-sync.test.js が検証する。
+const KNOWN_TOKENS = [
+  '[役割]',
+  '[目的]',
+  '[理由]',
+  '[課題]',
+  '[画面名]',
+  '[コンテキスト名]',
+  '[Bounded Context名]',
+];
+
 // ID 体系（trace の SSoT）。definitionFiles 内の出現を定義とみなす
 // （headingDefinition の族は見出し行の出現のみが定義）。
 // orphanScanFiles: 定義済み ID がここから 1 度も参照されなければ孤児 Warning。
@@ -119,5 +133,6 @@ module.exports = {
   REQUIRED_HEADINGS,
   REQUIRED_TABLE_HEADERS,
   REVIEW_ARTIFACTS,
+  KNOWN_TOKENS,
   ID_FAMILIES,
 };

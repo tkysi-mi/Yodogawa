@@ -61,6 +61,19 @@ test('links: 外部 URL・アンカーのみ・フェンス内・コメント内
   }
 });
 
+test('links: tel:/data: 等の任意の URI スキームは相対パスとして誤検知しない', () => {
+  const root = tmpdir();
+  try {
+    fs.outputFileSync(
+      path.join(root, 'docs', 'note.md'),
+      '[電話](tel:+81-3-1234-5678) [データ](data:text/plain;base64,SGk=) [FTP](ftp://host/x)\n'
+    );
+    assert.deepStrictEqual(run({ rootDir: root }), []);
+  } finally {
+    fs.removeSync(root);
+  }
+});
+
 test('links: フラグメント付き・URL エンコードされた相対リンクを解決できる', () => {
   const root = tmpdir();
   try {

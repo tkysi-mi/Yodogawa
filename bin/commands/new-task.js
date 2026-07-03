@@ -30,7 +30,10 @@ function parseArgs(argv) {
     const arg = argv[i];
     if (arg === '--json') opts.json = true;
     else if (arg === '--dir') {
-      if (i + 1 >= argv.length) return { error: '--dir にはパスを指定してください' };
+      const value = argv[i + 1];
+      if (value === undefined || value.startsWith('-')) {
+        return { error: '--dir にはパスを指定してください' };
+      }
       opts.dir = argv[++i];
     } else if (arg === '--help' || arg === '-h') return { help: true };
     else if (arg.startsWith('-')) return { error: `不明なオプション: ${arg}` };

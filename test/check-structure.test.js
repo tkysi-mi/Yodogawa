@@ -94,6 +94,36 @@ test('structure: 04-design が存在するのに a-006 生成物が無ければ 
   }
 });
 
+test('structure: docs/project が空（正準ファイルゼロ）なら未着手 Warning を返し偽の健全判定をしない', () => {
+  const root = tmpdir();
+  try {
+    fs.mkdirpSync(path.join(root, 'docs', 'project', '01-requirements'));
+    const findings = run({ rootDir: root });
+    assert.strictEqual(findings.length, 1);
+    assert.strictEqual(findings[0].severity, 'warning');
+    assert.match(findings[0].message, /a-002/);
+  } finally {
+    fs.removeSync(root);
+  }
+});
+
+test('structure: 必須見出しは H2 以下で判定し、H1 タイトルでは充足しない', () => {
+  const root = tmpdir();
+  try {
+    fs.copySync(VALID, root);
+    const scope = path.join(root, 'docs', 'project', '01-requirements', '02-mvp-scope.md');
+    // H1 の「# MVP Scope」は残したまま、必須 H2「## MVP Scope」を別名に変える
+    const content = fs.readFileSync(scope, 'utf8').replace('## MVP Scope', '## Scope 表');
+    fs.writeFileSync(scope, content);
+    const findings = run({ rootDir: root });
+    assert.strictEqual(findings.length, 1);
+    assert.strictEqual(findings[0].severity, 'error');
+    assert.match(findings[0].message, /MVP Scope/);
+  } finally {
+    fs.removeSync(root);
+  }
+});
+
 test('structure: 任意ファイル（06-features-implemented 等）は無くても Error にならない', () => {
   // valid フィクスチャに 06 は無い。テスト1で findings なしを確認済みだが、
   // フロンティアが最後（03-domain）まで進んでいても任意扱いが保たれることを明示する。

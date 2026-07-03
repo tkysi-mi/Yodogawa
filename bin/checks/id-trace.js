@@ -3,16 +3,18 @@
 const fs = require('fs');
 const path = require('path');
 
-const { parseLines } = require('../lib/markdown');
+const { parseLines, HEADING_RE } = require('../lib/markdown');
 const { SEVERITY, makeFinding, toPosixRelative } = require('../lib/findings');
 const { walkMdFiles } = require('../lib/walk-md');
 const { ID_FAMILIES } = require('../lib/project-spec');
 
 const CHECK = 'id-trace';
-// 前後が英数字・ハイフンに連続する出現（パス断片や P-00X のような
-// プレースホルダの部分一致）を除外する
-const ID_RE = /(?<![0-9A-Za-z-])(P|US|FN|CS|CF)-(\d+)(?![0-9A-Za-z])/g;
-const HEADING_RE = /^ {0,3}#{1,6}\s/;
+// 族の列挙は ID_FAMILIES（SSoT）から導出する。前後が英数字・ハイフンに連続する
+// 出現（パス断片・複合語 CS-001-detail・P-00X のような部分一致）を除外する
+const ID_RE = new RegExp(
+  `(?<![0-9A-Za-z-])(${ID_FAMILIES.map((f) => f.family).join('|')})-(\\d+)(?![0-9A-Za-z-])`,
+  'g'
+);
 
 const ORPHAN_MESSAGES = {
   P: (id) => `「${id}」はどのユーザーストーリーからも参照されていません（孤児ペルソナの可能性）`,

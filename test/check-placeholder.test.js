@@ -64,6 +64,28 @@ test('placeholder: チェックボックスと Markdown リンクは誤検知し
   }
 });
 
+test('placeholder: 同一行でリンクとして使われた後の生トークンも見逃さない', () => {
+  const root = tmpdir();
+  try {
+    fs.outputFileSync(
+      path.join(root, 'docs', 'project', '01-requirements', '01-product-brief.md'),
+      [
+        '# Product Brief',
+        '',
+        '## 背景 / 解く課題',
+        '',
+        '[目的](./02-mvp-scope.md) を参照。ここに未記入の [目的] が残っている。',
+        '',
+      ].join('\n')
+    );
+    const findings = run({ rootDir: root });
+    assert.strictEqual(findings.length, 1);
+    assert.match(findings[0].message, /\[目的\]/);
+  } finally {
+    fs.removeSync(root);
+  }
+});
+
 test('placeholder: 「（任意）」付き見出しの空セクションは許容する', () => {
   const root = tmpdir();
   try {

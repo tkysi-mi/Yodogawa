@@ -4,13 +4,15 @@ const fs = require('fs');
 const path = require('path');
 const { bold, green, red, yellow, gray } = require('kleur');
 
-const { SEVERITY, summarize } = require('../lib/findings');
+const { SEVERITY, makeFinding, summarize, formatPosition } = require('../lib/findings');
 
+// requiresProject: docs/project が無いとき skip するチェック。
+// structure は不在自体を報告し、links は docs/ 全体（docs/tasks 含む）が対象なので走らせる。
 const CHECKS = [
-  { name: 'structure', run: require('../checks/structure').run },
-  { name: 'id-trace', run: require('../checks/id-trace').run },
-  { name: 'placeholder', run: require('../checks/placeholder').run },
-  { name: 'links', run: require('../checks/links').run },
+  { name: 'structure', run: require('../checks/structure').run, requiresProject: false },
+  { name: 'id-trace', run: require('../checks/id-trace').run, requiresProject: true },
+  { name: 'placeholder', run: require('../checks/placeholder').run, requiresProject: true },
+  { name: 'links', run: require('../checks/links').run, requiresProject: false },
 ];
 
 const USAGE = `Usage: yodogawa doctor [--dir <path>] [--json]
@@ -30,7 +32,10 @@ function parseArgs(argv) {
     const arg = argv[i];
     if (arg === '--json') opts.json = true;
     else if (arg === '--dir') {
-      if (i + 1 >= argv.length) return { error: '--dir にはパスを指定してください' };
+      const value = argv[i + 1];
+      if (value === undefined || value.startsWith('-')) {
+        return { error: '--dir にはパスを指定してください' };
+      }
       opts.dir = argv[++i];
     } else if (arg === '--help' || arg === '-h') return { help: true };
     else return { error: `不明なオプション: ${arg}` };
@@ -55,9 +60,8 @@ function printHuman(results, summary) {
   for (const result of results) {
     console.log(HEADER[result.status](result.name));
     for (const f of result.findings) {
-      const position = f.line == null ? f.file : `${f.file}:${f.line}`;
       const label = f.severity === SEVERITY.ERROR ? red('error') : yellow('warning');
-      console.log(`  ${label} ${position} ${f.message}`);
+      console.log(`  ${label} ${formatPosition(f)} ${f.message}`);
     }
   }
   const skipped = results.filter((r) => r.status === 'skip').length;
@@ -84,13 +88,21 @@ async function main(argv, { cwd = process.cwd() } = {}) {
     return 2;
   }
 
-  // docs/project 自体が無い場合は structure だけが Error を報告し、他は skip
   const projectMissing = !fs.existsSync(path.join(rootDir, 'docs', 'project'));
-  const results = CHECKS.map(({ name, run }) => {
-    if (projectMissing && name !== 'structure') {
+  const results = CHECKS.map(({ name, run, requiresProject }) => {
+    if (projectMissing && requiresProject) {
       return { name, status: 'skip', findings: [] };
     }
-    const findings = run({ rootDir });
+    // チェック自体の実行失敗（読み取り不能ファイル等）でも --json の stdout 純度と
+    // exit code 契約を守るため、throw は Error finding に変換する
+    let findings;
+    try {
+      findings = run({ rootDir });
+    } catch (err) {
+      findings = [
+        makeFinding(name, SEVERITY.ERROR, '(internal)', null, `チェックの実行に失敗しました: ${err.message}`),
+      ];
+    }
     return { name, status: statusOf(findings), findings };
   });
 

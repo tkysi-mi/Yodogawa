@@ -3,12 +3,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const { parseLines, splitTableCells } = require('../lib/markdown');
+const { parseLines, splitTableCells, HEADING_RE } = require('../lib/markdown');
 const { SEVERITY, makeFinding } = require('../lib/findings');
 const spec = require('../lib/project-spec');
 
 const CHECK = 'structure';
-const HEADING_RE = /^ {0,3}(#{1,6})\s+(.+)$/;
 
 function run({ rootDir }) {
   const projectDir = path.join(rootDir, 'docs', 'project');
@@ -29,6 +28,19 @@ function run({ rootDir }) {
     fs.existsSync(path.join(projectDir, ...rel.split('/')))
   );
   const frontier = existing.lastIndexOf(true);
+
+  // 骨格だけあって正準ドキュメントがゼロの状態を「健全」と誤報しない
+  if (frontier === -1) {
+    return [
+      makeFinding(
+        CHECK,
+        SEVERITY.WARNING,
+        'docs/project',
+        null,
+        'docs/project に正準ドキュメントが 1 つもありません（/a-002-initialize-project から要件定義を開始してください）'
+      ),
+    ];
+  }
 
   for (let i = 0; i < frontier; i++) {
     if (!existing[i]) {
@@ -57,7 +69,9 @@ function run({ rootDir }) {
     for (const line of lines) {
       if (line.inFence) continue;
       const m = line.visible.match(HEADING_RE);
-      if (m) headings.push(m[2].trim());
+      // H1 はドキュメントタイトルなので必須見出しの充足に数えない
+      // （例: 02-mvp-scope.md の「# MVP Scope」がキー「MVP Scope」を偽充足しないように）
+      if (m && m[1].length >= 2) headings.push(m[2].trim());
       if (requiredHeader && !hasRequiredTableHeader) {
         const cells = splitTableCells(line.visible);
         if (cells && cells.includes(requiredHeader)) hasRequiredTableHeader = true;

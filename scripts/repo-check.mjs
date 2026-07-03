@@ -25,7 +25,7 @@ const ROOT = resolve(
   process.argv[2] ?? join(dirname(fileURLToPath(import.meta.url)), "..")
 );
 
-const CODE = String.raw`[abc]-\d{3}[a-z]?`;
+const CODE = String.raw`[abcd]-\d{3}[a-z]?`;
 // 直前が英数字・ドット・スラッシュ・ハイフン等（= パス断片）の `/xxx` は除外。
 // フェンス内も対象（スキルの bash 例中の参照も実在すべき）、コメント内は除外。
 const REF_RE = new RegExp(String.raw`(?<![\w./-])/(${CODE})((?:-[a-z0-9]+)*)`, "g");

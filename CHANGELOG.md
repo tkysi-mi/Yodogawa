@@ -5,6 +5,12 @@
 フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [Semantic Versioning](https://semver.org/lang/ja/spec/v2.0.0.html) に準拠しています。
 
+## [2.3.0] - 2026-07-04
+
+### 追加
+
+- **メタ振り返りスキル `d-001-review-retrospective` の新設**: A〜Cシリーズ（または1タスク分のb/cサイクル）完了後に、成果物ドキュメント（`c-implementation.md` の振り返り・`b-research.md` のベストプラクティス・`TASK-REVIEW-REPORT.md`）から摩擦点を収集し、対象 SKILL.md への修正案を diff 形式で提示（チャット＋`RETROSPECTIVE-REPORT.md` へ永続化。適用はユーザー承認制で SKILL.md 自体は編集しない）する新フェーズ `d-NNN`（メタ／横断）の最初のスキルを追加しました（#62）。汎用的な学びは `docs/LESSONS.md`（新設テンプレート `templates/LESSONS.md`）に追記専用ログとして蓄積し、`b-003-create-task-research` が次タスクの調査時に参照する導線を追加しています。蓄積先を Issue 記載の `docs/project/LESSONS.md` ではなく `docs/project/` の外に置くのは、`yodogawa doctor` の `id-trace`/`placeholder` が `docs/project/` 配下を無条件に走査し、過去タスクの ID 言及を trace 切れとして誤検知しうるためです。あわせて `d-NNN` 対応のためリポジトリ整合性チェック（`scripts/repo-check.mjs`）のスキルコード正規表現を拡張し、README のスキル数記載を実数へ訂正しました。
+
 ## [2.2.0] - 2026-07-03
 
 ### 追加

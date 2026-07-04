@@ -1,0 +1,4 @@
+# スキル評価資産（evals.json・フィクスチャ）は開発用のため npm 配布から除外する。
+# 注意: package.json の files に "skills" が含まれていても、
+# サブディレクトリの .npmignore は有効（root の .npmignore と異なり files を上書きできる）。
+evals/

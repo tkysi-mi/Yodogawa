@@ -22,8 +22,8 @@
   ],
   "scripts": {
     "test": "node --test \"test/**/*.test.js\"",
-    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#test/fixtures\"",
-    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\" \"#test/fixtures\"",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#test/fixtures\" \"#skills/*/evals\"",
+    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\" \"#test/fixtures\" \"#skills/*/evals\"",
     "check:repo": "node scripts/repo-check.mjs",
     "sync:manifests": "node scripts/sync-plugin-manifests.mjs",
     "version": "node scripts/sync-plugin-manifests.mjs && git add .claude-plugin/plugin.json .claude-plugin/marketplace.json",

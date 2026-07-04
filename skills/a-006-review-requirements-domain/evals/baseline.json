@@ -1,0 +1,92 @@
+{
+  "skill_name": "a-006-review-requirements-domain",
+  "measured_at": "2026-07-04",
+  "model": "claude-fable-5",
+  "iterations": 1,
+  "runs_per_case": 1,
+  "yodogawa_cli_version": "2.3.0",
+  "grading": "メイン セッションの LLM 採点＋機械チェック（yodogawa doctor / grep / ファイル存在）。証拠は各 run の grading.json 参照",
+  "note": "iteration 1・各ケース 1 run のため stddev は算出しない（README「スキルの評価（evals）」参照）",
+  "workspace": "a-006-review-requirements-domain-workspace/iteration-1",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1,
+        "per_case": [
+          1,
+          1,
+          1
+        ]
+      },
+      "passed": 25,
+      "total_assertions": 25,
+      "time_seconds": {
+        "mean": 236.9
+      },
+      "tokens": {
+        "mean": 53329
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.372,
+        "per_case": [
+          0.545,
+          0.286,
+          0.286
+        ]
+      },
+      "passed": 10,
+      "total_assertions": 25,
+      "time_seconds": {
+        "mean": 87
+      },
+      "tokens": {
+        "mean": 29378
+      }
+    },
+    "delta": {
+      "pass_rate": 0.628,
+      "time_seconds": 149.9,
+      "tokens": 23951
+    }
+  },
+  "cases": [
+    {
+      "id": 1,
+      "name": "no-go-detection-rate",
+      "with_skill": {
+        "passed": 11,
+        "total": 11
+      },
+      "without_skill": {
+        "passed": 6,
+        "total": 11
+      }
+    },
+    {
+      "id": 2,
+      "name": "go-no-false-positives",
+      "with_skill": {
+        "passed": 7,
+        "total": 7
+      },
+      "without_skill": {
+        "passed": 2,
+        "total": 7
+      }
+    },
+    {
+      "id": 3,
+      "name": "caveats-not-overblocking",
+      "with_skill": {
+        "passed": 7,
+        "total": 7
+      },
+      "without_skill": {
+        "passed": 2,
+        "total": 7
+      }
+    }
+  ]
+}

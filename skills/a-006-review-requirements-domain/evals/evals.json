@@ -1,0 +1,82 @@
+{
+  "skill_name": "a-006-review-requirements-domain",
+  "notes": "評価スコープは出力品質（不整合の検出率・PM Gate 判定の正確さ・偽陽性の少なさ）のみ。トリガー精度は対象外（disable-model-invocation: true の明示呼び出し設計のため）。各ケースは evals/files/{fixture}/ をプロジェクトルートとして一時ディレクトリに展開し、隔離サブエージェント・fresh session で with-skill / without-skill の 2 構成を実行する。スキル手順1 は `npx -y yodogawa doctor --json` を実行するため、実行環境に npm registry へのネットワークアクセスが必要。運用は README「スキルの評価（evals）」を参照。",
+  "evals": [
+    {
+      "id": 1,
+      "name": "no-go-detection-rate",
+      "prompt": "docs/project 配下の要件定義・シナリオ・ドメインドキュメント一式のレビュー（PM Gate）を実行してほしい。入力ファイル群（no-go-docs）をプロジェクトルートとして扱うこと。ドメイン設計まで一通り書き終えたので、技術選定に進んでよいか判定がほしい。",
+      "expected_output": "仕込まれた不整合（クリティカル 3 件＋doctor 検出 3 種）が検出され、PM Gate は No-Go と判定される。REVIEW-REPORT が 7 観点の PASS/FAIL 表と file:line 引用付きで生成される。",
+      "files": [
+        "evals/files/no-go-docs/docs/project/01-requirements/01-product-brief.md",
+        "evals/files/no-go-docs/docs/project/01-requirements/02-mvp-scope.md",
+        "evals/files/no-go-docs/docs/project/01-requirements/03-parking-lot.md",
+        "evals/files/no-go-docs/docs/project/01-requirements/05-user-stories.md",
+        "evals/files/no-go-docs/docs/project/02-behavior/01-core-scenarios.md",
+        "evals/files/no-go-docs/docs/project/03-domain/01-domain-sketch.md",
+        "evals/files/no-go-docs/docs/project/03-domain/02-ubiquitous-language.md"
+      ],
+      "assertions": [
+        "docs/project/ に REVIEW-REPORT-*.md が作成され、7 観点それぞれの PASS/FAIL を示す表がある",
+        "PM Gate 判定が No-Go である（Go や Go with caveats ではない）",
+        "No-Go の導出根拠が観点別 PASS/FAIL 表から規則どおり説明されている（クリティカル観点 2.3 / 2.4 / 2.7 の FAIL に言及）",
+        "検出 (2.3): クリティカル制約「参加者データは社内オンプレ環境に保存」と Domain Sketch の「クラウド型名簿 SaaS（海外リージョン）に保存」の矛盾が file:line 引用付きで指摘されている",
+        "検出 (2.4): Core Scenarios のアクター「経理担当」と CS-002（参加費の精算）が Domain Sketch のアクター・中核エンティティに存在しないことが指摘されている",
+        "検出 (2.7): Must 機能「AI おすすめ勉強会レコメンド」が課題・ペルソナ・成功指標・仮説のいずれにも trace せず、Out of Scope の「パーソナライズ・レコメンド機能」と矛盾することが過剰作り込み候補として指摘されている",
+        "検出 (id-trace): US-003 が参照するペルソナ P-003 が Product Brief で未定義であることが指摘されている",
+        "検出 (placeholder): 05-user-stories.md にテンプレートプレースホルダ「[役割]」が残存していることが指摘されている",
+        "検出 (links): 05-user-stories.md から存在しない 02-experience-flow.md へのリンク切れが指摘されている",
+        "検出 (structure): 01-product-brief.md に「成功指標」で始まる必須見出しが無いことが指摘されている",
+        "修正アクションが、対応するスキル参照（/a-002 / /a-002a / /a-002b / /a-003 / /a-004 等）とともに提案されている"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "go-no-false-positives",
+      "prompt": "docs/project 配下の要件定義・シナリオ・ドメインドキュメント一式のレビュー（PM Gate）を実行してほしい。入力ファイル群（go-docs）をプロジェクトルートとして扱うこと。実装着手前の最終確認としてゲート判定がほしい。",
+      "expected_output": "整合の取れた docs に対して全 7 観点 PASS・PM Gate は Go と判定され、存在しない不整合をでっち上げない。STAKEHOLDER-SUMMARY.md と AI_CONTEXT.md が生成される。",
+      "files": [
+        "evals/files/go-docs/docs/project/01-requirements/01-product-brief.md",
+        "evals/files/go-docs/docs/project/01-requirements/02-mvp-scope.md",
+        "evals/files/go-docs/docs/project/01-requirements/03-parking-lot.md",
+        "evals/files/go-docs/docs/project/01-requirements/05-user-stories.md",
+        "evals/files/go-docs/docs/project/02-behavior/01-core-scenarios.md",
+        "evals/files/go-docs/docs/project/03-domain/01-domain-sketch.md",
+        "evals/files/go-docs/docs/project/03-domain/02-ubiquitous-language.md"
+      ],
+      "assertions": [
+        "docs/project/ に REVIEW-REPORT-*.md が作成され、7 観点それぞれの PASS/FAIL を示す表がある",
+        "PM Gate 判定が Go である",
+        "FAIL 判定の観点が 1 件もない（存在しない不整合をでっち上げていない = 偽陽性ゼロ）",
+        "各観点の判定に根拠（file:line の引用または doctor findings の転記）が付いている",
+        "docs/project/STAKEHOLDER-SUMMARY.md が生成され、PM Gate 判定（Go）が転記されている",
+        "docs/project/AI_CONTEXT.md が生成され、作らないもの（must NOT build: 出欠の給与連携・社外ゲスト招待・予算管理）が明記されている",
+        "AI_CONTEXT.md を実装エージェントへ渡すよう案内されている"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "caveats-not-overblocking",
+      "prompt": "docs/project 配下の要件定義・シナリオ・ドメインドキュメント一式のレビュー（PM Gate）を実行してほしい。入力ファイル群（caveats-docs）をプロジェクトルートとして扱うこと。軽微な積み残しはある気がしているが、実装に進めるかどうかの判定がほしい。",
+      "expected_output": "非クリティカルな不整合 2 件（US-003 のシナリオ未カバー・禁止用語の使用）のみが検出され、PM Gate は Go with caveats と判定される。No-Go に過剰判定しない。",
+      "files": [
+        "evals/files/caveats-docs/docs/project/01-requirements/01-product-brief.md",
+        "evals/files/caveats-docs/docs/project/01-requirements/02-mvp-scope.md",
+        "evals/files/caveats-docs/docs/project/01-requirements/03-parking-lot.md",
+        "evals/files/caveats-docs/docs/project/01-requirements/05-user-stories.md",
+        "evals/files/caveats-docs/docs/project/02-behavior/01-core-scenarios.md",
+        "evals/files/caveats-docs/docs/project/03-domain/01-domain-sketch.md",
+        "evals/files/caveats-docs/docs/project/03-domain/02-ubiquitous-language.md"
+      ],
+      "assertions": [
+        "docs/project/ に REVIEW-REPORT-*.md が作成され、7 観点それぞれの PASS/FAIL を示す表がある",
+        "PM Gate 判定が Go with caveats である（No-Go でも Go でもない）",
+        "検出 (2.1): US-003（開催実績の振り返り）に対応する Core Scenario が無いことが指摘されている",
+        "検出 (2.5): 01-core-scenarios.md で禁止用語「イベントデータ」が使用されていること（ユビキタス言語の禁止用語表に違反）が file:line 引用付きで指摘されている",
+        "クリティカル観点 2.3 / 2.4 / 2.7 はいずれも PASS と判定されている",
+        "FAIL の観点が非クリティカルの 2 件以内に収まっており、それ以外の不整合をでっち上げていない",
+        "caveats（着手前後に解消すべき事項）として US-003 と禁止用語の修正が推奨アクションに挙がっている"
+      ]
+    }
+  ]
+}

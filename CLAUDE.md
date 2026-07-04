@@ -9,7 +9,7 @@ AIネイティブIDE（Antigravity, Cursor, Claude Code, Codex）向けの**仕�
 ## 開発コマンド
 
 ```bash
-# Markdownのlint（全.mdファイル対象、node_modules と test/fixtures を除外）
+# Markdownのlint（全.mdファイル対象、node_modules・test/fixtures・skills/*/evals を除外）
 npm run lint:md
 
 # lint自動修正
@@ -29,6 +29,7 @@ node bin/cli.js new-task some-task-slug                     # タスク採番
 
 - **pre-commitフック**: huskyにより `npm run lint:md` がコミット前に自動実行される
 - **CI**: lint / test / manifest 同期チェック / `check:repo` を実行（`.github/workflows/ci.yml`）
+- **スキル evals**: `a-002` / `a-006` は `skills/{name}/evals/evals.json` に評価ケースを持つ（npm 非配布・lint/check:repo 対象外）。これらのスキル改修時は eval を再実行し baseline 比を PR に記載する。実行方法・baseline 更新手順は README「スキルの評価（evals）」を参照
 
 ## アーキテクチャ
 

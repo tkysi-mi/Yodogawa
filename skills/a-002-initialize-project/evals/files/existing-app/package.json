@@ -1,0 +1,12 @@
+{
+  "name": "equipment-reserve",
+  "version": "0.3.2",
+  "description": "社内備品（会議室・撮影機材）の予約管理 API",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0"
+  }
+}

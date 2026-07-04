@@ -1,5 +1,9 @@
 # Product Brief
 
+> **Owner**: 田中
+> **Status**: in-review
+> **Last-updated**: 2026-06-30
+
 ## 背景 / 解く課題
 
 社内の勉強会調整が手作業で、開催まで平均 2 週間かかっている。

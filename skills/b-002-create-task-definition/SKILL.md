@@ -34,6 +34,8 @@ ls -d docs/tasks/task*
 
 このスキルの配置ディレクトリ（`skills/b-002-create-task-definition/`）を起点に、相対パス `../../templates/tasks/task-template/a-definition.md` を Read で読み込み、`docs/tasks/task{ID}-{SLUG}/a-definition.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。
 
+コピー直後に、ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 2. 目的・背景のヒアリング
 
 現状の課題、困っている人、完了後の価値/KPI を具体的に確認。質問例は [examples/hearing-and-criteria.md](examples/hearing-and-criteria.md#目的背景のヒアリング) を参照。

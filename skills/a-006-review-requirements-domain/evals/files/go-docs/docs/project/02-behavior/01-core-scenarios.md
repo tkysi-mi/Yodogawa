@@ -1,5 +1,9 @@
 # Core Scenarios
 
+> **Owner**: 田中
+> **Status**: in-review
+> **Last-updated**: 2026-06-30
+
 ## 参照: MVP Scope
 
 [MVP Scope](../01-requirements/02-mvp-scope.md) の Must 機能を対象とする。

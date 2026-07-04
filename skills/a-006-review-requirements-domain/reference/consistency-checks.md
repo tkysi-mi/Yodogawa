@@ -14,9 +14,10 @@ SKILL.md 手順2 で実施する各チェック項目の詳細。doctor が機�
 | `id-trace` | `id` が `FN-` の finding（trace切れ） | error | 2.2 | |
 | `id-trace` | `id` が `FN-` の finding（`02-behavior/01-core-scenarios.md` から未参照） | warning | 2.2 | Must機能のシナリオカバレッジ。doctor が最も強くカバーする部分 |
 | `structure` | `file` が `01-requirements/`〜`03-domain/` 配下 | error/warning | 手順1（前提） | 観点表には含めない。存在確認・必須見出しの欠落シグナル |
-| `placeholder` | 同上 | warning | 参考情報 | どの観点にも一対一対応しない。未記入セクションの兆候として補足に使う程度 |
+| `placeholder` | token が `[Owner名]` | warning | 2.8 | Owner 未記入（メタヘッダ残置）の直接シグナル |
+| `placeholder` | 上記以外 | warning | 参考情報 | どの観点にも一対一対応しない。未記入セクションの兆候として補足に使う程度 |
 
-**doctor が対応しない観点（2.3〜2.6、2.7の大半）は、上記マッピングに現れない。エージェントが Read/Grep で内容を確認し、判定には file:line の引用を必須とする。**
+**doctor が対応しない観点（2.3〜2.6、2.7の大半、2.8 の Status 判断）は、上記マッピングに現れない。エージェントが Read/Grep で内容を確認し、判定には file:line の引用を必須とする。**
 
 ## 2.1 ユーザーストーリー ↔ Core Scenario
 
@@ -89,6 +90,14 @@ grep -rn "Manager" docs/project/03-domain/ || echo "No 'Manager' found"
 # Out of Scope（Won't）に挙げた機能名が他 doc に混入していないか（例）
 grep -rn "{Won't機能名}" docs/project/02-behavior/ docs/project/03-domain/
 ```
+
+## 2.8 ドキュメントメタ情報（Owner / Status）
+
+各ドキュメント冒頭のメタヘッダ（Owner / Status / Last-updated）を確認する。**Owner の未記入（`[Owner名]` の残置）は doctor の placeholder が検出する**（上記マッピング表参照）。Status の整合はエージェントの読解判断。
+
+- **Owner**: `[Owner名]` のまま、または空 → FAIL。文書責任者をユーザーに確認して記入を提案する。
+- **Status**: フェーズと不整合（例: PM Gate 実施段階なのに `draft` のまま）→ FAIL ではなく更新提案として記録する。
+- **ヘッダ自体が無い**（旧テンプレート由来のドキュメント）→ FAIL にせず PASS＋注記とし、メタヘッダの追補を提案する。
 
 ## エスカレーションの判断材料
 

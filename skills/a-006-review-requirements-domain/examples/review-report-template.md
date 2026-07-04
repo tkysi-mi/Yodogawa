@@ -12,7 +12,7 @@ SKILL.md 手順4 で作成する `docs/project/REVIEW-REPORT-*.md` のフォー�
 
 ## サマリー
 
-- 観点別判定: PASS 6 / FAIL 1（全7観点）
+- 観点別判定: PASS 7 / FAIL 1（全8観点）
 - PM Gate 判定: Go with caveats
 
 ## 詳細（観点別 PASS/FAIL）
@@ -26,6 +26,7 @@ SKILL.md 手順4 で作成する `docs/project/REVIEW-REPORT-*.md` のフォー�
 | 2.5 ユビキタス言語 | PASS | `docs/project/03-domain/02-ubiquitous-language.md:9`: 「ShippingAddress」 | 用語登録済み。禁止用語なし（Read手動確認、doctor非対応） |
 | 2.6 目的との整合性 | PASS | `docs/project/01-requirements/01-product-brief.md:30`: 「North Star: 週次アクティブ率」 | 価値提案と成功指標は整合（Read手動確認、doctor非対応） |
 | 2.7 MVP正当化/過剰作り込み | PASS | `docs/project/01-requirements/02-mvp-scope.md:15`: 「実績バッジ→Not Now」 | 全MustがProduct Briefの課題/指標/仮説にtrace済み（Read手動確認）。注記(Warning): 孤児ペルソナ `01-product-brief.md:8` P-004 が `05-user-stories.md` から未参照（doctor id-trace warning）。過剰ペルソナの可能性、次回改訂で確認 |
+| 2.8 ドキュメントメタ情報（Owner/Status） | PASS | `docs/project/01-requirements/01-product-brief.md:3`: 「> **Owner**: 田中」 | Owner 記入済み（placeholder finding なし）。Status はフェーズと整合。ヘッダ未導入の旧ドキュメントなし |
 
 ## PM Gate 判定
 
@@ -63,7 +64,7 @@ doctor findingsを転記する場合も、`message`をそのままコピペせ�
 | 判定 | 導出条件 | 次のアクション |
 |:--|:--|:--|
 | Go | 全観点 PASS | `AI_CONTEXT.md` を実装エージェントへ渡す |
-| Go with caveats | FAILが1〜2件、すべて非クリティカル観点（2.1/2.2/2.5/2.6） | caveat を明記し、合意の上で着手 |
+| Go with caveats | FAILが1〜2件、すべて非クリティカル観点（2.1/2.2/2.5/2.6/2.8） | caveat を明記し、合意の上で着手 |
 | No-Go | クリティカル観点（2.3/2.4/2.7）がFAIL、またはFAIL総数3以上 | 実装前に該当ドキュメントを修正し再レビュー |
 
 ## コミットメッセージ例

@@ -1,5 +1,9 @@
 # データモデル（ERD）
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何を書くか: データベース構造、エンティティ、属性、リレーションシップ、制約
 

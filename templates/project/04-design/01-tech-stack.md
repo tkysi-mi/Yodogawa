@@ -1,5 +1,9 @@
 # テックスタック
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何を書くか: プロジェクトで使用する技術・ツール・ライブラリの一覧
 

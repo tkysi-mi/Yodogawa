@@ -1,5 +1,9 @@
 # Core Scenarios
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何のドキュメントか: MVP の「価値提供が成立する最小行動」を定義する軽量資料。
                     全ケース網羅（ハッピー / エラー / 境界値）の BDD ではない。

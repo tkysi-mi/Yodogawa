@@ -5,6 +5,12 @@
 フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
 このプロジェクトは [Semantic Versioning](https://semver.org/lang/ja/spec/v2.0.0.html) に準拠しています。
 
+## [2.4.0] - 2026-07-04
+
+### 追加
+
+- **全テンプレートに Owner / Status / Last-updated メタヘッダを追加**: Linear Method の「Every project should have a named owner」原則に基づき、`templates/project/**`（19 ファイル＋ `AI_CONTEXT.md` / `STAKEHOLDER-SUMMARY.md`）と `templates/tasks/task-template/*`（3 ファイル）の計 22 テンプレートの冒頭に、blockquote 3 行のメタヘッダ（`Owner` = 文書責任者・`Status` = draft / in-review / approved・`Last-updated`）を追加しました（#64）。`04-design-system.md` の既存「最終更新」行はヘッダに統合しています。`templates/LESSONS.md` は追記専用ログ（既存エントリを編集しない設計）のため対象外です。生成された docs でヘッダが埋まる導線として、(1) 生成スキル 16 個（a-002〜a-014・b-002〜b-004）のテンプレートコピー手順に「メタヘッダを記入する」ステップを追加（a-002 はヒアリング質問集に Owner 確認を追加）、(2) `a-006`（PM Gate）に観点 2.8・`a-015`（設計レビュー）に観点 2.6「ドキュメントメタ情報（Owner / Status）」を追加（Owner 未記入は FAIL、ヘッダ未導入の旧ドキュメントは後方互換のため PASS＋追補提案、いずれも PM Gate 非クリティカル）、(3) `c-002`（ドキュメント更新）に Last-updated の更新手順を追加しました。あわせて Owner 未記入トークン `[Owner名]` を `yodogawa doctor` の placeholder 検査対象（`bin/lib/project-spec.js` の `KNOWN_TOKENS`）に追加し、`docs/project` 配下の Owner 未記入を機械検出できるようにしています（`docs/tasks` 配下は doctor の検査対象外のため、タスク文書の担保は b-002〜b-004 の手順のみ）。
+
 ## [2.3.0] - 2026-07-04
 
 ### 追加

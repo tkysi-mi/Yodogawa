@@ -1,5 +1,9 @@
 # 画面設計
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何を書くか: 画面一覧、画面の役割、画面遷移フロー
 

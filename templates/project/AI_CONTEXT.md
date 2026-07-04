@@ -1,5 +1,9 @@
 # AI Context
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何のドキュメントか: Vibe coding / AI 実装エージェントに渡す、圧縮された実装コンテキスト。
                     a-006（PM Gate）が上流ドキュメントを要約して生成する。

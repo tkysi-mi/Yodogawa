@@ -6,7 +6,7 @@
       "id": 1,
       "name": "no-go-detection-rate",
       "prompt": "docs/project 配下の要件定義・シナリオ・ドメインドキュメント一式のレビュー（PM Gate）を実行してほしい。入力ファイル群（no-go-docs）をプロジェクトルートとして扱うこと。ドメイン設計まで一通り書き終えたので、技術選定に進んでよいか判定がほしい。",
-      "expected_output": "仕込まれた不整合（クリティカル 3 件＋doctor 検出 3 種）が検出され、PM Gate は No-Go と判定される。REVIEW-REPORT が 7 観点の PASS/FAIL 表と file:line 引用付きで生成される。",
+      "expected_output": "仕込まれた不整合（クリティカル 3 件＋doctor 検出 3 種）が検出され、PM Gate は No-Go と判定される。REVIEW-REPORT が 8 観点の PASS/FAIL 表と file:line 引用付きで生成される。",
       "files": [
         "evals/files/no-go-docs/docs/project/01-requirements/01-product-brief.md",
         "evals/files/no-go-docs/docs/project/01-requirements/02-mvp-scope.md",
@@ -17,7 +17,7 @@
         "evals/files/no-go-docs/docs/project/03-domain/02-ubiquitous-language.md"
       ],
       "assertions": [
-        "docs/project/ に REVIEW-REPORT-*.md が作成され、7 観点それぞれの PASS/FAIL を示す表がある",
+        "docs/project/ に REVIEW-REPORT-*.md が作成され、8 観点それぞれの PASS/FAIL を示す表がある",
         "PM Gate 判定が No-Go である（Go や Go with caveats ではない）",
         "No-Go の導出根拠が観点別 PASS/FAIL 表から規則どおり説明されている（クリティカル観点 2.3 / 2.4 / 2.7 の FAIL に言及）",
         "検出 (2.3): クリティカル制約「参加者データは社内オンプレ環境に保存」と Domain Sketch の「クラウド型名簿 SaaS（海外リージョン）に保存」の矛盾が file:line 引用付きで指摘されている",
@@ -34,7 +34,7 @@
       "id": 2,
       "name": "go-no-false-positives",
       "prompt": "docs/project 配下の要件定義・シナリオ・ドメインドキュメント一式のレビュー（PM Gate）を実行してほしい。入力ファイル群（go-docs）をプロジェクトルートとして扱うこと。実装着手前の最終確認としてゲート判定がほしい。",
-      "expected_output": "整合の取れた docs に対して全 7 観点 PASS・PM Gate は Go と判定され、存在しない不整合をでっち上げない。STAKEHOLDER-SUMMARY.md と AI_CONTEXT.md が生成される。",
+      "expected_output": "整合の取れた docs に対して全 8 観点 PASS・PM Gate は Go と判定され、存在しない不整合をでっち上げない。STAKEHOLDER-SUMMARY.md と AI_CONTEXT.md が生成される。",
       "files": [
         "evals/files/go-docs/docs/project/01-requirements/01-product-brief.md",
         "evals/files/go-docs/docs/project/01-requirements/02-mvp-scope.md",
@@ -45,9 +45,10 @@
         "evals/files/go-docs/docs/project/03-domain/02-ubiquitous-language.md"
       ],
       "assertions": [
-        "docs/project/ に REVIEW-REPORT-*.md が作成され、7 観点それぞれの PASS/FAIL を示す表がある",
+        "docs/project/ に REVIEW-REPORT-*.md が作成され、8 観点それぞれの PASS/FAIL を示す表がある",
         "PM Gate 判定が Go である",
         "FAIL 判定の観点が 1 件もない（存在しない不整合をでっち上げていない = 偽陽性ゼロ）",
+        "検出 (2.8): 各ドキュメント冒頭のメタヘッダ（Owner: 田中 / Status: in-review）が記入済みとして PASS 判定されている（Owner 記入済みを FAIL にしない）",
         "各観点の判定に根拠（file:line の引用または doctor findings の転記）が付いている",
         "docs/project/STAKEHOLDER-SUMMARY.md が生成され、PM Gate 判定（Go）が転記されている",
         "docs/project/AI_CONTEXT.md が生成され、作らないもの（must NOT build: 出欠の給与連携・社外ゲスト招待・予算管理）が明記されている",
@@ -69,11 +70,12 @@
         "evals/files/caveats-docs/docs/project/03-domain/02-ubiquitous-language.md"
       ],
       "assertions": [
-        "docs/project/ に REVIEW-REPORT-*.md が作成され、7 観点それぞれの PASS/FAIL を示す表がある",
+        "docs/project/ に REVIEW-REPORT-*.md が作成され、8 観点それぞれの PASS/FAIL を示す表がある",
         "PM Gate 判定が Go with caveats である（No-Go でも Go でもない）",
         "検出 (2.1): US-003（開催実績の振り返り）に対応する Core Scenario が無いことが指摘されている",
         "検出 (2.5): 01-core-scenarios.md で禁止用語「イベントデータ」が使用されていること（ユビキタス言語の禁止用語表に違反）が file:line 引用付きで指摘されている",
         "クリティカル観点 2.3 / 2.4 / 2.7 はいずれも PASS と判定されている",
+        "検出 (2.8): メタヘッダが無い（旧テンプレート由来の）ドキュメントであることを理由に 2.8 を FAIL にしていない（PASS＋注記とし、ヘッダの追補提案にとどめている）",
         "FAIL の観点が非クリティカルの 2 件以内に収まっており、それ以外の不整合をでっち上げていない",
         "caveats（着手前後に解消すべき事項）として US-003 と禁止用語の修正が推奨アクションに挙がっている"
       ]

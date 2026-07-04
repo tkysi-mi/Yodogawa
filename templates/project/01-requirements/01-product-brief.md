@@ -1,5 +1,9 @@
 # Product Brief
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何のドキュメントか: ステークホルダーと5分で「なぜ作るのか」を合意するための軽量資料。
                     詳細な PRD ではない。実装前に Go / No-Go を判断できる最小情報に絞る。

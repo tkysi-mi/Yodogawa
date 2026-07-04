@@ -1,5 +1,9 @@
 # インフラ設計
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何を書くか: インフラ構成図、環境構成、主要な運用方針
 

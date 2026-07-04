@@ -1,5 +1,9 @@
 # ユビキタス言語一覧
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何のドキュメントか: プロジェクト全体で共有する共通言語の定義集（DDD）。ビジネス用語と技術用語の橋渡し。
 使い方:

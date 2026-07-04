@@ -33,6 +33,8 @@ ls -la docs/project/04-design/ 2>/dev/null || echo "ディレクトリが存在�
 
 このスキルの配置ディレクトリ（`skills/a-007-define-tech-stack/`）を起点に、相対パス `../../templates/project/04-design/01-tech-stack.md` を Read で読み込み、その内容を `docs/project/04-design/01-tech-stack.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。出力先ディレクトリ（`docs/project/04-design/`）が無ければ作成する。
 
+コピー直後に、ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 3. 要件分析と推奨技術スタックの生成
 
 - **システム特性の分析**: アプリケーションタイプ（SPA/SSR 等）、クリティカル制約（NFR の要点）、ドメイン複雑度

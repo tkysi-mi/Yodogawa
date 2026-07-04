@@ -1,5 +1,9 @@
 # Parking Lot（後回しバックログ）
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何のドキュメントか: 今は MVP に「入れない」と判断したアイデア・要望の backlog。捨てずに保持し将来に備える。
 役割分担（重要）: MVP の取捨選択（Must / Not Now / Won't と優先順位付け）は 02-mvp-scope.md（/a-002a）が正。

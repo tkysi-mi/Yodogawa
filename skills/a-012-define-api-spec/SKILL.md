@@ -38,6 +38,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 このスキルの配置ディレクトリ（`skills/a-012-define-api-spec/`）を起点に、相対パス `../../templates/project/04-design/06-api-spec.md` を Read で読み込み、その内容を `docs/project/04-design/06-api-spec.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。出力先ディレクトリ（`docs/project/04-design/`）が無ければ作成する。
 
+コピー直後に、ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 3. API スタイルの確認と提案
 
 技術スタックで選定された API スタイル（REST, GraphQL 等）を確認し、データモデルと画面設計から必要なリソースと操作を抽出する。スタイル別の特徴は [examples/api-templates.md](examples/api-templates.md#api-スタイル別の特徴) を参照。

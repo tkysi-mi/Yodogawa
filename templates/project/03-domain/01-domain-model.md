@@ -1,5 +1,9 @@
 # ドメインモデル (Event Storming)
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 位置づけ（任意 / advanced テンプレート）:
   - MVP 標準フローのテンプレートではない。標準は軽量な Domain Sketch（01-domain-sketch.md、/a-004 が生成）。

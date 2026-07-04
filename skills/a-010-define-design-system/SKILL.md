@@ -30,6 +30,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 このスキルの配置ディレクトリ（`skills/a-010-define-design-system/`）を起点に、相対パス `../../templates/project/04-design/04-design-system.md` を Read で読み込み、その内容を `docs/project/04-design/04-design-system.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。出力先ディレクトリ（`docs/project/04-design/`）が無ければ作成する。
 
+コピー直後に、ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 3. カラーパレットの定義
 
 - **Primary Colors**: ブランドカラー（1〜2色）

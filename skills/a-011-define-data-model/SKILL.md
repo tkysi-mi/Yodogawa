@@ -37,6 +37,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 このスキルの配置ディレクトリ（`skills/a-011-define-data-model/`）を起点に、相対パス `../../templates/project/04-design/05-data-model.md` を Read で読み込み、その内容を `docs/project/04-design/05-data-model.md` へ Write する。出力先が既に存在する場合は上書きせずスキップして報告する（冪等）。出力先ディレクトリ（`docs/project/04-design/`）が無ければ作成する。
 
+コピー直後に、ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 3. エンティティの抽出と提案
 
 - **ドメインモデルから**: Aggregate Root および内部エンティティを抽出

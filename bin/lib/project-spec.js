@@ -82,6 +82,7 @@ const REVIEW_ARTIFACTS = ['AI_CONTEXT.md', 'STAKEHOLDER-SUMMARY.md'];
 // チェックボックスや Markdown リンクと衝突するため、既知トークンのみ検出する。
 // テンプレートとの同期は test/project-spec-sync.test.js が検証する。
 const KNOWN_TOKENS = [
+  '[Owner名]',
   '[役割]',
   '[目的]',
   '[理由]',

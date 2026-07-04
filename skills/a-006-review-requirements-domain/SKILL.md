@@ -43,7 +43,7 @@ npx -y yodogawa doctor --json
 
 ### 2. 一貫性チェックの実行（観点別 PASS/FAIL + 根拠引用）
 
-以下の 7 観点を **PASS / FAIL** で判定する（判定ルール: 観点内に Error 相当の指摘が1件以上あれば FAIL、Warning 相当のみなら PASS+注記）。詳細な観点・doctor対応関係は [reference/consistency-checks.md](reference/consistency-checks.md) を参照。
+以下の 8 観点を **PASS / FAIL** で判定する（判定ルール: 観点内に Error 相当の指摘が1件以上あれば FAIL、Warning 相当のみなら PASS+注記）。詳細な観点・doctor対応関係は [reference/consistency-checks.md](reference/consistency-checks.md) を参照。
 
 > **エージェントの役割範囲**
 >
@@ -57,8 +57,9 @@ npx -y yodogawa doctor --json
 - **2.5 ユビキタス言語**（doctor 非対応）: 主要要素の登録、禁止用語の検出
 - **2.6 目的との整合性**（doctor 非対応）: Product Brief の価値提案と Domain Sketch の中核エンティティ（Full DDD 採用時は Core Domain）の一致、および**目的 ↔ 成功指標**の整合・成功指標の計測可能性
 - **2.7 MVP 正当化 / 過剰作り込み（YAGNI）**（大半が doctor 非対応）: 各 Must が課題/ペルソナ/指標/仮説に trace するか、Out of Scope と矛盾しないか、安い代替手段で済むものが Must になっていないか
+- **2.8 ドキュメントメタ情報（Owner / Status）**（一部 doctor 対応）: 各ドキュメント冒頭のメタヘッダで Owner が記入済みか（`[Owner名]` の残置は doctor の placeholder が検出）、Status がフェーズと整合しているか。IF ヘッダ自体が無い（旧テンプレート由来） THEN FAIL にせず PASS＋注記とし、ヘッダの追補を提案する。Status の不整合も FAIL ではなく更新提案とする。
 
-`placeholder` の finding はどの観点にも一対一対応しないため、判断材料としてのみ使う（必要なら該当観点のコメント欄に file:line 付きで補足する）。
+`placeholder` の finding のうち `[Owner名]` は観点 2.8 に振り分ける。それ以外はどの観点にも一対一対応しないため、判断材料としてのみ使う（必要なら該当観点のコメント欄に file:line 付きで補足する）。
 
 ### 3. PM Gate 判定（Go / Go with caveats / No-Go）
 
@@ -66,7 +67,7 @@ npx -y yodogawa doctor --json
 
 - **クリティカル観点**: 2.3（クリティカル制約）/ 2.4（Core Scenario↔Domain Sketch）/ 2.7（MVP正当化）
 - **No-Go**: クリティカル観点のいずれかが FAIL、または FAIL の観点数が3以上
-- **Go with caveats**: FAIL が1〜2件あるが、すべて非クリティカル観点（2.1/2.2/2.5/2.6）
+- **Go with caveats**: FAIL が1〜2件あるが、すべて非クリティカル観点（2.1/2.2/2.5/2.6/2.8）
 - **Go**: 全観点 PASS（コメント欄の Warning 注記は着手を妨げない）
 
 補助チェックリスト（各項目は対応する観点番号の FAIL/PASS を根拠として引用する）:
@@ -86,7 +87,7 @@ npx -y yodogawa doctor --json
 必須セクション:
 
 - サマリー（観点別 PASS/FAIL の件数。doctor summary の errors/warnings を参考値として併記）
-- 詳細（7 観点ごとの PASS/FAIL・根拠(file:line引用)・コメント。2.7 では**過剰作り込み候補**を明示）
+- 詳細（8 観点ごとの PASS/FAIL・根拠(file:line引用)・コメント。2.7 では**過剰作り込み候補**を明示）
 - PM Gate 判定（Go / Go with caveats / No-Go と、観点別表からの導出根拠）
 - 推奨アクション（修正すべきタスクとスキル参照）
 
@@ -98,6 +99,8 @@ npx -y yodogawa doctor --json
 - `../../templates/project/AI_CONTEXT.md` → `docs/project/AI_CONTEXT.md`
 
 上流ドキュメント（`01-product-brief.md` / `02-mvp-scope.md` / `02-behavior/01-core-scenarios.md` / `03-domain/`）を**要約・参照**して各テンプレートを埋める（single source of truth を複製しない）。`AI_CONTEXT.md` には **MVP must NOT build**（Won't / Out of Scope）を必ず明記する。`STAKEHOLDER-SUMMARY.md` には手順3の PM Gate 判定を転記する。
+
+両ファイルの冒頭メタヘッダも記入する（Owner は文書責任者——未確認ならユーザーに確認。Status は PM Gate 判定に応じて `in-review` または `approved`、Last-updated は当日日付）。
 
 ### 6. 結果の報告と修正提案
 
@@ -115,7 +118,7 @@ git commit -m "docs: PM Gate レビュー（要約・AI コンテキスト含む
 
 ## 完了条件
 
-- `docs/project/REVIEW-REPORT-YYYYMMDDHHMMSS.md` が作成され、7 観点の結果と PM Gate 判定（Go / Go with caveats / No-Go）が記録されている。
+- `docs/project/REVIEW-REPORT-YYYYMMDDHHMMSS.md` が作成され、8 観点の結果と PM Gate 判定（Go / Go with caveats / No-Go）が記録されている。
 - 全ドキュメント間の整合性がチェックされ、観点ごとの判定（PASS/FAIL）と根拠（file:line引用）が記録されている。doctor対応観点はfindingsの転記、非対応観点は読解判断＋引用になっている。
 - 各 Must 機能の MVP 正当化が検査され、trace しない機能が**過剰作り込み候補**としてフラグされている。
 - `docs/project/STAKEHOLDER-SUMMARY.md` と `docs/project/AI_CONTEXT.md` が生成され、`AI_CONTEXT.md` に「作らないもの（must NOT build）」が明記されている。
@@ -130,6 +133,6 @@ git commit -m "docs: PM Gate レビュー（要約・AI コンテキスト含む
 ## 参考
 
 - [examples/review-report-template.md](examples/review-report-template.md) — レビュー結果レポートのフォーマット例、PASS/FAIL判定ルール、PM Gate 判定の使い方
-- [reference/consistency-checks.md](reference/consistency-checks.md) — doctor findingsの観点マッピング、7 観点（MVP 正当化/YAGNI 含む）の詳細なチェック項目、doctor非対応観点のgrep補助例、エスカレーション基準
+- [reference/consistency-checks.md](reference/consistency-checks.md) — doctor findingsの観点マッピング、8 観点（MVP 正当化/YAGNI 含む）の詳細なチェック項目、doctor非対応観点のgrep補助例、エスカレーション基準
 - [../../templates/project/STAKEHOLDER-SUMMARY.md](../../templates/project/STAKEHOLDER-SUMMARY.md) — ステークホルダー向け統合1枚もののテンプレート
 - [../../templates/project/AI_CONTEXT.md](../../templates/project/AI_CONTEXT.md) — AI 実装用の圧縮コンテキストのテンプレート

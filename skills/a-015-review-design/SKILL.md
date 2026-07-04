@@ -35,21 +35,22 @@ allowed-tools: Read, Grep, Glob, Write, Bash
 npx -y yodogawa doctor --json
 ```
 
-`findings` から `check: "structure"` かつ `file` が `docs/project/04-design/` で始まる項目を確認し、必須ファイル・見出しの欠落があれば対応するスキル（a-007〜a-014）の実行を促す。**`id-trace` は 04-design 配下を対象にした ID 体系を持たないため、5観点すべてに直接的な機械判定は無い**（`bin/lib/project-spec.js` の `ID_FAMILIES` に 04-design 向けの族が定義されていないため）。`placeholder`/`links` の finding は前提整合性の補助シグナルとして使う（未記入セクション・リンク切れの有無）。doctor が実行できない場合のみ、代替として `ls -l docs/project/04-design/*.md` を実行する。
+`findings` から `check: "structure"` かつ `file` が `docs/project/04-design/` で始まる項目を確認し、必須ファイル・見出しの欠落があれば対応するスキル（a-007〜a-014）の実行を促す。**`id-trace` は 04-design 配下を対象にした ID 体系を持たないため、観点 2.1〜2.5 に直接的な機械判定は無い**（`bin/lib/project-spec.js` の `ID_FAMILIES` に 04-design 向けの族が定義されていないため）。`placeholder`/`links` の finding は前提整合性の補助シグナルとして使う（未記入セクション・リンク切れの有無。`[Owner名]` の placeholder finding は観点 2.6 に振り分ける）。doctor が実行できない場合のみ、代替として `ls -l docs/project/04-design/*.md` を実行する。
 
 ### 2. 一貫性チェックの実行（観点別 PASS/FAIL + 根拠引用）
 
-以下の 5 観点を **PASS / FAIL** で判定する（判定ルール: 観点内に Error 相当の指摘が1件以上あれば FAIL、Warning 相当のみなら PASS+注記）。**doctor の id-trace は 04-design を検査対象にしないため、2.1〜2.5 のすべてがエージェント自身の Read/Grep による判断**になる。各判定には file:line の引用を必須とする（詳細は [reference/consistency-checks.md](reference/consistency-checks.md)）。
+以下の 6 観点を **PASS / FAIL** で判定する（判定ルール: 観点内に Error 相当の指摘が1件以上あれば FAIL、Warning 相当のみなら PASS+注記）。**doctor の id-trace は 04-design を検査対象にしないため、2.1〜2.5 はエージェント自身の Read/Grep による判断**になる（2.6 のみ doctor の placeholder 検出を補助に使える）。各判定には file:line の引用を必須とする（詳細は [reference/consistency-checks.md](reference/consistency-checks.md)）。
 
-> **エージェントの役割範囲**: doctor が既に検査済みの機械的観点（手順1の存在確認）は再実装しない。一方、この手順2の5観点はすべて doctor 非対応の意味判断であり、役割は「読解判断＋証拠引用」である。Read/Grep/Glob を自由に使ってよい（むしろ必須）。判断した結果は必ず file:line の引用を伴わせる。
+> **エージェントの役割範囲**: doctor が既に検査済みの機械的観点（手順1の存在確認）は再実装しない。一方、この手順2の観点は 2.6（placeholder が補助）を除きすべて doctor 非対応の意味判断であり、役割は「読解判断＋証拠引用」である。Read/Grep/Glob を自由に使ってよい（むしろ必須）。判断した結果は必ず file:line の引用を伴わせる。
 
 - **2.1 テックスタック ↔ アーキテクチャ**: 選定技術の反映、ADR の記録
 - **2.2 データモデル ↔ ドメインモデル**: Aggregate のカバレッジ、用語統一
 - **2.3 API 仕様 ↔ データモデル**: リソース・フィールドの整合
 - **2.4 画面設計 ↔ API 仕様**: 必要なエンドポイントのカバレッジ、状態対応
 - **2.5 インフラ ↔ アーキテクチャ**: 構成の網羅、非機能要件の反映
+- **2.6 ドキュメントメタ情報（Owner / Status）**（一部 doctor 対応）: 各設計ドキュメント冒頭のメタヘッダで Owner が記入済みか（`[Owner名]` の残置は doctor の placeholder が検出）、Status がフェーズと整合しているか。IF ヘッダ自体が無い（旧テンプレート由来） THEN FAIL にせず PASS＋注記とし、ヘッダの追補を提案する。Status の不整合も FAIL ではなく更新提案とする。
 
-`structure`/`placeholder`/`links` の finding は各観点に一対一対応しないため、判断材料としてのみ利用する。
+`structure`/`links` の finding は各観点に一対一対応しないため、判断材料としてのみ利用する（`placeholder` の `[Owner名]` は観点 2.6 に振り分ける）。
 
 ### 3. レビュー結果レポートの作成
 
@@ -58,7 +59,7 @@ npx -y yodogawa doctor --json
 必須セクション:
 
 - サマリー（観点別 PASS/FAIL の件数）
-- 詳細（上記 5 観点ごとの PASS/FAIL・根拠(file:line引用)・コメント）
+- 詳細（上記 6 観点ごとの PASS/FAIL・根拠(file:line引用)・コメント）
 - 推奨アクション（修正すべきタスクとスキル参照）
 
 ### 4. 結果の報告と修正提案
@@ -89,4 +90,4 @@ git commit -m "docs: 設計整合性レビューレポートの作成"
 ## 参考
 
 - [examples/review-report-template.md](examples/review-report-template.md) — レビュー結果レポートのフォーマット例、PASS/FAIL判定ルール
-- [reference/consistency-checks.md](reference/consistency-checks.md) — 5 観点の詳細なチェック項目（すべてdoctor非対応）、grep補助例、エスカレーション基準
+- [reference/consistency-checks.md](reference/consistency-checks.md) — 6 観点の詳細なチェック項目（2.6 を除き doctor 非対応）、grep補助例、エスカレーション基準

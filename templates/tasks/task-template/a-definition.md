@@ -1,5 +1,9 @@
 # タスク定義ドキュメント
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 このドキュメントについて:
   - 格納場所: docs/tasks/task000001-{スラッグ}/a-definition.md

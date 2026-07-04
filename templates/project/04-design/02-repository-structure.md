@@ -1,5 +1,9 @@
 # リポジトリ構造
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何を書くか: プロジェクトのディレクトリ構造とファイル配置の規則
 

@@ -33,6 +33,8 @@ ls -l docs/project/01-requirements/01-product-brief.md docs/project/01-requireme
 
 このスキルの配置ディレクトリ（`skills/a-002b-define-user-stories/`）を起点に、`../../templates/project/01-requirements/05-user-stories.md` を Read→Write で `docs/project/01-requirements/05-user-stories.md` へコピーする。出力先に既に存在する場合は上書きせずスキップして報告する（冪等）。
 
+コピー直後に、ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 3. ストーリーの抽出と記入
 
 `01-product-brief.md`（ターゲットユーザー・価値提案）と `02-mvp-scope.md`（Must 機能）を読み込み、Must 機能ごとに主要ユーザージャーニーを抽出する。

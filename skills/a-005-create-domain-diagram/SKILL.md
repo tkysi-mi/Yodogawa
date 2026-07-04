@@ -34,6 +34,8 @@ ls -la docs/project/03-domain/01-domain-sketch.md 2>/dev/null || echo "Domain Sk
 
 このスキルの配置ディレクトリ（`skills/a-005-create-domain-diagram/`）を起点に、相対パス `../../templates/project/03-domain/01-domain-model.md` を Read で読み込み、その内容を `docs/project/03-domain/01-domain-model.md` へ Write する（冪等。既存ならスキップして報告する）。Domain Sketch の内容を起点に、Bounded Context・Commands・Events・Policies・Aggregates・Read Models・External Systems を埋める。
 
+コピー直後に、ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 3. Context Map 図の作成
 
 `## Context Map` セクションに Mermaid 図を追加する。スタイル定義と記述テンプレートは [examples/mermaid-templates.md](examples/mermaid-templates.md#context-mapbounded-context-間の関係) を参照。

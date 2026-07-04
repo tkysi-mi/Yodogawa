@@ -37,6 +37,8 @@ ls -l docs/project/01-requirements/01-product-brief.md 2>/dev/null || echo "MISS
 - `../../templates/project/01-requirements/02-mvp-scope.md` → `docs/project/01-requirements/02-mvp-scope.md`
 - `../../templates/project/01-requirements/03-parking-lot.md` → `docs/project/01-requirements/03-parking-lot.md`
 
+コピー直後に、コピーした各ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 3. 候補機能の洗い出し（Parking Lot への記入）
 
 `01-product-brief.md`（課題・価値提案・成功指標）を読み込み、課題・価値提案を満たすのに必要な機能を逆算して候補を列挙する。列挙したアイデアは `03-parking-lot.md` に幅広く記入する（この段階では**優先度・機能 ID を厳密に決めず**拾う）。

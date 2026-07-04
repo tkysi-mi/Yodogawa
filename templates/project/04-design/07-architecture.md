@@ -1,5 +1,9 @@
 # アーキテクチャ設計
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何を書くか: システム全体の構造、採用アーキテクチャパターン、重要な設計決定（ADR）
 

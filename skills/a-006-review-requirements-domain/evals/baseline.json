@@ -1,13 +1,13 @@
 {
   "skill_name": "a-006-review-requirements-domain",
-  "measured_at": "2026-07-04",
+  "measured_at": "2026-07-05",
   "model": "claude-fable-5",
   "iterations": 1,
   "runs_per_case": 1,
   "yodogawa_cli_version": "2.3.0",
-  "grading": "メイン セッションの LLM 採点＋機械チェック（yodogawa doctor / grep / ファイル存在）。証拠は各 run の grading.json 参照",
-  "note": "iteration 1・各ケース 1 run のため stddev は算出しない（README「スキルの評価（evals）」参照）",
-  "workspace": "a-006-review-requirements-domain-workspace/iteration-1",
+  "grading": "採点サブエージェント（読み取り専用）による assertion 別判定＋メインセッションの検品・機械チェック（yodogawa doctor / grep / ファイル存在）。証拠は workspace の grading.json 参照",
+  "note": "iteration 1 相当・各ケース 1 run のため stddev は算出しない（README「スキルの評価（evals）」参照）。Issue #64 で観点 2.8（ドキュメントメタ情報）追加・assertions 25→27 件・go-docs フィクスチャへ記入済みメタヘッダ追加に伴い、with/without 両構成を再計測して更新。9 run 並列実行のため time_seconds は旧 baseline（逐次実行）と直接比較不可",
+  "workspace": "a-006-review-requirements-domain-workspace/iteration-2",
   "run_summary": {
     "with_skill": {
       "pass_rate": {
@@ -18,37 +18,37 @@
           1
         ]
       },
-      "passed": 25,
-      "total_assertions": 25,
+      "passed": 27,
+      "total_assertions": 27,
       "time_seconds": {
-        "mean": 236.9
+        "mean": 275.6
       },
       "tokens": {
-        "mean": 53329
+        "mean": 59402
       }
     },
     "without_skill": {
       "pass_rate": {
-        "mean": 0.372,
+        "mean": 0.462,
         "per_case": [
-          0.545,
-          0.286,
-          0.286
+          0.636,
+          0.25,
+          0.5
         ]
       },
-      "passed": 10,
-      "total_assertions": 25,
+      "passed": 13,
+      "total_assertions": 27,
       "time_seconds": {
-        "mean": 87
+        "mean": 135.5
       },
       "tokens": {
-        "mean": 29378
+        "mean": 34321
       }
     },
     "delta": {
-      "pass_rate": 0.628,
-      "time_seconds": 149.9,
-      "tokens": 23951
+      "pass_rate": 0.538,
+      "time_seconds": 140.1,
+      "tokens": 25081
     }
   },
   "cases": [
@@ -60,7 +60,7 @@
         "total": 11
       },
       "without_skill": {
-        "passed": 6,
+        "passed": 7,
         "total": 11
       }
     },
@@ -68,24 +68,24 @@
       "id": 2,
       "name": "go-no-false-positives",
       "with_skill": {
-        "passed": 7,
-        "total": 7
+        "passed": 8,
+        "total": 8
       },
       "without_skill": {
         "passed": 2,
-        "total": 7
+        "total": 8
       }
     },
     {
       "id": 3,
       "name": "caveats-not-overblocking",
       "with_skill": {
-        "passed": 7,
-        "total": 7
+        "passed": 8,
+        "total": 8
       },
       "without_skill": {
-        "passed": 2,
-        "total": 7
+        "passed": 4,
+        "total": 8
       }
     }
   ]

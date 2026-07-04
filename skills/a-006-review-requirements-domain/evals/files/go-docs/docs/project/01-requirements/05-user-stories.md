@@ -1,5 +1,9 @@
 # ユーザーストーリー一覧
 
+> **Owner**: 田中
+> **Status**: in-review
+> **Last-updated**: 2026-06-30
+
 対象スコープは [MVP Scope](02-mvp-scope.md) を参照。
 
 | ストーリーID | ペルソナ | ストーリー | 受け入れ基準 | 優先度 |

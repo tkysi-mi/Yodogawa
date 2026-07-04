@@ -1,6 +1,6 @@
 # 設計ドキュメント間の一貫性チェック項目
 
-SKILL.md 手順2 で実施する 5 観点の詳細。**5観点すべて doctor 非対応**（`bin/lib/project-spec.js` の `ID_FAMILIES` に 04-design 向けの ID 族が定義されていないため、`id-trace` は 04-design 配下を検査対象にしない）。手順1の doctor 呼び出しは `structure` チェックによる存在確認・必須見出し確認にのみ使う。5観点はすべて Read/Grep による手動確認＋file:line引用で判定する。
+SKILL.md 手順2 で実施する 6 観点の詳細。**観点 2.1〜2.5 は doctor 非対応**（`bin/lib/project-spec.js` の `ID_FAMILIES` に 04-design 向けの ID 族が定義されていないため、`id-trace` は 04-design 配下を検査対象にしない）。手順1の doctor 呼び出しは `structure` チェックによる存在確認・必須見出し確認、および 2.6 向けの `placeholder`（`[Owner名]` 残置）検出に使う。2.1〜2.5 はすべて Read/Grep による手動確認＋file:line引用で判定する。
 
 ## 2.1 テックスタック ↔ アーキテクチャ
 
@@ -34,6 +34,14 @@ grep -oE "PostgreSQL|Redis|NestJS|Next.js" docs/project/04-design/07-architectur
 
 - **構成**: インフラ構成（`08-infrastructure.md`）がアーキテクチャ図のコンポーネントを網羅しているか。
 - **非機能要件**: 可用性・セキュリティ要件がインフラ設計に反映されているか。
+
+## 2.6 ドキュメントメタ情報（Owner / Status）
+
+各設計ドキュメント冒頭のメタヘッダ（Owner / Status / Last-updated）を確認する。**Owner の未記入（`[Owner名]` の残置）は doctor の placeholder が検出する**（一部 doctor 対応）。Status の整合はエージェントの読解判断。
+
+- **Owner**: `[Owner名]` のまま、または空 → FAIL。文書責任者をユーザーに確認して記入を提案する。
+- **Status**: フェーズと不整合（例: 設計レビュー段階なのに `draft` のまま）→ FAIL ではなく更新提案として記録する。
+- **ヘッダ自体が無い**（旧テンプレート由来のドキュメント）→ FAIL にせず PASS＋注記とし、メタヘッダの追補を提案する。
 
 ## エスカレーション判断基準
 

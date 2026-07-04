@@ -1,5 +1,9 @@
 # Domain Sketch
 
+> **Owner**: 田中
+> **Status**: in-review
+> **Last-updated**: 2026-06-30
+
 ## 主要用語（10〜20 個）
 
 - 勉強会: 社内で開催される学習イベント

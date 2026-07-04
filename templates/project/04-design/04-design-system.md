@@ -1,6 +1,8 @@
 # デザインシステム
 
-> 最終更新: YYYY-MM-DD
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
 
 ## 概要
 

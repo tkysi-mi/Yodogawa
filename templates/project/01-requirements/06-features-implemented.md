@@ -1,5 +1,9 @@
 # 実装済み機能一覧
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何を書くか: 既に実装・リリース済みの機能を体系的に整理した一覧
 

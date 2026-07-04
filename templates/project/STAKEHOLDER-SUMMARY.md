@@ -1,5 +1,9 @@
 # Stakeholder Summary
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何のドキュメントか: ステークホルダーが5分で読み、実装着手の Go / No-Go を判断するための統合1枚もの。
                     a-006（PM Gate）が上流ドキュメントを要約して生成する。

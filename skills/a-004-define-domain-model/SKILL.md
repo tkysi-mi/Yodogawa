@@ -37,6 +37,8 @@ ls -la docs/project/03-domain/ 2>/dev/null || echo "ディレクトリが存在�
 - `../../templates/project/03-domain/01-domain-sketch.md` → `docs/project/03-domain/01-domain-sketch.md`
 - `../../templates/project/03-domain/02-ubiquitous-language.md` → `docs/project/03-domain/02-ubiquitous-language.md`
 
+コピー直後に、コピーした各ドキュメント冒頭のメタヘッダを記入する（Owner は文書責任者。未確認ならユーザーに確認し、既存 docs があればその Owner を引き継ぐ / Status は `draft` / Last-updated は当日日付）。
+
 ### 3. 主要概念と境界の抽出
 
 Core Scenarios と MVP Scope から以下を提案し、`01-domain-sketch.md` を更新する。観点は [reference/event-storming-guide.md](reference/event-storming-guide.md) を参照。

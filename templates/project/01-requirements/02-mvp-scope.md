@@ -1,5 +1,9 @@
 # MVP Scope
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何のドキュメントか: 「本当に必要なものだけ作る」ための MVP スコープ確定資料。
                     候補機能を Must / Not Now / Won't に切り分け、各 Must を課題・仮説・成功指標に紐づけて正当化する。

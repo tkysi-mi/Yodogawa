@@ -55,6 +55,8 @@ git log --name-only --oneline main..HEAD
 
 ### 3. タスクドキュメントの更新
 
+更新した各タスクドキュメントは、冒頭メタヘッダの Last-updated を当日日付に更新し、必要なら Status（draft / in-review / approved）も見直す。
+
 #### 3.1. `a-definition.md`
 
 - 実装内容・受け入れ基準の更新
@@ -78,7 +80,7 @@ git log --name-only --oneline main..HEAD
 
 ### 4. プロジェクトドキュメントの更新
 
-実装内容に応じて以下を更新（記載例は [examples/project-doc-updates.md](examples/project-doc-updates.md) を参照）：
+実装内容に応じて以下を更新（記載例は [examples/project-doc-updates.md](examples/project-doc-updates.md) を参照）。更新した各プロジェクトドキュメントも、冒頭メタヘッダの Last-updated を当日日付に更新し、必要なら Status を見直す：
 
 **要件** (`docs/01-requirements/`):
 
@@ -138,8 +140,8 @@ git add README.md CHANGELOG.md .env.example
 ## 完了条件
 
 - [ ] 実装完了が確認されている
-- [ ] タスクドキュメントが更新されている（a-definition / b-research / c-implementation）
-- [ ] プロジェクトドキュメントが更新されている（要件・ドメイン・設計・README・CHANGELOG・.env.example）
+- [ ] タスクドキュメントが更新されている（a-definition / b-research / c-implementation。冒頭メタヘッダの Last-updated 更新済み）
+- [ ] プロジェクトドキュメントが更新されている（要件・ドメイン・設計・README・CHANGELOG・.env.example。冒頭メタヘッダの Last-updated 更新済み）
 - [ ] ドキュメント間の整合性が確認されている
 - [ ] ドキュメント更新がコミットされている
 - [ ] 次のタスクへのフィードバックが記録されている

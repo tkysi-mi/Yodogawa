@@ -1,5 +1,9 @@
 # Domain Sketch
 
+> **Owner**: [Owner名] <!-- 文書責任者。決裁者と同一でなくてよい -->
+> **Status**: draft <!-- draft / in-review / approved -->
+> **Last-updated**: YYYY-MM-DD
+
 <!--
 何のドキュメントか: AI が責務混在を起こさない程度の軽量なドメイン理解を共有する資料。
                     完全な Event Storming / Bounded Context / Aggregate / Context Map ではない。

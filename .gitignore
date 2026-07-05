@@ -1,5 +1,5 @@
 # Personal settings
-.claude/
+.claude/settings.local.json
 .serena/
 
 # Yodogawa CLI install outputs (local test artifacts)
